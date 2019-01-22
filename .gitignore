@@ -1,0 +1,5 @@
+# DS Store thing
+.DS_Store
+
+# any environment variables
+.env
