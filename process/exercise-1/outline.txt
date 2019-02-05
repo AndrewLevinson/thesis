@@ -88,6 +88,8 @@ DATA Sources
                 - 3.2.2 Annual Freshwater Withdrawal (Agriculture) (https://data.worldbank.org/indicator/ER.H2O.FWAG.ZS?locations=CA-MX-US-ZA-IL)
                 - 3.2.3 Annual freshwater withdrawals, industry (% of total freshwater withdrawal) | Data (https://data.worldbank.org/indicator/ER.H2O.FWIN.ZS?locations=MX-US-CA-ZA)
                 - 3.3.3 Annual freshwater withdrawals, domestic (% of total freshwater withdrawal) | Data (https://data.worldbank.org/indicator/ER.H2O.FWDM.ZS?locations=MX-US-CA-ZA-IL)
+        - 4. Infrastructure
+            - 4.1 Infrastructure Report 2017 D Grade (https://www.infrastructurereportcard.org/wp-content/uploads/2017/01/Drinking-Water-Final.pdf)
 
 
 Mindmap: (https://www.mindmeister.com/1212385590?t=ILMkfizPXO)
