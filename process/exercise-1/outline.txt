@@ -1,0 +1,87 @@
+Water Conservation in the US
+Problem
+    - Demand for water is increasing
+        - Growing population
+        - Lifestyle choices and consumer behavior trends
+            - Eating more beef
+            - Buying more water-intensive products
+                - Jeans / Denim
+                - Soda / beer / coffee
+    - Supply of water is decreasing
+        - Climate change is making dry areas more dry
+            - Colorado River drying up
+        - Aquifers & Groundwater reserves are depleting
+    - Water "transitions"
+        - Water is the oil of the 21st century
+        - Mismatch of supply and demand will reshape the world
+        - https://www.pnas.org/content/115/36/8863.full
+Solution for Conservation: how to get more use out of less water
+    1. Pricing water correctly
+    Tiered pricing system
+    Los Angeles model
+    Rethink water pricing based on water supply of area is it serving
+    Applied to personal, industry, and agriculture
+    Privatization debate
+    Water remains locally managed but pricing model is national
+    Updated government regulations
+    2. Repairing infrastructure
+    The US if suffering from massive infrastructure failure
+    Leakage from broken pipes loses 18% of all water
+    Pipes were only meant to last 20-50 years but many are 100+ years old
+    The longer we wait the more expensive it will be
+    Water safety and contamination issues
+    Flint, MI
+    3. Water technology and strategy
+    Technology
+    Sanitizing dirty and gray water and reusing instead of dumping into ocean as garbage
+    "from toilet to tap" technologies
+    Desalination
+    Conflicting opinions / necessary evil
+    Australia and Africa currently in use due to extreme water stress
+    Negatively effects environment
+    Opportunity for renewable energy
+    Expensive and inefficient
+    LA: plastic balls to prevent evaporation
+    Farming
+    Smarter Irrigation
+    GMOs and "natural selection" to grow less thirsty crops
+    Precipitation management
+    Animal feedlot ops
+    Strategy
+    See Ogallala aquifer
+    Growing different less water intensive crops will reshape our countries food production dramatically
+    Understanding "Water footprint" as consumers to make better choices
+    Less animal protein
+Audience
+    General Audience
+    Personal water for drinking and sanitation effects everyone
+    Policy Makers for infrastructure
+    Tech companies and business looking to invest in water technologies
+    Policy makers and economists looking for sustainable economic water pricing models
+    Policy makes for water safety regulations
+References
+Articles / Tools
+Don't let California's water pricing tiers fall (link)
+The water crisis isn't coming—it's already here (link)
+Water Risk Map (link)
+https://www.scientificamerican.com/article/the-ogallala-aquifer/ (link)
+https://www.pnas.org/content/115/36/8863.full
+Books (link)
+DATA Sources
+Ideas
+When will we run out of water if we don't change our behaviors?
+Breakdown of water resources / where do we get our resource from?
+Sources
+Water Securities
+Invesco S&P Global Water Index ETF (link)
+Pax Global Environmental Markets Fund;Institutional (link)
+World Bank Data
+Levels of Water Stress (link)
+Freshwater Withdrawal
+Annual Freshwater Withdrawal (Total) (link)
+Annual Freshwater Withdrawal (Agriculture) (link)
+Annual freshwater withdrawals, industry (% of total freshwater withdrawal) | Data (link)
+Annual freshwater withdrawals, domestic (% of total freshwater withdrawal) | Data (link)
+California Water Service Group - NYSE:CWT - Stock Quote & News - TheStreet (link)
+LA's water pricing structure (link)
+I’m visualizing the effects of the water crisis in the US because I want to show the most efficient way to conserve and manage water in order to change our relationship with water usage
