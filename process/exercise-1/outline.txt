@@ -14,10 +14,10 @@ Problem
         - Climate change is making dry areas more dry
             - Colorado River drying up
         - Aquifers & Groundwater reserves are depleting
-    - Water "transitions"
+    - Water's geographical "transition"
         - Water is the oil of the 21st century
         - Mismatch of supply and demand will reshape the world
-        - https://www.pnas.org/content/115/36/8863.full
+        - Peter H. Gleick, water expert theory: (https://www.pnas.org/content/115/36/8863.full)
 Solution for Conservation: how to get more use out of less water
     1. Pricing water correctly
         - Tiered pricing system
@@ -25,6 +25,7 @@ Solution for Conservation: how to get more use out of less water
         - Rethink water pricing based on water supply of area is it serving
             - Applied to personal, industry, and agriculture
         - Privatization debate
+            - Public utility stocks and investable securities
         - Water remains locally managed but pricing model is national
             - Updated government regulations
     2. Repairing infrastructure
