@@ -24,3 +24,7 @@ Exercise 1; Part 3—initial concept
     1. Invest in water technology
 
   - These measures will change our relationship with water and prepare us for a global water "transition" that shifts the geopolitical landscape in the 21st century.
+
+### Initial Sketch Concept
+
+![Simulator tool](sketch.png)
