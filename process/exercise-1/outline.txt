@@ -82,13 +82,14 @@ DATA Sources
         - 2. Water pricing
             - 2.1 California Water Service Group - NYSE:CWT - Stock Quote & News - TheStreet (https://www.thestreet.com/quote/CWT.html)
             - 2.2 LA's water pricing structure (https://www.ladwp.com/ladwp/faces/wcnav_externalId/a-fr-schedul-a-res;jsessionid=2PkTcZBdyGTTCLdpFNLy1nXQHGqhCSQskkmvvpbGJ5Np2Gcc9v0X!-873472216?_afrWindowId=null&_afrLoop=1022602372220745&_afrWindowMode=0&_adf.ctrl-state=us8i61ilb_4#%40%3F_afrWindowId%3Dnull%26_afrLoop%3D1022602372220745%26_afrWindowMode%3D0%26_adf.ctrl-state%3D1cf495d2it_4)
-        - 3. World Bank Data (water stress)
+        - 3. Water Stress
             - 3.1 Levels of Water Stress (https://data.worldbank.org/indicator/ER.H2O.FWST.ZS?end=2015&locations=CA-US-ZA-MX-IL&start=2014&type=shaded&view=chart)
             - 3.2 Freshwater Withdrawal
                 - 3.2.1 Annual Freshwater Withdrawal (Total) (https://data.worldbank.org/indicator/ER.H2O.FWTL.ZS?end=2014&locations=MX-US&start=1982&view=chart)
                 - 3.2.2 Annual Freshwater Withdrawal (Agriculture) (https://data.worldbank.org/indicator/ER.H2O.FWAG.ZS?locations=CA-MX-US-ZA-IL)
                 - 3.2.3 Annual freshwater withdrawals, industry (% of total freshwater withdrawal) | Data (https://data.worldbank.org/indicator/ER.H2O.FWIN.ZS?locations=MX-US-CA-ZA)
                 - 3.3.3 Annual freshwater withdrawals, domestic (% of total freshwater withdrawal) | Data (https://data.worldbank.org/indicator/ER.H2O.FWDM.ZS?locations=MX-US-CA-ZA-IL)
+            - 3.3 USGS Observational Water Data (https://waterdata.usgs.gov/nwis/current/?type=gw)
         - 4. Infrastructure
             - 4.1 Infrastructure Report 2017 D Grade (https://www.infrastructurereportcard.org/wp-content/uploads/2017/01/Drinking-Water-Final.pdf)
 
