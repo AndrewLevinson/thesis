@@ -1,0 +1,560 @@
+* {
+  --main-bg-color: #f8efe7;
+  --green-color: #009f29;
+  --negative-color: #9f0037;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  height: 100%;
+  background: var(--main-bg-color);
+}
+
+.wrapper {
+  margin: 0;
+  width: 100%;
+}
+
+a {
+  color: #5b00ff;
+  text-decoration: none;
+  /* font-size: 16px; */
+}
+
+a:hover {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #3d3d3d;
+}
+
+.begin {
+  width: 100%;
+  /* min-height: -mox-calc(100% - 16px);
+  min-height: -webkit-calc(100% - 16px);
+  min-height: calc(100% - 16px); */
+  align-items: center;
+  margin-top: 10%;
+}
+
+section {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 80rem;
+  min-width: 345px;
+}
+
+.prompt {
+  text-align: center;
+  margin: 0 auto 1rem 0;
+}
+
+.written,
+.footnotes {
+  padding: 0 10px;
+  width: 100%;
+  max-width: 65rem;
+  margin: 2rem auto;
+  margin-top: 3rem;
+}
+
+hr {
+  margin: 140px 0;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #3d3d3d;
+  opacity: 0.8;
+}
+
+hr.footer {
+  width: 100%;
+  margin-bottom: 0px;
+  opacity: 1;
+}
+.footnotes {
+  opacity: 0.75;
+  font-size: 75%;
+}
+
+.byline {
+  font-weight: 400;
+}
+
+i {
+  padding: 1em;
+  font-size: 2.5rem;
+}
+
+.part-header {
+  margin-top: 0px;
+  text-transform: uppercase;
+  /* margin-left: 20px; */
+  /* width: 500px; */
+}
+
+.part-header > p {
+  opacity: 0.6;
+  /* line-height: 1; */
+  font-size: 1.5rem;
+  margin-bottom: -40px;
+  letter-spacing: 4px;
+}
+
+.sub-header {
+  border-bottom: 1px dashed #3d3d3d;
+  margin-top: 0;
+}
+
+span.green {
+  color: var(--green-color);
+}
+
+span.small {
+  text-transform: lowercase;
+  letter-spacing: normal;
+}
+
+/* scroll library */
+#sections > div {
+  opacity: 0.3;
+  transition: all 0.2s;
+}
+
+#sections div.graph-scroll-active {
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+#container {
+  position: relative;
+}
+.blank {
+  visibility: collapse;
+}
+
+/* font is smaller for content blocks paired with visuals - see type.css */
+.text-content {
+  margin-top: 60%;
+  padding: 0 1rem 0 3rem;
+}
+
+#graph {
+  /* margin-left: 40px; */
+  width: 52.5%;
+  margin-left: 7.5%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 2.5%;
+  float: left;
+  /* transform: translate(0%, 0%); */
+}
+#sections {
+  width: 27.5%;
+  margin-left: 62.5%;
+  padding-top: 0;
+}
+.final {
+  height: 20%;
+  margin-bottom: 50%;
+  visibility: hidden;
+}
+.last {
+  margin-bottom: 80%;
+}
+
+.keep-scrolling {
+  margin-top: 20%;
+  text-align: center;
+}
+
+select,
+button {
+  font-size: 15px;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  background: transparent;
+  border-radius: 2px;
+  width: 80px;
+  transition: all 0.2s;
+}
+
+select:hover,
+button:hover {
+  background-color: #3d3d3d;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s;
+}
+
+/* d3 attributes below  */
+#xAxisTitle,
+#yAxisTitle,
+#title {
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+#group g {
+  cursor: pointer;
+}
+
+/* SCATTER PLOT POINT STYLE BELOW */
+/* default state points: up */
+.up circle {
+  opacity: 1;
+  fill: none;
+  stroke: #000;
+  transition: all 0.6s;
+}
+.up text {
+  fill: #000;
+  font-size: 0%;
+  opacity: 0.85;
+  transition: all 0.6s;
+}
+
+/* reduced focus: inactive  */
+.inactive circle {
+  opacity: 0.2;
+  r: 4;
+  fill: none;
+  stroke: #000;
+  transition: all 0.6s;
+}
+.inactive text {
+  fill: #000;
+  /* font-size: 95%; */
+  font-size: 40%;
+  opacity: 0.25;
+  transition: all 0.6s;
+}
+
+/* hidden focus: hidden  */
+.hidden circle {
+  opacity: 0;
+  r: 4;
+  fill: none;
+  stroke: #000;
+  transition: all 0.6s;
+}
+.hidden text {
+  fill: #000;
+  font-size: 0%;
+  opacity: 0;
+  transition: all 0.6s;
+}
+
+/* hover on point: special */
+.special circle {
+  fill: #ff7233;
+  stroke: none;
+  r: 5;
+  opacity: 1;
+  transition: all 0.6s;
+}
+.special text {
+  fill: #000;
+  font-size: 30%;
+  opacity: 1;
+  transition: all 0.6s;
+}
+/* hover on point: active */
+.active circle {
+  fill: #ff7233;
+  stroke: none;
+  r: 5;
+  opacity: 1;
+  transition: all 0.6s;
+}
+.active text {
+  fill: #000;
+  font-size: 100%;
+  opacity: 1;
+  transition: all 0.6s;
+}
+
+.positive circle {
+  fill: var(--green-color);
+}
+
+.negative circle {
+  fill: var(--negative-color);
+}
+
+/* map style */
+#map {
+  width: 97.5%;
+  height: 75vh;
+  border-radius: 10px;
+}
+.mapboxgl-canvas {
+  width: 100%;
+}
+
+#map svg {
+  position: absolute;
+}
+
+.hide-map {
+  display: none;
+  /* opacity: 0; */
+  /* transition: all 0.6s; */
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: left;
+  display: inline;
+  padding: 8px;
+  font-size: 13px;
+  line-height: 1.2;
+  font-family: monospace;
+
+  background-color: #000;
+  border: 0px;
+  border-radius: 6px;
+  pointer-events: none;
+  color: #fff;
+  filter: drop-shadow(0px 8px 16px #000);
+}
+
+.top-green > rect {
+  fill: var(--green-color);
+}
+
+.bottom-red > rect {
+  fill: #3d3d3d;
+}
+
+.container-1 rect {
+  border-radius: 10px;
+}
+
+.minis {
+  display: flex;
+  width: 100%;
+  /* margin-left: -50%; */
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.minis > img {
+  width: 60%;
+  height: 60%;
+}
+
+.emptyState {
+  border: 1px dashed #3d3d3d;
+  height: 65vh;
+  display: flex;
+}
+.emptyState > p {
+  align-self: center;
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+}
+
+/* ul {
+  list-style: none;
+  margin-bottom: 5%;
+} */
+/* 
+li::before {
+  content: "•";
+  color: #ff7233;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  font-size: 2em;
+} */
+
+table {
+  font-family: monospace;
+  text-align: right;
+  vertical-align: bottom;
+  margin: 10% 0 10% 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.left {
+  text-align: left;
+  min-width: 180px;
+}
+
+.left-small {
+  text-align: left;
+  /* min-width: 100px; */
+}
+
+.right {
+  text-align: right;
+}
+
+th,
+.bottom {
+  border-bottom: 1px dashed #3d3d3d;
+}
+
+th {
+  vertical-align: bottom;
+}
+
+.double {
+  border-bottom: 2px solid #3d3d3d;
+}
+.total {
+  font-weight: 600;
+}
+
+caption {
+  text-align: right;
+  font-size: 110%;
+}
+
+td {
+  padding: 0 0.4rem 0 0.4rem;
+}
+
+.positive {
+  color: var(--green-color);
+}
+
+.negative {
+  color: var(--negative-color);
+}
+
+.underline {
+  /* border-bottom: 2px dashed var(--green-color); */
+  color: var(--green-color);
+  font-weight: bold;
+}
+
+.tick {
+  text-indent: 0px;
+}
+
+.table-break {
+  height: 4rem;
+  vertical-align: bottom;
+}
+
+strong {
+  font-weight: 500;
+}
+
+.upper {
+  text-transform: uppercase;
+  /* letter-spacing: 1.1px; */
+}
+
+.border {
+  border-bottom: 1px dashed #3d3d3d;
+  font-weight: 500;
+}
+
+.large-pos {
+  font-size: 110%;
+  border-bottom: 1px dashed var(--green-color);
+}
+
+.large-neg {
+  font-size: 110%;
+  border-bottom: 1px dashed var(--negative-color);
+}
+
+#analysis {
+  min-height: 25vh;
+}
+
+/* media query breakpoints  */
+@media (max-width: 550px) {
+  .prompt {
+    margin-top: 0;
+    text-align: left;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 925px) {
+  .wrapper {
+    margin: 0 auto;
+    width: 95%;
+  }
+
+  .minis {
+    display: block;
+  }
+
+  #graph {
+    width: 97.5%;
+    margin-left: 2.5%;
+    /* transform: translate(0%, 18%); */
+    background-color: #f8efe7;
+    z-index: 0;
+  }
+
+  #sections {
+    position: relative;
+    margin: 0px auto;
+    /* padding-top: 10%; */
+    /* padding-top: 400px; */
+    width: 90%;
+    z-index: 999;
+  }
+
+  .text-content {
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    /* background-color: rgba(247, 232, 218, 0.9); */
+    background-color: var(--main-bg-color);
+    border-radius: 8px;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
+    padding: 5%;
+  }
+
+  .final {
+    height: 100px;
+  }
+
+  .up text,
+  .inactive text,
+  .hidden text {
+    font-size: 0%;
+    transition: all 0.6s;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  hr {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  .emptyState {
+    height: 25vh;
+  }
+
+  #analysis {
+    min-height: 0vh;
+  }
+}

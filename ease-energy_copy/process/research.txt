@@ -1,0 +1,48 @@
+Focus on SDG 8
+General exploration -- How can acting on renewable energy potential improve the ease of doing business in Sub-Saharan Africa?
+
+Prompt
+I'm visualizing access to electricity in Sub-Saharan countries that have a poor ease of doing business ranking because I want to show how access to electricity greatly impacts the ability to do business in order to promote action on renewable energy potential to improve the ease of doing business
+
+
+Sources
+SDG 8
+https://sustainabledevelopment.un.org/sdg8
+
+World Bank
+http://databank.worldbank.org/data/source/doing-business/Type/TABLE/preview/on
+https://data.worldbank.org/indicator/IC.BUS.EASE.XQ?end=2017&locations=TD-AO-UG-KE&start=2017&type=shaded&view=bar
+https://datacatalog.worldbank.org/dataset/doing-business
+http://databank.worldbank.org/data/source/doing-business/Type/TABLE/preview/on
+
+Doing business
+https://en.wikipedia.org/wiki/Ease_of_doing_business_index
+http://www.doingbusiness.org/en/data
+http://www.doingbusiness.org/en/data/exploretopics/getting-electricity/why-matters
+http://www.doingbusiness.org/en/rankings?region=sub-saharan-africa
+http://www.doingbusiness.org/en/data/exploretopics/getting-electricity
+http://www.doingbusiness.org/content/dam/doingBusiness/media/Annual-Reports/English/DB19-Chapters/DB19-Score-and-DBRankings.pdf
+
+Potential Renewable energy
+http://www.irena.org/-/media/Files/IRENA/Agency/Publication/2014/IRENA_Africa_Resource_Potential_Aug2014.pdf
+http://www.irena.org/publications/2014/Aug/Estimating-the-Renewable-Energy-Potential-in-Africa-A-GIS-based-approach
+https://en.wikipedia.org/wiki/Renewable_energy_in_the_United_States#Potential_resources
+
+World Bank global solar atlas
+https://globalsolaratlas.info/downloads/chad
+
+Other 
+https://en.wikipedia.org/wiki/Renewable_energy_in_the_United_States
+https://energytransition.org/2018/01/analysis-how-developing-nations-are-driving-record-growth-in-solar-power/
+https://www.usip.org/sites/default/files/2018-01/sr418-south-sudans-renewable-energy-potential-a-building-block-for-peace.pdf
+https://www.researchgate.net/publication/301614191_South_Sudan_A_Review_of_the_Challenges_and_Prospects_in_the_Development_of_Sustainable_Energy_Policy_and_Practices
+https://tradingeconomics.com/
+
+
+According to the Intertational Renewable Energy Agency (IRENA), since 2010 the cost of solar PV technology has decreased by over 80% and wind power by about 50%. 
+
+Cost of south sudan energy
+Chad has highest concentration of solar + wind combined. Compare to USA
+
+Code credit
+http://1wheel.github.io/graph-scroll/

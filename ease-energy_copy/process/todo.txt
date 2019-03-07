@@ -1,0 +1,18 @@
+6. 3.1 show all of africa (world?) and show view based on area and then based on population...might need to include scale in body or ontop of mapbox. Compare to world output either on map OR in text. 3.2 - highlight a few countries with high wind and solar potential. 3.3 - what's being done today 
+7. conclusion: reiterate point. Mention whats happening today, concerns, call to action/next steps.
+- use score instead of index
+- svg responsive to screen re-sizing
+- update link style
+- update axis ticks on < 950px
+- teaser graphic in intro/outro?
+
+
+
+-----
+Storylines
+
+Clearly, Sub-Saharan Africa has some of the worst access to electricity in the entire world. 
+Additionally, we can see that of the lowest elecrtified countries in sub-saharan africa, doing business is quite difficult -- someof the the most difficult in the world. 
+So how about a business opportunity in energy? 
+    Well it just so happens that in some of these sub-saharan countries with difficult doing business scores and low access to electricity, there's some of the highest renewable solar and wind potential in the entire world. Africa accounts for more solar irradiance than any continent.
+    By investing in renewable energy, these sub-saharan countries can increase business ease and access to electricity simultaniously. Not only will the product itself literally provide energy access to more of the population, the access to electricity will then enable new business growth in unreleated industries that were previously not possible due to darkness and lack of power.

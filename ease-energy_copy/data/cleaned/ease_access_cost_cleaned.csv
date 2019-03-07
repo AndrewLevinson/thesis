@@ -1,0 +1,190 @@
+Country,Ease,Cost,Access,Category
+Afghanistan,183,2275,84,non
+Albania,58,516,100,non
+Algeria,156,1330,99,non
+Angola,182,1197,41,sub
+Antigua and Barbuda,113,118,97,non
+Argentina,116,32,100,non
+Armenia,38,80,100,non
+Australia,15,13,100,non
+Austria,19,96,100,non
+Azerbaijan,65,150,100,non
+"Bahamas, The",121,120,100,non
+Bahrain,63,67,100,non
+Bangladesh,176,2865,76,non
+Barbados,117,65,100,non
+Belarus,37,119,100,non
+Belgium,42,102,100,non
+Belize,112,320,92,non
+Benin,155,12582,41,sub
+Bhutan,73,525,100,non
+Bolivia,149,687,93,non
+Bosnia and Herzegovina,81,400,100,non
+Botswana,71,324,61,sub
+Brazil,123,58,100,non
+Brunei Darussalam,72,54,100,non
+Bulgaria,39,374,100,non
+Burkina Faso,146,10028,19,sub
+Burundi,157,16918,8,sub
+Cambodia,131,2172,50,non
+Cameroon,166,1597,60,sub
+Canada,22,126,100,non
+Cape Verde,129,1027,93,sub
+Central African Republic,185,15810,14,sub
+Chad,180,8527,9,sub
+Chile,57,71,100,non
+China,78,390,100,non
+Colombia,53,581,99,non
+Comoros,153,2451,78,sub
+"Congo, Dem. Rep.",184,15264,17,sub
+"Congo, Rep.",177,5469,57,sub
+Costa Rica,62,182,100,non
+Cote d'Ivoire,142,2590,64,sub
+Croatia,43,303,100,non
+Cyprus,45,130,100,non
+Czech Republic,27,25,100,non
+Denmark,3,109,100,top
+Djibouti,171,6380,52,non
+Dominica,101,471,100,non
+Dominican Republic,103,267,100,non
+Ecuador,114,606,100,non
+"Egypt, Arab Rep.",122,245,100,non
+El Salvador,95,502,99,non
+Equatorial Guinea,178,1085,68,sub
+Eritrea,189,0,47,sub
+Estonia,12,173,100,non
+Ethiopia,159,1239,43,sub
+Fiji,97,1478,99,non
+Finland,13,28,100,non
+France,29,6,100,non
+Gabon,164,1102,91,sub
+"Gambia, The",145,3569,48,sub
+Georgia,16,354,100,non
+Germany,17,41,100,non
+Ghana,108,1266,79,sub
+Greece,61,70,100,non
+Grenada,138,191,92,non
+Guatemala,88,478,92,non
+Guinea,163,6636,34,sub
+Guinea-Bissau,172,1520,15,sub
+Guyana,124,405,84,non
+Haiti,181,3709,39,non
+Honduras,105,775,88,non
+"Hong Kong, China",4,1,100,top
+Hungary,41,94,100,non
+Iceland,20,11,100,non
+India,130,109,85,non
+Indonesia,91,357,98,non
+"Iran, Islamic Rep.",120,829,100,non
+Iraq,165,469,100,non
+Ireland,18,62,100,non
+Israel,52,15,100,non
+Italy,50,158,100,non
+Jamaica,67,232,98,non
+Japan,34,0,100,non
+Jordan,118,325,100,non
+Kazakhstan,35,51,100,non
+Kenya,92,642,56,sub
+Kiribati,152,3229,85,non
+"Korea, Rep.",5,38,100,top
+Kosovo,60,225,100,non
+Kuwait,102,77,100,non
+Kyrgyz Republic,75,858,100,non
+Lao PDR,139,1409,87,non
+Latvia,14,290,100,non
+Lebanon,126,125,100,non
+Lesotho,100,1422,30,sub
+Liberia,174,4067,20,sub
+Libya,188,442,99,non
+Lithuania,21,44,100,non
+Luxembourg,59,36,100,non
+"Macedonia, FYR",10,212,100,top
+Madagascar,167,5699,23,sub
+Malawi,133,2688,11,sub
+Malaysia,23,27,100,non
+Maldives,135,322,100,non
+Mali,141,2965,35,sub
+Malta,76,268,100,non
+Marshall Islands,143,712,93,non
+Mauritania,160,4735,42,sub
+Mauritius,49,248,99,sub
+Mexico,47,337,100,non
+"Micronesia, Fed. Sts.",151,397,75,non
+Moldova,44,738,100,non
+Mongolia,64,579,82,non
+Montenegro,51,441,100,non
+Morocco,68,1770,100,non
+Mozambique,137,2509,24,sub
+Myanmar,170,1270,57,non
+Namibia,108,349,52,sub
+Nepal,107,1042,91,non
+Netherlands,28,30,100,non
+New Zealand,1,76,100,top
+Nicaragua,127,904,82,non
+Niger,150,5427,16,sub
+Nigeria,169,440,59,sub
+Norway,6,11,100,top
+Oman,66,81,100,non
+Pakistan,144,1772,99,non
+Palau,136,65,99,non
+Panama,70,9,93,non
+Papua New Guinea,119,38,23,non
+Paraguay,106,152,98,non
+Peru,54,336,95,non
+Philippines,99,26,91,non
+Poland,24,19,100,non
+Portugal,25,37,100,non
+Puerto Rico,55,354,100,non
+Qatar,83,11,100,non
+Romania,36,547,100,non
+Russian Federation,40,44,100,non
+Rwanda,56,2723,29,sub
+Samoa,89,642,100,non
+San Marino,79,59,100,non
+Sao Tome and Principe,162,420,65,sub
+Saudi Arabia,94,31,100,non
+Senegal,147,3822,65,sub
+Serbia,47,236,100,non
+Seychelles,93,365,100,sub
+Sierra Leone,148,4224,20,sub
+Singapore,2,26,100,top
+Slovak Republic,33,53,100,non
+Slovenia,30,110,100,non
+Solomon Islands,104,1254,48,non
+Somalia,190,0,30,sub
+South Africa,74,156,84,sub
+South Sudan,186,0,9,sub
+Spain,32,103,100,non
+Sri Lanka,110,769,96,non
+St. Kitts and Nevis,134,241,100,non
+St. Lucia,86,193,98,non
+St. Vincent and the Grenadines,125,57,100,non
+Sudan,168,2687,39,sub
+Suriname,158,484,87,non
+Swaziland,111,740,66,sub
+Sweden,9,32,100,top
+Switzerland,31,59,100,non
+Syrian Arab Republic,173,312,100,non
+Tajikistan,128,743,100,non
+Tanzania,132,948,33,sub
+Thailand,46,43,100,non
+Timor-Leste,175,1218,63,non
+Togo,154,5508,47,sub
+Tonga,85,86,97,non
+Trinidad and Tobago,96,177,100,non
+Tunisia,77,697,100,non
+Turkey,69,600,100,non
+Uganda,115,8449,27,sub
+Ukraine,80,638,100,non
+United Arab Emirates,26,25,100,non
+United Kingdom,7,26,100,top
+United States,8,24,100,top
+Uruguay,90,13,100,non
+Uzbekistan,87,1233,100,non
+Vanuatu,83,1091,58,non
+"Venezuela, RB",187,18867,100,non
+Vietnam,82,1261,100,non
+West Bank and Gaza,140,1541,100,non
+"Yemen, Rep.",179,0,72,non
+Zambia,98,610,27,sub
+Zimbabwe,161,2958,38,sub

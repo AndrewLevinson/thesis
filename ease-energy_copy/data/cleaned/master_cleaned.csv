@@ -1,0 +1,190 @@
+Country,Ease,Cost,Access,Category,totalareakm2,csptwh,pvtwh,wind20twh,totaltwh,twhperkm2,population2017,twhperperson
+New Zealand,1,76,100,top,nodata,nodata,nodata,nodata,nodata,nodata,4793900,nodata
+Singapore,2,26,100,top,nodata,nodata,nodata,nodata,nodata,nodata,5612253,nodata
+Denmark,3,109,100,top,nodata,nodata,nodata,nodata,nodata,nodata,5769603,nodata
+"Hong Kong, China",4,1,100,top,nodata,nodata,nodata,nodata,nodata,nodata,7391700,nodata
+"Korea, Rep.",5,38,100,top,nodata,nodata,nodata,nodata,nodata,nodata,51466201,nodata
+Norway,6,11,100,top,nodata,nodata,nodata,nodata,nodata,nodata,5282223,nodata
+United Kingdom,7,26,100,top,nodata,nodata,nodata,nodata,nodata,nodata,66022273,nodata
+United States,8,24,100,top,9834000,116100,283710,49760,449570,0.045715884,325719178,0.001380238
+Sweden,9,32,100,top,nodata,nodata,nodata,nodata,nodata,nodata,10067744,nodata
+"Macedonia, FYR",10,212,100,top,nodata,nodata,nodata,nodata,nodata,nodata,2083160,nodata
+Estonia,12,173,100,non,nodata,nodata,nodata,nodata,nodata,nodata,1315480,nodata
+Finland,13,28,100,non,nodata,nodata,nodata,nodata,nodata,nodata,5511303,nodata
+Latvia,14,290,100,non,nodata,nodata,nodata,nodata,nodata,nodata,1940740,nodata
+Australia,15,13,100,non,nodata,nodata,nodata,nodata,nodata,nodata,24598933,nodata
+Georgia,16,354,100,non,nodata,nodata,nodata,nodata,nodata,nodata,3717100,nodata
+Germany,17,41,100,non,nodata,nodata,nodata,nodata,nodata,nodata,82695000,nodata
+Ireland,18,62,100,non,nodata,nodata,nodata,nodata,nodata,nodata,4813608,nodata
+Austria,19,96,100,non,nodata,nodata,nodata,nodata,nodata,nodata,8809212,nodata
+Iceland,20,11,100,non,nodata,nodata,nodata,nodata,nodata,nodata,341284,nodata
+Lithuania,21,44,100,non,nodata,nodata,nodata,nodata,nodata,nodata,2827721,nodata
+Canada,22,126,100,non,nodata,nodata,nodata,nodata,nodata,nodata,36708083,nodata
+Malaysia,23,27,100,non,nodata,nodata,nodata,nodata,nodata,nodata,31624264,nodata
+Poland,24,19,100,non,nodata,nodata,nodata,nodata,nodata,nodata,37975841,nodata
+Portugal,25,37,100,non,nodata,nodata,nodata,nodata,nodata,nodata,10293718,nodata
+United Arab Emirates,26,25,100,non,nodata,nodata,nodata,nodata,nodata,nodata,9400145,nodata
+Czech Republic,27,25,100,non,nodata,nodata,nodata,nodata,nodata,nodata,10591323,nodata
+Netherlands,28,30,100,non,nodata,nodata,nodata,nodata,nodata,nodata,17132854,nodata
+France,29,6,100,non,nodata,nodata,nodata,nodata,nodata,nodata,67118648,nodata
+Slovenia,30,110,100,non,nodata,nodata,nodata,nodata,nodata,nodata,2066748,nodata
+Switzerland,31,59,100,non,nodata,nodata,nodata,nodata,nodata,nodata,8466017,nodata
+Spain,32,103,100,non,nodata,nodata,nodata,nodata,nodata,nodata,46572028,nodata
+Slovak Republic,33,53,100,non,nodata,nodata,nodata,nodata,nodata,nodata,5439892,nodata
+Japan,34,0,100,non,nodata,nodata,nodata,nodata,nodata,nodata,126785797,nodata
+Kazakhstan,35,51,100,non,nodata,nodata,nodata,nodata,nodata,nodata,18037646,nodata
+Romania,36,547,100,non,nodata,nodata,nodata,nodata,nodata,nodata,19586539,nodata
+Belarus,37,119,100,non,nodata,nodata,nodata,nodata,nodata,nodata,9507875,nodata
+Armenia,38,80,100,non,nodata,nodata,nodata,nodata,nodata,nodata,2930450,nodata
+Bulgaria,39,374,100,non,nodata,nodata,nodata,nodata,nodata,nodata,7075991,nodata
+Russian Federation,40,44,100,non,nodata,nodata,nodata,nodata,nodata,nodata,144495044,nodata
+Hungary,41,94,100,non,nodata,nodata,nodata,nodata,nodata,nodata,9781127,nodata
+Belgium,42,102,100,non,nodata,nodata,nodata,nodata,nodata,nodata,11372068,nodata
+Croatia,43,303,100,non,nodata,nodata,nodata,nodata,nodata,nodata,4125700,nodata
+Moldova,44,738,100,non,nodata,nodata,nodata,nodata,nodata,nodata,3549750,nodata
+Cyprus,45,130,100,non,nodata,nodata,nodata,nodata,nodata,nodata,1179551,nodata
+Thailand,46,43,100,non,nodata,nodata,nodata,nodata,nodata,nodata,69037513,nodata
+Mexico,47,337,100,non,nodata,nodata,nodata,nodata,nodata,nodata,129163276,nodata
+Serbia,47,236,100,non,nodata,nodata,nodata,nodata,nodata,nodata,7022268,nodata
+Mauritius,49,248,99,sub,nodata,nodata,nodata,nodata,nodata,nodata,1264613,nodata
+Italy,50,158,100,non,nodata,nodata,nodata,nodata,nodata,nodata,60551416,nodata
+Montenegro,51,441,100,non,nodata,nodata,nodata,nodata,nodata,nodata,622471,nodata
+Israel,52,15,100,non,nodata,nodata,nodata,nodata,nodata,nodata,8712400,nodata
+Colombia,53,581,99,non,nodata,nodata,nodata,nodata,nodata,nodata,49065615,nodata
+Peru,54,336,95,non,nodata,nodata,nodata,nodata,nodata,nodata,32165485,nodata
+Puerto Rico,55,354,100,non,nodata,nodata,nodata,nodata,nodata,nodata,3337177,nodata
+Rwanda,56,2723,29,sub,25206,789,892,0,1681,0.066690471,12208407,0.000137692
+Chile,57,71,100,non,nodata,nodata,nodata,nodata,nodata,nodata,18054726,nodata
+Albania,58,516,100,non,nodata,nodata,nodata,nodata,nodata,nodata,2873457,nodata
+Luxembourg,59,36,100,non,nodata,nodata,nodata,nodata,nodata,nodata,599449,nodata
+Kosovo,60,225,100,non,nodata,nodata,nodata,nodata,nodata,nodata,1830700,nodata
+Greece,61,70,100,non,nodata,nodata,nodata,nodata,nodata,nodata,10760421,nodata
+Costa Rica,62,182,100,non,nodata,nodata,nodata,nodata,nodata,nodata,4905769,nodata
+Bahrain,63,67,100,non,nodata,nodata,nodata,nodata,nodata,nodata,1492584,nodata
+Mongolia,64,579,82,non,nodata,nodata,nodata,nodata,nodata,nodata,3075647,nodata
+Azerbaijan,65,150,100,non,nodata,nodata,nodata,nodata,nodata,nodata,9862429,nodata
+Oman,66,81,100,non,nodata,nodata,nodata,nodata,nodata,nodata,4636262,nodata
+Jamaica,67,232,98,non,nodata,nodata,nodata,nodata,nodata,nodata,2890299,nodata
+Morocco,68,1770,100,non,406318,15127,15155,11297,41579,0.102331179,35739580,0.001163388
+Turkey,69,600,100,non,nodata,nodata,nodata,nodata,nodata,nodata,80745020,nodata
+Panama,70,9,93,non,nodata,nodata,nodata,nodata,nodata,nodata,4098587,nodata
+Botswana,71,324,61,sub,578084,13070,13764,9793,36627,0.063359304,2291661,0.01598273
+Brunei Darussalam,72,54,100,non,nodata,nodata,nodata,nodata,nodata,nodata,428697,nodata
+Bhutan,73,525,100,non,nodata,nodata,nodata,nodata,nodata,nodata,807610,nodata
+South Africa,74,156,84,sub,1220394,43275,42243,41195,126713,0.103829583,56717156,0.002234121
+Kyrgyz Republic,75,858,100,non,nodata,nodata,nodata,nodata,nodata,nodata,6201500,nodata
+Malta,76,268,100,non,nodata,nodata,nodata,nodata,nodata,nodata,465292,nodata
+Tunisia,77,697,100,non,155176,2045,4645,6842,13532,0.087204207,11532127,0.001173418
+China,78,390,100,non,nodata,nodata,nodata,nodata,nodata,nodata,1386395000,nodata
+San Marino,79,59,100,non,nodata,nodata,nodata,nodata,nodata,nodata,33400,nodata
+Ukraine,80,638,100,non,nodata,nodata,nodata,nodata,nodata,nodata,44831159,nodata
+Bosnia and Herzegovina,81,400,100,non,nodata,nodata,nodata,nodata,nodata,nodata,3507017,nodata
+Vietnam,82,1261,100,non,nodata,nodata,nodata,nodata,nodata,nodata,95540800,nodata
+Qatar,83,11,100,non,nodata,nodata,nodata,nodata,nodata,nodata,2639211,nodata
+Vanuatu,83,1091,58,non,nodata,nodata,nodata,nodata,nodata,nodata,276244,nodata
+Tonga,85,86,97,non,nodata,nodata,nodata,nodata,nodata,nodata,108020,nodata
+St. Lucia,86,193,98,non,nodata,nodata,nodata,nodata,nodata,nodata,178844,nodata
+Uzbekistan,87,1233,100,non,nodata,nodata,nodata,nodata,nodata,nodata,32387200,nodata
+Guatemala,88,478,92,non,nodata,nodata,nodata,nodata,nodata,nodata,16913503,nodata
+Samoa,89,642,100,non,nodata,nodata,nodata,nodata,nodata,nodata,196440,nodata
+Uruguay,90,13,100,non,nodata,nodata,nodata,nodata,nodata,nodata,3456750,nodata
+Indonesia,91,357,98,non,nodata,nodata,nodata,nodata,nodata,nodata,263991379,nodata
+Kenya,92,642,56,sub,582253,15399,23046,22476,60921,0.104629774,49699862,0.001225778
+Seychelles,93,365,100,sub,nodata,nodata,nodata,nodata,nodata,nodata,95843,nodata
+Saudi Arabia,94,31,100,non,nodata,nodata,nodata,nodata,nodata,nodata,32938213,nodata
+El Salvador,95,502,99,non,nodata,nodata,nodata,nodata,nodata,nodata,6377853,nodata
+Trinidad and Tobago,96,177,100,non,nodata,nodata,nodata,nodata,nodata,nodata,1369125,nodata
+Fiji,97,1478,99,non,nodata,nodata,nodata,nodata,nodata,nodata,905502,nodata
+Zambia,98,610,27,sub,751315,15691,17894,13229,46814,0.062309417,17094130,0.002738601
+Philippines,99,26,91,non,nodata,nodata,nodata,nodata,nodata,nodata,104918090,nodata
+Lesotho,100,1422,30,sub,30454,1122,938,599,2659,0.087312012,2233339,0.001190594
+Dominica,101,471,100,non,nodata,nodata,nodata,nodata,nodata,nodata,73925,nodata
+Kuwait,102,77,100,non,nodata,nodata,nodata,nodata,nodata,nodata,4136528,nodata
+Dominican Republic,103,267,100,non,nodata,nodata,nodata,nodata,nodata,nodata,10766998,nodata
+Solomon Islands,104,1254,48,non,nodata,nodata,nodata,nodata,nodata,nodata,611343,nodata
+Honduras,105,775,88,non,nodata,nodata,nodata,nodata,nodata,nodata,9265067,nodata
+Paraguay,106,152,98,non,nodata,nodata,nodata,nodata,nodata,nodata,6811297,nodata
+Nepal,107,1042,91,non,nodata,nodata,nodata,nodata,nodata,nodata,29304998,nodata
+Ghana,108,1266,79,sub,238761,229,7644,606,8479,0.0355125,28833629,0.000294066
+Namibia,108,349,52,sub,824205,29716,26183,15196,71095,0.08625888,2533794,0.028058714
+Sri Lanka,110,769,96,non,nodata,nodata,nodata,nodata,nodata,nodata,21444000,nodata
+Eswatini,111,740,66,sub,17289,559,572,476,1607,0.092949274,1367254,0.001175349
+Belize,112,320,92,non,nodata,nodata,nodata,nodata,nodata,nodata,374681,nodata
+Antigua and Barbuda,113,118,97,non,nodata,nodata,nodata,nodata,nodata,nodata,102012,nodata
+Ecuador,114,606,100,non,nodata,nodata,nodata,nodata,nodata,nodata,16624858,nodata
+Uganda,115,8449,27,sub,241278,8582,9470,815,18867,0.078196106,42862958,0.00044017
+Argentina,116,32,100,non,nodata,nodata,nodata,nodata,nodata,nodata,44271041,nodata
+Barbados,117,65,100,non,nodata,nodata,nodata,nodata,nodata,nodata,285719,nodata
+Jordan,118,325,100,non,nodata,nodata,nodata,nodata,nodata,nodata,9702353,nodata
+Papua New Guinea,119,38,23,non,nodata,nodata,nodata,nodata,nodata,nodata,8251162,nodata
+"Iran, Islamic Rep.",120,829,100,non,nodata,nodata,nodata,nodata,nodata,nodata,81162788,nodata
+"Bahamas, The",121,120,100,non,nodata,nodata,nodata,nodata,nodata,nodata,395361,nodata
+"Egypt, Arab Rep.",122,245,100,non,982446,26605,32218,36601,95424,0.097129003,97553151,0.000978174
+Brazil,123,58,100,non,nodata,nodata,nodata,nodata,nodata,nodata,209288278,nodata
+Guyana,124,405,84,non,nodata,nodata,nodata,nodata,nodata,nodata,777859,nodata
+St. Vincent and the Grenadines,125,57,100,non,nodata,nodata,nodata,nodata,nodata,nodata,109897,nodata
+Lebanon,126,125,100,non,nodata,nodata,nodata,nodata,nodata,nodata,6082357,nodata
+Nicaragua,127,904,82,non,nodata,nodata,nodata,nodata,nodata,nodata,6217581,nodata
+Tajikistan,128,743,100,non,nodata,nodata,nodata,nodata,nodata,nodata,8921343,nodata
+Cabo Verde,129,1027,93,sub,nodata,nodata,nodata,nodata,nodata,nodata,546388,nodata
+India,130,109,85,non,nodata,nodata,nodata,nodata,nodata,nodata,1339180127,nodata
+Cambodia,131,2172,50,non,nodata,nodata,nodata,nodata,nodata,nodata,16005373,nodata
+Tanzania,132,948,33,sub,941758,31482,38804,18456,88742,0.094230153,57310019,0.001548455
+Malawi,133,2688,11,sub,118062,4474,5210,1986,11670,0.098846369,18622104,0.000626675
+St. Kitts and Nevis,134,241,100,non,nodata,nodata,nodata,nodata,nodata,nodata,55345,nodata
+Maldives,135,322,100,non,nodata,nodata,nodata,nodata,nodata,nodata,436330,nodata
+Palau,136,65,99,non,nodata,nodata,nodata,nodata,nodata,nodata,21729,nodata
+Mozambique,137,2509,24,sub,786096,16851,22024,10805,49680,0.063198388,29668834,0.001674484
+Grenada,138,191,92,non,nodata,nodata,nodata,nodata,nodata,nodata,107825,nodata
+Lao PDR,139,1409,87,non,nodata,nodata,nodata,nodata,nodata,nodata,6858160,nodata
+West Bank and Gaza,140,1541,100,non,nodata,nodata,nodata,nodata,nodata,nodata,4684777,nodata
+Mali,141,2965,35,sub,1251574,0,7906,1923,9829,0.007853311,18541980,0.000530094
+Cote d'Ivoire,142,2590,64,sub,321882,221,10325,430,10976,0.034099453,24294750,0.000451785
+Marshall Islands,143,712,93,non,nodata,nodata,nodata,nodata,nodata,nodata,53127,nodata
+Pakistan,144,1772,99,non,nodata,nodata,nodata,nodata,nodata,nodata,197015955,nodata
+"Gambia, The",145,3569,48,sub,10797,316,474,173,963,0.089191442,2100568,0.000458447
+Burkina Faso,146,10028,19,sub,273367,0,7742,4154,11896,0.043516591,19193382,0.000619797
+Senegal,147,3822,65,sub,196761,1537,7519,5454,14510,0.073744289,15850567,0.000915425
+Sierra Leone,148,4224,20,sub,72322,197,1499,0,1696,0.023450679,7557212,0.000224421
+Bolivia,149,687,93,non,nodata,nodata,nodata,nodata,nodata,nodata,11051600,nodata
+Niger,150,5427,16,sub,1183766,8829,15669,14628,39126,0.03305214,21477348,0.001821733
+"Micronesia, Fed. Sts.",151,397,75,non,nodata,nodata,nodata,nodata,nodata,nodata,105544,nodata
+Kiribati,152,3229,85,non,nodata,nodata,nodata,nodata,nodata,nodata,116398,nodata
+Comoros,153,2451,78,sub,nodata,nodata,nodata,nodata,nodata,nodata,813912,nodata
+Togo,154,5508,47,sub,57038,0,1257,79,1336,0.023422981,7797694,0.000171333
+Benin,155,12582,41,sub,115543,0,3898,405,4303,0.037241546,11175692,0.000385032
+Algeria,156,1330,99,non,2316559,26530,27904,30155,84589,0.036514934,41318142,0.00204726
+Burundi,157,16918,8,sub,26949,786,888,0,1674,0.062117333,10864245,0.000154083
+Suriname,158,484,87,non,nodata,nodata,nodata,nodata,nodata,nodata,563402,nodata
+Ethiopia,159,1239,43,sub,1127582,22959,27154,14838,64951,0.057602019,104957438,0.000618832
+Mauritania,160,4735,42,sub,1040738,4988,7990,11822,24800,0.023829244,4420184,0.005610626
+Zimbabwe,161,2958,38,sub,390649,11874,15684,12137,39695,0.101612957,16529904,0.002401405
+Sao Tome and Principe,162,420,65,sub,nodata,nodata,nodata,nodata,nodata,nodata,204327,nodata
+Guinea,163,6636,34,sub,244871,467,5204,2,5673,0.0231673,12717176,0.00044609
+Gabon,164,1102,91,sub,264715,6,5402,0,5408,0.020429519,2025137,0.002670437
+Iraq,165,469,100,non,nodata,nodata,nodata,nodata,nodata,nodata,38274618,nodata
+Cameroon,166,1597,60,sub,466295,3706,10105,979,14790,0.031718118,24053727,0.000614874
+Madagascar,167,5699,23,sub,591575,3194,4987,2617,10798,0.018252969,25570895,0.000422277
+Sudan,168,2687,39,sub,2503827,77422,87817,61661,226900,0.090621277,40533330,0.005597862
+Nigeria,169,440,59,sub,909481,10045,32456,12867,55368,0.060878677,190886311,0.000290057
+Myanmar,170,1270,57,non,nodata,nodata,nodata,nodata,nodata,nodata,53370609,nodata
+Djibouti,171,6380,52,non,21679,852,947,934,2733,0.1260667,956985,0.002855844
+Guinea-Bissau,172,1520,15,sub,33974,906,1493,124,2523,0.074262671,1861283,0.001355517
+Syrian Arab Republic,173,312,100,non,nodata,nodata,nodata,nodata,nodata,nodata,18269868,nodata
+Liberia,174,4067,20,sub,95877,0,667,0,667,0.00695683,4731906,0.000140958
+Timor-Leste,175,1218,63,non,nodata,nodata,nodata,nodata,nodata,nodata,1296311,nodata
+Bangladesh,176,2865,76,non,nodata,nodata,nodata,nodata,nodata,nodata,164669751,nodata
+"Congo, Rep.",177,5469,57,sub,341574,2,6778,0,6780,0.019849286,5260750,0.00128879
+Equatorial Guinea,178,1085,68,sub,26987,0,706,0,706,0.026160744,1267689,0.000556919
+"Yemen, Rep.",179,0,72,non,nodata,nodata,nodata,nodata,nodata,nodata,28250420,nodata
+Chad,180,8527,9,sub,1269961,10284,10506,9165,29955,0.023587339,14899994,0.002010403
+Haiti,181,3709,39,non,nodata,nodata,nodata,nodata,nodata,nodata,10981229,nodata
+Angola,182,1197,41,sub,1247357,9786,13319,202,23307,0.018685108,29784193,0.000782529
+Afghanistan,183,2275,84,non,nodata,nodata,nodata,nodata,nodata,nodata,35530081,nodata
+"Congo, Dem. Rep.",184,15264,17,sub,2327986,12439,22862,2173,37474,0.016097176,81339988,0.000460708
+Central African Republic,185,15810,14,sub,620200,3471,5284,79,8834,0.014243792,4659080,0.001896082
+South Sudan,186,0,9,sub,nodata,nodata,nodata,nodata,nodata,nodata,12575714,nodata
+"Venezuela, RB",187,18867,100,non,nodata,nodata,nodata,nodata,nodata,nodata,31977065,nodata
+Libya,188,442,99,non,1616869,11823,13979,21649,47451,0.029347461,6374616,0.007443742
+Eritrea,189,0,47,sub,122098,4349,4775,3154,12278,0.100558568,0,nodata
+Somalia,190,0,30,sub,633217,13156,25687,43539,82382,0.13010074,14742523,0.005588053
