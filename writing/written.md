@@ -1,4 +1,4 @@
-### I’m visualizing the effects of the water crisis in the US because I want to show the most efficient way to conserve and manage water in order to change our relationship with water usage.
+### I’m visualizing the effects of the water crisis in the US because I want to show the most efficient immediate way to conserve and manage water in order to buy time as we change our relationship with water usage in the long term.
 
 #### Title:
 
