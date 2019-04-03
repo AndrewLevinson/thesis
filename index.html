@@ -48,7 +48,7 @@
           rate, a Day Zero scenario in the US becomes more plausible.
         </p>
       </div>
-      <div id="chart">
+      <div id="chart-one">
         <svg :width="svgWidth" :height="svgHeight">
           <g :transform="`translate(${margin.left}, ${margin.bottom})`">
             <path class="link" :d="paths.line"></path>
@@ -60,6 +60,8 @@
                 @mouseover="showLabel = !showLabel,
                 myTooltip(d)"
                 @mouseleave="showLabel = !showLabel, myTooltip(d)"
+                fill="#fff"
+                stroke="#000"
               />
 
               <!-- <text
@@ -100,6 +102,19 @@
             </text>
           </g>
         </svg>
+        <div class="text-content">
+          <div v-scroll="handleScrollOne" class="text-area">
+            <h5 class="box-title">Why are we running out of water?</h5>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe
+              repellat aliquid, porro laborum, quam laboriosam et nesciunt
+              explicabo totam fugit praesentium deleniti, aut tempore. Sapiente
+              id autem, ratione deleniti porro assumenda maiores necessitatibus
+              atque ut natus! Fugit vero, itaque eligendi harum id, eum magnam
+              quaerat ad accusantium laborum, perspiciatis delectus?
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 

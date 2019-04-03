@@ -75,7 +75,7 @@ var app = new Vue({
         .paddingInner(1);
       const y = d3
         .scaleLinear()
-        .domain([7500, Math.max(...this.data.map(x => x.water)) + 1000])
+        .domain([8000, Math.max(...this.data.map(x => x.water)) + 500])
         // .domain([0, 10000])
         .rangeRound([this.height, 0]); // Already flipped
 

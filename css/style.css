@@ -1,5 +1,6 @@
 :root {
   --main-bg-color: #eff8ff;
+  --main-body-type: #0f242c;
   --cat-news: #863e9e;
   --cat-social: #3c5a99;
   --cat-google: #0f9d58;
@@ -43,10 +44,10 @@ body {
   padding-bottom: 7rem;
 }
 
-#chart {
+#chart-one > svg {
   position: sticky;
   position: -webkit-sticky;
-  top: 20px;
+  top: 40px;
 }
 
 .axis-title {
@@ -95,7 +96,7 @@ div.tooltip {
   border: 0px;
   border-radius: 6px;
   pointer-events: none;
-  color: #3b3b3d;
+  color: var(--main-body-type);
   filter: drop-shadow(0px 2px 8px rgba(59, 59, 61, 0.4));
 }
 
@@ -106,10 +107,10 @@ div.tooltip {
   /* margin-bottom: 1.2rem; */
 }
 
-.total {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  border-bottom: 2px dashed #68696b;
+.box-title {
+  /* font-weight: 600; */
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--main-body-type);
 }
 .datum {
   font-weight: bold;
@@ -130,14 +131,14 @@ select:hover {
 }
 
 .text-area {
-  transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1);
-  width: 80%;
+  /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
+  width: 50%;
   max-width: 800px;
-  padding: 2rem;
+  padding: 2rem 2rem 1.25rem 2rem;
   margin: 0 auto;
   margin-bottom: 60rem;
   z-index: 999;
-  background-color: #fff;
+  background-color: var(--main-bg-color);
   border: 1px solid lightgray;
   border-radius: 6px;
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
