@@ -1,0 +1,144 @@
+:root {
+  --main-bg-color: #eff8ff;
+  --cat-news: #863e9e;
+  --cat-social: #3c5a99;
+  --cat-google: #0f9d58;
+  --cat-ecommerce: #ff9900;
+  --targeting: #d42c2c;
+}
+
+html,
+input {
+  background-color: var(--main-bg-color);
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#container {
+  width: 95%;
+  padding-top: 2rem;
+  margin: 0 auto;
+}
+
+#title {
+  padding: 8rem 0 4rem 0;
+  text-align: center;
+}
+
+#title > h2 {
+  margin-bottom: 0;
+}
+
+#title > h5 {
+  opacity: 0.75;
+}
+
+.intro {
+  width: 40%;
+  margin: 0 auto;
+  padding-bottom: 10rem;
+}
+
+#chart {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 20px;
+}
+
+.axis-title {
+  font-weight: bold;
+}
+
+#chart-one-title {
+  font-weight: bold;
+  font-size: 2.5rem;
+  fill: #485465;
+  /* opacity: 0.8; */
+}
+
+div,
+rect,
+path,
+text,
+g,
+line {
+  transition: all 0.3s ease-in-out;
+}
+
+rect:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 8px 0px rgba(59, 59, 61, 0.4);
+  transition: fill ease-in-out 0.2s;
+}
+
+.link {
+  stroke: black;
+  stroke-width: 1px;
+  fill: none;
+}
+
+/* tooltip */
+div.tooltip {
+  position: fixed;
+  max-width: 350px;
+  text-align: left;
+  display: inline;
+  padding: 10px;
+  font-size: 1.5rem;
+  /* font-size: 1rem; */
+  line-height: 1.2;
+  background-color: #fff;
+  border: 0px;
+  border-radius: 6px;
+  pointer-events: none;
+  color: #3b3b3d;
+  filter: drop-shadow(0px 2px 8px rgba(59, 59, 61, 0.4));
+}
+
+.tooltip h5 {
+  padding: 0;
+  margin-top: 0.2rem;
+  /* line-height: 0; */
+  /* margin-bottom: 1.2rem; */
+}
+
+.total {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px dashed #68696b;
+}
+.datum {
+  font-weight: bold;
+  /* border-bottom: 2px dashed #3d3d3d; */
+}
+
+select {
+  font-size: 80%;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+.text-content {
+  padding-bottom: 50rem;
+  z-index: 999;
+}
+
+.text-area {
+  transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1);
+  width: 80%;
+  max-width: 800px;
+  padding: 2rem;
+  margin: 0 auto;
+  margin-bottom: 60rem;
+  z-index: 999;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
+}
