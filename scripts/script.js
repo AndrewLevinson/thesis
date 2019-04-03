@@ -14,7 +14,7 @@ var app = new Vue({
   el: "#container",
   data() {
     return {
-      chartTitle: "The Water Crisis in the United States",
+      chartTitle: "The United States Water Crisis",
       subTitle:
         "Mitigating increasing demand and changes in the natural water cycle",
       svgWidth: window.innerWidth * 0.95,

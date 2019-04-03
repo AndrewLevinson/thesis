@@ -16,7 +16,7 @@ body {
   line-height: 1.6;
   font-weight: 300;
   font-family: "IBM Plex Sans", sans-serif;
-  color: #3b3b3d;
+  color: #0f242c;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
@@ -25,6 +25,9 @@ text {
   font-size: 1.5rem;
   font-family: "IBM Plex Mono", monospace;
   /* letter-spacing: -0.064rem; */
+}
+p {
+  margin-bottom: 1.25rem;
 }
 
 /* Typography
