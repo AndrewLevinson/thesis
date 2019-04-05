@@ -1,11 +1,7 @@
 :root {
   --main-bg-color: #eff8ff;
+  --map-bg-color: #343332;
   --main-body-type: #0f242c;
-  --cat-news: #863e9e;
-  --cat-social: #3c5a99;
-  --cat-google: #0f9d58;
-  --cat-ecommerce: #ff9900;
-  --targeting: #d42c2c;
 }
 
 html,
@@ -158,7 +154,7 @@ select:hover {
 
 /* fill section */
 .text-section {
-  padding-bottom: 50rem;
+  padding-bottom: 20rem;
   z-index: 999;
 }
 
@@ -170,9 +166,56 @@ select:hover {
   margin: 0 auto;
   margin-bottom: 60rem;
   z-index: 999;
-  background-color: var(--main-bg-color);
-  border: 1px solid lightgray;
-  border-radius: 6px;
+  border-radius: 4px;
   opacity: 0.925;
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
+}
+
+.section-one {
+  background-color: var(--main-bg-color);
+  border: 1px solid lightgray;
+}
+
+.section-two {
+  background-color: var(--map-bg-color);
+  color: #fff;
+  border: 1px solid rgb(112, 112, 112, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+
+  /* width: 30%; */
+  /* border: none; */
+}
+
+.section-two h5 {
+  border-bottom: none;
+}
+
+/* map */
+
+#map {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  width: 110vw;
+  margin-left: -3.65rem;
+  height: 100vh;
+}
+
+.section-break {
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 8rem;
+  padding-bottom: 10rem;
+}
+
+.section-break h5 {
+  text-align: center;
+}
+
+.section-break > div {
+  padding-top: 9rem;
+  padding-bottom: 9rem;
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4;
 }

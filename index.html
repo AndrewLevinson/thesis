@@ -5,6 +5,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
 
     <title>US Water Crisis</title>
     <link rel="shortcut icon" type="image/png" href="favicon.ico" />
@@ -23,6 +27,13 @@
     <!-- lib scripts -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- mapbox -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="container">
@@ -107,7 +118,7 @@
           </g>
         </svg>
         <section class="text-section">
-          <div v-scroll="handleScrollOne" class="text-box">
+          <div v-scroll="handleScrollOne" class="text-box section-one">
             <h5 class="box-title">Why are we running out of water?</h5>
             <p>
               In 2012, the global demand for water exceeded supply and unless
@@ -117,8 +128,57 @@
               freshwater available per capita.
             </p>
           </div>
+          <div class="text-box section-one">
+            <h5 class="box-title">Lorem ipsum dolor sit amet.</h5>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi
+              voluptatem nulla quod id nostrum! Minus deleniti praesentium quas
+              iure velit quis atque ab nihil quo quae magni quasi qui autem
+              mollitia, molestias cumque eveniet ad a doloremque libero eaque
+              officiis illo adipisci. Temporibus quam animi nihil inventore,
+              laborum officiis hic.
+            </p>
+          </div>
         </section>
       </div>
+      <section class="section-break">
+        <div>
+          <h5>It’s happening closer than you think</h5>
+          <p>
+            This is not just a global issue. A closer look at water stressed
+            areas in the United States are indications of more extreme events to
+            come if we do not consider rapid change through conservation efforts
+            as well as investments in infrastructure, agriculture technology,
+            and climate policies.
+          </p>
+        </div>
+      </section>
+      <div id="chart-two">
+        <div id="map">
+          <!-- map goes here -->
+        </div>
+        <section class="text-section">
+          <div class="text-box section-two">
+            <h5 class="box-title">Current Water Stress in the United States</h5>
+            <p>
+              Throughout the country we have already seen increasing water
+              stress due to a number of different factors. These issues are
+              isolated a local, but are a sign of things to come with inaction.
+            </p>
+          </div>
+        </section>
+      </div>
+      <section class="section-break">
+        <div>
+          <h5>What can we do right now?</h5>
+          <p>
+            While climate change is the biggest threat to available freshwater
+            that requires the largest long-term investment, crumbling
+            infrastructure, over-abstraction, and pollution all contribute
+            significantly to a decline in supply.
+          </p>
+        </div>
+      </section>
     </div>
 
     <!-- script tags -->

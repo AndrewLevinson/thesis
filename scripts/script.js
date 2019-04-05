@@ -273,3 +273,14 @@ var app = new Vue({
     }
   }
 });
+
+mapboxgl.accessToken =
+  "pk.eyJ1IjoiYW5kcmV3bGV2aW5zb24iLCJhIjoiY2pub3RxNXB2MDA5cTNxb2M5MjNoaHl5diJ9.Zq4eS5UJd_60fgNBAFiUsw";
+const map = new mapboxgl.Map({
+  container: "map",
+  style: "mapbox://styles/andrewlevinson/cjsvb6v134uyb1fo3p2gc5yhg",
+  center: [-98.461045, 36.805969],
+  zoom: 4.0
+});
+
+map.scrollZoom.disable();
