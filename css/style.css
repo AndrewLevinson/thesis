@@ -156,11 +156,12 @@ select:hover {
 .text-section {
   padding-bottom: 20rem;
   z-index: 999;
+  font-size: 90%;
 }
 
 .text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
-  width: 50%;
+  width: 45%;
   max-width: 800px;
   padding: 2rem 2rem 1.25rem 2rem;
   margin: 0 auto;
@@ -206,6 +207,7 @@ select:hover {
   margin: 0 auto;
   padding-top: 8rem;
   padding-bottom: 10rem;
+  text-align: center;
 }
 
 .section-break h5 {
