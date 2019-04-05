@@ -113,7 +113,9 @@ var app = new Vue({
     createLine: d3
       .line()
       .x(d => d.x)
-      .y(d => d.y),
+      .curve(d3.curveBundle.beta(1))
+      .y(d => d.y)
+      .curve(d3.curveBundle.beta(1)),
     createArea: d3
       .area()
       .x(d => d.x)

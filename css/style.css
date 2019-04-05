@@ -95,22 +95,22 @@ rect:hover {
 }
 .area-one {
   fill: #afdced;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .area-two {
   fill: #afdced;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .area-three {
-  fill: #afdced;
-  opacity: 0.7;
+  fill: #80ceed;
+  opacity: 0.6;
 }
 
 .area-four {
-  fill: #afdced;
-  opacity: 0.9;
+  fill: #51c1ed;
+  opacity: 0.6;
 }
 
 /* tooltip */
