@@ -21,40 +21,41 @@ var app = new Vue({
       svgHeight: window.innerHeight * 0.95,
       margin: { top: 50, left: 90, bottom: 50, right: 25 },
       data: [{}],
-      paths: {
-        line: ""
-      },
+      selected: null,
       scaled: {
         x: null,
         y: null
       },
-      points: [],
+      paths: {
+        one: {
+          line: "",
+          area: ""
+        },
+        two: {
+          line: "",
+          area: ""
+        },
+        three: {
+          line: "",
+          area: ""
+        },
+        four: {
+          line: "",
+          area: ""
+        }
+      },
+      points: [[], [], [], []],
       myFilters: {
-        exp: 0,
-        party: "all",
-        category: "all",
-        purpose: null,
-        site: "all"
+        yearMax: 2014
       },
       showLabel: false,
+      isVisible: false,
       myCount: null
     };
   },
   computed: {
     filteredData() {
-      let filteredData = this.data.filter(
-        el =>
-          el.expire > this.myFilters.exp &&
-          (this.myFilters.party === "all"
-            ? el.party != null
-            : el.party === this.myFilters.party) &&
-          (this.myFilters.category === "all"
-            ? el.category != null
-            : el.category === this.myFilters.category) &&
-          (this.myFilters.site === "all"
-            ? el.site != null
-            : el.site === this.myFilters.site)
-      );
+      let filteredData = this.data.filter(d => d.year > this.myFilters.yearMax);
       return filteredData;
     },
     width() {
@@ -68,14 +69,16 @@ var app = new Vue({
     },
     scale() {
       const x = d3
-        .scaleBand()
-        .domain(this.data.map(x => x.year))
+        // .scaleBand()
+        // .domain(this.data.map(x => x.year))
+        .scaleLinear()
+        .domain([1987, Math.max(...this.data.map(x => x.year))])
         // https://github.com/d3/d3-scale/blob/master/README.md#band_rangeRound
-        .rangeRound([0, this.width])
-        .paddingInner(1);
+        .rangeRound([0, this.width]);
+      // .paddingInner(1);
       const y = d3
         .scaleLinear()
-        .domain([8000, Math.max(...this.data.map(x => x.water)) + 500])
+        .domain([0, Math.max(...this.data.map(y => y.rwpc)) + 500])
         // .domain([0, 10000])
         .rangeRound([this.height, 0]); // Already flipped
 
@@ -92,8 +95,11 @@ var app = new Vue({
     loadData() {
       d3.csv("data/clean/renewable_water_capita.csv", d => {
         return {
-          year: +d["Years"],
-          water: +d["water"]
+          year: +d["years"],
+          rwpc: +d["rwpc"],
+          spc: +d["spc"],
+          gpc: +d["gpc"],
+          dpc: +d["dpc"]
         };
       })
         .then(d => {
@@ -101,20 +107,18 @@ var app = new Vue({
           // console.log(d);
         })
         .then(() => {
-          for (const d of this.data) {
-            this.points.push({
-              x: this.scaled.x(d.year),
-              y: this.scaled.y(d.water),
-              max: this.height
-            });
-          }
-          this.paths.line = this.createLine(this.points);
+          this.updatePath();
         });
     },
     createLine: d3
       .line()
       .x(d => d.x)
       .y(d => d.y),
+    createArea: d3
+      .area()
+      .x(d => d.x)
+      .y0(d => d.max)
+      .y1(d => d.y),
     initTooltip() {
       tooltip = {
         element: null,
@@ -175,12 +179,81 @@ var app = new Vue({
     handleScrollOne(evt, el) {
       // console.log(evt.path[0].body.children[0].children[2].children[0].id);
       // console.log(window.scrollY + window.innerHeight - el.height);
-      if (window.scrollY > el.offsetTop) {
-        // el.setAttribute("style", "color: blue");
-        this.myFilters.site = "Facebook";
-        this.myFilters.party = "all";
+      if (window.scrollY > el.offsetTop * 0.8) {
+        this.isVisible = true;
+      } else {
+        this.isVisible = false;
       }
-      return window.scrollY > el.height;
+
+      if (this.isVisible) {
+        // console.log("count");
+        // el.setAttribute("style", "color: blue");
+        // this.myFilters.yearMax = 2019;
+        // this.data.push({
+        //   year: "2019",
+        //   water: 9000
+        // });
+        this.select(6);
+        // this.updatePath();
+      } else if (!this.isVisible) {
+        this.select(null);
+      }
+      // return window.scrollY > el.height;
+      return this.isVisible;
+    },
+    updatePath() {
+      // x is not updating dynamically correctly—need to fix
+
+      // total rwpc
+      for (const d of this.data) {
+        this.points[0].push({
+          x: this.scaled.x(d.year),
+          y: this.scaled.y(d.rwpc),
+          max: this.height
+        });
+      }
+      // groundwater pc
+      for (const d of this.data) {
+        this.points[1].push({
+          x: this.scaled.x(d.year),
+          y: this.scaled.y(d.spc),
+          max: this.height
+        });
+      }
+
+      // surface pc
+      for (const d of this.data) {
+        this.points[2].push({
+          x: this.scaled.x(d.year),
+          y: this.scaled.y(d.gpc),
+          max: this.height
+        });
+      }
+
+      // depend pc
+      for (const d of this.data) {
+        this.points[3].push({
+          x: this.scaled.x(d.year),
+          y: this.scaled.y(d.dpc),
+          max: this.height
+        });
+      }
+
+      // this.paths.one.line = "";
+      this.paths.one.line = this.createLine(this.points[0]);
+      this.paths.one.area = this.createArea(this.points[0]);
+
+      this.paths.two.line = this.createLine(this.points[1]);
+      this.paths.two.area = this.createArea(this.points[1]);
+
+      this.paths.three.line = this.createLine(this.points[2]);
+      this.paths.three.area = this.createArea(this.points[2]);
+
+      this.paths.four.line = this.createLine(this.points[3]);
+      this.paths.four.area = this.createArea(this.points[3]);
+    },
+    select(index, node) {
+      this.selected = index;
     }
   },
   directives: {
@@ -190,7 +263,11 @@ var app = new Vue({
       // The line below assigns the x or y function of the scale object
       const methodArg = binding.value[axis];
       // d3.axisBottom(scale.x)
-      d3.select(el).call(d3[axisMethod](methodArg));
+      d3.select(el).call(
+        d3[axisMethod](methodArg).tickFormat(
+          d3.format(binding.arg === "x" ? "d" : ",d")
+        )
+      );
     }
   }
 });

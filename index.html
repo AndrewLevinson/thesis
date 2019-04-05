@@ -51,17 +51,27 @@
       <div id="chart-one">
         <svg :width="svgWidth" :height="svgHeight">
           <g :transform="`translate(${margin.left}, ${margin.bottom})`">
-            <path class="link" :d="paths.line"></path>
-            <g v-for="(d, i) in data">
+            <g v-axis:x="scale" :transform="`translate(${0}, ${height})`"></g>
+            <g v-axis:y="scale"></g>
+            <path class="area-one" :d="paths.one.area" />
+            <path class="area-two" :d="paths.two.area" />
+            <path class="area-three" :d="paths.three.area" />
+            <path class="area-four" :d="paths.four.area" />
+            <path class="link" :d="paths.one.line"></path>
+            <path class="link" :d="paths.two.line"></path>
+            <path class="link" :d="paths.three.line"></path>
+            <path class="link" :d="paths.four.line"></path>
+            <g
+              v-for="(d, i, node) in data"
+              @mouseover="showLabel = !showLabel,
+            myTooltip(d),select(i, node)"
+              @mouseleave="showLabel = !showLabel, myTooltip(d)"
+            >
               <circle
+                :class="[i == selected ? 'circle-active' : 'circle-up']"
                 :cx="scale.x(d.year)"
-                :cy="scale.y(d.water)"
+                :cy="scale.y(d.rwpc)"
                 r="5"
-                @mouseover="showLabel = !showLabel,
-                myTooltip(d)"
-                @mouseleave="showLabel = !showLabel, myTooltip(d)"
-                fill="#fff"
-                stroke="#000"
               />
 
               <!-- <text
@@ -74,12 +84,6 @@
               </text> -->
             </g>
 
-            <g
-              v-axis:x="scale"
-              :transform="`translate(${0}, ${height})`"
-              id="x-axis"
-            ></g>
-            <g v-axis:y="scale"></g>
             <text
               y="-78"
               :x="svgHeight/-2"
@@ -102,19 +106,18 @@
             </text>
           </g>
         </svg>
-        <div class="text-content">
-          <div v-scroll="handleScrollOne" class="text-area">
+        <section class="text-section">
+          <div v-scroll="handleScrollOne" class="text-box">
             <h5 class="box-title">Why are we running out of water?</h5>
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe
-              repellat aliquid, porro laborum, quam laboriosam et nesciunt
-              explicabo totam fugit praesentium deleniti, aut tempore. Sapiente
-              id autem, ratione deleniti porro assumenda maiores necessitatibus
-              atque ut natus! Fugit vero, itaque eligendi harum id, eum magnam
-              quaerat ad accusantium laborum, perspiciatis delectus?
+              In 2012, the global demand for water exceeded supply and unless
+              drastic action is taken the gap is expected to increase
+              dramatically—reaching 90% by the year 2090.<br /><br />
+              Population growth is reducing the static amount of renewable
+              freshwater available per capita.
             </p>
           </div>
-        </div>
+        </section>
       </div>
     </div>
 

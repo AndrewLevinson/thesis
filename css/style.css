@@ -66,6 +66,7 @@ rect,
 path,
 text,
 g,
+circle,
 line {
   transition: all 0.3s ease-in-out;
 }
@@ -76,10 +77,40 @@ rect:hover {
   transition: fill ease-in-out 0.2s;
 }
 
+.circle-up {
+  fill: #fff;
+  stroke: #000;
+}
+
+.circle-active {
+  fill: blue;
+  stroke: #000;
+}
+
 .link {
   stroke: black;
-  stroke-width: 1px;
+  stroke-width: 2px;
+  /* stroke-opacity: 0.8; */
   fill: none;
+}
+.area-one {
+  fill: #afdced;
+  opacity: 0.3;
+}
+
+.area-two {
+  fill: #afdced;
+  opacity: 0.5;
+}
+
+.area-three {
+  fill: #afdced;
+  opacity: 0.7;
+}
+
+.area-four {
+  fill: #afdced;
+  opacity: 0.9;
 }
 
 /* tooltip */
@@ -125,12 +156,13 @@ select:hover {
   cursor: pointer;
 }
 
-.text-content {
+/* fill section */
+.text-section {
   padding-bottom: 50rem;
   z-index: 999;
 }
 
-.text-area {
+.text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 50%;
   max-width: 800px;
@@ -141,5 +173,6 @@ select:hover {
   background-color: var(--main-bg-color);
   border: 1px solid lightgray;
   border-radius: 6px;
+  opacity: 0.925;
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
 }
