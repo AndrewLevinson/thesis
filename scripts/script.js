@@ -49,8 +49,8 @@ var app = new Vue({
         yearMax: 2014
       },
       showLabel: false,
-      isVisible: false,
-      myCount: null
+      myCount: null,
+      scrollIter: null
     };
   },
   computed: {
@@ -179,15 +179,8 @@ var app = new Vue({
       }
     },
     handleScrollOne(evt, el) {
-      // console.log(evt.path[0].body.children[0].children[2].children[0].id);
-      // console.log(window.scrollY + window.innerHeight - el.height);
-      if (window.scrollY > el.offsetTop * 0.8) {
-        this.isVisible = true;
-      } else {
-        this.isVisible = false;
-      }
-
-      if (this.isVisible) {
+      if (this.scrollIter === 1) {
+        console.log("hi");
         // console.log("count");
         // el.setAttribute("style", "color: blue");
         // this.myFilters.yearMax = 2019;
@@ -198,10 +191,41 @@ var app = new Vue({
         this.select(6);
         // this.updatePath();
       } else if (!this.isVisible) {
-        this.select(null);
+        this.scrollIter = null;
       }
       // return window.scrollY > el.height;
-      return this.isVisible;
+      return window.scrollY > el.height;
+    },
+    handleScrollTwo(evt, el) {
+      if (window.scrollY > el.offsetTop) {
+        this.isMapVisible = true;
+      }
+
+      if (this.isMapVisible) {
+        console.log(mapboxgl);
+        map.zoomTo(4.25, { duration: 2500 });
+      }
+
+      return this.isMapVisible;
+    },
+    handleScrollThree(evt, el) {
+      if (window.scrollY > el.offsetTop) {
+        this.isMapVisibleTwo = true;
+      }
+
+      if (this.isMapVisibleTwo) {
+        map.flyTo({
+          center: [0, 0],
+          zoom: 9,
+          speed: 0.2,
+          curve: 1,
+          easing(t) {
+            return t;
+          }
+        });
+      }
+
+      return this.isMapVisibleTwo;
     },
     updatePath() {
       // x is not updating dynamically correctly—need to fix
@@ -278,9 +302,9 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiYW5kcmV3bGV2aW5zb24iLCJhIjoiY2pub3RxNXB2MDA5cTNxb2M5MjNoaHl5diJ9.Zq4eS5UJd_60fgNBAFiUsw";
 const map = new mapboxgl.Map({
   container: "map",
-  style: "mapbox://styles/andrewlevinson/cjsvb6v134uyb1fo3p2gc5yhg",
+  style: "mapbox://styles/andrewlevinson/cjstjg8ol7gc61gqgdxnvggsp",
   center: [-98.461045, 36.805969],
-  zoom: 4.0
+  zoom: 2.0
 });
 
 map.scrollZoom.disable();

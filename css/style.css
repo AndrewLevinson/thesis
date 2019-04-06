@@ -9,6 +9,9 @@ input {
   background-color: var(--main-bg-color);
 }
 
+[v-cloak] {
+  visibility: hidden;
+}
 body {
   width: 100%;
   overflow-x: hidden;
@@ -40,7 +43,7 @@ body {
   padding-bottom: 7rem;
 }
 
-#chart-one > svg {
+#chart-one svg {
   position: sticky;
   position: -webkit-sticky;
   top: 40px;

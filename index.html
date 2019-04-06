@@ -36,7 +36,7 @@
   </head>
   <body>
     <div id="container">
-      <div id="title">
+      <div id="title" v-cloak>
         <h2>{{ chartTitle }}</h2>
         <h5>{{ subTitle }}</h5>
       </div>
@@ -75,7 +75,7 @@
               v-for="(d, i, node) in data"
               @mouseover="showLabel = !showLabel,
             myTooltip(d),select(i, node)"
-              @mouseleave="showLabel = !showLabel, myTooltip(d)"
+              @mouseleave="showLabel = !showLabel, myTooltip(d), select(null)"
             >
               <circle
                 :class="[i == selected ? 'circle-active' : 'circle-up']"
@@ -112,12 +112,16 @@
               Years
             </text>
             <text y="-30" x="-65" text-anchor="left" id="chart-one-title">
-              Total Renewable Water Resources Per Capita (m^3/inhab/year)
+              Total Renewable Water Resources Per Capita (m3/inhab/year)
             </text>
           </g>
         </svg>
         <section class="text-section">
-          <div v-scroll="handleScrollOne" class="text-box section-one">
+          <div
+            v-scroll="handleScrollOne"
+            class="text-box section-one"
+            @mouseover="scrollIter = 1"
+          >
             <h5 class="box-title">Why are we running out of water?</h5>
             <p>
               In 2012, the global demand for water exceeded supply and unless
@@ -157,12 +161,24 @@
           <!-- map goes here -->
         </div>
         <section class="text-section">
-          <div class="text-box section-two">
+          <div class="text-box section-two" v-scroll="handleScrollTwo">
             <h5 class="box-title">Current Water Stress in the United States</h5>
             <p>
               Throughout the country we have already seen increasing water
               stress due to a number of different factors. These issues are
               isolated a local, but are a sign of things to come with inaction.
+            </p>
+          </div>
+          <div class="text-box section-two" v-scroll="handleScrollThree">
+            <h5 class="box-title">A look at California's Drought</h5>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+              doloremque laudantium corrupti sapiente quae suscipit id
+              cupiditate eius sint necessitatibus debitis nam voluptatibus
+              animi, error fugiat distinctio provident nesciunt. Necessitatibus
+              possimus reprehenderit asperiores ea rerum consequatur et
+              voluptatum. Deserunt quos dolor consequatur molestias ipsam
+              voluptatibus consequuntur alias unde architecto est.
             </p>
           </div>
         </section>
