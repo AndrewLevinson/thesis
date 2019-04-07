@@ -20,11 +20,16 @@ yarn-error.log*
 *.sln
 *.sw*
 
-
+# file types
 *pdf
 *Sketch
 
+# examples
 ease-energy_copy
 examples-to-delete
 
+# massive data file
 counties.tiger2010.json
+
+# not cleaned data
+working-untracked

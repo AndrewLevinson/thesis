@@ -12,6 +12,7 @@
     "d3": "^5.9.2",
     "mapbox-gl": "^0.53.1",
     "prettier": "^1.16.4",
+    "scrollmagic": "^2.0.6",
     "vue": "^2.6.6"
   },
   "devDependencies": {
