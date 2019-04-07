@@ -1,53 +1,55 @@
 <template>
   <div id="chart-one">
-    <svg :width="svgWidth" :height="svgHeight" id="graph-one">
-      <g :transform="`translate(${margin.left}, ${margin.bottom})`">
-        <g v-axis:x="scale" :transform="`translate(${0}, ${height})`"></g>
-        <g v-axis:y="scale"></g>
-        <path class="area-one" :d="paths.one.area"></path>
-        <path class="area-two" :d="paths.two.area"></path>
-        <path class="area-three" :d="paths.three.area"></path>
-        <path class="area-four" :d="paths.four.area"></path>
-        <path class="link" :d="paths.one.line"></path>
-        <path class="link" :d="paths.two.line"></path>
-        <path class="link" :d="paths.three.line"></path>
-        <path class="link" :d="paths.four.line"></path>
-        <g
-          v-for="(d, i) in data"
-          :key="i"
-          @mouseover="showLabel = !showLabel,
+    <div id="graph-one">
+      <svg :width="svgWidth" :height="svgHeight">
+        <g :transform="`translate(${margin.left}, ${margin.bottom})`">
+          <g v-axis:x="scale" :transform="`translate(${0}, ${height})`"></g>
+          <g v-axis:y="scale"></g>
+          <path class="area-one" :d="paths.one.area"></path>
+          <path class="area-two" :d="paths.two.area"></path>
+          <path class="area-three" :d="paths.three.area"></path>
+          <path class="area-four" :d="paths.four.area"></path>
+          <path class="link" :d="paths.one.line"></path>
+          <path class="link" :d="paths.two.line"></path>
+          <path class="link" :d="paths.three.line"></path>
+          <path class="link" :d="paths.four.line"></path>
+          <g
+            v-for="(d, i) in data"
+            :key="i"
+            @mouseover="showLabel = !showLabel,
             myTooltip(d),select(i)"
-          @mouseleave="showLabel = !showLabel, myTooltip(d), select(null)"
-        >
-          <circle
-            :class="[i == selected ? 'circle-active' : 'circle-up']"
-            :cx="scale.x(d.year)"
-            :cy="scale.y(d.rwpc)"
-            r="5"
-          ></circle>
-        </g>
+            @mouseleave="showLabel = !showLabel, myTooltip(d), select(null)"
+          >
+            <circle
+              :class="[i == selected ? 'circle-active' : 'circle-up']"
+              :cx="scale.x(d.year)"
+              :cy="scale.y(d.rwpc)"
+              r="5"
+            ></circle>
+          </g>
 
-        <text
-          y="-78"
-          :x="svgHeight/-2"
-          transform="rotate(-90)"
-          text-anchor="middle"
-          class="axis-title"
-        >Renewable water resources (m3/year)</text>
-        <text
-          :x="svgWidth - margin.right - margin.left - 5"
-          :y="svgHeight - margin.bottom - margin.top -10"
-          text-anchor="end"
-          class="axis-title"
-        >Years</text>
-        <text
-          y="-30"
-          x="-65"
-          text-anchor="left"
-          id="chart-one-title"
-        >Total Renewable Water Resources Per Capita (m3/inhab/year)</text>
-      </g>
-    </svg>
+          <text
+            y="-78"
+            :x="svgHeight/-2"
+            transform="rotate(-90)"
+            text-anchor="middle"
+            class="axis-title"
+          >Renewable water resources (m3/year)</text>
+          <text
+            :x="svgWidth - margin.right - margin.left - 5"
+            :y="svgHeight - margin.bottom - margin.top -10"
+            text-anchor="end"
+            class="axis-title"
+          >Years</text>
+          <text
+            y="-30"
+            x="-65"
+            text-anchor="left"
+            id="graph-one-title"
+          >Total Renewable Water Resources Per Capita (m3/inhab/year)</text>
+        </g>
+      </svg>
+    </div>
     <section class="text-section" id="sectionsOne">
       <div class="text-box">
         <h5 class="box-title">Why are we running out of water?</h5>
@@ -406,22 +408,23 @@ export default {
 }
 
 /* chart */
+#chart-one {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#graph-one-title {
+  font-weight: bold;
+  font-size: 2.5rem;
+  fill: #485465;
+  /* opacity: 0.8; */
+}
 #graph-one {
   position: sticky;
   position: -webkit-sticky;
   top: 40px;
 }
 
-#chart-one {
-  width: 95%;
-  margin: 0 auto;
-}
-#chart-one-title {
-  font-weight: bold;
-  font-size: 2.5rem;
-  fill: #485465;
-  /* opacity: 0.8; */
-}
 .axis-title {
   font-weight: bold;
 }

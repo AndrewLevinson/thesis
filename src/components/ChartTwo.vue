@@ -119,6 +119,9 @@ export default {
 </script>
 
 <style scoped>
+#chart-two {
+  background-color: var(--map-bg-color);
+}
 /* text */
 .text-section {
   padding-bottom: 20rem;
