@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-
     <div id="container">
       <div id="title" v-cloak>
         <h2>{{ title }}</h2>
@@ -98,12 +96,70 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* global style */
+:root {
+  --main-bg-color: #eff8ff;
+  --map-bg-color: #343332;
+  --main-body-type: #0f242c;
+}
+
+html,
+input,
+select {
+  background-color: var(--main-bg-color);
+}
+
+[v-cloak] {
+  visibility: hidden;
+}
+body {
+  width: 100%;
+  /* overflow-x: hidden; */
+  margin: auto;
+}
+
+#container {
+  width: 100%;
+  padding-top: 2rem;
+  margin: 0 auto;
+}
+
+#title {
+  padding: 7rem 0 4rem 0;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+}
+
+#title > h2 {
+  margin-bottom: 0;
+}
+
+#title > h5 {
+  opacity: 0.75;
+}
+
+.intro {
+  width: 40%;
+  margin: 0 auto;
+  padding-bottom: 7rem;
+}
+
+.section-break {
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 8rem;
+  padding-bottom: 10rem;
+  text-align: center;
+}
+
+.section-break h5 {
+  text-align: center;
+}
+
+.section-break > div {
+  padding-top: 9rem;
+  padding-bottom: 9rem;
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4;
+}
 </style>

@@ -4,7 +4,7 @@
       <!-- map goes here -->
     </div>
     <section class="text-section" id="sectionsTwo">
-      <div class="text-box section-two">
+      <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>
         <p>
           Throughout the country we have already seen increasing water
@@ -12,7 +12,7 @@
           isolated a local, but are a sign of things to come with inaction.
         </p>
       </div>
-      <div class="text-box section-two">
+      <div class="text-box">
         <h5 class="box-title">A look at California's Drought</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
@@ -24,7 +24,7 @@
           voluptatibus consequuntur alias unde architecto est.
         </p>
       </div>
-      <div class="text-box section-two">
+      <div class="text-box">
         <h5 class="box-title">Third Text Box</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
@@ -119,11 +119,50 @@ export default {
 </script>
 
 <style scoped>
+/* text */
+.text-section {
+  padding-bottom: 20rem;
+  z-index: 999;
+  font-size: 90%;
+}
+.text-box {
+  /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
+  width: 45%;
+  max-width: 800px;
+  padding: 2rem 2rem 1.25rem 2rem;
+  margin: 0 auto;
+  margin-bottom: 60rem;
+  z-index: 999;
+  border-radius: 4px;
+  opacity: 0.925;
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
+  /* unique to section two */
+  background-color: var(--map-bg-color);
+  color: #fff;
+  border: 1px solid rgb(112, 112, 112, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.box-title {
+  margin-bottom: 0.75rem;
+  /* border-bottom: 1px dashed var(--main-body-type); */
+}
+
+/* text - graph-scroll */
 #sectionsTwo > div {
   opacity: 0.3;
 }
 
 #sectionsTwo div.graph-scroll-active {
   opacity: 1;
+}
+
+/* map */
+#map {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
 }
 </style>

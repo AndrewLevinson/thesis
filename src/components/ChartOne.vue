@@ -49,7 +49,7 @@
       </g>
     </svg>
     <section class="text-section" id="sectionsOne">
-      <div class="text-box section-one">
+      <div class="text-box">
         <h5 class="box-title">Why are we running out of water?</h5>
         <p>
           In 2012, the global demand for water exceeded supply and unless
@@ -60,7 +60,7 @@
           freshwater available per capita.
         </p>
       </div>
-      <div class="text-box section-one">
+      <div class="text-box">
         <h5 class="box-title">Lorem ipsum dolor sit amet.</h5>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi
@@ -71,7 +71,7 @@
           laborum officiis hic.
         </p>
       </div>
-      <div class="text-box section-one">
+      <div class="text-box">
         <h5 class="box-title">Lorem ipsum dolor sit amet.</h5>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi
@@ -368,11 +368,142 @@ export default {
 </script>
 
 <style scoped>
+/* text */
+.text-section {
+  padding-bottom: 20rem;
+  z-index: 999;
+  font-size: 90%;
+}
+
+.text-box {
+  /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
+  width: 45%;
+  max-width: 800px;
+  padding: 2rem 2rem 1.25rem 2rem;
+  margin: 0 auto;
+  margin-bottom: 60rem;
+  z-index: 999;
+  border-radius: 4px;
+  opacity: 0.925;
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
+  /* unique to chart one */
+  background-color: var(--main-bg-color);
+  border: 1px solid lightgray;
+}
+
+.box-title {
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--main-body-type);
+}
+
+/* text -- graph scroll */
 #sectionsOne > div {
   opacity: 0.3;
 }
 
 #sectionsOne div.graph-scroll-active {
   opacity: 1;
+}
+
+/* chart */
+#graph-one {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 40px;
+}
+
+#chart-one {
+  width: 95%;
+  margin: 0 auto;
+}
+#chart-one-title {
+  font-weight: bold;
+  font-size: 2.5rem;
+  fill: #485465;
+  /* opacity: 0.8; */
+}
+.axis-title {
+  font-weight: bold;
+}
+
+div,
+rect,
+path,
+text,
+g,
+circle,
+line {
+  transition: all 0.3s ease-in-out;
+}
+
+rect:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 8px 0px rgba(59, 59, 61, 0.4);
+  transition: fill ease-in-out 0.2s;
+}
+
+.circle-up {
+  fill: #fff;
+  stroke: #000;
+}
+
+.circle-active {
+  fill: blue;
+  stroke: #000;
+}
+
+.link {
+  stroke: black;
+  stroke-width: 2px;
+  /* stroke-opacity: 0.8; */
+  fill: none;
+}
+.area-one {
+  fill: #afdced;
+  opacity: 0.5;
+}
+
+.area-two {
+  fill: #afdced;
+  opacity: 0.8;
+}
+
+.area-three {
+  fill: #80ceed;
+  opacity: 0.6;
+}
+
+.area-four {
+  fill: #51c1ed;
+  opacity: 0.6;
+}
+
+/* tooltip */
+div.tooltip {
+  position: fixed;
+  max-width: 350px;
+  text-align: left;
+  display: inline;
+  padding: 10px;
+  font-size: 1.5rem;
+  /* font-size: 1rem; */
+  line-height: 1.2;
+  background-color: #fff;
+  border: 0px;
+  border-radius: 6px;
+  pointer-events: none;
+  color: var(--main-body-type);
+  filter: drop-shadow(0px 2px 8px rgba(59, 59, 61, 0.4));
+}
+
+.tooltip h5 {
+  padding: 0;
+  margin-top: 0.2rem;
+  /* line-height: 0; */
+  /* margin-bottom: 1.2rem; */
+}
+.datum {
+  font-weight: bold;
+  /* border-bottom: 2px dashed #3d3d3d; */
 }
 </style>
