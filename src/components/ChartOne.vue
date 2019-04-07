@@ -1,6 +1,6 @@
 <template>
   <div id="chart-one">
-    <svg :width="svgWidth" :height="svgHeight">
+    <svg :width="svgWidth" :height="svgHeight" id="graph-one">
       <g :transform="`translate(${margin.left}, ${margin.bottom})`">
         <g v-axis:x="scale" :transform="`translate(${0}, ${height})`"></g>
         <g v-axis:y="scale"></g>
@@ -25,15 +25,6 @@
             :cy="scale.y(d.rwpc)"
             r="5"
           ></circle>
-
-          <!-- <text
-                v-show="showLabel === true"
-                :x="scale.x(d.name) + 7"
-                :y="scale.y(d.expire) + 18"
-                text-anchor="middle"
-              >
-                {{ d.expire }}
-          </text>-->
         </g>
 
         <text
@@ -57,8 +48,8 @@
         >Total Renewable Water Resources Per Capita (m3/inhab/year)</text>
       </g>
     </svg>
-    <section class="text-section">
-      <div class="text-box section-one" @mouseover="scrollIter = 1">
+    <section class="text-section" id="sections">
+      <div class="text-box section-one">
         <h5 class="box-title">Why are we running out of water?</h5>
         <p>
           In 2012, the global demand for water exceeded supply and unless
@@ -80,12 +71,25 @@
           laborum officiis hic.
         </p>
       </div>
+      <div class="text-box section-one">
+        <h5 class="box-title">Lorem ipsum dolor sit amet.</h5>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi
+          voluptatem nulla quod id nostrum! Minus deleniti praesentium quas
+          iure velit quis atque ab nihil quo quae magni quasi qui autem
+          mollitia, molestias cumque eveniet ad a doloremque libero eaque
+          officiis illo adipisci. Temporibus quam animi nihil inventore,
+          laborum officiis hic.
+        </p>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
+// import * as graphScroll from "graph-scroll";
+import { graphScroll } from "graph-scroll";
 
 export default {
   name: "chart-one",
@@ -95,7 +99,6 @@ export default {
       svgHeight: window.innerHeight * 0.95,
       margin: { top: 50, left: 90, bottom: 50, right: 25 },
       data: [{}],
-      selected: null,
       scaled: {
         x: null,
         y: null
@@ -123,9 +126,10 @@ export default {
         yearMax: 2014
       },
       showLabel: false,
+      selected: null,
       myCount: null,
-      scrollIter: null,
-      tooltip: null
+      tooltip: null,
+      showChartOne: false
     };
   },
   computed: {
@@ -165,6 +169,7 @@ export default {
   mounted() {
     this.loadData();
     this.initTooltip();
+    this.scrollTrigger();
   },
   methods: {
     loadData() {
@@ -306,6 +311,43 @@ export default {
     },
     select(index) {
       this.selected = index;
+    },
+    scrollTrigger() {
+      graphScroll()
+        .offset(350)
+        .graph(d3.selectAll("#graph-one"))
+        .container(d3.select("#chart-one"))
+        .sections(d3.selectAll("#sections > div"))
+        .eventId("uniqueId1")
+        .on("active", i => {
+          // console.log(i + "th section active");
+          // if (i === 0) {
+          //   // offscreen so do nothing
+          // } else if (i === 1) {
+          //   this.selected = 3;
+          // } else if (i === 2) {
+          //   this.selected = 4;
+          // }
+
+          switch (i) {
+            case 0:
+              // offscreen so do nothing
+              break;
+            case 1:
+              this.selected = 3;
+              break;
+            case 2:
+              this.selected = 4;
+              break;
+            case 3:
+              break;
+            case 4:
+              break;
+            case 5:
+              break;
+            case 6:
+          }
+        });
     }
   },
   directives: {
@@ -326,4 +368,11 @@ export default {
 </script>
 
 <style scoped>
+#sections > div {
+  opacity: 0.3;
+}
+
+#sections div.graph-scroll-active {
+  opacity: 1;
+}
 </style>
