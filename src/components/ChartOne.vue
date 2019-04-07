@@ -48,7 +48,7 @@
         >Total Renewable Water Resources Per Capita (m3/inhab/year)</text>
       </g>
     </svg>
-    <section class="text-section" id="sections">
+    <section class="text-section" id="sectionsOne">
       <div class="text-box section-one">
         <h5 class="box-title">Why are we running out of water?</h5>
         <p>
@@ -317,7 +317,7 @@ export default {
         .offset(350)
         .graph(d3.selectAll("#graph-one"))
         .container(d3.select("#chart-one"))
-        .sections(d3.selectAll("#sections > div"))
+        .sections(d3.selectAll("#sectionsOne > div"))
         .eventId("uniqueId1")
         .on("active", i => {
           // console.log(i + "th section active");
@@ -368,11 +368,11 @@ export default {
 </script>
 
 <style scoped>
-#sections > div {
+#sectionsOne > div {
   opacity: 0.3;
 }
 
-#sections div.graph-scroll-active {
+#sectionsOne div.graph-scroll-active {
   opacity: 1;
 }
 </style>

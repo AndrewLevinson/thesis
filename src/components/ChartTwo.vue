@@ -3,7 +3,7 @@
     <div id="map">
       <!-- map goes here -->
     </div>
-    <section class="text-section" id="sections">
+    <section class="text-section" id="sectionsTwo">
       <div class="text-box section-two">
         <h5 class="box-title">Current Water Stress in the United States</h5>
         <p>
@@ -65,17 +65,18 @@ export default {
         container: "map",
         style: "mapbox://styles/andrewlevinson/cjstjg8ol7gc61gqgdxnvggsp",
         center: [-98.461045, 36.805969],
-        zoom: 2.0
+        zoom: 2.0,
+        interactive: false
       });
 
-      this.map.scrollZoom.disable();
+      // this.map.scrollZoom.disable();
     },
     scrollTrigger() {
       graphScroll()
         .offset(100)
         .graph(d3.selectAll("#map"))
         .container(d3.select("#chart-two"))
-        .sections(d3.selectAll("#sections > div"))
+        .sections(d3.selectAll("#sectionsTwo > div"))
         .eventId("uniqueId2")
         .on("active", i => {
           // console.log(this);
@@ -118,11 +119,11 @@ export default {
 </script>
 
 <style scoped>
-#sections > div {
+#sectionsTwo > div {
   opacity: 0.3;
 }
 
-#sections div.graph-scroll-active {
+#sectionsTwo div.graph-scroll-active {
   opacity: 1;
 }
 </style>
