@@ -1,0 +1,13 @@
+# DS Store thing
+.DS_Store
+
+# any environment variables
+.env
+
+*pdf
+*Sketch
+
+ease-energy_copy
+examples-to-delete
+
+counties.tiger2010.json
