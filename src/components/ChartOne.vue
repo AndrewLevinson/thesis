@@ -316,7 +316,7 @@ export default {
     },
     scrollTrigger() {
       graphScroll()
-        .offset(350)
+        .offset(225)
         .graph(d3.selectAll("#graph-one"))
         .container(d3.select("#chart-one"))
         .sections(d3.selectAll("#sectionsOne > div"))
@@ -398,6 +398,9 @@ export default {
   border-bottom: 1px dashed var(--main-body-type);
 }
 
+section {
+  z-index: 999;
+}
 /* text -- graph scroll */
 #sectionsOne > div {
   z-index: 999;

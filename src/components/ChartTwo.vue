@@ -73,7 +73,7 @@ export default {
     },
     scrollTrigger() {
       graphScroll()
-        .offset(100)
+        .offset(225)
         .graph(d3.selectAll("#map"))
         .container(d3.select("#chart-two"))
         .sections(d3.selectAll("#sectionsTwo > div"))
@@ -151,12 +151,19 @@ export default {
   /* border-bottom: 1px dashed var(--main-body-type); */
 }
 
+section {
+  z-index: 999;
+}
 /* text - graph-scroll */
 #sectionsTwo > div {
+  z-index: 999;
+
   opacity: 0.3;
 }
 
 #sectionsTwo div.graph-scroll-active {
+  z-index: 999;
+
   opacity: 1;
 }
 
