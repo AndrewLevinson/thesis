@@ -373,7 +373,7 @@ export default {
 /* text */
 .text-section {
   padding-bottom: 20rem;
-  z-index: 999;
+  /* z-index: 999; */
   font-size: 90%;
 }
 
@@ -384,7 +384,7 @@ export default {
   padding: 2rem 2rem 1.25rem 2rem;
   margin: 0 auto;
   margin-bottom: 60rem;
-  z-index: 999;
+  /* z-index: 999; */
   border-radius: 4px;
   opacity: 0.925;
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
