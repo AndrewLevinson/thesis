@@ -400,10 +400,12 @@ export default {
 
 /* text -- graph scroll */
 #sectionsOne > div {
+  z-index: 999;
   opacity: 0.3;
 }
 
 #sectionsOne div.graph-scroll-active {
+  z-index: 999;
   opacity: 1;
 }
 
