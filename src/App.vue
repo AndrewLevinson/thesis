@@ -162,4 +162,34 @@ body {
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 4;
 }
+
+/* tooltip */
+/* tooltip */
+div.tooltip {
+  position: fixed;
+  max-width: 350px;
+  text-align: left;
+  /* display: inline; */
+  padding: 10px;
+  font-size: 1.5rem;
+  /* font-size: 1rem; */
+  line-height: 1.2;
+  background-color: #fff;
+  border: 0px;
+  border-radius: 6px;
+  pointer-events: none;
+  color: var(--main-body-type);
+  filter: drop-shadow(0px 2px 8px rgba(59, 59, 61, 0.4));
+}
+
+.tooltip h5 {
+  padding: 0;
+  margin-top: 0.2rem;
+  /* line-height: 0; */
+  /* margin-bottom: 1.2rem; */
+}
+.datum {
+  font-weight: bold;
+  /* border-bottom: 2px dashed #3d3d3d; */
+}
 </style>
