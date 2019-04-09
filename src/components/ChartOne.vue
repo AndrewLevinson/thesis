@@ -3,8 +3,9 @@
     <div id="graph-one">
       <svg :width="svgWidth" :height="svgHeight">
         <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
-          <g v-axis:x="scale" :transform="`translate(${0}, ${height})`"></g>
-          <g v-axis:y="scale"></g>
+          <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
+          <g v-axis:y="scale" class="y-axis"></g>
+          <g v-grid:gridLine="scale" class="grid"></g>
           <path class="link" :d="paths.line"></path>
           <g :class="[showArea ? 'area-active' : 'area-hide']">
             <path class="area-one" :d="paths.areaOne"></path>
@@ -131,7 +132,9 @@ export default {
       selected: null,
       myCount: null,
       tooltip: null,
-      showArea: false
+      showArea: false,
+      domainMin: 7000,
+      domainMax: 13500
     };
   },
   computed: {
@@ -159,7 +162,9 @@ export default {
       // .paddingInner(1);
       const y = d3
         .scaleLinear()
-        .domain([0, Math.max(...this.data.map(y => y.rwpc)) + 500])
+        .domain([this.domainMin, this.domainMax])
+        // .domain([this.domainMin, Math.max(...this.data.map(y => y.rwpc)) + 500])
+
         // .domain([0, 10000])
         .rangeRound([this.height, 0]); // Already flipped
 
@@ -167,10 +172,15 @@ export default {
         .scaleOrdinal()
         .range(["#4C82C3", "#F37B6D", "#6CC071"]);
 
+      const gridLine = d3
+        .scaleLinear()
+        .domain([this.domainMin, this.domainMax])
+        .rangeRound([this.height, 0]);
+
       this.scaled.x = x;
       this.scaled.y = y;
       this.scaled.color = colorScale;
-      return { x, y, colorScale };
+      return { x, y, colorScale, gridLine };
     }
   },
   mounted() {
@@ -180,7 +190,7 @@ export default {
   },
   updated() {
     console.log("im updated");
-    // this.updateArea();
+    this.updatePath();
   },
   methods: {
     loadData() {
@@ -254,9 +264,9 @@ export default {
     },
     myTooltip(d) {
       if (this.showLabel) {
-        this.tooltip.show(`<h5 class="total">${d.site}</h5><p>
-        <span class="datum"><i>cookie name</i></span> is a <span class="datum">${
-          d.party
+        this.tooltip.show(`<h5 class="total">${d.year}</h5><p>
+        <span class="datum">${
+          d.rwpc
         }</span> cookie used for <span class="datum">${
           d.purpose
         }</span> that will be stored on my computer as a <span class="datum">${
@@ -270,6 +280,16 @@ export default {
       }
     },
     updatePath() {
+      // this.scaled.x.domain(d3.extent(this.data, (d, i) => i));
+      // this.scaled.y.domain([
+      //   this.domainMin,
+      //   Math.max(...this.data.map(y => y.rwpc)) + 500
+      // ]);
+
+      this.points[0] = [];
+      this.points[1] = [];
+      this.points[2] = [];
+      this.points[3] = [];
       // total rwpc for line
       for (const d of this.data) {
         this.points[0].push({
@@ -309,6 +329,7 @@ export default {
           second: this.scaled.y(d[1])
         });
       }
+
       this.paths.areaOne = this.createArea(this.points[1]);
       this.paths.areaTwo = this.createArea(this.points[2]);
       this.paths.areaThree = this.createArea(this.points[3]);
@@ -361,18 +382,29 @@ export default {
           switch (i) {
             case 0:
               // offscreen so do nothing
+              this.domainMin = 7000;
               this.showArea = false;
               this.selected = null;
-
+              console.log("case 0");
               break;
             case 1:
+              this.domainMin = 7000;
+
               this.showArea = false;
               this.selected = 6;
+              console.log("case 1");
+
               break;
             case 2:
+              this.domainMin = 0;
               this.showArea = true;
+              console.log("case 2");
+
               break;
             case 3:
+              this.updatePath();
+              console.log("case 3");
+
               break;
             case 4:
               break;
@@ -391,9 +423,23 @@ export default {
       const methodArg = binding.value[axis];
       // d3.axisBottom(scale.x)
       d3.select(el).call(
-        d3[axisMethod](methodArg).tickFormat(
-          d3.format(binding.arg === "x" ? "d" : ",d")
-        )
+        d3[axisMethod](methodArg)
+          .tickFormat(d3.format(binding.arg === "x" ? "d" : ",d"))
+          .ticks(binding.arg === "x" ? 9 : 5)
+      );
+    },
+    grid(el, binding) {
+      console.log(this);
+      const axis = binding.arg; // x or y
+      const axisMethod = { gridLine: "axisLeft" }[axis];
+      // The line below assigns the x or y function of the scale object
+      const methodArg = binding.value[axis];
+      // d3.axisBottom(scale.x)
+      d3.select(el).call(
+        d3[axisMethod](methodArg)
+          .tickFormat("")
+          .tickSize(-2000)
+          .ticks(5)
       );
     }
   }
@@ -418,7 +464,7 @@ export default {
   /* z-index: 999; */
   border-radius: 4px;
   opacity: 0.925;
-  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.4));
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
   /* unique to chart one */
   background-color: var(--main-bg-color);
   border: 1px solid lightgray;
@@ -482,7 +528,7 @@ line {
 }
 
 .circle-active {
-  fill: blue;
+  fill: #3c5a99;
   stroke: #000;
   transition: all 0.7s ease-in-out;
 }
@@ -503,17 +549,17 @@ line {
   transition: all 0.7s ease-in-out;
 }
 .area-one {
-  fill: #afdced;
-  opacity: 0.8;
+  fill: #3c5a99;
+  opacity: 0.45;
 }
 
 .area-two {
-  fill: #80ceed;
-  opacity: 0.6;
+  fill: #0f9d58;
+  opacity: 0.45;
 }
 
 .area-three {
-  fill: #51c1ed;
-  opacity: 0.6;
+  fill: #ff9900;
+  opacity: 0.45;
 }
 </style>

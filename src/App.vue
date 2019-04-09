@@ -192,4 +192,17 @@ div.tooltip {
   font-weight: bold;
   /* border-bottom: 2px dashed #3d3d3d; */
 }
+
+/* axis formatting */
+.domain {
+  opacity: 0;
+}
+.y-axis .tick line,
+.x-axis .tick line {
+  opacity: 0;
+}
+.grid .tick line {
+  stroke: #707070;
+  opacity: 0.3;
+}
 </style>
