@@ -41,7 +41,7 @@
               class="axis-title"
             >Years</text>
             <text
-              y="-30"
+              y="-10"
               x="-65"
               text-anchor="left"
               id="graph-one-title"
@@ -56,14 +56,12 @@
         <p>
           In 2012, the global demand for water exceeded supply and unless
           drastic action is taken the gap is expected to increase
-          dramatically—reaching 90% by the year 2090.
-          <br>
-          <br>Population growth is reducing the static amount of renewable
+          dramatically—reaching 90% by the year 2090. Population growth is reducing the static amount of renewable
           freshwater available per capita.
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Lowest Recorded Water / Person Recorded in 2014</h5>
+        <h5 class="box-title">Trending Down</h5>
         <p>
           According to Aquastat, 2014 has the official number at
           <span
@@ -457,8 +455,8 @@ export default {
 .text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 45%;
-  max-width: 800px;
-  padding: 2rem 2rem 1.25rem 2rem;
+  max-width: 600px;
+  padding: 1.25rem 1.25rem 1rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;
   /* z-index: 999; */
@@ -467,12 +465,14 @@ export default {
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
   /* unique to chart one */
   background-color: var(--main-bg-color);
-  border: 1px solid lightgray;
+  border: 1px solid rgba(112, 112, 112, 0.33);
 }
 
 .box-title {
-  margin-bottom: 0.75rem;
-  border-bottom: 1px dashed var(--main-body-type);
+  margin-bottom: 0.5rem;
+  /* font-size: 120%; */
+
+  /* border-bottom: 1px dashed var(--main-body-type); */
 }
 
 section {

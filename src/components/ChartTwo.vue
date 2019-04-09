@@ -132,7 +132,7 @@ export default {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 45%;
   max-width: 800px;
-  padding: 2rem 2rem 1.25rem 2rem;
+  padding: 1.25rem 1.25rem 1rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;
   z-index: 999;
@@ -147,7 +147,7 @@ export default {
 }
 
 .box-title {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   /* border-bottom: 1px dashed var(--main-body-type); */
 }
 
