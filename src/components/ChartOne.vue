@@ -132,7 +132,9 @@ export default {
       tooltip: null,
       showArea: false,
       domainMin: 7000,
-      domainMax: 13500
+      domainMax: 13500,
+      stackKeys: ["gpc", "spc", "dpc"]
+      // stackKeys: ["groundpercent", "surfacepercent", "deppercennt"]
     };
   },
   computed: {
@@ -198,7 +200,10 @@ export default {
           rwpc: +d["rwpc"],
           spc: +d["spc"],
           gpc: +d["gpc"],
-          dpc: +d["dpc"]
+          dpc: +d["dpc"],
+          surfacepercent: +d["surfacepercent"],
+          groundpercent: +d["groundpercent"],
+          deppercent: +d["deppercent"]
         };
       })
         .then(d => {
@@ -278,12 +283,6 @@ export default {
       }
     },
     updatePath() {
-      // this.scaled.x.domain(d3.extent(this.data, (d, i) => i));
-      // this.scaled.y.domain([
-      //   this.domainMin,
-      //   Math.max(...this.data.map(y => y.rwpc)) + 500
-      // ]);
-
       this.points[0] = [];
       this.points[1] = [];
       this.points[2] = [];
@@ -298,9 +297,8 @@ export default {
       }
       this.paths.line = this.createLine(this.points[0]);
 
-      const keys = ["spc", "gpc", "dpc"];
       const stack = d3.stack();
-      stack.keys(keys);
+      stack.keys(this.stackKeys);
       this.stackedData = stack(this.data);
 
       // area 1
@@ -395,6 +393,12 @@ export default {
               break;
             case 2:
               this.domainMin = 0;
+              // this.domainMax = 1;
+              // this.stackKeys = [
+              //   "groundpercent",
+              //   "surfacepercent",
+              //   "deppercennt"
+              // ];
               this.showArea = true;
               console.log("case 2");
 
@@ -427,7 +431,6 @@ export default {
       );
     },
     grid(el, binding) {
-      console.log(this);
       const axis = binding.arg; // x or y
       const axisMethod = { gridLine: "axisLeft" }[axis];
       // The line below assigns the x or y function of the scale object
@@ -533,6 +536,10 @@ line {
   transition: all 0.7s ease-in-out;
 }
 
+circle:hover {
+  cursor: crosshair;
+}
+
 .link {
   stroke: black;
   stroke-width: 2px;
@@ -548,7 +555,9 @@ line {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
-.area-one {
+
+/* ordinal */
+/* .area-one {
   fill: #3c5a99;
   opacity: 0.45;
 }
@@ -561,5 +570,21 @@ line {
 .area-three {
   fill: #ff9900;
   opacity: 0.45;
+} */
+
+/* all blues */
+.area-one {
+  fill: #51c1ed;
+  opacity: 0.8;
+}
+
+.area-two {
+  fill: #9dd7ef;
+  opacity: 0.8;
+}
+
+.area-three {
+  fill: #c8e6f3;
+  opacity: 0.8;
 }
 </style>

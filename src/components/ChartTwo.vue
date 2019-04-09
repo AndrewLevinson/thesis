@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">A look at California's Drought</h5>
+        <h5 class="box-title">Drought: American Southwest</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -25,15 +25,63 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Third Text Box</h5>
+        <h5 class="box-title">Groundwater Overabstraction: Chicago</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
           cupiditate eius sint necessitatibus debitis nam voluptatibus
           animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus reprehenderit asperiores ea rerum consequatur et
-          voluptatum. Deserunt quos dolor consequatur molestias ipsam
-          voluptatibus consequuntur alias unde architecto est.
+          possimus
+        </p>
+      </div>
+      <div class="text-box">
+        <h5 class="box-title">Groundwater Overabstraction: Florida Everglades</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+          doloremque laudantium corrupti sapiente quae suscipit id
+          cupiditate eius sint necessitatibus debitis nam voluptatibus
+          animi, error fugiat distinctio provident nesciunt. Necessitatibus
+          possimus
+        </p>
+      </div>
+      <div class="text-box">
+        <h5 class="box-title">Groundwater Overabstraction: The High Plains (Ogallala Aquifer)</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+          doloremque laudantium corrupti sapiente quae suscipit id
+          cupiditate eius sint necessitatibus debitis nam voluptatibus
+          animi, error fugiat distinctio provident nesciunt. Necessitatibus
+          possimus
+        </p>
+      </div>
+      <div class="text-box">
+        <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+          doloremque laudantium corrupti sapiente quae suscipit id
+          cupiditate eius sint necessitatibus debitis nam voluptatibus
+          animi, error fugiat distinctio provident nesciunt. Necessitatibus
+          possimus
+        </p>
+      </div>
+      <div class="text-box">
+        <h5 class="box-title">Contamination: the Northeast</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+          doloremque laudantium corrupti sapiente quae suscipit id
+          cupiditate eius sint necessitatibus debitis nam voluptatibus
+          animi, error fugiat distinctio provident nesciunt. Necessitatibus
+          possimus
+        </p>
+      </div>
+      <div class="text-box">
+        <h5 class="box-title">Contamination: Flint, Michigan</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+          doloremque laudantium corrupti sapiente quae suscipit id
+          cupiditate eius sint necessitatibus debitis nam voluptatibus
+          animi, error fugiat distinctio provident nesciunt. Necessitatibus
+          possimus
         </p>
       </div>
     </section>
@@ -65,7 +113,7 @@ export default {
         container: "map",
         style: "mapbox://styles/andrewlevinson/cjstjg8ol7gc61gqgdxnvggsp",
         center: [-98.461045, 36.805969],
-        zoom: 2.0,
+        zoom: 2,
         interactive: false
       });
 
@@ -82,15 +130,19 @@ export default {
           // console.log(this);
           switch (i) {
             case 0:
-              // offscreen so do nothing
               console.log("active! 0");
+              // offscreen so do nothing
+              // reset original map point
+              this.map.flyTo({
+                center: [-98.461045, 36.805969], // whole US zoomed in
+                zoom: 3.5
+              });
               break;
             case 1:
               console.log("active! 1");
-
               this.map.flyTo({
-                center: [18.2812, 4.0], // africa
-                zoom: 2.2
+                center: [-118.2437, 34.0522], // southern cali
+                zoom: 5.5
               });
               break;
             case 2:
@@ -98,15 +150,49 @@ export default {
 
               // position
               this.map.flyTo({
-                center: [18.2812, 4.0], // africa
-                zoom: 9.2
+                center: [-87.623177, 41.881832], // chicago
+                zoom: 5.5
               });
               break;
             case 3:
+              console.log("active! 3");
+              // position
+              this.map.flyTo({
+                center: [-81.385071, 25.858244], // everglades
+                zoom: 5.5
+              });
               break;
             case 4:
+              console.log("active! 4");
+              // position
+              this.map.flyTo({
+                center: [-101.263119, 36.591559], // ogallala acquifer
+                zoom: 5.5
+              });
               break;
             case 5:
+              console.log("active! 5");
+              // position
+              this.map.flyTo({
+                center: [-98.461045, 36.805969], // whole US zoomed in, infrastructure
+                zoom: 3.5
+              });
+              break;
+            case 6:
+              console.log("active! 6");
+              // position
+              this.map.flyTo({
+                center: [-73.935242, 40.7128], // northeast (NYC)
+                zoom: 5.5
+              });
+              break;
+            case 7:
+              console.log("active! 7");
+              // position
+              this.map.flyTo({
+                center: [-83.705521, 43.0125], // flint
+                zoom: 7.5
+              });
               break;
             default:
               console.log("none");
