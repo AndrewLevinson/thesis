@@ -268,15 +268,11 @@ export default {
     myTooltip(d) {
       if (this.showLabel) {
         this.tooltip.show(`<h5 class="total">${d.year}</h5><p>
-        <span class="datum">${
-          d.rwpc
-        }</span> cookie used for <span class="datum">${
-          d.purpose
-        }</span> that will be stored on my computer as a <span class="datum">${
-          d.type
-        }</span> type with a duration of <span class="datum">${
-          d.expire
-        }</span> days.
+        <span class="datum">Total: ${d.rwpc}</span><br>
+           <span class="datum">Surface Water: ${d.spc}</span><br>
+           <span class="datum">Ground Water: ${d.gpc}</span><br>
+           <span class="datum">Foreign Dependencies: ${d.dpc}</span><br>
+        
         </p>`);
       } else if (!this.showLabel) {
         this.tooltip.hide();
@@ -408,11 +404,9 @@ export default {
               console.log("case 3");
 
               break;
-            case 4:
+            default:
+              console.log("none");
               break;
-            case 5:
-              break;
-            case 6:
           }
         });
     }

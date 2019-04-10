@@ -98,11 +98,13 @@ export default {
   name: "chart-two",
   data() {
     return {
-      map: null
+      map: null,
+      geojson: null
     };
   },
   mounted() {
     this.loadMap();
+    this.loadData();
     this.scrollTrigger();
   },
   methods: {
@@ -118,6 +120,71 @@ export default {
       });
 
       // this.map.scrollZoom.disable();
+    },
+    loadData() {
+      d3.json("data/clean/us.geojson")
+        .then(geojson => {
+          this.geojson = geojson;
+        })
+        .then(() => {
+          console.log(this.geojson);
+          this.buildMap();
+        });
+    },
+    buildMap() {
+      let container = this.map.getCanvasContainer();
+
+      let svgUSA = d3
+        .select(container)
+        .append("svg")
+        .attr("width", this.width)
+        .attr("height", this.height);
+
+      // var transform = d3.geoTransform({
+      //   point: function() {
+      //     this.stream.point(point.x, point.y);
+      //   }
+      // });
+      var transform = d3.geoTransform({
+        point: function(x, y) {
+          this.stream.point(x + 20, y + 5);
+        }
+      });
+
+      // let transform = d3.geoTransform({ point: projectPoint }); // https://bl.ocks.org/Andrew-Reid/496078bd5e37fd22a9b43fd6be84b36b
+      let path = d3.geoPath().projection(transform); // https://github.com/d3/d3-3.x-api-reference/blob/master/Geo-Paths.md
+
+      let featureElement = svgUSA
+        .selectAll("path")
+        .data(this.geojson.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("stroke", "blue")
+        .attr("fill", "green");
+
+      function update() {
+        featureElement.attr("d", path);
+      }
+
+      this.map.on("viewreset", update);
+      this.map.on("movestart", function() {
+        svgUSA.classed("hide-map", true);
+      });
+      this.map.on("rotate", function() {
+        svgUSA.classed("hide-map", true);
+      });
+      this.map.on("moveend", function() {
+        update();
+        svgUSA.classed("hide-map", false);
+      });
+      update();
+
+      // let projectPoint = (lon, lat) => {
+      //   // console.log(this);
+      //   let point = this.map.project(new mapboxgl.LngLat(lon, lat));
+      //   d3.stream.point(point.x, point.y);
+      // };
     },
     scrollTrigger() {
       graphScroll()
