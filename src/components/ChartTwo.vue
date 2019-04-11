@@ -131,61 +131,7 @@ export default {
           this.buildMap();
         });
     },
-    buildMap() {
-      let container = this.map.getCanvasContainer();
-
-      let svgUSA = d3
-        .select(container)
-        .append("svg")
-        .attr("width", this.width)
-        .attr("height", this.height);
-
-      // var transform = d3.geoTransform({
-      //   point: function() {
-      //     this.stream.point(point.x, point.y);
-      //   }
-      // });
-      var transform = d3.geoTransform({
-        point: function(x, y) {
-          this.stream.point(x + 20, y + 5);
-        }
-      });
-
-      // let transform = d3.geoTransform({ point: projectPoint }); // https://bl.ocks.org/Andrew-Reid/496078bd5e37fd22a9b43fd6be84b36b
-      let path = d3.geoPath().projection(transform); // https://github.com/d3/d3-3.x-api-reference/blob/master/Geo-Paths.md
-
-      let featureElement = svgUSA
-        .selectAll("path")
-        .data(this.geojson.features)
-        .enter()
-        .append("path")
-        .attr("d", path)
-        .attr("stroke", "blue")
-        .attr("fill", "green");
-
-      function update() {
-        featureElement.attr("d", path);
-      }
-
-      this.map.on("viewreset", update);
-      this.map.on("movestart", function() {
-        svgUSA.classed("hide-map", true);
-      });
-      this.map.on("rotate", function() {
-        svgUSA.classed("hide-map", true);
-      });
-      this.map.on("moveend", function() {
-        update();
-        svgUSA.classed("hide-map", false);
-      });
-      update();
-
-      // let projectPoint = (lon, lat) => {
-      //   // console.log(this);
-      //   let point = this.map.project(new mapboxgl.LngLat(lon, lat));
-      //   d3.stream.point(point.x, point.y);
-      // };
-    },
+    buildMap() {},
     scrollTrigger() {
       graphScroll()
         .offset(225)
@@ -285,7 +231,7 @@ export default {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 45%;
   max-width: 800px;
-  padding: 1.25rem 1.25rem 1rem 1.75rem;
+  padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;
   z-index: 999;
@@ -297,6 +243,9 @@ export default {
   color: #fff;
   border: 1px solid rgb(112, 112, 112, 0.2);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+.text-box p {
+  margin-bottom: 0px;
 }
 
 .box-title {

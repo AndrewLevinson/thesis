@@ -122,7 +122,8 @@ export default {
         areaTwo: "",
         areaThree: ""
       },
-      points: [[], [], [], []],
+      pointsLine: [],
+      pointsArea: [[], [], []],
       myFilters: {
         yearMax: 2014
       },
@@ -279,52 +280,41 @@ export default {
       }
     },
     updatePath() {
-      this.points[0] = [];
-      this.points[1] = [];
-      this.points[2] = [];
-      this.points[3] = [];
+      // reset line points
+      this.pointsLine = [];
+
       // total rwpc for line
       for (const d of this.data) {
-        this.points[0].push({
+        this.pointsLine.push({
           x: this.scaled.x(d.year),
           y: this.scaled.y(d.rwpc),
           max: this.height
         });
       }
-      this.paths.line = this.createLine(this.points[0]);
+      this.paths.line = this.createLine(this.pointsLine);
 
+      // reset area points
+      this.pointsArea = [[], [], []];
+
+      // stack area
       const stack = d3.stack();
       stack.keys(this.stackKeys);
       this.stackedData = stack(this.data);
 
-      // area 1
-      for (const d of this.stackedData[0]) {
-        this.points[1].push({
-          x: this.scaled.x(d.data.year),
-          first: this.scaled.y(d[0]),
-          second: this.scaled.y(d[1])
-        });
+      // all areas points loop
+      for (let i = 0; i < this.stackedData.length; i++) {
+        for (const d of this.stackedData[i]) {
+          this.pointsArea[i].push({
+            x: this.scaled.x(d.data.year),
+            first: this.scaled.y(d[0]),
+            second: this.scaled.y(d[1])
+          });
+        }
       }
-      // area 2
-      for (const d of this.stackedData[1]) {
-        this.points[2].push({
-          x: this.scaled.x(d.data.year),
-          first: this.scaled.y(d[0]),
-          second: this.scaled.y(d[1])
-        });
-      }
-      // area 3
-      for (const d of this.stackedData[2]) {
-        this.points[3].push({
-          x: this.scaled.x(d.data.year),
-          first: this.scaled.y(d[0]),
-          second: this.scaled.y(d[1])
-        });
-      }
-
-      this.paths.areaOne = this.createArea(this.points[1]);
-      this.paths.areaTwo = this.createArea(this.points[2]);
-      this.paths.areaThree = this.createArea(this.points[3]);
+      // add create area from points
+      this.paths.areaOne = this.createArea(this.pointsArea[0]);
+      this.paths.areaTwo = this.createArea(this.pointsArea[1]);
+      this.paths.areaThree = this.createArea(this.pointsArea[2]);
     },
     updateArea() {
       // const keys = ["spc", "gpc", "dpc"];
@@ -393,7 +383,7 @@ export default {
               // this.stackKeys = [
               //   "groundpercent",
               //   "surfacepercent",
-              //   "deppercennt"
+              //   "deppercent"
               // ];
               this.showArea = true;
               console.log("case 2");
@@ -453,7 +443,7 @@ export default {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 45%;
   max-width: 600px;
-  padding: 1.25rem 1.25rem 1rem 1.75rem;
+  padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;
   /* z-index: 999; */
@@ -463,6 +453,10 @@ export default {
   /* unique to chart one */
   background-color: var(--main-bg-color);
   border: 1px solid rgba(112, 112, 112, 0.33);
+}
+
+.text-box p {
+  margin-bottom: 0px;
 }
 
 .box-title {
