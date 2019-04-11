@@ -6,14 +6,16 @@
           <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
           <g v-axis:y="scale" class="y-axis"></g>
           <g v-grid:gridLine="scale" class="grid"></g>
-          <path class="link" :d="paths.line"></path>
+          <path :class="[setShown === 1 ? 'link' : 'link-hide']" :d="paths.line"></path>
           <g :class="[showArea ? 'area-active' : 'area-hide']">
             <path class="area-one" :d="paths.areaOne"></path>
             <path class="area-two" :d="paths.areaTwo"></path>
             <path class="area-three" :d="paths.areaThree"></path>
+            <path class="area-four" :d="paths.areaFour"></path>
+            <path class="area-five" :d="paths.areaFive"></path>
           </g>
           <g
-            v-for="(d, i) in data"
+            v-for="(d, i) in filteredData"
             :key="i"
             @mouseover="showLabel = !showLabel,
             myTooltip(d),select(i)"
@@ -22,7 +24,7 @@
             <circle
               :class="[i == selected ? 'circle-active' : 'circle-up']"
               :cx="scale.x(d.year)"
-              :cy="scale.y(d.rwpc)"
+              :cy="[setShown === 1 ? scale.y(d.rwpc) : scale.y(1)]"
               r="5"
             ></circle>
           </g>
@@ -120,10 +122,12 @@ export default {
         line: "",
         areaOne: "",
         areaTwo: "",
-        areaThree: ""
+        areaThree: "",
+        areaFour: "",
+        areaFive: ""
       },
       pointsLine: [],
-      pointsArea: [[], [], []],
+      pointsArea: [[], [], [], [], []],
       myFilters: {
         yearMax: 2014
       },
@@ -132,16 +136,26 @@ export default {
       myCount: null,
       tooltip: null,
       showArea: false,
-      domainMin: 7000,
-      domainMax: 13500,
-      stackKeys: ["gpc", "spc", "dpc"]
-      // stackKeys: ["groundpercent", "surfacepercent", "deppercennt"]
+      domain: {
+        x: {
+          min: 1985,
+          max: 2015
+        },
+        y: {
+          min: 7000,
+          max: 13500
+        }
+      },
+      stackKeys: ["gpc", "spc", "dpc"],
+      setShown: 1
     };
   },
   computed: {
     filteredData() {
-      let filteredData = this.data.filter(d => d.year > this.myFilters.yearMax);
-      return filteredData;
+      // let filteredData = this.data.filter(d => d.set === this.setShown);
+      // return filteredData;
+      // return (this.filteredData = this.data);
+      return this.data.filter(d => d.set === this.setShown);
     },
     width() {
       return this.svgWidth - this.margin.left - this.margin.right;
@@ -150,20 +164,26 @@ export default {
       return this.svgHeight - this.margin.top - this.margin.bottom;
     },
     count() {
-      return (this.myCount = this.data.length);
+      return (this.myCount = this.filteredData.length);
     },
     scale() {
+      // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
+      // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
+      // console.log(this.filteredData);
       const x = d3
         // .scaleBand()
         // .domain(this.data.map(x => x.year))
         .scaleLinear()
-        .domain([1987, Math.max(...this.data.map(x => x.year))])
+        .domain([
+          Math.min(...this.filteredData.map(x => x.year)),
+          Math.max(...this.filteredData.map(x => x.year))
+        ])
         // https://github.com/d3/d3-scale/blob/master/README.md#band_rangeRound
         .rangeRound([0, this.width]);
       // .paddingInner(1);
       const y = d3
         .scaleLinear()
-        .domain([this.domainMin, this.domainMax])
+        .domain([this.domain.y.min, this.domain.y.max])
         // .domain([this.domainMin, Math.max(...this.data.map(y => y.rwpc)) + 500])
 
         // .domain([0, 10000])
@@ -175,7 +195,7 @@ export default {
 
       const gridLine = d3
         .scaleLinear()
-        .domain([this.domainMin, this.domainMax])
+        .domain([this.domain.y.min, this.domain.y.max])
         .rangeRound([this.height, 0]);
 
       this.scaled.x = x;
@@ -184,8 +204,11 @@ export default {
       return { x, y, colorScale, gridLine };
     }
   },
-  mounted() {
+  created() {
     this.loadData();
+  },
+  mounted() {
+    // this.loadData();
     this.initTooltip();
     this.scrollTrigger();
   },
@@ -197,14 +220,18 @@ export default {
     loadData() {
       d3.csv("data/clean/renewable_water_capita.csv", d => {
         return {
+          set: +d["set"],
           year: +d["years"],
           rwpc: +d["rwpc"],
           spc: +d["spc"],
           gpc: +d["gpc"],
           dpc: +d["dpc"],
-          surfacepercent: +d["surfacepercent"],
-          groundpercent: +d["groundpercent"],
-          deppercent: +d["deppercent"]
+          totalW: +d["Total in Bgal/d"],
+          publicPer: +d["Public and Domestic"],
+          irrigationPer: +d["Irrigation"],
+          thermoPer: +d["Thremoelectric"],
+          industrialPer: +d["Industrial"],
+          otherPer: +d["Other"]
         };
       })
         .then(d => {
@@ -284,7 +311,7 @@ export default {
       this.pointsLine = [];
 
       // total rwpc for line
-      for (const d of this.data) {
+      for (const d of this.filteredData) {
         this.pointsLine.push({
           x: this.scaled.x(d.year),
           y: this.scaled.y(d.rwpc),
@@ -294,12 +321,12 @@ export default {
       this.paths.line = this.createLine(this.pointsLine);
 
       // reset area points
-      this.pointsArea = [[], [], []];
+      this.pointsArea = [[], [], [], [], []];
 
       // stack area
       const stack = d3.stack();
       stack.keys(this.stackKeys);
-      this.stackedData = stack(this.data);
+      this.stackedData = stack(this.filteredData);
 
       // all areas points loop
       for (let i = 0; i < this.stackedData.length; i++) {
@@ -315,6 +342,8 @@ export default {
       this.paths.areaOne = this.createArea(this.pointsArea[0]);
       this.paths.areaTwo = this.createArea(this.pointsArea[1]);
       this.paths.areaThree = this.createArea(this.pointsArea[2]);
+      this.paths.areaFour = this.createArea(this.pointsArea[3]);
+      this.paths.areaFive = this.createArea(this.pointsArea[4]);
     },
     updateArea() {
       // const keys = ["spc", "gpc", "dpc"];
@@ -363,36 +392,55 @@ export default {
 
           switch (i) {
             case 0:
-              // offscreen so do nothing
-              this.domainMin = 7000;
+              // offscreen so do nothing / reset with just line
+              this.domain.y.min = 7000;
+              this.domain.y.max = 13500;
+              this.setShown = 1;
               this.showArea = false;
               this.selected = null;
+              this.stackKeys = ["gpc", "spc", "dpc"];
+
               console.log("case 0");
               break;
             case 1:
-              this.domainMin = 7000;
-
+              // highlight point on line
               this.showArea = false;
+              this.domain.y.min = 7000;
+              this.domain.y.max = 13500;
+              this.setShown = 1;
               this.selected = 6;
+              this.stackKeys = ["gpc", "spc", "dpc"];
+
               console.log("case 1");
 
               break;
             case 2:
-              this.domainMin = 0;
-              // this.domainMax = 1;
-              // this.stackKeys = [
-              //   "groundpercent",
-              //   "surfacepercent",
-              //   "deppercent"
-              // ];
+              // update y axis to show first area per cap
+              this.setShown = 1;
               this.showArea = true;
+              this.domain.y.min = 0;
+              this.domain.y.max = 13500;
+              this.selected = null;
+              this.stackKeys = ["gpc", "spc", "dpc"];
               console.log("case 2");
 
               break;
             case 3:
-              this.updatePath();
+              // change dataset to 100% area
+              this.setShown = 2;
+              this.showArea = true;
+              this.domain.y.min = 0;
+              this.domain.y.max = 1;
+              this.stackKeys = [
+                "irrigationPer",
+                "thermoPer",
+                "industrialPer",
+                "publicPer",
+                "otherPer"
+              ];
+              // this.stackKeys = ["publicPer", "IrrigationPer", "IndustrialPer"];
+              // this.updatePath();
               console.log("case 3");
-
               break;
             default:
               console.log("none");
@@ -528,11 +576,27 @@ circle:hover {
   cursor: crosshair;
 }
 
+.circle-group {
+  opacity: 1;
+  transition: all 0.7s ease-in-out;
+}
+.circle-group-hide {
+  opacity: 0;
+  transition: all 0.7s ease-in-out;
+}
+
 .link {
   stroke: black;
   stroke-width: 2px;
   /* stroke-opacity: 0.8; */
   fill: none;
+  opacity: 1;
+  transition: all 0.7s ease-in-out;
+}
+
+.link-hide {
+  opacity: 0;
+  transition: all 0.7s ease-in-out;
 }
 
 .area-active {
@@ -573,6 +637,16 @@ circle:hover {
 
 .area-three {
   fill: #c8e6f3;
+  opacity: 0.8;
+}
+
+.area-four {
+  fill: coral;
+  opacity: 0.8;
+}
+
+.area-five {
+  fill: teal;
   opacity: 0.8;
 }
 </style>
