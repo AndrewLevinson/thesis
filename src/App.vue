@@ -201,6 +201,9 @@ div.tooltip {
 .x-axis .tick line {
   opacity: 0;
 }
+.x-axis {
+  height: 100px;
+}
 .grid .tick line {
   stroke: #707070;
   opacity: 0.3;

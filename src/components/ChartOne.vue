@@ -7,31 +7,33 @@
           <g v-axis:y="scale" class="y-axis"></g>
           <g v-grid:gridLine="scale" class="grid"></g>
           <path :class="[setShown === 1 ? 'link' : 'link-hide']" :d="paths.line"></path>
-
-          <g :class="[showArea ? 'area-active' : 'area-hide']">
+          <g
+            :class="[showArea ? 'area-active' : 'area-hide']"
+            @select="onSelect"
+            @mousemove="mouseoverArea"
+          >
+            <path v-show="setShown === 2" class="selector" :d="paths.selector"></path>
             <path :class="[setShown === 1 ? 'area-one' : 'area-one-100']" :d="paths.areaOne"></path>
             <path :class="[setShown === 1 ? 'area-two' : 'area-two-100']" :d="paths.areaTwo"></path>
             <path :class="[setShown === 1 ? 'area-three' : 'area-three-100']" :d="paths.areaThree"></path>
             <path class="area-four-100" :d="paths.areaFour"></path>
             <path class="area-five-100" :d="paths.areaFive"></path>
           </g>
-          <g
-            v-for="(d, i) in filteredData"
-            :key="i"
-            @mouseover="showLabel = !showLabel,
-            myTooltip(d),select(i)"
-            @mouseleave="showLabel = !showLabel, myTooltip(d), select(null)"
-          >
+          <g v-for="(d, i) in filteredData" :key="i">
             <circle
-              v-show="setShown === 1"
+              v-if="setShown === 1"
               :class="[i == selected ? 'circle-active' : 'circle-up']"
               :cx="scale.x(d.year)"
               :cy="[setShown === 1 ? scale.y(d.rwpc) : scale.y(1)]"
               r="5"
+              @mouseover="showLabel = !showLabel,
+            myTooltip(d),select(i)"
+              @mouseleave="showLabel = !showLabel, myTooltip(d), select(null)"
             ></circle>
           </g>
           <g>
             <text
+              v-if="setShown === 1"
               y="-78"
               :x="svgHeight/-2"
               transform="rotate(-90)"
@@ -39,20 +41,37 @@
               class="axis-title"
             >Renewable water resources (m3/year)</text>
             <text
+              v-else
+              y="-60"
+              :x="svgHeight/-2"
+              transform="rotate(-90)"
+              text-anchor="middle"
+              class="axis-title"
+            >% of Total Water Withdrawn</text>
+            <text
               :x="svgWidth - margin.right - margin.left - 5"
               :y="svgHeight - margin.bottom - margin.top -10"
               text-anchor="end"
               class="axis-title"
             >Years</text>
             <text
-              y="-10"
-              x="-65"
+              v-if="setShown === 1"
+              y="-32"
+              x="0"
               text-anchor="left"
               id="graph-one-title"
             >Total Renewable Water Resources Per Capita (m3/inhab/year)</text>
+            <text
+              v-else
+              y="-32"
+              x="0"
+              text-anchor="left"
+              id="graph-one-title"
+            >Percentage of Water Withdrawls by Category</text>
           </g>
         </g>
       </svg>
+      <p>the current x value is {{ currentValue === null ? '' : currentValue.offsetX }}</p>
     </div>
     <section class="text-section" id="sectionsOne">
       <div class="text-box">
@@ -126,15 +145,20 @@ export default {
         areaTwo: "",
         areaThree: "",
         areaFour: "",
-        areaFive: ""
+        areaFive: "",
+        selector: ""
       },
       pointsLine: [],
       pointsArea: [[], [], [], [], []],
+      lastHoverPoint: {},
       myFilters: {
         yearMax: 2014
       },
       showLabel: false,
+      showTip: false,
       selected: null,
+      selectedArea: null,
+      currentValue: null,
       myCount: null,
       tooltip: null,
       showArea: false,
@@ -144,8 +168,8 @@ export default {
           max: 2015
         },
         y: {
-          min: 7000,
-          max: 13500
+          min: 7400,
+          max: 14000
         }
       },
       stackKeys: ["gpc", "spc", "dpc"],
@@ -253,6 +277,82 @@ export default {
       .x(d => d.x)
       .y0(d => d.first)
       .y1(d => d.second),
+    createValueSelector: d3
+      .area()
+      .x(d => d.x)
+      .y0(d => d.max)
+      .y1(0),
+    updatePath() {
+      // reset line points
+      this.pointsLine = [];
+
+      // total rwpc for line
+      for (const d of this.filteredData) {
+        this.pointsLine.push({
+          x: this.scaled.x(d.year),
+          y: this.scaled.y(d.rwpc),
+          max: this.height
+        });
+      }
+      this.paths.line = this.createLine(this.pointsLine);
+
+      // reset area points
+      this.pointsArea = [[], [], [], [], []];
+
+      // stack area
+      const stack = d3.stack();
+      stack.keys(this.stackKeys);
+      this.stackedData = stack(this.filteredData);
+
+      // all areas points loop
+      for (let i = 0; i < this.stackedData.length; i++) {
+        for (const d of this.stackedData[i]) {
+          this.pointsArea[i].push({
+            x: this.scaled.x(d.data.year),
+            first: this.scaled.y(d[0]),
+            second: this.scaled.y(d[1]),
+            max: this.height
+          });
+        }
+      }
+      // add create area from points
+      this.paths.areaOne = this.createArea(this.pointsArea[0]);
+      this.paths.areaTwo = this.createArea(this.pointsArea[1]);
+      this.paths.areaThree = this.createArea(this.pointsArea[2]);
+      this.paths.areaFour = this.createArea(this.pointsArea[3]);
+      this.paths.areaFive = this.createArea(this.pointsArea[4]);
+    },
+    mouseoverArea({ offsetX }) {
+      console.log("hi");
+      if (this.setShown === 2 && this.pointsArea[1].length > 0) {
+        const x = offsetX - this.margin.left;
+        const closestPoint = this.getClosestPoint(x);
+        if (this.lastHoverPoint.index !== closestPoint.index) {
+          const point = this.pointsArea[1][closestPoint.index];
+          this.paths.selector = this.createValueSelector([point]);
+          this.$emit("mouseOver", this.filteredData[closestPoint.index]);
+          this.lastHoverPoint = closestPoint;
+        }
+      }
+    },
+    getClosestPoint(x) {
+      return this.pointsArea[1]
+        .map((point, index) => ({
+          x: point.x,
+          diff: Math.abs(point.x - x),
+          index
+        }))
+        .reduce((memo, val) => (memo.diff < val.diff ? memo : val));
+    },
+    onSelect(value) {
+      this.currentValue = value;
+    },
+    select(index) {
+      this.selected = index;
+    },
+    selectArea(index) {
+      this.selectedArea = index;
+    },
     initTooltip() {
       this.tooltip = {
         element: null,
@@ -261,7 +361,7 @@ export default {
             .select("body")
             .append("div")
             .attr("class", "tooltip")
-            .style("right", `0px`)
+            .style("right", `10px`)
             .style("bottom", `50px`)
             .style("opacity", 0);
         },
@@ -306,72 +406,13 @@ export default {
         this.tooltip.hide();
       }
     },
-    updatePath() {
-      // reset line points
-      this.pointsLine = [];
-
-      // total rwpc for line
-      for (const d of this.filteredData) {
-        this.pointsLine.push({
-          x: this.scaled.x(d.year),
-          y: this.scaled.y(d.rwpc),
-          max: this.height
-        });
+    areaToolTip(d) {
+      console.log("hi");
+      if (this.showTip) {
+        this.tooltip.show(`hi ${d.year}`);
+      } else if (!this.showTip) {
+        this.tooltip.hide();
       }
-      this.paths.line = this.createLine(this.pointsLine);
-
-      // reset area points
-      this.pointsArea = [[], [], [], [], []];
-
-      // stack area
-      const stack = d3.stack();
-      stack.keys(this.stackKeys);
-      this.stackedData = stack(this.filteredData);
-
-      // all areas points loop
-      for (let i = 0; i < this.stackedData.length; i++) {
-        for (const d of this.stackedData[i]) {
-          this.pointsArea[i].push({
-            x: this.scaled.x(d.data.year),
-            first: this.scaled.y(d[0]),
-            second: this.scaled.y(d[1])
-          });
-        }
-      }
-      // add create area from points
-      this.paths.areaOne = this.createArea(this.pointsArea[0]);
-      this.paths.areaTwo = this.createArea(this.pointsArea[1]);
-      this.paths.areaThree = this.createArea(this.pointsArea[2]);
-      this.paths.areaFour = this.createArea(this.pointsArea[3]);
-      this.paths.areaFive = this.createArea(this.pointsArea[4]);
-    },
-    updateArea() {
-      // const keys = ["spc", "gpc", "dpc"];
-      // const stack = d3.stack();
-      // stack.keys(keys);
-      // this.stackedData = stack(this.data);
-      // let area = d3
-      //   .area()
-      //   .x(d => this.scaled.x(d.data.year))
-      //   .y0(d => this.scaled.y(d[0]))
-      //   .y1(d => this.scaled.y(d[1]));
-      // var baseGroup = d3.select(".the-group");
-      // let ageGroup = baseGroup
-      //   .selectAll(".area")
-      //   .data(this.stackedData)
-      //   .enter()
-      //   .insert("g")
-      //   .style("fill", (d, i) => {
-      //     return this.scaled.color(i);
-      //   })
-      //   .attr("class", "area")
-      //   .insert("path")
-      //   .attr("d", d => {
-      //     return area(d);
-      //   });
-    },
-    select(index) {
-      this.selected = index;
     },
     scrollTrigger() {
       graphScroll()
@@ -381,20 +422,11 @@ export default {
         .sections(d3.selectAll("#sectionsOne > div"))
         .eventId("uniqueId1")
         .on("active", i => {
-          // console.log(i + "th section active");
-          // if (i === 0) {
-          //   // offscreen so do nothing
-          // } else if (i === 1) {
-          //   this.selected = 3;
-          // } else if (i === 2) {
-          //   this.selected = 4;
-          // }
-
           switch (i) {
             case 0:
               // offscreen so do nothing / reset with just line
               this.domain.y.min = 7000;
-              this.domain.y.max = 13500;
+              this.domain.y.max = 14000;
               this.setShown = 1;
               this.showArea = false;
               this.selected = null;
@@ -406,24 +438,23 @@ export default {
               // highlight point on line
               this.showArea = false;
               this.domain.y.min = 7000;
-              this.domain.y.max = 13500;
+              this.domain.y.max = 14000;
               this.setShown = 1;
               this.selected = 6;
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               console.log("case 1");
-
               break;
             case 2:
               // update y axis to show first area per cap
               this.setShown = 1;
               this.showArea = true;
               this.domain.y.min = 0;
-              this.domain.y.max = 13500;
+              this.domain.y.max = 14000;
               this.selected = null;
               this.stackKeys = ["gpc", "spc", "dpc"];
-              console.log("case 2");
 
+              console.log("case 2");
               break;
             case 3:
               // change dataset to 100% area
@@ -438,8 +469,7 @@ export default {
                 "publicPer",
                 "otherPer"
               ];
-              // this.stackKeys = ["publicPer", "IrrigationPer", "IndustrialPer"];
-              // this.updatePath();
+
               console.log("case 3");
               break;
             default:
@@ -583,6 +613,19 @@ circle:hover {
 .circle-group-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
+}
+
+.selector {
+  stroke: var(--main-body-type);
+  stroke-width: 2px;
+  stroke-dasharray: 2;
+  fill: none;
+  opacity: 1;
+  transition: all 0s ease-in-out;
+}
+
+svg:hover {
+  cursor: crosshair;
 }
 
 .link {
