@@ -7,12 +7,13 @@
           <g v-axis:y="scale" class="y-axis"></g>
           <g v-grid:gridLine="scale" class="grid"></g>
           <path :class="[setShown === 1 ? 'link' : 'link-hide']" :d="paths.line"></path>
+
           <g :class="[showArea ? 'area-active' : 'area-hide']">
-            <path class="area-one" :d="paths.areaOne"></path>
-            <path class="area-two" :d="paths.areaTwo"></path>
-            <path class="area-three" :d="paths.areaThree"></path>
-            <path class="area-four" :d="paths.areaFour"></path>
-            <path class="area-five" :d="paths.areaFive"></path>
+            <path :class="[setShown === 1 ? 'area-one' : 'area-one-100']" :d="paths.areaOne"></path>
+            <path :class="[setShown === 1 ? 'area-two' : 'area-two-100']" :d="paths.areaTwo"></path>
+            <path :class="[setShown === 1 ? 'area-three' : 'area-three-100']" :d="paths.areaThree"></path>
+            <path class="area-four-100" :d="paths.areaFour"></path>
+            <path class="area-five-100" :d="paths.areaFive"></path>
           </g>
           <g
             v-for="(d, i) in filteredData"
@@ -22,6 +23,7 @@
             @mouseleave="showLabel = !showLabel, myTooltip(d), select(null)"
           >
             <circle
+              v-show="setShown === 1"
               :class="[i == selected ? 'circle-active' : 'circle-up']"
               :cx="scale.x(d.year)"
               :cy="[setShown === 1 ? scale.y(d.rwpc) : scale.y(1)]"
@@ -185,9 +187,7 @@ export default {
         .scaleLinear()
         .domain([this.domain.y.min, this.domain.y.max])
         // .domain([this.domainMin, Math.max(...this.data.map(y => y.rwpc)) + 500])
-
-        // .domain([0, 10000])
-        .rangeRound([this.height, 0]); // Already flipped
+        .rangeRound([this.height, 0]);
 
       const colorScale = d3
         .scaleOrdinal()
@@ -430,7 +430,7 @@ export default {
               this.setShown = 2;
               this.showArea = true;
               this.domain.y.min = 0;
-              this.domain.y.max = 1;
+              this.domain.y.max = 100;
               this.stackKeys = [
                 "irrigationPer",
                 "thermoPer",
@@ -459,7 +459,7 @@ export default {
       d3.select(el).call(
         d3[axisMethod](methodArg)
           .tickFormat(d3.format(binding.arg === "x" ? "d" : ",d"))
-          .ticks(binding.arg === "x" ? 9 : 5)
+          .ticks(binding.arg === "x" ? 10 : 5)
       );
     },
     grid(el, binding) {
@@ -608,22 +608,6 @@ circle:hover {
   transition: all 0.7s ease-in-out;
 }
 
-/* ordinal */
-/* .area-one {
-  fill: #3c5a99;
-  opacity: 0.45;
-}
-
-.area-two {
-  fill: #0f9d58;
-  opacity: 0.45;
-}
-
-.area-three {
-  fill: #ff9900;
-  opacity: 0.45;
-} */
-
 /* all blues */
 .area-one {
   fill: #51c1ed;
@@ -640,13 +624,29 @@ circle:hover {
   opacity: 0.8;
 }
 
-.area-four {
-  fill: coral;
-  opacity: 0.8;
+/* ordinal */
+.area-one-100 {
+  fill: #3c5a99;
+  opacity: 0.6;
 }
 
-.area-five {
+.area-two-100 {
+  fill: #0f9d58;
+  opacity: 0.6;
+}
+
+.area-three-100 {
+  fill: #ff9900;
+  opacity: 0.6;
+}
+
+.area-four-100 {
+  fill: coral;
+  opacity: 0.6;
+}
+
+.area-five-100 {
   fill: teal;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 </style>
