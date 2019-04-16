@@ -41,7 +41,9 @@
       </section>
 
       <!-- add chart two -- map -- component -->
-      <ChartTwo/>
+      <!-- comented out for now -->
+      <!-- <ChartTwo/> -->
+      <CountyMap/>
 
       <section class="section-break">
         <div>
@@ -76,6 +78,7 @@
 import ChartOne from "./components/ChartOne.vue";
 import ChartTwo from "./components/ChartTwo.vue";
 import ChartThree from "./components/ChartThree.vue";
+import CountyMap from "./components/CountyMap.vue";
 // import * as d3 from "d3";
 
 export default {
@@ -83,7 +86,8 @@ export default {
   components: {
     ChartOne,
     ChartTwo,
-    ChartThree
+    ChartThree,
+    CountyMap
   },
   data() {
     return {
