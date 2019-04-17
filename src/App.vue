@@ -26,6 +26,14 @@
 
       <!-- add chart one -- line and area -- component -->
       <ChartOne/>
+      <section class="section-break">
+        <div>
+          <h5>How is water usage distributed across the country?</h5>
+          <p>While the widthdrawals show a broad picture of the US, since water issues are laregly local, it's critical to take a look at water usage at a micro level.</p>
+        </div>
+      </section>
+      <!-- topo d3 map for water usage -->
+      <CountyMap/>
 
       <section class="section-break">
         <div>
@@ -41,8 +49,6 @@
       </section>
 
       <!-- add chart two -- map -- components -->
-      <!-- comented out for now -->
-      <CountyMap/>
       <ChartTwo/>
 
       <section class="section-break">

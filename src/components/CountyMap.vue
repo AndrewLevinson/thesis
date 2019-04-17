@@ -5,20 +5,12 @@
     </div>
     <section class="text-section" id="sectionsThree">
       <div class="text-box">
-        <h5 class="box-title">Current Water Stress in the United States</h5>
-        <p>
-          Throughout the country we have already seen increasing water
-          stress due to a number of different factors. These issues are
-          isolated a local, but are a sign of things to come with inaction.
-        </p>
+        <h5 class="box-title">Freshwater withdrawals by county</h5>
+        <p>Total withdrawals and withdrawal per capita</p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Current Water Stress in the United States</h5>
-        <p>
-          Throughout the country we have already seen increasing water
-          stress due to a number of different factors. These issues are
-          isolated a local, but are a sign of things to come with inaction.
-        </p>
+        <h5 class="box-title">Freshwater withdrawals by usage</h5>
+        <p>Take a look at freshwater usage among major usage categories displayed in previous chart</p>
       </div>
     </section>
   </div>
@@ -98,7 +90,7 @@ export default {
 
         let color = d3
           .scaleThreshold()
-          .domain([0, 0.5, 1, 10, 100, 250, 300])
+          .domain([0, 0.5, 1, 5, 100, 350])
           // .domain([0, 1, 5, 10, 100, 350])
           .range(d3.schemeBlues[6]);
 
@@ -208,27 +200,14 @@ export default {
 #county-section {
   width: 100vw;
   height: 100vh;
-  /* margin: 0 auto; */
-  /* border: 1px solid blue; */
   display: flex;
   align-items: center;
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
-  /* background-color: #fff; */
 }
 #county-svg {
-  /* width: 100%; */
-  /* position: absolute; */
-  /* left: 50vw; */
-  /* text-align: center; */
-  /* color: #fff; */
   margin: 0 auto;
-  /* border: 1px solid red; */
-}
-
-#county-svg g {
-  /* color: #fff; */
 }
 
 .counties {
@@ -241,9 +220,8 @@ export default {
   stroke-linejoin: round;
 }
 
-.text-section {
+#chart-three .text-section {
   padding-bottom: 20rem;
-  /* z-index: 999; */
   font-size: 90%;
 }
 
@@ -274,9 +252,6 @@ export default {
   /* border-bottom: 1px dashed var(--main-body-type); */
 }
 
-/* section {
-  z-index: 999;
-} */
 /* text -- graph scroll */
 #sectionsThree > div {
   z-index: 999;
