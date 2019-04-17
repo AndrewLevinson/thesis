@@ -122,14 +122,14 @@ export default {
       // this.map.scrollZoom.disable();
     },
     loadData() {
-      d3.json("data/clean/us.geojson")
-        .then(geojson => {
-          this.geojson = geojson;
-        })
-        .then(() => {
-          console.log(this.geojson);
-          this.buildMap();
-        });
+      // d3.json("data/clean/us.geojson")
+      //   .then(geojson => {
+      //     this.geojson = geojson;
+      //   })
+      //   .then(() => {
+      // console.log(this.geojson);
+      this.buildMap();
+      // });
     },
     buildMap() {},
     scrollTrigger() {

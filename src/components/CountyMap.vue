@@ -1,20 +1,41 @@
 <template>
-  <div>
-    <svg :width="width" :height="height" id="county-svg"></svg>
+  <div id="chart-three">
+    <div id="county-section">
+      <svg :width="width" :height="height" id="county-svg"></svg>
+    </div>
+    <section class="text-section" id="sectionsThree">
+      <div class="text-box">
+        <h5 class="box-title">Current Water Stress in the United States</h5>
+        <p>
+          Throughout the country we have already seen increasing water
+          stress due to a number of different factors. These issues are
+          isolated a local, but are a sign of things to come with inaction.
+        </p>
+      </div>
+      <div class="text-box">
+        <h5 class="box-title">Current Water Stress in the United States</h5>
+        <p>
+          Throughout the country we have already seen increasing water
+          stress due to a number of different factors. These issues are
+          isolated a local, but are a sign of things to come with inaction.
+        </p>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
+import { graphScroll } from "graph-scroll";
 
 export default {
   name: "county-map",
 
   data() {
     return {
-      svgWidth: window.innerWidth,
+      svgWidth: 1000,
       svgHeight: window.innerHeight,
-      margin: { top: 50, left: 25, bottom: 50, right: 25 }
+      margin: { top: 25, left: 25, bottom: 25, right: 25 }
     };
   },
   computed: {
@@ -27,15 +48,32 @@ export default {
   },
   mounted() {
     this.loadData();
+    this.scrollTrigger();
   },
   methods: {
     loadData() {
-      var svg = d3.select("#county-svg");
+      // test code
+      // var chart = d3.select("#county-svg");
+      // var width = 1000;
+      // var height = 600;
+      // var aspect = 1000 / 600;
+      // d3.select(window).on("resize", function() {
+      //   var targetWidth = chart.node().getBoundingClientRect().width;
+      //   console.log(targetWidth);
+      //   chart.attr("width", width);
+      //   chart.attr("height", targetWidth / aspect);
+      // });
 
-      var usage = d3.map();
+      // var svg = d3
+      //   .select("#county-svg")
+      //   .attr("width", width)
+      //   .attr("height", height);
+
+      let svg = d3.select("#county-svg");
 
       var path = d3.geoPath();
 
+      var usage = d3.map();
       var promises = [
         d3.json("https://cdn.jsdelivr.net/npm/us-atlas@1/us/10m.json"),
         d3.csv("data/clean/countyusage.csv", d => {
@@ -50,8 +88,8 @@ export default {
           .scaleLinear()
           // .scalePow()
           // .exponent(3)
-          .domain([0, 300])
-          .rangeRound([600, 1200]);
+          .domain([0, 350])
+          .rangeRound([550, 875]);
 
         // var color = d3
         //   .scaleThreshold()
@@ -61,7 +99,8 @@ export default {
         let color = d3
           .scaleThreshold()
           .domain([0, 0.5, 1, 10, 100, 250, 300])
-          .range(d3.schemeBlues[7]);
+          // .domain([0, 1, 5, 10, 100, 350])
+          .range(d3.schemeBlues[6]);
 
         var g = svg
           .append("g")
@@ -94,7 +133,7 @@ export default {
           .attr("class", "caption")
           .attr("x", x.range()[0])
           .attr("y", -6)
-          .attr("fill", "#000")
+          .attr("fill", "#3d3d3d")
           .attr("text-anchor", "start")
           .attr("font-weight", "bold")
           .text("Freshwater Withdrawal Per Capita");
@@ -104,7 +143,8 @@ export default {
             .axisBottom(x)
             .tickSize(13)
             .tickFormat(function(x, i) {
-              return i ? x : x + " Mgal/d";
+              // return i ? x : x + " Mgal/d";
+              return i ? x : x + "";
             })
             .tickValues(color.domain())
         )
@@ -117,11 +157,11 @@ export default {
           .attr("class", "counties")
           .selectAll("path")
           .data(topojson.feature(us, us.objects.counties).features)
-          .enter()
-          .append("path")
-          .attr("fill", function(d) {
-            console.log(d);
-            return color((d.freshPer = usage.get(d.id)));
+
+          .join("path")
+          .attr("fill", d => {
+            // console.log(d);
+            return color(usage.get(d.id));
           })
           .attr("d", path)
           .append("title")
@@ -139,15 +179,58 @@ export default {
           .attr("class", "states")
           .attr("d", path);
       }
+    },
+    scrollTrigger() {
+      graphScroll()
+        .offset(225)
+        .graph(d3.selectAll("#county-section"))
+        .container(d3.select("#chart-three"))
+        .sections(d3.selectAll("#sectionsThree > div"))
+        .eventId("uniqueId3")
+        .on("active", i => {
+          console.log(this);
+          switch (i) {
+            case 0:
+              console.log("im the county graph! 0");
+              // offscreen so do nothing
+              break;
+            case 1:
+              console.log("im the county graph! 1");
+              break;
+          }
+        });
     }
   }
 };
 </script>
 
 <style>
-#county-svg {
-  border: 1px solid red;
+#county-section {
+  width: 100vw;
+  height: 100vh;
+  /* margin: 0 auto; */
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  /* background-color: #fff; */
 }
+#county-svg {
+  /* width: 100%; */
+  /* position: absolute; */
+  /* left: 50vw; */
+  /* text-align: center; */
+  /* color: #fff; */
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+
+#county-svg g {
+  /* color: #fff; */
+}
+
 .counties {
   fill: none;
 }
@@ -156,5 +239,52 @@ export default {
   fill: none;
   stroke: #fff;
   stroke-linejoin: round;
+}
+
+.text-section {
+  padding-bottom: 20rem;
+  /* z-index: 999; */
+  font-size: 90%;
+}
+
+#sectionsThree .text-box {
+  /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
+  width: 45%;
+  max-width: 600px;
+  padding: 1.25rem 1.75rem 1.5rem 1.75rem;
+  margin: 0 auto;
+  margin-bottom: 60rem;
+  /* z-index: 999; */
+  border-radius: 4px;
+  opacity: 0.925;
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
+  /* unique to chart one */
+  background-color: var(--main-bg-color);
+  border: 1px solid rgba(112, 112, 112, 0.33);
+}
+
+#sectionsThree .text-box p {
+  margin-bottom: 0px;
+}
+
+#sectionsThree .box-title {
+  margin-bottom: 0.5rem;
+  /* font-size: 120%; */
+
+  /* border-bottom: 1px dashed var(--main-body-type); */
+}
+
+/* section {
+  z-index: 999;
+} */
+/* text -- graph scroll */
+#sectionsThree > div {
+  z-index: 999;
+  opacity: 0.3;
+}
+
+#sectionsThree div.graph-scroll-active {
+  z-index: 999;
+  opacity: 1;
 }
 </style>

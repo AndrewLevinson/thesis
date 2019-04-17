@@ -40,10 +40,10 @@
         </div>
       </section>
 
-      <!-- add chart two -- map -- component -->
+      <!-- add chart two -- map -- components -->
       <!-- comented out for now -->
-      <!-- <ChartTwo/> -->
       <CountyMap/>
+      <ChartTwo/>
 
       <section class="section-break">
         <div>
