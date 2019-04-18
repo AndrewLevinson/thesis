@@ -122,54 +122,54 @@ export default {
         interactive: false
       });
 
-      this.map.on("load", function() {
-        // this.map.addSource("revisedcounties.geo", {
-        //   type: "vector",
-        //   url: "mapbox://andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
-        // });
+      // this.map.on("load", function() {
+      //   // this.map.addSource("revisedcounties.geo", {
+      //   //   type: "vector",
+      //   //   url: "mapbox://andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
+      //   // });
 
-        this.map.addLayer(
-          {
-            id: "freshwater-cap",
-            type: "fill",
-            source: {
-              type: "vector",
-              data: "andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
-              // data: "revisedcounties.geo"
-            },
-            "source-layer": "revisedcounties.geo",
-            // maxzoom: zoomThreshold,
-            // filter: ["==", "isState", true],
-            paint: {
-              "fill-color": [
-                "interpolate",
-                ["linear"],
-                ["get", "freshPer"],
-                0,
-                "#F2F12D",
-                1,
-                "#EED322",
-                5,
-                "#E6B71E",
-                10,
-                "#DA9C20",
-                50,
-                "#CA8323",
-                150,
-                "#B86B25",
-                200,
-                "#A25626",
-                300,
-                "#8B4225",
-                350,
-                "#723122"
-              ],
-              "fill-opacity": 0.75
-            }
-          },
-          "revisedcounties.geo"
-        );
-      });
+      //   this.map.addLayer(
+      //     {
+      //       id: "freshwater-cap",
+      //       type: "fill",
+      //       source: {
+      //         type: "vector",
+      //         data: "andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
+      //         // data: "revisedcounties.geo"
+      //       },
+      //       "source-layer": "revisedcounties.geo",
+      //       // maxzoom: zoomThreshold,
+      //       // filter: ["==", "isState", true],
+      //       paint: {
+      //         "fill-color": [
+      //           "interpolate",
+      //           ["linear"],
+      //           ["get", "freshPer"],
+      //           0,
+      //           "#F2F12D",
+      //           1,
+      //           "#EED322",
+      //           5,
+      //           "#E6B71E",
+      //           10,
+      //           "#DA9C20",
+      //           50,
+      //           "#CA8323",
+      //           150,
+      //           "#B86B25",
+      //           200,
+      //           "#A25626",
+      //           300,
+      //           "#8B4225",
+      //           350,
+      //           "#723122"
+      //         ],
+      //         "fill-opacity": 0.75
+      //       }
+      //     },
+      //     "revisedcounties.geo"
+      //   );
+      // });
     },
 
     scrollTrigger() {
