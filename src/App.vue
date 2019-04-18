@@ -26,6 +26,7 @@
 
       <!-- add chart one -- line and area -- component -->
       <ChartOne/>
+
       <section class="section-break">
         <div>
           <h5>How is water usage distributed across the country?</h5>

@@ -1,6 +1,7 @@
 <template>
   <div id="chart-two">
     <div id="map">
+      <div id="legend"></div>
       <!-- map goes here -->
     </div>
     <section class="text-section" id="sectionsTwo">
@@ -92,6 +93,8 @@
 import * as d3 from "d3";
 import { graphScroll } from "graph-scroll";
 import mapboxgl from "mapbox-gl";
+// import MapboxChoropleth from "mapbox-choropleth";
+// const MapboxChoropleth = require("mapbox-choropleth");
 // const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 export default {
@@ -104,7 +107,7 @@ export default {
   },
   mounted() {
     this.loadMap();
-    this.loadData();
+    // this.loadData();
     this.scrollTrigger();
   },
   methods: {
@@ -113,25 +116,62 @@ export default {
         "pk.eyJ1IjoiYW5kcmV3bGV2aW5zb24iLCJhIjoiY2pub3RxNXB2MDA5cTNxb2M5MjNoaHl5diJ9.Zq4eS5UJd_60fgNBAFiUsw";
       this.map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/andrewlevinson/cjstjg8ol7gc61gqgdxnvggsp",
+        style: "mapbox://styles/andrewlevinson/cjulygwif39c51fqua8xj3u4m",
         center: [-98.461045, 36.805969],
         zoom: 2,
         interactive: false
       });
 
-      // this.map.scrollZoom.disable();
+      this.map.on("load", function() {
+        // this.map.addSource("revisedcounties.geo", {
+        //   type: "vector",
+        //   url: "mapbox://andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
+        // });
+
+        this.map.addLayer(
+          {
+            id: "freshwater-cap",
+            type: "fill",
+            source: {
+              type: "vector",
+              data: "andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
+              // data: "revisedcounties.geo"
+            },
+            "source-layer": "revisedcounties.geo",
+            // maxzoom: zoomThreshold,
+            // filter: ["==", "isState", true],
+            paint: {
+              "fill-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "freshPer"],
+                0,
+                "#F2F12D",
+                1,
+                "#EED322",
+                5,
+                "#E6B71E",
+                10,
+                "#DA9C20",
+                50,
+                "#CA8323",
+                150,
+                "#B86B25",
+                200,
+                "#A25626",
+                300,
+                "#8B4225",
+                350,
+                "#723122"
+              ],
+              "fill-opacity": 0.75
+            }
+          },
+          "revisedcounties.geo"
+        );
+      });
     },
-    loadData() {
-      // d3.json("data/clean/us.geojson")
-      //   .then(geojson => {
-      //     this.geojson = geojson;
-      //   })
-      //   .then(() => {
-      // console.log(this.geojson);
-      this.buildMap();
-      // });
-    },
-    buildMap() {},
+
     scrollTrigger() {
       graphScroll()
         .offset(225)

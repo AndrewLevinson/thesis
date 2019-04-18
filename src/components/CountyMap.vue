@@ -94,54 +94,55 @@ export default {
           // .domain([0, 1, 5, 10, 100, 350])
           .range(d3.schemeBlues[6]);
 
-        var g = svg
-          .append("g")
-          .attr("class", "key")
-          .attr("transform", "translate(0,40)");
+        // legend commented out
+        // var g = svg
+        //   .append("g")
+        //   .attr("class", "key")
+        //   .attr("transform", "translate(0,40)");
 
-        g.selectAll("rect")
-          .data(
-            color.range().map(function(d) {
-              d = color.invertExtent(d);
-              if (d[0] == null) d[0] = x.domain()[0];
-              if (d[1] == null) d[1] = x.domain()[1];
-              return d;
-            })
-          )
-          .enter()
-          .append("rect")
-          .attr("height", 8)
-          .attr("x", function(d) {
-            return x(d[0]);
-          })
-          .attr("width", function(d) {
-            return x(d[1]) - x(d[0]);
-          })
-          .attr("fill", function(d) {
-            return color(d[0]);
-          });
+        // g.selectAll("rect")
+        //   .data(
+        //     color.range().map(function(d) {
+        //       d = color.invertExtent(d);
+        //       if (d[0] == null) d[0] = x.domain()[0];
+        //       if (d[1] == null) d[1] = x.domain()[1];
+        //       return d;
+        //     })
+        //   )
+        //   .enter()
+        //   .append("rect")
+        //   .attr("height", 8)
+        //   .attr("x", function(d) {
+        //     return x(d[0]);
+        //   })
+        //   .attr("width", function(d) {
+        //     return x(d[1]) - x(d[0]);
+        //   })
+        //   .attr("fill", function(d) {
+        //     return color(d[0]);
+        //   });
 
-        g.append("text")
-          .attr("class", "caption")
-          .attr("x", x.range()[0])
-          .attr("y", -6)
-          .attr("fill", "#3d3d3d")
-          .attr("text-anchor", "start")
-          .attr("font-weight", "bold")
-          .text("Freshwater Withdrawal Per Capita");
+        // g.append("text")
+        //   .attr("class", "caption")
+        //   .attr("x", x.range()[0])
+        //   .attr("y", -6)
+        //   .attr("fill", "#3d3d3d")
+        //   .attr("text-anchor", "start")
+        //   .attr("font-weight", "bold")
+        //   .text("Freshwater Withdrawal Per Capita");
 
-        g.call(
-          d3
-            .axisBottom(x)
-            .tickSize(13)
-            .tickFormat(function(x, i) {
-              // return i ? x : x + " Mgal/d";
-              return i ? x : x + "";
-            })
-            .tickValues(color.domain())
-        )
-          .select(".domain")
-          .remove();
+        // g.call(
+        //   d3
+        //     .axisBottom(x)
+        //     .tickSize(13)
+        //     .tickFormat(function(x, i) {
+        //       // return i ? x : x + " Mgal/d";
+        //       return i ? x : x + "";
+        //     })
+        //     .tickValues(color.domain())
+        // )
+        //   .select(".domain")
+        //   .remove();
 
         // map
         svg
