@@ -34,9 +34,9 @@
         </div>
       </section>
       <!-- topo d3 map for water usage -->
-      <CountyMap/>
+      <!-- <CountyMap/> -->
 
-      <section class="section-break">
+      <!-- <section class="section-break">
         <div>
           <h5>It’s happening closer than you think</h5>
           <p>
@@ -47,7 +47,7 @@
             and climate policies.
           </p>
         </div>
-      </section>
+      </section>-->
 
       <!-- add chart two -- map -- components -->
       <ChartTwo/>
@@ -107,6 +107,9 @@ export default {
 </script>
 
 <style>
+.mapboxgl-canvas {
+  /* background-color: none; */
+}
 /* global style */
 :root {
   --main-bg-color: #eff8ff;

@@ -6,6 +6,10 @@
     </div>
     <section class="text-section" id="sectionsTwo">
       <div class="text-box">
+        <h5 class="box-title">Freshwater Withdrawals Per Capita</h5>
+        <p>The west withdraws much more water than most of the country mostly for irrigation and agriculture.</p>
+      </div>
+      <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>
         <p>
           Throughout the country we have already seen increasing water
@@ -93,21 +97,16 @@
 import * as d3 from "d3";
 import { graphScroll } from "graph-scroll";
 import mapboxgl from "mapbox-gl";
-// import MapboxChoropleth from "mapbox-choropleth";
-// const MapboxChoropleth = require("mapbox-choropleth");
-// const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 export default {
   name: "chart-two",
   data() {
     return {
-      map: null,
-      geojson: null
+      map: null
     };
   },
   mounted() {
     this.loadMap();
-    // this.loadData();
     this.scrollTrigger();
   },
   methods: {
@@ -118,58 +117,29 @@ export default {
         container: "map",
         style: "mapbox://styles/andrewlevinson/cjulygwif39c51fqua8xj3u4m",
         center: [-98.461045, 36.805969],
-        zoom: 2,
+        zoom: 2.5,
         interactive: false
+      }).on("load", () => {
+        this.resetMapLayers(0);
+        this.scrollTrigger();
+
+        // this.map.removeLayer("revisedcounties-2");
       });
-
-      // this.map.on("load", function() {
-      //   // this.map.addSource("revisedcounties.geo", {
-      //   //   type: "vector",
-      //   //   url: "mapbox://andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
-      //   // });
-
-      //   this.map.addLayer(
-      //     {
-      //       id: "freshwater-cap",
-      //       type: "fill",
-      //       source: {
-      //         type: "vector",
-      //         data: "andrewlevinson.cjuly34ln004l33n1v6217ikj-7yd1n"
-      //         // data: "revisedcounties.geo"
-      //       },
-      //       "source-layer": "revisedcounties.geo",
-      //       // maxzoom: zoomThreshold,
-      //       // filter: ["==", "isState", true],
-      //       paint: {
-      //         "fill-color": [
-      //           "interpolate",
-      //           ["linear"],
-      //           ["get", "freshPer"],
-      //           0,
-      //           "#F2F12D",
-      //           1,
-      //           "#EED322",
-      //           5,
-      //           "#E6B71E",
-      //           10,
-      //           "#DA9C20",
-      //           50,
-      //           "#CA8323",
-      //           150,
-      //           "#B86B25",
-      //           200,
-      //           "#A25626",
-      //           300,
-      //           "#8B4225",
-      //           350,
-      //           "#723122"
-      //         ],
-      //         "fill-opacity": 0.75
-      //       }
-      //     },
-      //     "revisedcounties.geo"
-      //   );
-      // });
+    },
+    resetMapLayers(x) {
+      const allLayers = this.map.getStyle().layers;
+      for (const i of allLayers) {
+        if (x === 0) {
+          if (i.id != "revisedcounties-2") {
+            this.map.setLayoutProperty(i.id, "visibility", "none");
+          }
+          // reset opacity to full 1
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
+        } else {
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.4);
+          this.map.setLayoutProperty(i.id, "visibility", "visible");
+        }
+      }
     },
 
     scrollTrigger() {
@@ -181,66 +151,63 @@ export default {
         .eventId("uniqueId2")
         .on("active", i => {
           // console.log(this);
+          console.log("active!", i);
           switch (i) {
             case 0:
-              console.log("active! 0");
               // offscreen so do nothing
               // reset original map point
               this.map.flyTo({
-                center: [-98.461045, 36.805969], // whole US zoomed in
-                zoom: 3.5
+                center: [-98.461045, 38], // whole US zoomed in
+                zoom: 3.8
               });
+              this.resetMapLayers(i);
               break;
+
             case 1:
-              console.log("active! 1");
+              this.resetMapLayers(i);
+              break;
+            case 2:
               this.map.flyTo({
                 center: [-118.2437, 34.0522], // southern cali
                 zoom: 5.5
               });
               break;
-            case 2:
-              console.log("active! 2");
-
+            case 3:
               // position
               this.map.flyTo({
                 center: [-87.623177, 41.881832], // chicago
                 zoom: 5.5
               });
               break;
-            case 3:
-              console.log("active! 3");
+            case 4:
               // position
               this.map.flyTo({
                 center: [-81.385071, 25.858244], // everglades
                 zoom: 5.5
               });
               break;
-            case 4:
-              console.log("active! 4");
+            case 5:
               // position
               this.map.flyTo({
                 center: [-101.263119, 36.591559], // ogallala acquifer
                 zoom: 5.5
               });
               break;
-            case 5:
-              console.log("active! 5");
+            case 6:
               // position
               this.map.flyTo({
                 center: [-98.461045, 36.805969], // whole US zoomed in, infrastructure
                 zoom: 3.5
               });
               break;
-            case 6:
-              console.log("active! 6");
+            case 7:
               // position
               this.map.flyTo({
                 center: [-73.935242, 40.7128], // northeast (NYC)
                 zoom: 5.5
               });
               break;
-            case 7:
-              console.log("active! 7");
+            case 8:
               // position
               this.map.flyTo({
                 center: [-83.705521, 43.0125], // flint
@@ -259,7 +226,7 @@ export default {
 
 <style scoped>
 #chart-two {
-  background-color: var(--map-bg-color);
+  /* background-color: var(--map-bg-color); */
 }
 /* text */
 .text-section {
@@ -316,5 +283,6 @@ section {
   top: 0px;
   width: 100vw;
   height: 100vh;
+  background-color: none;
 }
 </style>
