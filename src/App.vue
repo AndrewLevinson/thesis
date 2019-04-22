@@ -51,7 +51,6 @@
 
       <!-- add chart two -- map -- components -->
       <ChartTwo/>
-
       <section class="section-break">
         <div>
           <h5>What can we do right now?</h5>
@@ -83,6 +82,7 @@
 // });
 
 import ChartOne from "./components/ChartOne.vue";
+import SideBar from "./components/SideBar.vue";
 import ChartTwo from "./components/ChartTwo.vue";
 import ChartThree from "./components/ChartThree.vue";
 import CountyMap from "./components/CountyMap.vue";
@@ -92,6 +92,7 @@ export default {
   name: "app",
   components: {
     ChartOne,
+    SideBar,
     ChartTwo,
     ChartThree,
     CountyMap

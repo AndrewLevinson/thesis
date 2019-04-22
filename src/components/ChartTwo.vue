@@ -1,8 +1,10 @@
 <template>
   <div id="chart-two">
     <div id="map">
-      <div id="legend"></div>
-      <!-- map goes here -->
+      <SideBar :scrollPosition="scrollPosition"/>
+      <div id="my-map">
+        <!-- map goes here -->
+      </div>
     </div>
     <section class="text-section" id="sectionsTwo">
       <div class="text-box">
@@ -94,15 +96,19 @@
 </template>
 
 <script>
+import SideBar from "./SideBar.vue";
+
 import * as d3 from "d3";
 import { graphScroll } from "graph-scroll";
 import mapboxgl from "mapbox-gl";
 
 export default {
   name: "chart-two",
+  components: { SideBar },
   data() {
     return {
-      map: null
+      map: null,
+      scrollPosition: null
     };
   },
   mounted() {
@@ -114,11 +120,17 @@ export default {
       mapboxgl.accessToken =
         "pk.eyJ1IjoiYW5kcmV3bGV2aW5zb24iLCJhIjoiY2pub3RxNXB2MDA5cTNxb2M5MjNoaHl5diJ9.Zq4eS5UJd_60fgNBAFiUsw";
       this.map = new mapboxgl.Map({
-        container: "map",
+        container: "my-map",
         style: "mapbox://styles/andrewlevinson/cjulygwif39c51fqua8xj3u4m",
         center: [-98.461045, 36.805969],
         zoom: 2.5,
-        interactive: false
+        interactive: false,
+        paint: {
+          "fill-opacity": 1,
+          "fill-opacity-transition": {
+            duration: 200
+          }
+        }
       }).on("load", () => {
         this.resetMapLayers(0);
         this.scrollTrigger();
@@ -136,7 +148,7 @@ export default {
           // reset opacity to full 1
           this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
         } else {
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.4);
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.3);
           this.map.setLayoutProperty(i.id, "visibility", "visible");
         }
       }
@@ -151,6 +163,7 @@ export default {
         .eventId("uniqueId2")
         .on("active", i => {
           // console.log(this);
+          this.scrollPosition = i;
           console.log("active!", i);
           switch (i) {
             case 0:
@@ -164,6 +177,11 @@ export default {
               break;
 
             case 1:
+              // reset original map point
+              this.map.flyTo({
+                center: [-98.461045, 38], // whole US zoomed in
+                zoom: 3.8
+              });
               this.resetMapLayers(i);
               break;
             case 2:
@@ -234,12 +252,14 @@ export default {
   z-index: 999;
   font-size: 90%;
 }
+
 .text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 45%;
   max-width: 800px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  margin-left: 5rem;
   margin-bottom: 60rem;
   z-index: 999;
   border-radius: 4px;
@@ -251,6 +271,30 @@ export default {
   border: 1px solid rgb(112, 112, 112, 0.2);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
+
+.text-box:first-of-type,
+.text-box:nth-of-type(2) {
+  /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
+  width: 45%;
+  max-width: 600px;
+  padding: 1.25rem 1.75rem 1.5rem 1.75rem;
+  margin: 0 auto;
+  margin-bottom: 60rem;
+  /* z-index: 999; */
+  border-radius: 4px;
+  opacity: 0.925;
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
+  /* unique to chart one */
+  background-color: var(--main-bg-color);
+  color: var(--main-body-type);
+  border: 1px solid rgba(112, 112, 112, 0.33);
+}
+
+.text-box:nth-of-type(2) {
+  background-color: var(--map-bg-color);
+  color: #fff;
+}
+
 .text-box p {
   margin-bottom: 0px;
 }
@@ -266,13 +310,11 @@ section {
 /* text - graph-scroll */
 #sectionsTwo > div {
   z-index: 999;
-
   opacity: 0.3;
 }
 
 #sectionsTwo div.graph-scroll-active {
   z-index: 999;
-
   opacity: 1;
 }
 
@@ -281,6 +323,13 @@ section {
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+#my-map {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100vw;
   height: 100vh;
   background-color: none;
