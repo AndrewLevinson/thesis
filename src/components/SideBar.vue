@@ -138,8 +138,19 @@ section {
   height: 100vh;
   display: flex;
   text-align: left;
-  background-color: var(--map-bg-color);
-  box-shadow: -1px 0px 4px 1px rgba(0, 0, 0, 0.3);
+  /* background-color: var(--map-bg-color); */
+  background-image: linear-gradient(
+    90.2deg,
+    rgba(221, 221, 221, 1) -9.2%,
+    rgba(52, 51, 50, 0.58) 0%,
+    rgba(52, 51, 50, 0.7) 6.6%,
+    rgba(52, 51, 50, 0.8) 14.6%,
+    rgba(52, 51, 50, 0.85) 30.7%,
+    rgba(52, 51, 50, 0.92) 56.7%,
+    rgba(52, 51, 50, 1) 83.3%
+  );
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.35);
   position: sticky;
   top: 0;
 }

@@ -2,7 +2,7 @@
   <div id="chart-two">
     <div id="map">
       <SideBar :scrollPosition="scrollPosition"/>
-      <div id="my-map">
+      <div id="my-map" :class="[scrollPosition == 0 ? 'visible-background' : 'hidden-background']">
         <!-- map goes here -->
       </div>
     </div>
@@ -139,7 +139,7 @@ export default {
       const allLayers = this.map.getStyle().layers;
       for (const i of allLayers) {
         if (x === 0) {
-          if (i.id != "revisedcounties-2" && i.id != "background") {
+          if (i.id != "revisedcounties-2") {
             this.map.setLayoutProperty(i.id, "visibility", "none");
           }
           // reset opacity to full 1
@@ -330,5 +330,15 @@ section {
   width: 100vw;
   height: 100vh;
   background-color: none;
+}
+
+.visible-background {
+  background-color: var(--main-bg-color);
+  transition: background-color 1s ease-in-out;
+}
+
+.hidden-background {
+  background-color: var(--map-bg-color);
+  transition: background-color 1s ease-in-out;
 }
 </style>
