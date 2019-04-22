@@ -146,6 +146,7 @@ section {
 
 .panel-content {
   padding: 2rem;
+  width: 100%;
   overflow-y: auto;
 }
 
@@ -164,15 +165,18 @@ section {
 
 .panel-content p {
   margin-top: -1.5rem;
+  font-size: 95%;
 }
 
 .image-holder {
   margin-top: -1.5rem;
   width: 100%;
+  border-radius: 4px;
 }
 img {
   width: 90%;
   margin: 0 auto;
+  border-radius: 4px;
 }
 
 @media (max-width: 600px) {

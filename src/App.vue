@@ -129,7 +129,7 @@ select {
 }
 body {
   width: 100%;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   margin: auto;
 }
 

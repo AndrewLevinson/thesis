@@ -25,10 +25,7 @@
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
           cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus reprehenderit asperiores ea rerum consequatur et
-          voluptatum. Deserunt quos dolor consequatur molestias ipsam
-          voluptatibus consequuntur alias unde architecto est.
+          animi, error fugiat distinctio provident nesciunt.
         </p>
       </div>
       <div class="text-box">
@@ -142,13 +139,13 @@ export default {
       const allLayers = this.map.getStyle().layers;
       for (const i of allLayers) {
         if (x === 0) {
-          if (i.id != "revisedcounties-2") {
+          if (i.id != "revisedcounties-2" && i.id != "background") {
             this.map.setLayoutProperty(i.id, "visibility", "none");
           }
           // reset opacity to full 1
           this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
         } else {
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.3);
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
           this.map.setLayoutProperty(i.id, "visibility", "visible");
         }
       }
@@ -186,8 +183,8 @@ export default {
               break;
             case 2:
               this.map.flyTo({
-                center: [-118.2437, 34.0522], // southern cali
-                zoom: 5.5
+                center: [-109, 36.5], // colorado basin
+                zoom: 5
               });
               break;
             case 3:
@@ -207,8 +204,8 @@ export default {
             case 5:
               // position
               this.map.flyTo({
-                center: [-101.263119, 36.591559], // ogallala acquifer
-                zoom: 5.5
+                center: [-97, 38.591559], // ogallala acquifer
+                zoom: 4.75
               });
               break;
             case 6:
@@ -255,7 +252,7 @@ export default {
 
 .text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
-  width: 45%;
+  width: 40%;
   max-width: 800px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   /* margin: 0 auto; */
@@ -275,7 +272,7 @@ export default {
 .text-box:first-of-type,
 .text-box:nth-of-type(2) {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
-  width: 45%;
+  width: 40%;
   max-width: 600px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
