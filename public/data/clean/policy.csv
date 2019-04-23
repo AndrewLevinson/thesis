@@ -1,0 +1,9 @@
+﻿name,cat,current,projected
+conserve,demand,0,0
+ingredient,demand,0,0
+consumer pricing,demand,0,0
+industry pricing,demand,0,0
+irrigation,demand,0,0
+drinking water infrastructure,investment,500,0
+collection and storage infrastructure,investment,200,0
+wastewater improvements,investment,250,0

@@ -289,6 +289,15 @@ div.tooltip {
 }
 
 /* axis formatting */
+.gridlines .domain {
+  display: none;
+  opacity: 0;
+}
+
+.gridlines {
+  opacity: 0.3;
+  /* stroke-dasharray: 2; */
+}
 .domain {
   opacity: 0;
 }
