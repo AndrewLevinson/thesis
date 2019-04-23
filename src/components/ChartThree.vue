@@ -28,6 +28,19 @@
             v-model="policyData[6].current"
           >
         </div>
+        <div id="slider-three">
+          <label for="four">Collection and Storage Infrastructure</label>
+          <br>
+          <p id="slider-value">Value: {{ policyData[4].current }}</p>
+          <input
+            name="four"
+            type="range"
+            min="0"
+            max="1000"
+            value="200"
+            v-model="policyData[4].current"
+          >
+        </div>
       </div>
       <div class="two-column">
         <svg :width="svgWidth" :height="svgHeight">
@@ -62,18 +75,18 @@
           </g>
         </svg>
         <div id="chart-three-explainer">
-          <h5>Header</h5>
+          <h5>Model Explaination</h5>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut placeat, quo, cupiditate minus, est animi voluptatum nisi quas minima ea voluptatem optio omnis autem. Ipsa iure consequuntur officia maxime obcaecati. Exercitationem, error nulla amet quaerat pariatur accusamus vel esse debitis blanditiis et minus adipisci doloribus quidem delectus earum qui architecto.</p>
         </div>
       </div>
     </div>
     <section class="text-section" id="sectionsThree">
       <div class="text-box">
-        <h5 class="box-title">Scenario 1</h5>
+        <h5 class="box-title">Current Scenario</h5>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit facilis dicta recusandae sunt ullam, optio saepe perspiciatis officia quisquam nulla, ab quibusdam, molestias officiis maxime voluptatem id hic molestiae aliquid corrupti odio et illum? Inventore earum magnam distinctio qui praesentium! Quas id necessitatibus atque reprehenderit dicta expedita, ex nihil autem.</p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Try Your Own</h5>
+        <h5 class="box-title">Try Your Own Projection</h5>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus perferendis corrupti debitis provident non nulla voluptates consequuntur consectetur, accusantium maxime possimus voluptas eveniet earum laborum, ducimus quod. Voluptatum earum eum voluptates magni ipsa ut molestiae eligendi quidem a asperiores necessitatibus alias unde illum sapiente ex corporis placeat, adipisci atque veritatis.</p>
       </div>
     </section>
@@ -135,7 +148,7 @@ export default {
         .scaleLinear()
         .domain([
           Math.min(...this.policyData.map(x => x.current)),
-          Math.max(...this.policyData.map(x => x.current))
+          Math.max(...this.policyData.map(x => x.current)) + 50
         ])
         // https://github.com/d3/d3-scale/blob/master/README.md#band_rangeRound
         .rangeRound([0, this.width]);
@@ -148,7 +161,7 @@ export default {
 
       const gridLines = d3
         .scaleLinear()
-        .domain([0, Math.max(...this.policyData.map(x => x.current))])
+        .domain([0, Math.max(...this.policyData.map(x => x.current)) + 50])
         .rangeRound([0, this.width]);
 
       return { x, y, gridLines };
@@ -310,7 +323,7 @@ svg {
 /* sliders */
 #sliders {
   display: flex;
-  width: 50%;
+  width: 80%;
   justify-content: space-between;
 }
 </style>
