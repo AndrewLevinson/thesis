@@ -332,6 +332,7 @@ section {
   background-color: none;
 }
 
+
 .visible-background {
   background-color: var(--main-bg-color);
   transition: background-color 1s ease-in-out;

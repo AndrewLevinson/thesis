@@ -65,6 +65,62 @@
 
       <!-- add chart three -- scenario -- component -->
       <ChartThree/>
+      <section class="section-break">
+        <div>
+          <h5>Final Thoughts</h5>
+          <p id="final">
+            This is not an all or nothing approach. While destination efforts and water rationing is occurring throughout the world, it’s important that we take the time to make changes now so we can make time for the larger conversations.
+            <br>
+            <br>Growing populations, climate change, and diet patterns are all massive issues that we will need to deal with over the coming generations. Certain cities will be unlivable, our diets will become unsustainable, and we’ll need to deal with tough realities ahead.
+            <br>
+            <br>By making the investment in repairing infrastructure, setting up baseline climate policies, and smarter farming, we can delay extreme water stress scenarios long enough to deal with the long term global redistribution of water.
+          </p>
+        </div>
+      </section>
+      <div class="footnotes">
+        <hr class="footer">
+        <h6>Methodology, Sources, and Footnotes</h6>
+        <p>
+          This story was created by
+          <a
+            href="http://andrewlevinson.me/"
+            target="_blank"
+          >Andrew Levinson</a>
+          in support of a graduate school thesis for the Masters of Science in Data Visualization at Parsons School
+          of Design // The New School.
+        </p>
+        <p>Data was collected using the</p>
+        <p>
+          The scroll events were made possible by use of the
+          <a
+            href="https://github.com/1wheel/graph-scroll"
+            target="_blank"
+          >graph-scroll.js</a>
+          JavaScript library.
+        </p>
+        <p>Footnotes:</p>
+        <ol>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+        <p>Sources:</p>
+        <ol>
+          <li></li>
+
+          <li></li>
+          <li></li>
+        </ol>
+        <p>
+          Feel free to
+          <a
+            href="https://github.com/AndrewLevinson/thesis"
+            target="_blank"
+          >check out the code</a>
+          or
+          <a href="mailto:andrewlevins@gmail.com" target="_blank">email me</a>.
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -108,9 +164,6 @@ export default {
 </script>
 
 <style>
-.mapboxgl-canvas {
-  /* background-color: none; */
-}
 /* global style */
 :root {
   --main-bg-color: #eff8ff;
@@ -178,7 +231,29 @@ body {
   border-radius: 4;
 }
 
-/* tooltip */
+.section-break:last-of-type > div {
+  border-bottom: none;
+  padding-bottom: 3rem;
+}
+
+#final {
+  text-align: left;
+}
+
+/* footer */
+hr.footer {
+  width: 100%;
+  margin-bottom: 0px;
+  opacity: 1;
+}
+.footnotes {
+  opacity: 0.75;
+  font-size: 75%;
+  width: 50%;
+  /* padding-top: 10rem; */
+  margin: 0 auto;
+}
+
 /* tooltip */
 div.tooltip {
   position: fixed;
@@ -206,6 +281,11 @@ div.tooltip {
 .datum {
   font-weight: bold;
   /* border-bottom: 2px dashed #3d3d3d; */
+}
+
+/* hide mapbox controls/ */
+.mapboxgl-control-container {
+  visibility: hidden;
 }
 
 /* axis formatting */
