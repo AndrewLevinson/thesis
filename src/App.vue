@@ -1,29 +1,34 @@
 <template>
   <div id="app">
     <div id="container">
-      <div id="title" v-cloak>
-        <h2>{{ title }}</h2>
-        <h5>{{ subTitle }}</h5>
-      </div>
-      <div class="intro">
-        <p>
-          Day Zero is often referred to as the day the water taps turn off. Once
-          seen as a remote scenario, water conservation is taken more seriously
-          now—especially after the crisis in Cape Town and other extreme water
-          stress events across the globe.
-        </p>
-        <p>
-          While an actual Day Zero is unlikely in the United States, we are
-          seeing high water stress events across the country due to crumbling
-          infrastructure, over-abstraction in of aquifers in agriculture, and
-          climate change that are cause for alarm.
-        </p>
-        <p>
-          If we do not take action to conserve water at a much more extreme
-          rate, a Day Zero scenario in the US becomes more plausible.
-        </p>
-      </div>
-
+      <section id="first-section">
+        <div id="title" v-cloak>
+          <h2>{{ title }}</h2>
+          <h5>{{ subTitle }}</h5>
+          <p>
+            By:
+            <a href="#">Andrew Levinson</a> | May 2019
+          </p>
+        </div>
+        <div class="intro">
+          <p>
+            Day Zero is often referred to as the day the water taps turn off. Once
+            seen as a remote scenario, water conservation is taken more seriously
+            now—especially after the crisis in Cape Town and other extreme water
+            stress events across the globe.
+          </p>
+          <p>
+            While an actual Day Zero is unlikely in the United States, we are
+            seeing high water stress events across the country due to crumbling
+            infrastructure, over-abstraction in of aquifers in agriculture, and
+            climate change that are cause for alarm.
+          </p>
+          <p>
+            If we do not take action to conserve water at a much more extreme
+            rate, a Day Zero scenario in the US becomes more plausible.
+          </p>
+        </div>
+      </section>
       <!-- add chart one -- line and area -- component -->
       <ChartOne/>
 
@@ -191,10 +196,18 @@ body {
   padding-top: 2rem;
   margin: 0 auto;
 }
+#first-section {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  padding: 10rem 7rem 8rem 7rem;
+}
 
 #title {
-  padding: 7rem 0 4rem 0;
-  text-align: center;
+  /* padding: 7rem 0 4rem 0; */
+  /* text-align: center; */
+  /* padding-left: 4rem; */
+  width: 50%;
 }
 
 #title > h2 {
@@ -206,9 +219,14 @@ body {
 }
 
 .intro {
-  width: 40%;
-  margin: 0 auto;
-  padding-bottom: 7rem;
+  width: 45%;
+  margin-top: 0.5rem;
+  /* margin: 0 auto; */
+  /* padding-bottom: 7rem; */
+}
+
+.intro p {
+  /* width: 80%; */
 }
 
 .section-break {
@@ -250,8 +268,8 @@ hr.footer {
   opacity: 0.75;
   font-size: 75%;
   width: 50%;
-  /* padding-top: 10rem; */
   margin: 0 auto;
+  padding-bottom: 3rem;
 }
 
 /* tooltip */
@@ -311,5 +329,11 @@ div.tooltip {
 .grid .tick line {
   stroke: #707070;
   opacity: 0.3;
+}
+
+caption {
+  width: 200px;
+  font-size: 80%;
+  opacity: 0.8;
 }
 </style>

@@ -3,16 +3,16 @@
     <div id="graph-three">
       <div v-if="policyData" id="sliders">
         <div id="slider-one">
-          <label for="five">Drinking Water Infrastructure</label>
+          <label for="four">Wastewater Improvements</label>
           <br>
-          <p id="slider-value">Value: {{ policyData[5].current }}</p>
+          <p id="slider-value">Value: {{ policyData[7].current }}</p>
           <input
-            name="five"
+            name="four"
             type="range"
             min="0"
             max="1000"
-            value="500"
-            v-model="policyData[5].current"
+            value="200"
+            v-model="policyData[7].current"
           >
         </div>
         <div id="slider-two">
@@ -28,17 +28,18 @@
             v-model="policyData[6].current"
           >
         </div>
+
         <div id="slider-three">
-          <label for="four">Collection and Storage Infrastructure</label>
+          <label for="five">Drinking Water Infrastructure</label>
           <br>
-          <p id="slider-value">Value: {{ policyData[4].current }}</p>
+          <p id="slider-value">Value: {{ policyData[5].current }}</p>
           <input
-            name="four"
+            name="five"
             type="range"
             min="0"
             max="1000"
-            value="200"
-            v-model="policyData[4].current"
+            value="500"
+            v-model="policyData[5].current"
           >
         </div>
       </div>
@@ -50,10 +51,10 @@
             <g v-grid:gridLines="scale" class="gridlines"></g>
 
             <g v-for="(d, i) in policyData" :key="i">
-              <circle :cx="scale.x(d.current)" :cy="scale.y(d.name) + (height * 0.035)" r="5"></circle>
+              <circle :cx="scale.x(d.current)" :cy="scale.y(d.name) + (height * 0.03)+ 2.5" r="5"></circle>
               <rect
                 x="0"
-                :y="scale.y(d.name)  + (height * 0.035)"
+                :y="scale.y(d.name)  + (height * 0.03)"
                 :width="scale.x(d.current)"
                 :height="5"
               ></rect>
@@ -61,12 +62,12 @@
             <g>
               <text
                 :x="svgWidth - margin.right - margin.left - 5"
-                :y="svgHeight - margin.bottom - margin.top -30"
+                :y="svgHeight - margin.bottom - margin.top + 30"
                 text-anchor="end"
                 class="axis-title"
               >Megagallons/Year</text>
               <text
-                y="-32"
+                y="-50"
                 x="0"
                 text-anchor="left"
                 id="graph-three-title"
@@ -103,27 +104,37 @@ export default {
     return {
       svgWidth: window.innerWidth * 0.75,
       svgHeight: window.innerHeight * 0.75,
-      margin: { top: 50, left: 300, bottom: 50, right: 25 },
+      margin: { top: 50, left: 300, bottom: 75, right: 25 },
       policyData: [
-        { name: "conserve", cat: "demand", current: 0, projected: 0 },
-        { name: "ingredient", cat: "demand", current: 0, projected: 0 },
-        { name: "consumer pricing", cat: "demand", current: 0, projected: 0 },
-        { name: "industry pricing", cat: "demand", current: 0, projected: 0 },
-        { name: "irrigation", cat: "demand", current: 0, projected: 0 },
+        { name: "Conservation", cat: "demand", current: 0, projected: 0 },
         {
-          name: "drinking water infrastructure",
+          name: "Water as Ingredient",
+          cat: "demand",
+          current: 0,
+          projected: 0
+        },
+        { name: "Pricing: Consumers", cat: "demand", current: 0, projected: 0 },
+        { name: "Pricing: Idustry", cat: "demand", current: 0, projected: 0 },
+        {
+          name: "Pricing: Irrigation",
+          cat: "demand",
+          current: 0,
+          projected: 0
+        },
+        {
+          name: "Drinking Water Infrastructure",
           cat: "investment",
           current: 500,
           projected: 0
         },
         {
-          name: "collection and storage infrastructure",
+          name: "Collection and Storage Infrastructure",
           cat: "investment",
           current: 200,
           projected: 0
         },
         {
-          name: "wastewater improvements",
+          name: "Wastewater Improvements",
           cat: "investment",
           current: 250,
           projected: 0
@@ -168,7 +179,7 @@ export default {
     }
   },
   created() {
-    this.loadData();
+    // this.loadData();
   },
   mounted() {
     this.scrollTrigger();
@@ -231,7 +242,7 @@ export default {
       d3.select(el).call(
         d3[axisMethod](methodArg)
           .tickFormat("")
-          .tickSize(-window.innerHeight * 0.8)
+          .tickSize(-window.innerHeight * 0.6)
           .ticks(5)
       );
     }

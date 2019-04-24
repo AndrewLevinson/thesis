@@ -16,6 +16,7 @@
           <div class="image-holder">
             <!-- Photo by Pedro Lastra on Unsplash -->
             <img src="../assets/images/pedro-lastra-165298-unsplash.jpg" alt="colorado river">
+            <!-- <caption>By: Pedro Lastra on Unsplash</caption> -->
           </div>
           <h5>Colorado River</h5>
           <h4>American Southwest</h4>
@@ -162,7 +163,7 @@ section {
 }
 
 .panel-content h2 {
-  text-align: center;
+  /* text-align: center; */
 }
 .panel-content h5 {
   font-weight: 300;
@@ -185,7 +186,7 @@ section {
   border-radius: 4px;
 }
 img {
-  width: 90%;
+  /* width: 90%; */
   margin: 0 auto;
   border-radius: 4px;
 }

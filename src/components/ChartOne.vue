@@ -59,14 +59,14 @@
               y="-32"
               x="0"
               text-anchor="left"
-              id="graph-one-title"
+              class="graph-one-title"
             >Total Renewable Water Resources Per Capita (m3/inhab/year)</text>
             <text
               v-else
               y="-32"
               x="0"
               text-anchor="left"
-              id="graph-one-title"
+              class="graph-one-title"
             >Percentage of Water Withdrawls by Category</text>
           </g>
         </g>
@@ -564,11 +564,13 @@ section {
   margin: 0 auto;
 }
 
-#graph-one-title {
+.graph-one-title {
   font-weight: bold;
   font-size: 2.5rem;
-  fill: #485465;
-  /* opacity: 0.8; */
+  /* fill: #485465; */
+  font-family: "IBM Plex Sans", sans-serif;
+  opacity: 0.75;
+  visibility: hidden;
 }
 #graph-one {
   position: sticky;
