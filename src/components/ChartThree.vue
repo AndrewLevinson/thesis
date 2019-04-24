@@ -1,49 +1,22 @@
 <template>
   <div id="chart-three">
     <div id="graph-three">
-      <div v-if="policyData" id="sliders">
-        <div id="slider-one">
-          <label for="four">Wastewater Improvements</label>
-          <br>
-          <p id="slider-value">Value: {{ policyData[7].current }}</p>
-          <input
-            name="four"
-            type="range"
-            min="0"
-            max="1000"
-            value="200"
-            v-model="policyData[7].current"
-          >
+      <div class="chart-three-columns">
+        <div id="category-names">
+          <div v-for="(d,i) in policyData" :key="i" class="slider">
+            <label :for="i">{{ d.name }}</label>
+            <br>
+            <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
+            <input
+              :name="i"
+              type="range"
+              min="0"
+              :max="d.current * 10"
+              value="0"
+              v-model="d.projected"
+            >
+          </div>
         </div>
-        <div id="slider-two">
-          <label for="six">Collection and Storage Infrastructure</label>
-          <br>
-          <p id="slider-value">Value: {{ policyData[6].current }}</p>
-          <input
-            name="six"
-            type="range"
-            min="0"
-            max="1000"
-            value="200"
-            v-model="policyData[6].current"
-          >
-        </div>
-
-        <div id="slider-three">
-          <label for="five">Drinking Water Infrastructure</label>
-          <br>
-          <p id="slider-value">Value: {{ policyData[5].current }}</p>
-          <input
-            name="five"
-            type="range"
-            min="0"
-            max="1000"
-            value="500"
-            v-model="policyData[5].current"
-          >
-        </div>
-      </div>
-      <div class="two-column">
         <svg :width="svgWidth" :height="svgHeight">
           <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
             <g v-axis:x="scale" class="x-axis"></g>
@@ -51,18 +24,22 @@
             <g v-grid:gridLines="scale" class="gridlines"></g>
 
             <g v-for="(d, i) in policyData" :key="i">
-              <circle :cx="scale.x(d.current)" :cy="scale.y(d.name) + (height * 0.03)+ 2.5" r="5"></circle>
+              <circle
+                :cx="[i != 0 ? scale.x(d.projected) : scale.x(totalSum)]"
+                :cy="scale.y(d.name) + (height * 0.03)+ 2.5"
+                r="5"
+              ></circle>
               <rect
                 x="0"
                 :y="scale.y(d.name)  + (height * 0.03)"
-                :width="scale.x(d.current)"
+                :width="[i != 0 ? scale.x(d.projected) : scale.x(totalSum)]"
                 :height="5"
               ></rect>
             </g>
             <g>
               <text
                 :x="svgWidth - margin.right - margin.left - 5"
-                :y="svgHeight - margin.bottom - margin.top + 30"
+                :y="svgHeight - margin.bottom - margin.top"
                 text-anchor="end"
                 class="axis-title"
               >Megagallons/Year</text>
@@ -103,44 +80,63 @@ export default {
   data() {
     return {
       svgWidth: window.innerWidth * 0.5,
-      svgHeight: window.innerHeight * 0.75,
-      margin: { top: 50, left: 10, bottom: 75, right: 25 },
+      svgHeight: window.innerHeight * 0.9,
+      margin: { top: 0, left: 10, bottom: 30, right: 10 },
       policyData: [
-        { name: "Conservation", cat: "demand", current: 0, projected: 0 },
         {
-          name: "Water as Ingredient",
-          cat: "demand",
-          current: 0,
-          projected: 0
-        },
-        { name: "Pricing: Consumers", cat: "demand", current: 0, projected: 0 },
-        { name: "Pricing: Idustry", cat: "demand", current: 0, projected: 0 },
-        {
-          name: "Pricing: Irrigation",
-          cat: "demand",
+          name: "Total Water Conserved",
+          cat: "",
           current: 0,
           projected: 0
         },
         {
-          name: "Drinking Water Infrastructure",
+          name: "Personal Conservation %",
+          cat: "demand",
+          current: 10,
+          projected: 10
+        },
+        {
+          name: "Water as Ingredient Reduction %",
+          cat: "demand",
+          current: 130,
+          projected: 130
+        },
+        {
+          name: "Pricing: Drinking Water",
+          cat: "demand",
+          current: 80,
+          projected: 80
+        },
+        {
+          name: "Pricing: Industry & Irrigation",
+          cat: "demand",
+          current: 10,
+          projected: 10
+        },
+        {
+          name: "Infrastructure: Drinking Water",
           cat: "investment",
           current: 500,
-          projected: 0
+          projected: 500
         },
         {
-          name: "Collection and Storage Infrastructure",
+          name: "Infrastructure: Collection & Storage",
           cat: "investment",
           current: 200,
-          projected: 0
+          projected: 200
         },
         {
-          name: "Wastewater Improvements",
+          name: "Infrastructure: Wastewater",
           cat: "investment",
           current: 250,
-          projected: 0
+          projected: 250
         }
-      ]
+      ],
+      totalSum: 0
     };
+  },
+  watch: {
+    scale: "total"
   },
   computed: {
     width() {
@@ -149,6 +145,7 @@ export default {
     height() {
       return this.svgHeight - this.margin.top - this.margin.bottom;
     },
+
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
       // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
@@ -156,23 +153,21 @@ export default {
       const x = d3
         // .scaleBand()
         // .domain(this.data.map(x => x.year))
+        //  Math.max(this.totalSum, ...this.policyData.map(x => x.projected))
         .scaleLinear()
-        .domain([
-          Math.min(...this.policyData.map(x => x.current)),
-          Math.max(...this.policyData.map(x => x.current)) + 50
-        ])
+        .domain([Math.min(...this.policyData.map(x => x.projected)), 10000])
         // https://github.com/d3/d3-scale/blob/master/README.md#band_rangeRound
         .rangeRound([0, this.width]);
       // .paddingInner(1);
       const y = d3
         .scaleBand()
         .domain(this.policyData.map(y => y.name))
-        .rangeRound([this.height, 0])
-        .paddingInner(0.5);
+        .rangeRound([0, this.height])
+        .paddingInner(0.55);
 
       const gridLines = d3
         .scaleLinear()
-        .domain([0, Math.max(...this.policyData.map(x => x.current)) + 50])
+        .domain([0, 1000])
         .rangeRound([0, this.width]);
 
       return { x, y, gridLines };
@@ -183,19 +178,25 @@ export default {
   },
   mounted() {
     this.scrollTrigger();
+    this.total();
   },
   methods: {
-    loadData() {
-      d3.csv("data/clean/policy.csv", d => {
-        return {
-          name: d["name"],
-          cat: d["cat"],
-          current: +d["current"],
-          projected: +d["projected"]
-        };
-      }).then(d => {
-        return (this.policyData = d);
-        // console.log(d);
+    // loadData() {
+    //   d3.csv("data/clean/policy.csv", d => {
+    //     return {
+    //       name: d["name"],
+    //       cat: d["cat"],
+    //       current: +d["current"],
+    //       projected: +d["projected"]
+    //     };
+    //   }).then(d => {
+    //     return (this.policyData = d);
+    //     // console.log(d);
+    //   });
+    // },
+    total() {
+      this.totalSum = d3.sum(this.policyData, d => {
+        return d.projected;
       });
     },
     scrollTrigger() {
@@ -242,7 +243,7 @@ export default {
       d3.select(el).call(
         d3[axisMethod](methodArg)
           .tickFormat("")
-          .tickSize(-window.innerHeight * 0.6)
+          .tickSize(-window.innerHeight * 0.9)
           .ticks(5)
       );
     }
@@ -305,18 +306,19 @@ section {
   margin: 0 auto;
 }
 
-.two-column {
+.chart-three-columns {
   display: flex;
   justify-content: space-between;
   margin-top: 3rem;
 }
 
 svg {
-  width: 80%;
+  width: 55%;
 }
 
 #chart-three-explainer {
-  width: 20%;
+  width: 22.5%;
+  margin-left: 2.5%;
 }
 
 #graph-three-title {
@@ -324,6 +326,7 @@ svg {
   font-size: 2.5rem;
   fill: #485465;
   /* opacity: 0.8; */
+  visibility: hidden;
 }
 #graph-three {
   position: sticky;
@@ -332,9 +335,21 @@ svg {
 }
 
 /* sliders */
-#sliders {
+#category-names {
+  width: 20%;
   display: flex;
-  width: 80%;
+  flex-direction: column;
+  /* width: 80%; */
+  /* height: 100%; */
+  text-align: right;
   justify-content: space-between;
+  margin-top: 1.5rem;
+  margin-right: 2rem;
+  font-size: 90%;
+  font-weight: 400;
+}
+
+.slider:first-of-type input {
+  opacity: 0.1;
 }
 </style>
