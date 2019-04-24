@@ -20,7 +20,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Drought: American Southwest</h5>
+        <h5 class="box-title">Colorado River Basin</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -331,7 +331,6 @@ section {
   height: 100vh;
   background-color: none;
 }
-
 
 .visible-background {
   background-color: var(--main-bg-color);

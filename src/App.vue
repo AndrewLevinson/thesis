@@ -5,16 +5,18 @@
         <div id="title" v-cloak>
           <h2>{{ title }}</h2>
           <h5>{{ subTitle }}</h5>
-          <p>
-            By:
-            <a href="#">Andrew Levinson</a> | May 2019
+          <p id="byline">
+            <a href="https://andrewlevinson.me" target="_blank">Andrew Levinson</a> | May 2019
           </p>
         </div>
         <div class="intro">
           <p>
             Day Zero is often referred to as the day the water taps turn off. Once
             seen as a remote scenario, water conservation is taken more seriously
-            now—especially after the crisis in Cape Town and other extreme water
+            now—especially after the crisis in
+            <a
+              href="#"
+            >Cape Town</a> and other extreme water
             stress events across the globe.
           </p>
           <p>
@@ -174,6 +176,8 @@ export default {
   --main-bg-color: #eff8ff;
   --map-bg-color: #343332;
   --main-body-type: #0f242c;
+  --link-color: #e4480f;
+  --emphasis: #5f90de;
 }
 
 html,
@@ -191,11 +195,21 @@ body {
   margin: auto;
 }
 
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--emphasis);
+  transition: all 0.3s ease-in;
+}
+
 #container {
   width: 100%;
   padding-top: 2rem;
   margin: 0 auto;
 }
+
 #first-section {
   display: flex;
   justify-content: space-between;
@@ -216,6 +230,11 @@ body {
 
 #title > h5 {
   opacity: 0.75;
+}
+
+#byline {
+  font-weight: 400;
+  opacity: 0.85;
 }
 
 .intro {

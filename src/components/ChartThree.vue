@@ -102,9 +102,9 @@ export default {
   name: "chart-three",
   data() {
     return {
-      svgWidth: window.innerWidth * 0.75,
+      svgWidth: window.innerWidth * 0.5,
       svgHeight: window.innerHeight * 0.75,
-      margin: { top: 50, left: 300, bottom: 75, right: 25 },
+      margin: { top: 50, left: 10, bottom: 75, right: 25 },
       policyData: [
         { name: "Conservation", cat: "demand", current: 0, projected: 0 },
         {
