@@ -18,31 +18,53 @@
           </div>
         </div>
         <svg :width="svgWidth" :height="svgHeight">
+          <defs>
+            <!-- arrowhead marker definition -->
+            <marker
+              id="arrow"
+              viewBox="0 0 10 10"
+              refX="5"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+          </defs>
           <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
             <g v-axis:x="scale" class="x-axis"></g>
             <g v-axis:y="scale" class="y-axis"></g>
             <g v-grid:gridLines="scale" class="gridlines"></g>
 
+            <line x1="0" :y1="(height * 0.09)" :x2="width" :y2="(height * 0.09)" id="underline"></line>
+
             <g v-for="(d, i) in policyData" :key="i">
               <circle
-                :cx="[i != 0 ? scale.x(d.projected) : scale.x(totalSum)]"
+                v-if="i != 0"
+                :cx="scale.x(d.projected) + 5"
                 :cy="scale.y(d.name) + (height * 0.03)+ 2.5"
                 r="5"
+                :class="[d.cat == 'demand' ? 'demand-circle' : 'supply-circle']"
               ></circle>
-              <rect
-                x="0"
-                :y="scale.y(d.name)  + (height * 0.03)"
-                :width="[i != 0 ? scale.x(d.projected) : scale.x(totalSum)]"
-                :height="5"
-              ></rect>
+
+              <line
+                v-if="i == 0"
+                x1="0"
+                :y1="scale.y(d.name)  + (height * 0.03)"
+                :x2="[i != 0 ? scale.x(d.projected) : scale.x(totalSum)]"
+                :y2="scale.y(d.name)  + (height * 0.03)"
+                marker-end="url(#arrow)"
+                id="conservation-line"
+              ></line>
             </g>
             <g>
               <text
                 :x="svgWidth - margin.right - margin.left - 5"
-                :y="svgHeight - margin.bottom - margin.top"
+                :y="svgHeight - margin.bottom - margin.top - 10"
                 text-anchor="end"
                 class="axis-title"
-              >Megagallons/Year</text>
+              >Mega gallons/Year Saved</text>
               <text
                 y="-50"
                 x="0"
@@ -349,7 +371,43 @@ svg {
   font-weight: 400;
 }
 
+.slider:first-of-type {
+  margin-top: 2rem;
+  font-weight: 800;
+  /* border-bottom: 2px dashed var(--emphasis); */
+}
+
 .slider:first-of-type input {
   opacity: 0.1;
+  visibility: hidden;
+}
+
+/* plots */
+#conservation-line {
+  stroke: var(--emphasis);
+  stroke-width: 3;
+}
+#arrow {
+  fill: var(--emphasis);
+  stroke: none;
+}
+
+#underline {
+  /* stroke: var(--emphasis); */
+  stroke: var(--main-body-type);
+  stroke-width: 3;
+  stroke-dasharray: 3;
+}
+.demand-circle {
+  stroke-width: 2;
+  stroke: blue;
+  /* fill: rgba(0, 0, 0, 0.15); */
+  fill: #fff;
+}
+
+.supply-circle {
+  stroke-width: 2;
+  stroke: var(--link-color);
+  fill: #fff;
 }
 </style>
