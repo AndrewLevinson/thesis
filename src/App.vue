@@ -3,8 +3,8 @@
     <div id="container">
       <section id="first-section">
         <div id="title" v-cloak>
-          <h2>{{ title }}</h2>
-          <h5>{{ subTitle }}</h5>
+          <h2 class="main-header">{{ title }}</h2>
+          <h5 class="subtitle">{{ subTitle }}</h5>
           <p id="byline">
             <a href="https://andrewlevinson.me" target="_blank">Andrew Levinson</a> | May 2019
           </p>
@@ -178,6 +178,7 @@ export default {
   --main-body-type: #0f242c;
   --link-color: #e4480f;
   --emphasis: #5f90de;
+  --special: #45b8cd;
 }
 
 html,
@@ -214,7 +215,8 @@ a:hover {
   display: flex;
   justify-content: space-between;
   /* align-items: center; */
-  padding: 10rem 7rem 8rem 7rem;
+  padding: 12rem 4rem 12rem 4rem;
+  /* padding: 8rem; */
 }
 
 #title {
@@ -224,11 +226,11 @@ a:hover {
   width: 50%;
 }
 
-#title > h2 {
+.main-header {
   margin-bottom: 0;
 }
 
-#title > h5 {
+.subtitle {
   opacity: 0.75;
 }
 
@@ -270,11 +272,12 @@ a:hover {
 
 .section-break:last-of-type > div {
   border-bottom: none;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 #final {
   text-align: left;
+  margin-bottom: 0;
 }
 
 /* footer */
@@ -354,5 +357,20 @@ caption {
   width: 200px;
   font-size: 80%;
   opacity: 0.8;
+}
+
+/* chart three grid */
+#chart-three .grid-three g.tick line,
+#chart-three .x-axis {
+  transform: translateY(76px);
+  width: 50px;
+}
+#chart-three .grid-three g.tick line {
+  opacity: 0.75;
+}
+
+#chart-three .grid-three-y g.tick:first-of-type > line,
+#chart-three .grid-three-y g.tick:nth-of-type(18) > line {
+  opacity: 0;
 }
 </style>

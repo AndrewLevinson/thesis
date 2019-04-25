@@ -1,6 +1,8 @@
 <template>
   <div id="chart-one">
     <div id="graph-one">
+      <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
+      <h5 class="subtitle">{{ graphOneTitle }}</h5>
       <svg :width="svgWidth" :height="svgHeight">
         <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
           <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
@@ -54,7 +56,7 @@
               text-anchor="end"
               class="axis-title"
             >Years</text>
-            <text
+            <!-- <text
               v-if="setShown === 1"
               y="-32"
               x="0"
@@ -67,7 +69,7 @@
               x="0"
               text-anchor="left"
               class="graph-one-title"
-            >Percentage of Water Withdrawls by Category</text>
+            >Percentage of Water Withdrawls by Category</text>-->
           </g>
         </g>
       </svg>
@@ -129,9 +131,10 @@ export default {
   name: "chart-one",
   data() {
     return {
+      graphOneTitle: "Total Renewable Water Resources Per Capita",
       svgWidth: window.innerWidth * 0.95,
-      svgHeight: window.innerHeight * 0.95,
-      margin: { top: 50, left: 90, bottom: 50, right: 25 },
+      svgHeight: window.innerHeight * 0.875,
+      margin: { top: 50, left: 90, bottom: 20, right: 25 },
       data: [{}],
       stackedData: null,
       scaled: {
@@ -446,6 +449,7 @@ export default {
               console.log("case 1");
               break;
             case 2:
+              this.graphOneTitle = "Total Renewable Water Resources Per Capita";
               // update y axis to show first area per cap
               this.setShown = 1;
               this.showArea = true;
@@ -457,6 +461,8 @@ export default {
               console.log("case 2");
               break;
             case 3:
+              this.graphOneTitle = "Percentage of Water Withdrawls by Category";
+
               // change dataset to 100% area
               this.setShown = 2;
               this.showArea = true;

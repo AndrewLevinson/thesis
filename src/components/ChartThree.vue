@@ -1,6 +1,8 @@
 <template>
   <div id="chart-three">
     <div id="graph-three">
+      <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
+      <h5 class="subtitle">Policies and Investments to Conserve Water</h5>
       <div class="chart-three-columns">
         <div id="category-names">
           <div v-for="(d,i) in policyData" :key="i" class="slider">
@@ -8,6 +10,7 @@
             <br>
             <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
             <input
+              v-if="i != 0"
               :name="i"
               type="range"
               min="0"
@@ -15,6 +18,7 @@
               value="0"
               v-model="d.projected"
             >
+            <p id="unit-label" v-else>Mega gallons water saved</p>
           </div>
         </div>
         <svg :width="svgWidth" :height="svgHeight">
@@ -35,9 +39,10 @@
           <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
             <g v-axis:x="scale" class="x-axis"></g>
             <g v-axis:y="scale" class="y-axis"></g>
-            <g v-grid:gridLines="scale" class="gridlines"></g>
+            <g v-grid:gridLines="scale" class="gridlines grid-three"></g>
+            <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g>
 
-            <line x1="0" :y1="(height * 0.09)" :x2="width" :y2="(height * 0.09)" id="underline"></line>
+            <!-- <line x1="0" :y1="(height * 0.125)" :x2="width" :y2="(height * 0.125)" id="underline"></line> -->
 
             <g v-for="(d, i) in policyData" :key="i">
               <circle
@@ -47,24 +52,31 @@
                 r="5"
                 :class="[d.cat == 'demand' ? 'demand-circle' : 'supply-circle']"
               ></circle>
+              <circle
+                v-else
+                :cx="scale.x(totalSum) + 15"
+                :cy="scale.y(d.name) + .5"
+                r="6"
+                class="total-conserve"
+              ></circle>
 
               <line
                 v-if="i == 0"
                 x1="0"
-                :y1="scale.y(d.name)  + (height * 0.03)"
+                :y1="scale.y(d.name)  "
                 :x2="[i != 0 ? scale.x(d.projected) : scale.x(totalSum)]"
-                :y2="scale.y(d.name)  + (height * 0.03)"
+                :y2="scale.y(d.name) "
                 marker-end="url(#arrow)"
                 id="conservation-line"
               ></line>
             </g>
             <g>
-              <text
+              <!-- <text
                 :x="svgWidth - margin.right - margin.left - 5"
                 :y="svgHeight - margin.bottom - margin.top - 10"
                 text-anchor="end"
                 class="axis-title"
-              >Mega gallons/Year Saved</text>
+              >Mega gallons/Year Saved</text>-->
               <text
                 y="-50"
                 x="0"
@@ -102,8 +114,8 @@ export default {
   data() {
     return {
       svgWidth: window.innerWidth * 0.5,
-      svgHeight: window.innerHeight * 0.9,
-      margin: { top: 0, left: 10, bottom: 30, right: 10 },
+      svgHeight: window.innerHeight * 0.8,
+      margin: { top: 0, left: 10, bottom: 0, right: 10 },
       policyData: [
         {
           name: "Total Water Conserved",
@@ -185,14 +197,19 @@ export default {
         .scaleBand()
         .domain(this.policyData.map(y => y.name))
         .rangeRound([0, this.height])
-        .paddingInner(0.55);
+        .padding(0.4);
 
       const gridLines = d3
         .scaleLinear()
         .domain([0, 1000])
         .rangeRound([0, this.width]);
 
-      return { x, y, gridLines };
+      const gridLinesY = d3
+        .scaleLinear()
+        .domain([0, 1000])
+        .rangeRound([0, this.height]);
+
+      return { x, y, gridLines, gridLinesY };
     }
   },
   created() {
@@ -258,15 +275,19 @@ export default {
     },
     grid(el, binding) {
       const axis = binding.arg; // x or y
-      const axisMethod = { gridLines: "axisTop" }[axis];
+      const axisMethod = { gridLines: "axisTop", gridLinesY: "axisLeft" }[axis];
       // The line below assigns the x or y function of the scale object
       const methodArg = binding.value[axis];
       // d3.axisBottom(scale.x)
       d3.select(el).call(
         d3[axisMethod](methodArg)
           .tickFormat("")
-          .tickSize(-window.innerHeight * 0.9)
-          .ticks(5)
+          .tickSize(
+            binding.arg == "gridLines"
+              ? -window.innerHeight * 0.66
+              : -window.innerWidth * 0.4865
+          )
+          .ticks(binding.arg == "gridLines" ? 5 : 15)
       );
     }
   }
@@ -322,6 +343,8 @@ section {
   opacity: 1;
 }
 
+/* header */
+
 /* chart */
 #chart-three {
   width: 95%;
@@ -331,7 +354,7 @@ section {
 .chart-three-columns {
   display: flex;
   justify-content: space-between;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 svg {
@@ -340,7 +363,9 @@ svg {
 
 #chart-three-explainer {
   width: 22.5%;
-  margin-left: 2.5%;
+  margin: 10rem 0 auto 2.5%;
+  padding: 1.5rem;
+  border: 1px dashed var(--emphasis);
 }
 
 #graph-three-title {
@@ -366,15 +391,26 @@ svg {
   text-align: right;
   justify-content: space-between;
   margin-top: 1.5rem;
+  margin-bottom: 3.5rem;
   margin-right: 2rem;
   font-size: 90%;
   font-weight: 400;
 }
 
+#category-names:first-child {
+  /* margin-top: 5rem; */
+}
+
 .slider:first-of-type {
-  margin-top: 2rem;
+  /* margin-top: 5.75rem; */
   font-weight: 800;
   /* border-bottom: 2px dashed var(--emphasis); */
+}
+
+#unit-label {
+  font-weight: 400;
+  margin-top: 0.25rem;
+  font-family: inherit;
 }
 
 .slider:first-of-type input {
@@ -384,19 +420,22 @@ svg {
 
 /* plots */
 #conservation-line {
-  stroke: var(--emphasis);
+  /* stroke: var(--emphasis); */
+  stroke: #000;
   stroke-width: 3;
 }
 #arrow {
-  fill: var(--emphasis);
+  /* fill: var(--emphasis); */
+  fill: #000;
   stroke: none;
 }
 
 #underline {
   /* stroke: var(--emphasis); */
-  stroke: var(--main-body-type);
-  stroke-width: 3;
-  stroke-dasharray: 3;
+  stroke: #707070;
+  stroke-width: 1;
+  opacity: 0.7;
+  /* stroke-dasharray: 4; */
 }
 .demand-circle {
   stroke-width: 2;
@@ -409,5 +448,11 @@ svg {
   stroke-width: 2;
   stroke: var(--link-color);
   fill: #fff;
+}
+
+.total-conserve {
+  stroke-width: 2;
+  stroke: #000;
+  fill: var(--special);
 }
 </style>
