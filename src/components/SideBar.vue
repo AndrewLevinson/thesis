@@ -121,12 +121,12 @@ nav {
 .dots {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 40%;
   justify-content: space-evenly;
 }
 .dots div {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 100px;
   border: 2px solid rgba(255, 255, 255, 0.5);
 }
@@ -152,10 +152,10 @@ section {
   ); */
   background-image: linear-gradient(
     89.8deg,
-    rgba(25, 26, 26, 0.13) -18.6%,
-    rgba(25, 26, 26, 0.39) -6.2%,
-    rgba(25, 26, 26, 0.63) 14.9%,
-    rgba(25, 26, 26, 0.81) 46.7%,
+    rgba(25, 26, 26, 0.23) -18.6%,
+    rgba(25, 26, 26, 0.49) -6.2%,
+    rgba(25, 26, 26, 0.73) 14.9%,
+    rgba(25, 26, 26, 0.91) 46.7%,
     rgba(25, 26, 26, 1) 76.1%
   );
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
@@ -165,7 +165,7 @@ section {
 }
 
 .panel-content {
-  padding: 2.5rem;
+  padding: 3rem;
   padding-top: 4rem;
   width: 100%;
   overflow-y: auto;

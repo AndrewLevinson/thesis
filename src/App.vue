@@ -145,20 +145,18 @@
 // });
 
 import ChartOne from "./components/ChartOne.vue";
-import SideBar from "./components/SideBar.vue";
+// import SideBar from "./components/SideBar.vue";
 import ChartTwo from "./components/ChartTwo.vue";
 import ChartThree from "./components/ChartThree.vue";
-import CountyMap from "./components/CountyMap.vue";
+// import CountyMap from "./components/CountyMap.vue";
 // import * as d3 from "d3";
 
 export default {
   name: "app",
   components: {
     ChartOne,
-    SideBar,
     ChartTwo,
-    ChartThree,
-    CountyMap
+    ChartThree
   },
   data() {
     return {
@@ -338,7 +336,7 @@ div.tooltip {
   opacity: 0.3;
   /* stroke-dasharray: 2; */
 }
-.domain {
+#chart-one .domain {
   opacity: 0;
 }
 .y-axis .tick line,
@@ -360,17 +358,11 @@ caption {
 }
 
 /* chart three grid */
-#chart-three .grid-three g.tick line,
-#chart-three .x-axis {
-  transform: translateY(76px);
-  width: 50px;
-}
 #chart-three .grid-three g.tick line {
-  opacity: 0.75;
+  opacity: 0.3;
 }
 
-#chart-three .grid-three-y g.tick:first-of-type > line,
-#chart-three .grid-three-y g.tick:nth-of-type(18) > line {
-  opacity: 0;
+#chart-three .x-axis .tick line {
+  opacity: 1;
 }
 </style>
