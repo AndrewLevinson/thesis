@@ -9,15 +9,13 @@
             <label :for="i">{{ d.name }}</label>
             <br>
             <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
-            <input
+            <vue-slider
               v-if="i != 0"
               :name="i"
-              type="range"
-              min="0"
+              v-bind="sliderOptions"
               :max="d.current * 10"
-              value="0"
               v-model="d.projected"
-            >
+            ></vue-slider>
             <p id="unit-label" v-else>Mega gallons water saved</p>
           </div>
         </div>
@@ -42,7 +40,7 @@
             <g v-grid:gridLines="scale" class="gridlines grid-three"></g>
             <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g>
 
-            <!-- <line x1="0" :y1="(height * 0.125)" :x2="width" :y2="(height * 0.125)" id="underline"></line> -->
+            <!-- <line x1="0" :y1="(height * 0.075)" :x2="width" :y2="(height * 0.075)" id="underline"></line> -->
 
             <g v-for="(d, i) in policyData" :key="i">
               <circle
@@ -108,9 +106,12 @@
 <script>
 import * as d3 from "d3";
 import { graphScroll } from "graph-scroll";
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/material.css";
 
 export default {
   name: "chart-three",
+  components: { VueSlider },
   data() {
     return {
       svgWidth: window.innerWidth * 0.5,
@@ -166,7 +167,11 @@ export default {
           projected: 250
         }
       ],
-      totalSum: 0
+      totalSum: 0,
+      sliderOptions: {
+        tooltipPlacement: "bottom",
+        min: 0
+      }
     };
   },
   watch: {
@@ -189,7 +194,10 @@ export default {
         // .domain(this.data.map(x => x.year))
         //  Math.max(this.totalSum, ...this.policyData.map(x => x.projected))
         .scaleLinear()
-        .domain([Math.min(...this.policyData.map(x => x.projected)), 10000])
+        .domain([
+          Math.min(...this.policyData.map(x => x.projected)),
+          Math.max(10000, this.totalSum)
+        ])
         // https://github.com/d3/d3-scale/blob/master/README.md#band_rangeRound
         .rangeRound([0, this.width]);
       // .paddingInner(1);
@@ -201,7 +209,7 @@ export default {
 
       const gridLines = d3
         .scaleLinear()
-        .domain([0, 1000])
+        .domain([0, Math.max(10000, this.totalSum)])
         .rangeRound([0, this.width]);
 
       const gridLinesY = d3
@@ -287,7 +295,7 @@ export default {
               ? -window.innerHeight * 0.66
               : -window.innerWidth * 0.4865
           )
-          .ticks(binding.arg == "gridLines" ? 5 : 15)
+          .ticks(binding.arg == "gridLines" ? 1 : 15)
       );
     }
   }
@@ -419,6 +427,15 @@ svg {
 }
 
 /* plots */
+div,
+rect,
+path,
+text,
+g,
+circle,
+line {
+  transition: all 0.3s ease-in-out;
+}
 #conservation-line {
   /* stroke: var(--emphasis); */
   stroke: #000;

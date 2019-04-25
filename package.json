@@ -14,7 +14,8 @@
     "mapbox-choropleth": "^0.7.4",
     "mapbox-gl": "^0.53.1",
     "prettier": "^1.16.4",
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "vue-slider-component": "^3.0.30"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
