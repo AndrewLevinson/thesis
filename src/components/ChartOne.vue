@@ -371,15 +371,15 @@ export default {
             .transition()
             .duration(200)
             .style("left", `${event.clientX + 10}px`)
-            .style("top", `${event.clientY + 10}px`)
+            .style("top", `50vh`)
             .style("opacity", 0.925);
         },
         move: function() {
           this.element
             .transition()
             .duration(30)
-            .style("left", `${event.offsetX + 10}px`)
-            .style("top", `${event.clientY + 10}px`)
+            .style("left", `${event.clientX + 10}px`)
+            .style("top", `50vh`)
             .style("opacity", 0.9);
         },
         hide: function() {
