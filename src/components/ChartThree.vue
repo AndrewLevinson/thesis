@@ -413,20 +413,8 @@ svg {
   font-weight: 400;
 }
 
-#category-names:first-child {
-  /* margin-top: 5rem; */
-}
-
-label {
-  /* border-bottom: 0.5px solid rgba(0, 0, 0, 0.75); */
-}
 .slider {
-  /* margin-top: 5.75rem; */
   font-weight: 500;
-}
-
-.slider:nth-of-type(7) {
-  /* border-bottom: 4px solid black; */
 }
 
 #slider-total-label {
@@ -439,11 +427,6 @@ label {
   margin-top: -1.25rem;
   font-family: inherit;
   /* opacity: 0.1; */
-}
-
-.slider:first-of-type input {
-  /* opacity: 0.2; */
-  /* visibility: hidden; */
 }
 
 /* plots */
@@ -498,20 +481,5 @@ line {
   stroke-width: 2;
   stroke: #000;
   fill: var(--special);
-}
-
-/* slider component */
-/* full rail */
-.vue-slider-rail {
-}
-/* completed part */
-.vue-slider-process {
-}
-
-/* marks */
-.vue-slider-mark {
-}
-/* dot */
-.vue-slider-dot {
 }
 </style>

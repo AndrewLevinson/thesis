@@ -11,8 +11,8 @@
           <path :class="[setShown === 1 ? 'link' : 'link-hide']" :d="paths.line"></path>
           <g
             :class="[showArea ? 'area-active' : 'area-hide']"
-            @select="onSelect"
             @mousemove="mouseoverArea"
+            @mouseleave="showLabel = false, myTooltip()"
           >
             <path v-show="setShown === 2" class="selector" :d="paths.selector"></path>
             <path :class="[setShown === 1 ? 'area-one' : 'area-one-100']" :d="paths.areaOne"></path>
@@ -73,7 +73,6 @@
           </g>
         </g>
       </svg>
-      <p>the current x value is {{ currentValue === null ? '' : currentValue.offsetX }}</p>
     </div>
     <section class="text-section" id="sectionsOne">
       <div class="text-box">
@@ -158,10 +157,8 @@ export default {
         yearMax: 2014
       },
       showLabel: false,
-      showTip: false,
       selected: null,
       selectedArea: null,
-      currentValue: null,
       myCount: null,
       tooltip: null,
       showArea: false,
@@ -326,14 +323,18 @@ export default {
       this.paths.areaFive = this.createArea(this.pointsArea[4]);
     },
     mouseoverArea({ offsetX }) {
-      console.log("hi");
+      this.showLabel = true;
       if (this.setShown === 2 && this.pointsArea[1].length > 0) {
         const x = offsetX - this.margin.left;
         const closestPoint = this.getClosestPoint(x);
         if (this.lastHoverPoint.index !== closestPoint.index) {
           const point = this.pointsArea[1][closestPoint.index];
           this.paths.selector = this.createValueSelector([point]);
-          this.$emit("mouseOver", this.filteredData[closestPoint.index]);
+          this.$emit(
+            "mouseOver",
+            this.myTooltip(this.filteredData[closestPoint.index])
+          );
+
           this.lastHoverPoint = closestPoint;
         }
       }
@@ -347,9 +348,7 @@ export default {
         }))
         .reduce((memo, val) => (memo.diff < val.diff ? memo : val));
     },
-    onSelect(value) {
-      this.currentValue = value;
-    },
+
     select(index) {
       this.selected = index;
     },
@@ -364,8 +363,6 @@ export default {
             .select("body")
             .append("div")
             .attr("class", "tooltip")
-            .style("right", `10px`)
-            .style("bottom", `50px`)
             .style("opacity", 0);
         },
         show: function(t) {
@@ -373,50 +370,54 @@ export default {
             .html(t)
             .transition()
             .duration(200)
-            .style("right", `50px`)
-            .style("bottom", `50px`)
+            .style("left", `${event.clientX + 10}px`)
+            .style("top", `${event.clientY + 10}px`)
             .style("opacity", 0.925);
         },
         move: function() {
           this.element
             .transition()
             .duration(30)
-            .style("right", 20 + "px")
-            .style("top", 20 + "px")
+            .style("left", `${event.offsetX + 10}px`)
+            .style("top", `${event.clientY + 10}px`)
             .style("opacity", 0.9);
         },
         hide: function() {
           this.element
             .transition()
-            .duration(200)
+            .duration(500)
             .style("opacity", 0)
-            .delay(400)
-            .style("right", `0px`);
+            .delay(100);
         }
       };
       this.tooltip.init();
     },
     myTooltip(d) {
       if (this.showLabel) {
-        this.tooltip.show(`<h5 class="total">${d.year}</h5><p>
+        if (this.setShown === 1) {
+          this.tooltip.show(`<h5 class="total">${d.year}</h5><p>
         <span class="datum">Total: ${d.rwpc}</span><br>
            <span class="datum">Surface Water: ${d.spc}</span><br>
            <span class="datum">Ground Water: ${d.gpc}</span><br>
            <span class="datum">Foreign Dependencies: ${d.dpc}</span><br>
         
         </p>`);
+        } else if (this.setShown === 2) {
+          this.tooltip.show(`<h5 class="total">${
+            d.year
+          }</h5><p> <span class="datum">Other: ${d.otherPer}</span><br>
+           <span class="datum">Municipal: ${d.publicPer}</span><br>
+           <span class="datum">Industrial: ${d.industrialPer}</span><br>
+           <span class="datum">Thermo: ${d.thermoPer}</span><br>
+              <span class="datum">Irrigation: ${
+                d.irrigationPer
+              }</span><br></p>`);
+        }
       } else if (!this.showLabel) {
         this.tooltip.hide();
       }
     },
-    areaToolTip(d) {
-      console.log("hi");
-      if (this.showTip) {
-        this.tooltip.show(`hi ${d.year}`);
-      } else if (!this.showTip) {
-        this.tooltip.hide();
-      }
-    },
+
     scrollTrigger() {
       graphScroll()
         .offset(225)
@@ -425,6 +426,7 @@ export default {
         .sections(d3.selectAll("#sectionsOne > div"))
         .eventId("uniqueId1")
         .on("active", i => {
+          console.log("case", i);
           switch (i) {
             case 0:
               // offscreen so do nothing / reset with just line
@@ -435,7 +437,6 @@ export default {
               this.selected = null;
               this.stackKeys = ["gpc", "spc", "dpc"];
 
-              console.log("case 0");
               break;
             case 1:
               // highlight point on line
@@ -446,7 +447,6 @@ export default {
               this.selected = 6;
               this.stackKeys = ["gpc", "spc", "dpc"];
 
-              console.log("case 1");
               break;
             case 2:
               this.graphOneTitle = "Total Renewable Water Resources Per Capita";
@@ -458,7 +458,6 @@ export default {
               this.selected = null;
               this.stackKeys = ["gpc", "spc", "dpc"];
 
-              console.log("case 2");
               break;
             case 3:
               this.graphOneTitle = "Percentage of Water Withdrawls by Category";
@@ -476,7 +475,6 @@ export default {
                 "otherPer"
               ];
 
-              console.log("case 3");
               break;
             default:
               console.log("none");
