@@ -3,7 +3,7 @@ import App from "./App.vue";
 import "./assets/css/normalize.css";
 import "./assets/css/default.css";
 import "./assets/css/typography.css";
-import "./assets/css/tooltip.css";
+import "./assets/css/slider.css";
 
 Vue.config.productionTip = false;
 
