@@ -193,7 +193,7 @@ export default {
       return this.svgHeight - this.margin.top - this.margin.bottom;
     },
     count() {
-      return (this.myCount = this.filteredData.length);
+      return this.filteredData.length;
     },
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));

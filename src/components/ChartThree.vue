@@ -55,9 +55,7 @@
                 marker-end="url(#arrow)"
                 id="conservation-line"
               ></line>
-                  <text
-               :x="scale.x(totalSum) + 28" :y="height - 10"
-              >{{numFormat(totalSum)}}</text>
+              <text :x="scale.x(totalSum) + 28" :y="height - 10">{{numFormat(totalSum)}}</text>
             </g>
             <g v-for="(d, i) in policyData" :key="i">
               <line
@@ -75,13 +73,13 @@
                 :y2="scale.y(d.name) + 2.5"
                 id="underline"
               ></line>
-
+              <!-- 
               <circle
                 :cx="scale.x(d.projected) + 10"
                 :cy="scale.y(d.name) + 2.5"
                 r="5"
                 :class="[d.cat == 'demand' ? 'demand-circle' : 'supply-circle']"
-              ></circle>
+              ></circle>-->
             </g>
             <g>
               <!-- <text
@@ -89,8 +87,7 @@
                 :y="svgHeight - 10"
                 text-anchor="end"
                 class="axis-title"
-              >Mega gallons/Year Saved</text> -->
-        
+              >Mega gallons/Year Saved</text>-->
             </g>
           </g>
         </svg>
@@ -195,9 +192,9 @@ export default {
     height() {
       return this.svgHeight - this.margin.top - this.margin.bottom;
     },
-numFormat(){
-  return d3.format(",d")
-},
+    numFormat() {
+      return d3.format(",d");
+    },
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
       // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
@@ -468,7 +465,7 @@ line {
 .output-lines {
   /* stroke: var(--emphasis); */
   stroke: #000;
-  opacity: 0.6;
+  opacity: 0.75;
   stroke-width: 1.75;
 }
 #arrow {
@@ -506,17 +503,15 @@ line {
 /* slider component */
 /* full rail */
 .vue-slider-rail {
-
 }
 /* completed part */
-.vue-slider-process{}
+.vue-slider-process {
+}
 
 /* marks */
 .vue-slider-mark {
-
 }
 /* dot */
 .vue-slider-dot {
-
 }
 </style>
