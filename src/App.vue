@@ -39,9 +39,9 @@
         </div>-->
       </section>
       <section class="section-break">
-        <div class="divider-wrapper">
-          <div class="divider-line"></div>
-          <div class="divider-text">
+        <div class="section-tag-holder">
+          <div class="section-tag-line"></div>
+          <div class="section-tag-text">
             <h6 class="small-sub">Part 1</h6>
             <h4>Background</h4>
           </div>
@@ -72,9 +72,9 @@
       <ChartOne/>
 
       <section class="section-break">
-        <div class="divider-wrapper">
-          <div class="divider-line"></div>
-          <div class="divider-text">
+        <div class="section-tag-holder">
+          <div class="section-tag-line"></div>
+          <div class="section-tag-text">
             <h6 class="small-sub">Part 2</h6>
             <h4>Water Stress</h4>
           </div>
@@ -102,9 +102,9 @@
       <!-- add chart two -- map -- components -->
       <ChartTwo/>
       <section class="section-break">
-        <div class="divider-wrapper">
-          <div class="divider-line"></div>
-          <div class="divider-text">
+        <div class="section-tag-holder">
+          <div class="section-tag-line"></div>
+          <div class="section-tag-text">
             <h6 class="small-sub">Part 3</h6>
             <h4>Water Action</h4>
           </div>
@@ -122,9 +122,9 @@
       <!-- add chart three -- scenario -- component -->
       <ChartThree/>
       <section class="section-break">
-        <div class="divider-wrapper">
-          <div class="divider-line"></div>
-          <div class="divider-text">
+        <div class="section-tag-holder">
+          <div class="section-tag-line"></div>
+          <div class="section-tag-text">
             <h6 class="small-sub">Conclusion</h6>
             <h4>Reflections</h4>
           </div>
@@ -382,19 +382,19 @@ a:hover {
   padding-bottom: 10rem;
 }
 
-.divider-line {
+.section-tag-line {
   /* border-top: 1px solid #757575; */
   border-top: 1px solid rgba(0, 0, 0, 0.3);
   width: 100%;
 }
 
-.divider-text {
+.section-tag-text {
   width: 100%;
   position: relative;
   top: -5.25rem;
 }
 
-.divider-text h4 {
+.section-tag-text h4 {
   text-align: center;
   text-transform: uppercase;
   width: 25rem;
