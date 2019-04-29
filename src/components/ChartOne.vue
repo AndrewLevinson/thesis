@@ -3,12 +3,47 @@
     <div id="graph-one">
       <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
       <h5 class="subtitle">{{ graphOneTitle }}</h5>
+      <div
+        v-if="setShown === 1"
+        :class="[showArea ? 'legend-active' : 'legend-hidden']"
+        class="legend"
+      >
+        <div class="area-three tag">
+          <span>Dependencies</span>
+        </div>
+        <div class="area-two tag">
+          <span>Surface Water</span>
+        </div>
+        <div class="area-one tag">
+          <span>Groundwater</span>
+        </div>
+      </div>
+      <div v-else :class="[showArea ? 'legend-active' : 'legend-hidden']" class="legend">
+        <div class="area-one-100 tag">
+          <span>Irrigation</span>
+        </div>
+        <div class="area-two-100 tag">
+          <span>Thremoelectric</span>
+        </div>
+        <div class="area-three-100 tag">
+          <span>Industrial</span>
+        </div>
+        <div class="area-four-100 tag">
+          <span>Municipal</span>
+        </div>
+        <div class="area-five-100 tag">
+          <span>Other</span>
+        </div>
+      </div>
       <svg :width="svgWidth" :height="svgHeight">
         <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
           <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
           <g v-axis:y="scale" class="y-axis"></g>
           <g v-grid:gridLine="scale" class="grid"></g>
-          <path :class="[setShown === 1 ? 'link' : 'link-hide']" :d="paths.line"></path>
+          <path
+            :class="[showCallOut && setShown === 1 ? 'link-inactive' : (setShown === 1 ? 'link' : 'link-hide')]"
+            :d="paths.line"
+          ></path>
           <g
             :class="[showArea ? 'area-active' : 'area-hide']"
             @mousemove="mouseoverArea"
@@ -18,13 +53,21 @@
             <path :class="[setShown === 1 ? 'area-one' : 'area-one-100']" :d="paths.areaOne"></path>
             <path :class="[setShown === 1 ? 'area-two' : 'area-two-100']" :d="paths.areaTwo"></path>
             <path :class="[setShown === 1 ? 'area-three' : 'area-three-100']" :d="paths.areaThree"></path>
-            <path class="area-four-100" :d="paths.areaFour"></path>
-            <path class="area-five-100" :d="paths.areaFive"></path>
+            <path :class="[setShown === 1 ? 'area-one' : 'area-four-100']" :d="paths.areaFour"></path>
+            <path :class="[setShown === 1 ? 'area-one' : 'area-five-100']" :d="paths.areaFive"></path>
           </g>
           <g v-for="(d, i) in filteredData" :key="i">
+            <line
+              v-if="setShown === 1"
+              :x1="scale.x(d.year)"
+              :y1="scale.y(d.rwpc)"
+              :x2="scale.x(d.year)"
+              :y2="height"
+              :class="[i == selected ? 'selector' : 'selector-inactive']"
+            ></line>
             <circle
               v-if="setShown === 1"
-              :class="[i == selected ? 'circle-active' : 'circle-up']"
+              :class="[i == selected ? 'circle-active' : (showCallOut ? 'circle-inactive' : 'circle-up')]"
               :cx="scale.x(d.year)"
               :cy="[setShown === 1 ? scale.y(d.rwpc) : scale.y(1)]"
               r="5"
@@ -34,42 +77,9 @@
             ></circle>
           </g>
           <g>
-            <text
-              v-if="setShown === 1"
-              y="-78"
-              :x="svgHeight/-2"
-              transform="rotate(-90)"
-              text-anchor="middle"
-              class="axis-title"
-            >Renewable water resources (m3/year)</text>
-            <text
-              v-else
-              y="-60"
-              :x="svgHeight/-2"
-              transform="rotate(-90)"
-              text-anchor="middle"
-              class="axis-title"
-            >% of Total Water Withdrawn</text>
-            <text
-              :x="svgWidth - margin.right - margin.left - 5"
-              :y="svgHeight - margin.bottom - margin.top -10"
-              text-anchor="end"
-              class="axis-title"
-            >Years</text>
-            <!-- <text
-              v-if="setShown === 1"
-              y="-32"
-              x="0"
-              text-anchor="left"
-              class="graph-one-title"
-            >Total Renewable Water Resources Per Capita (m3/inhab/year)</text>
-            <text
-              v-else
-              y="-32"
-              x="0"
-              text-anchor="left"
-              class="graph-one-title"
-            >Percentage of Water Withdrawls by Category</text>-->
+            <rect v-if="setShown === 1" x="-5" y="-15" width="80" height="30" fill="#eff8ff"></rect>
+            <text v-if="setShown === 1" y="5.5" x="0" class="axis-title">{{ yLabel }}</text>
+            <text v-if="setShown === 2" y="-5" x="0" class="axis-title">{{ yLabel }}</text>
           </g>
         </g>
       </svg>
@@ -78,7 +88,8 @@
       <div class="text-box">
         <h5 class="box-title">Why are we running out of water?</h5>
         <p>
-          In 2012, the global demand for water exceeded supply and unless
+          In 2012, the global demand for water exceeded supply
+          <sup>[1]</sup> and unless
           drastic action is taken the gap is expected to increase
           dramatically—reaching 90% by the year 2090. Population growth is reducing the static amount of renewable
           freshwater available per capita.
@@ -130,10 +141,11 @@ export default {
   name: "chart-one",
   data() {
     return {
-      graphOneTitle: "Total Renewable Water Resources Per Capita",
+      graphOneTitle: "Renewable Water Resources Per Capita (USA)",
+      yLabel: "m3/year",
       svgWidth: window.innerWidth * 0.95,
-      svgHeight: window.innerHeight * 0.875,
-      margin: { top: 50, left: 90, bottom: 20, right: 25 },
+      svgHeight: window.innerHeight * 0.85,
+      margin: { top: 50, left: 65, bottom: 20, right: 25 },
       data: [{}],
       stackedData: null,
       scaled: {
@@ -159,6 +171,7 @@ export default {
       showLabel: false,
       selected: null,
       selectedArea: null,
+      showCallOut: false,
       myCount: null,
       tooltip: null,
       showArea: false,
@@ -355,6 +368,10 @@ export default {
     selectArea(index) {
       this.selectedArea = index;
     },
+    numFormater(type, el) {
+      const numFormatT = d3.format(",d");
+      return numFormatT(el) + (type === "per" ? "%" : "");
+    },
     initTooltip() {
       this.tooltip = {
         element: null,
@@ -366,11 +383,20 @@ export default {
             .style("opacity", 0);
         },
         show: function(t) {
+          console.log(window.innerWidth);
+          console.log(event.clientX);
           this.element
             .html(t)
             .transition()
             .duration(200)
-            .style("left", `${event.clientX + 10}px`)
+            .style(
+              "left",
+              `${
+                event.clientX > window.innerWidth * 0.5
+                  ? event.clientX - 250
+                  : event.clientX + 10
+              }px`
+            )
             .style("top", `50vh`)
             .style("opacity", 0.925);
         },
@@ -395,23 +421,105 @@ export default {
     myTooltip(d) {
       if (this.showLabel) {
         if (this.setShown === 1) {
-          this.tooltip.show(`<h5 class="total">${d.year}</h5><p>
-        <span class="datum">Total: ${d.rwpc}</span><br>
-           <span class="datum">Surface Water: ${d.spc}</span><br>
-           <span class="datum">Ground Water: ${d.gpc}</span><br>
-           <span class="datum">Foreign Dependencies: ${d.dpc}</span><br>
+          this.tooltip.show(`
+        <div id="tip-band"></div>
+        <h5 class="datum">${d.year}</h5>
+        <h6 class="sub-head-tip">Renewable Water Per Capita</h6>
+
+          <div class="data-pair">
+            <div class="area-three tip-tag">
+              <span>Dependencies</span>
+            </div>
+            <p>
+              ${this.numFormater("num", d.dpc)}
+            </p>
+          </div>
+
+          <div class="data-pair">
+            <div class="area-two tip-tag">
+              <span>Surface Water</span>
+            </div>
+            <p>
+              ${this.numFormater("num", d.spc)}
+            </p>
+          </div>
+
+          <div class="data-pair">
+            <div class="area-one tip-tag">
+              <span>Groundwater</span>
+            </div>
+            <p>
+              ${this.numFormater("num", d.gpc)}
+            </p>
+          </div>
+
         
-        </p>`);
+
+
+          <div class="data-pair">
+            <div>
+              <span class="datum">Total</span>
+            </div>
+            <p class="total">
+              ${this.numFormater("num", d.rwpc)}
+            </p>
+          </div>
+        
+        
+        `);
         } else if (this.setShown === 2) {
-          this.tooltip.show(`<h5 class="total">${
-            d.year
-          }</h5><p> <span class="datum">Other: ${d.otherPer}</span><br>
-           <span class="datum">Municipal: ${d.publicPer}</span><br>
-           <span class="datum">Industrial: ${d.industrialPer}</span><br>
-           <span class="datum">Thermo: ${d.thermoPer}</span><br>
-              <span class="datum">Irrigation: ${
-                d.irrigationPer
-              }</span><br></p>`);
+          this.tooltip.show(`
+<div id="tip-band"></div>
+          <h5 class="datum">${d.year}</h5>
+    <h6 class="sub-head-tip">Percentage of Water Withdrawls</h6>
+
+          <div class="data-pair">
+            <div class="area-five-100 tip-tag">
+              <span>Other</span>
+            </div>
+            <p>
+              ${this.numFormater("per", d.otherPer)}
+            </p>
+          </div>
+
+          <div class="data-pair">
+            <div class="area-four-100 tip-tag">
+              <span>Municipal</span>
+            </div>
+            <p>
+              ${this.numFormater("per", d.publicPer)}
+            </p>
+          </div>
+
+          <div class="data-pair">
+            <div class="area-three-100 tip-tag">
+              <span>Industrial</span>
+            </div>
+            <p>
+              ${this.numFormater("per", d.industrialPer)}
+            </p>
+          </div>
+
+          <div class="data-pair">
+            <div class="area-two-100 tip-tag">
+              <span>Thermoelectric</span>
+            </div>
+            <p>
+              ${this.numFormater("per", d.thermoPer)}
+            </p>
+          </div>
+
+
+          <div class="data-pair">
+            <div class="area-one-100 tip-tag">
+              <span>Irrigation</span>
+            </div>
+            <p>
+              ${this.numFormater("per", d.irrigationPer)}
+            </p>
+          </div>
+
+         `);
         }
       } else if (!this.showLabel) {
         this.tooltip.hide();
@@ -420,7 +528,7 @@ export default {
 
     scrollTrigger() {
       graphScroll()
-        .offset(225)
+        .offset(100)
         .graph(d3.selectAll("#graph-one"))
         .container(d3.select("#chart-one"))
         .sections(d3.selectAll("#sectionsOne > div"))
@@ -435,6 +543,7 @@ export default {
               this.setShown = 1;
               this.showArea = false;
               this.selected = null;
+              this.showCallOut = false;
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
@@ -445,22 +554,27 @@ export default {
               this.domain.y.max = 14000;
               this.setShown = 1;
               this.selected = 6;
+              this.showCallOut = true;
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
             case 2:
-              this.graphOneTitle = "Total Renewable Water Resources Per Capita";
+              this.graphOneTitle = "Renewable Water Resources Per Capita (USA)";
+              this.yLabel = "m3/year";
               // update y axis to show first area per cap
               this.setShown = 1;
               this.showArea = true;
               this.domain.y.min = 0;
               this.domain.y.max = 14000;
               this.selected = null;
+              this.showCallOut = false;
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
             case 3:
-              this.graphOneTitle = "Percentage of Water Withdrawls by Category";
+              this.graphOneTitle =
+                "Percentage Share of Water Withdrawls by Category (USA)";
+              this.yLabel = "% of Total Water Withdrawn";
 
               // change dataset to 100% area
               this.setShown = 2;
@@ -517,7 +631,7 @@ export default {
 /* text */
 .text-section {
   padding-bottom: 20rem;
-  /* z-index: 999; */
+  z-index: 999;
   font-size: 90%;
 }
 
@@ -528,7 +642,7 @@ export default {
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;
-  /* z-index: 999; */
+  z-index: 999;
   border-radius: 4px;
   opacity: 0.925;
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
@@ -579,13 +693,40 @@ section {
 #graph-one {
   position: sticky;
   position: -webkit-sticky;
-  top: 40px;
+  top: 30px;
 }
 
-.axis-title {
-  font-weight: bold;
+/* legend */
+.legend-hidden {
+  opacity: 0;
 }
 
+.legend {
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  margin-top: -0.5rem;
+  font-size: 1.4rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.75rem 0.5rem 0.75rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  border: 1px solid var(--main-bg-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.tag:hover {
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+/* chart elements */
 div,
 rect,
 path,
@@ -599,17 +740,40 @@ line {
 .circle-up {
   fill: #fff;
   stroke: #000;
+  opacity: 1;
+
+  transition: all 0.7s ease-in-out;
+}
+.circle-inactive {
+  fill: #fff;
+  stroke: #000;
+  opacity: 0.3;
   transition: all 0.7s ease-in-out;
 }
 
 .circle-active {
-  fill: #3c5a99;
+  /* fill: #3c5a99; */
+  fill: var(--special);
   stroke: #000;
+  opacity: 1;
+
   transition: all 0.7s ease-in-out;
+  animation: pulsing 1.5s infinite ease-in-out;
+}
+
+/* pulsing circle on active */
+@keyframes pulsing {
+  0%,
+  100% {
+    r: 5;
+  }
+  50% {
+    r: 9;
+  }
 }
 
 circle:hover {
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 .circle-group {
@@ -623,15 +787,21 @@ circle:hover {
 
 .selector {
   stroke: var(--main-body-type);
-  stroke-width: 2px;
+  /* stroke: var(--special); */
+  stroke-width: 3px;
   stroke-dasharray: 2;
   fill: none;
   opacity: 1;
-  transition: all 0s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-svg:hover {
-  cursor: crosshair;
+.selector-inactive {
+  stroke: var(--main-body-type);
+  stroke-width: 1px;
+  stroke-dasharray: 2;
+  fill: none;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .link {
@@ -643,6 +813,13 @@ svg:hover {
   transition: all 0.7s ease-in-out;
 }
 
+.link-inactive {
+  stroke: black;
+  stroke-width: 2px;
+  fill: none;
+  opacity: 0.3;
+  transition: all 0.7s ease-in-out;
+}
 .link-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
@@ -652,50 +829,54 @@ svg:hover {
   opacity: 1;
   transition: all 0.7s ease-in-out;
 }
+.area-active:hover {
+  cursor: crosshair;
+}
 .area-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
 
+/* currently all area fill handled globally in App.vue */
 /* all blues */
-.area-one {
-  fill: #51c1ed;
-  opacity: 0.8;
+/* .area-one {
+  fill: var(--ground);
+  background-color: var(--ground);
 }
 
 .area-two {
-  fill: #9dd7ef;
-  opacity: 0.8;
+  fill: var(--surface);
+  background-color: var(--surface);
 }
 
 .area-three {
-  fill: #c8e6f3;
-  opacity: 0.8;
-}
+  fill: var(--dep);
+  background-color: var(--dep);
+} */
 
 /* ordinal */
-.area-one-100 {
-  fill: #3c5a99;
-  opacity: 0.6;
+/* .area-one-100 {
+  fill: var(--irrigation);
+  background-color: var(--irrigation);
 }
 
 .area-two-100 {
-  fill: #0f9d58;
-  opacity: 0.6;
+  fill: var(--thermo);
+  background-color: var(--thermo);
 }
 
 .area-three-100 {
-  fill: #ff9900;
-  opacity: 0.6;
+  fill: var(--industrial);
+  background-color: var(--industrial);
 }
 
 .area-four-100 {
-  fill: coral;
-  opacity: 0.6;
+  fill: var(--municipal);
+  background-color: var(--municipal);
 }
 
 .area-five-100 {
-  fill: teal;
-  opacity: 0.6;
-}
+  fill: var(--other);
+  background-color: var(--other);
+} */
 </style>

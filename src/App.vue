@@ -39,10 +39,14 @@
         </div>-->
       </section>
       <section class="section-break">
-        <div>
-          <h6>Part 1</h6>
-          <h5>Background</h5>
-
+        <div class="divider-wrapper">
+          <div class="divider-line"></div>
+          <div class="divider-text">
+            <h6 class="small-sub">Part 1</h6>
+            <h4>Background</h4>
+          </div>
+        </div>
+        <div class="body-text">
           <p>
             Day Zero is often referred to as the day the water taps turn off. Once
             seen as a remote scenario, water conservation is taken more seriously
@@ -68,8 +72,14 @@
       <ChartOne/>
 
       <section class="section-break">
-        <div>
-          <h5>How is water usage distributed across the country?</h5>
+        <div class="divider-wrapper">
+          <div class="divider-line"></div>
+          <div class="divider-text">
+            <h6 class="small-sub">Part 2</h6>
+            <h4>Water Stress</h4>
+          </div>
+        </div>
+        <div class="body-text">
           <p>While the widthdrawals show a broad picture of the US, since water issues are laregly local, it's critical to take a look at water usage at a micro level.</p>
         </div>
       </section>
@@ -92,8 +102,14 @@
       <!-- add chart two -- map -- components -->
       <ChartTwo/>
       <section class="section-break">
-        <div>
-          <h5>What can we do right now?</h5>
+        <div class="divider-wrapper">
+          <div class="divider-line"></div>
+          <div class="divider-text">
+            <h6 class="small-sub">Part 3</h6>
+            <h4>Water Action</h4>
+          </div>
+        </div>
+        <div class="body-text">
           <p>
             While climate change is the biggest threat to available freshwater
             that requires the largest long-term investment, crumbling
@@ -106,8 +122,14 @@
       <!-- add chart three -- scenario -- component -->
       <ChartThree/>
       <section class="section-break">
-        <div>
-          <h5>Final Thoughts</h5>
+        <div class="divider-wrapper">
+          <div class="divider-line"></div>
+          <div class="divider-text">
+            <h6 class="small-sub">Conclusion</h6>
+            <h4>Reflections</h4>
+          </div>
+        </div>
+        <div class="body-text">
           <p id="final">
             This is not an all or nothing approach. While destination efforts and water rationing is occurring throughout the world, it’s important that we take the time to make changes now so we can make time for the larger conversations.
             <br>
@@ -166,23 +188,9 @@
 </template>
 
 <script>
-// Vue.directive("scroll", {
-//   inserted: function(el, binding) {
-//     let f = function(evt) {
-//       if (binding.value(evt, el)) {
-//         window.removeEventListener("scroll", f);
-//       }
-//     };
-//     window.addEventListener("scroll", f);
-//   }
-// });
-
 import ChartOne from "./components/ChartOne.vue";
-// import SideBar from "./components/SideBar.vue";
 import ChartTwo from "./components/ChartTwo.vue";
 import ChartThree from "./components/ChartThree.vue";
-// import CountyMap from "./components/CountyMap.vue";
-// import * as d3 from "d3";
 
 export default {
   name: "app",
@@ -210,6 +218,68 @@ export default {
   --link-color: #e4480f;
   --emphasis: #5f90de;
   --special: #45b8cd;
+
+  /* chart-one */
+  --opacity-one: 0.8;
+  --dep: rgba(200, 230, 243, var(--opacity-one));
+  --surface: rgba(157, 215, 239, var(--opacity-one));
+  --ground: rgba(81, 193, 237, var(--opacity-one));
+  /* break */
+  --opacity-two: 0.6;
+  --irrigation: rgba(60, 90, 153, var(--opacity-two));
+  --thermo: rgba(15, 157, 88, var(--opacity-two));
+  --industrial: rgba(255, 153, 0, var(--opacity-two));
+  --municipal: rgba(255, 127, 81, var(--opacity-two));
+  --other: rgba(0, 128, 128, var(--opacity-two));
+}
+/* all blues */
+.area-one {
+  fill: var(--ground);
+  background-color: var(--ground);
+  /* opacity: var(--opacity-one); */
+}
+
+.area-two {
+  fill: var(--surface);
+  background-color: var(--surface);
+  /* opacity: var(--opacity-one); */
+}
+
+.area-three {
+  fill: var(--dep);
+  background-color: var(--dep);
+  /* opacity: var(--opacity-one); */
+}
+
+/* ordinal */
+.area-one-100 {
+  fill: var(--irrigation);
+  background-color: var(--irrigation);
+  /* opacity: var(--opacity-two); */
+}
+
+.area-two-100 {
+  fill: var(--thermo);
+  background-color: var(--thermo);
+  /* opacity: var(--opacity-two); */
+}
+
+.area-three-100 {
+  fill: var(--industrial);
+  background-color: var(--industrial);
+  /* opacity: var(--opacity-two); */
+}
+
+.area-four-100 {
+  fill: var(--municipal);
+  background-color: var(--municipal);
+  /* opacity: var(--opacity-two); */
+}
+
+.area-five-100 {
+  fill: var(--other);
+  background-color: var(--other);
+  /* opacity: var(--opacity-two); */
 }
 
 html,
@@ -308,30 +378,50 @@ a:hover {
 .section-break {
   width: 50%;
   margin: 0 auto;
-  padding-top: 8rem;
+  padding-top: 16rem;
   padding-bottom: 10rem;
-  text-align: center;
 }
 
-.section-break h5 {
-  text-align: center;
+.divider-line {
+  /* border-top: 1px solid #757575; */
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
-.section-break > div {
-  padding-top: 9rem;
-  padding-bottom: 9rem;
-  border-top: 2px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4;
+.divider-text {
+  width: 100%;
+  position: relative;
+  top: -5.25rem;
+}
+
+.divider-text h4 {
+  text-align: center;
+  text-transform: uppercase;
+  width: 25rem;
+  margin: 0 auto;
+  /* color: #fff; */
+  /* background-color: var(--map-bg-color); */
+  background-color: var(--main-bg-color);
+  border-radius: 16px;
+  border: 8px solid var(--main-bg-color);
+}
+
+.section-break h6 {
+  margin: 0;
+  opacity: 0.75;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.section-break > .body-text {
+  margin: 1rem 5rem 8rem 5rem;
 }
 
 .section-break:last-of-type > div {
-  border-bottom: none;
   padding-bottom: 2rem;
 }
 
 #final {
-  text-align: left;
   margin-bottom: 0;
 }
 
@@ -366,16 +456,59 @@ div.tooltip {
   color: var(--main-body-type);
   filter: drop-shadow(0px 2px 8px rgba(59, 59, 61, 0.4));
 }
-
+#tip-band {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  border-radius: 4px 4px 0px 0px;
+  /* background-color: var(--active-tip); */
+  background-color: var(--main-body-type);
+}
 .tooltip h5 {
   padding: 0;
   margin-top: 0.2rem;
   /* line-height: 0; */
   /* margin-bottom: 1.2rem; */
 }
+
+.sub-head-tip {
+  margin-top: -2rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  opacity: 0.7;
+  margin-bottom: 0.75rem;
+}
 .datum {
   font-weight: bold;
-  /* border-bottom: 2px dashed #3d3d3d; */
+}
+.total {
+  /* border-bottom: 2px solid rgba(0, 0, 0, 0.8); */
+  font-weight: 600;
+}
+
+.data-pair {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.data-pair p {
+  /* font-weight: bold; */
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.data-pair:last-of-type p {
+  margin-bottom: 0;
+}
+
+.tip-tag {
+  padding: 0.4rem 0.75rem 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  border: 1px solid #fff;
+  margin-right: 3rem;
+  transition: all 0.2s ease-in-out;
 }
 
 /* hide mapbox controls/ */
