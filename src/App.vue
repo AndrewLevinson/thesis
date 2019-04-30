@@ -8,35 +8,8 @@
           <p id="byline">
             <a href="https://andrewlevinson.me" target="_blank">Andrew Levinson</a> | May 2019
           </p>
-          <!-- <div class="intro">
-            <p>
-              Day Zero is often referred to as the day the water taps turn off. Once
-              seen as a remote scenario, water conservation is taken more seriously
-              now—especially after the crisis in
-              <a
-                href="#"
-              >Cape Town</a> and other extreme water
-              stress events across the globe.
-            </p>
-            <p>
-              While an actual Day Zero is unlikely in the United States, we are
-              seeing high water stress events across the country due to crumbling
-              infrastructure, over-abstraction in of aquifers in agriculture, and
-              climate change that are cause for alarm.
-            </p>
-            <p>
-              If we do not take action to conserve water at a much more extreme
-              rate, a Day Zero scenario in the US becomes more plausible.
-            </p>
-          </div>-->
         </div>
-        <!-- <div id="hero-holder">
-          <img
-            src="./assets/images/hero.png"
-            alt="map of US with waterways highlighted"
-            width="100%"
-          >
-        </div>-->
+        <div id="title-grad"></div>
       </section>
       <section class="section-break">
         <div class="section-tag-holder">
@@ -236,50 +209,42 @@ export default {
 .area-one {
   fill: var(--ground);
   background-color: var(--ground);
-  /* opacity: var(--opacity-one); */
 }
 
 .area-two {
   fill: var(--surface);
   background-color: var(--surface);
-  /* opacity: var(--opacity-one); */
 }
 
 .area-three {
   fill: var(--dep);
   background-color: var(--dep);
-  /* opacity: var(--opacity-one); */
 }
 
 /* ordinal */
 .area-one-100 {
   fill: var(--irrigation);
   background-color: var(--irrigation);
-  /* opacity: var(--opacity-two); */
 }
 
 .area-two-100 {
   fill: var(--thermo);
   background-color: var(--thermo);
-  /* opacity: var(--opacity-two); */
 }
 
 .area-three-100 {
   fill: var(--industrial);
   background-color: var(--industrial);
-  /* opacity: var(--opacity-two); */
 }
 
 .area-four-100 {
   fill: var(--municipal);
   background-color: var(--municipal);
-  /* opacity: var(--opacity-two); */
 }
 
 .area-five-100 {
   fill: var(--other);
   background-color: var(--other);
-  /* opacity: var(--opacity-two); */
 }
 
 html,
@@ -308,48 +273,35 @@ a:hover {
 
 #container {
   width: 100%;
-  /* padding-top: 2rem; */
   margin: 0 auto;
 }
 
 #first-section {
   display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  /* padding: 12rem 4rem 12rem 4rem; */
-  /* padding: 8rem; */
-  background-image: url(./assets/images/hero.png);
-  /* background-size: contain; */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: right top;
-  overflow: hidden;
+  flex-direction: column;
   flex: 1 1 0%;
   height: 100vh;
-  color: #fff;
+  overflow: hidden;
+  background-image: url(./assets/images/hero2.png);
+  background-size: contain;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 155% 50%;
 }
 
 #title {
   margin-left: 4rem;
-  padding: 2rem;
-  /* text-align: center; */
-  /* padding-left: 4rem; */
+  padding: 20rem 2rem 2rem 2rem;
   width: 47.5%;
-  background-color: rgba(0, 0, 0, 0.55);
-  border-radius: 8px;
-  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
-  /* padding-right: 2.5%; */
+  height: 80vh;
 }
 
-/* #hero-holder {
-  width: 47.5%;
-  height: 100%;
+#title-grad {
+  background: linear-gradient(0deg, rgb(239, 248, 255), rgba(239, 248, 255, 0));
+  height: 20vh;
+  width: 100vw;
 }
-#hero-holder > img {
-  border-radius: 8px;
-  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
-} */
 
 .main-header {
   margin-bottom: 0;
@@ -362,17 +314,6 @@ a:hover {
 #byline {
   font-weight: 400;
   opacity: 0.85;
-}
-
-.intro {
-  /* width: 90%; */
-  margin-top: 0.5rem;
-  /* margin: 0 auto; */
-  /* padding-bottom: 7rem; */
-}
-
-.intro p {
-  /* width: 80%; */
 }
 
 .section-break {

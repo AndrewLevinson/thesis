@@ -77,7 +77,7 @@
             ></circle>
           </g>
           <g>
-            <rect v-if="setShown === 1" x="-5" y="-15" width="80" height="30" fill="#eff8ff"></rect>
+            <rect v-if="setShown === 1" x="-5" y="-15" width="145" height="30" fill="#eff8ff"></rect>
             <text v-if="setShown === 1" y="5.5" x="0" class="axis-title">{{ yLabel }}</text>
             <text v-if="setShown === 2" y="-5" x="0" class="axis-title">{{ yLabel }}</text>
           </g>
@@ -142,7 +142,7 @@ export default {
   data() {
     return {
       graphOneTitle: "Renewable Water Resources Per Capita (USA)",
-      yLabel: "m3/year",
+      yLabel: "m3/year/person",
       svgWidth: window.innerWidth * 0.95,
       svgHeight: window.innerHeight * 0.85,
       margin: { top: 50, left: 65, bottom: 20, right: 25 },
@@ -560,7 +560,7 @@ export default {
               break;
             case 2:
               this.graphOneTitle = "Renewable Water Resources Per Capita (USA)";
-              this.yLabel = "m3/year";
+              this.yLabel = "m3/year/person";
               // update y axis to show first area per cap
               this.setShown = 1;
               this.showArea = true;
