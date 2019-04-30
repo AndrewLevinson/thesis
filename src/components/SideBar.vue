@@ -3,10 +3,22 @@
     <div class="icon-holder">
       <!-- <h6>Case Studies</h6> -->
       <div class="dots">
-        <div :class="[scrollPosition == 2 ? 'active-dot': '']"></div>
-        <div :class="[scrollPosition >= 3 && scrollPosition <= 5 ? 'active-dot': '']"></div>
-        <div :class="[scrollPosition == 6 ? 'active-dot': '']"></div>
-        <div :class="[scrollPosition >= 7 ? 'active-dot': '']"></div>
+        <div :class="[scrollPosition == 2 ? 'active-dot': 'dot']">
+          <div></div>
+          <p>Drought</p>
+        </div>
+        <div :class="[scrollPosition >= 3 && scrollPosition <= 5 ? 'active-dot': 'dot']">
+          <div></div>
+          <p>Groundwater</p>
+        </div>
+        <div :class="[scrollPosition == 6 ? 'active-dot': 'dot']">
+          <div></div>
+          <p>Infrastructure</p>
+        </div>
+        <div :class="[scrollPosition >= 7 ? 'active-dot': 'dot']">
+          <div></div>
+          <p>Contamination</p>
+        </div>
       </div>
     </div>
     <section :class="[showPanelContent ? 'show-panel-content' : 'hide-panel-content']">
@@ -121,18 +133,34 @@ nav {
 .dots {
   display: flex;
   flex-direction: column;
-  height: 40%;
+  height: 50%;
   justify-content: space-evenly;
+  text-align: center;
+  padding-top: 3rem;
 }
-.dots div {
+.dots .dot div,
+.dots .active-dot div {
   width: 18px;
   height: 18px;
-  border-radius: 100px;
+  border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.5);
+  margin: 0 auto;
 }
 
-.dots .active-dot {
-  background-color: #fff;
+.dots .active-dot div {
+  /* background-color: #fff; */
+  background-color: var(--special);
+}
+
+.dots p {
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+.dots .active-dot p {
+  opacity: 1;
 }
 
 section {
