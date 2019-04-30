@@ -2,6 +2,7 @@
   <div id="app">
     <div id="container">
       <section id="first-section">
+        <div id="title-grad-top"></div>
         <div id="title" v-cloak>
           <h2 class="main-header">{{ title }}</h2>
           <h5 class="subtitle">{{ subTitle }}</h5>
@@ -9,7 +10,7 @@
             <a href="https://andrewlevinson.me" target="_blank">Andrew Levinson</a> | May 2019
           </p>
         </div>
-        <div id="title-grad"></div>
+        <div id="title-grad-bottom"></div>
       </section>
       <section class="section-break">
         <div class="section-tag-holder">
@@ -265,6 +266,7 @@ body {
 a {
   color: var(--link-color);
   text-decoration: none;
+  transition: all 0.3s ease-in;
 }
 a:hover {
   color: var(--emphasis);
@@ -290,16 +292,22 @@ a:hover {
   background-position: 155% 50%;
 }
 
-#title {
-  margin-left: 4rem;
-  padding: 20rem 2rem 2rem 2rem;
-  width: 47.5%;
-  height: 80vh;
+#title-grad-top {
+  background: linear-gradient(0deg, rgba(239, 248, 255, 0), rgb(239, 248, 255));
+  height: 20vh;
+  width: 100vw;
 }
 
-#title-grad {
+#title {
+  margin-left: 4rem;
+  padding: 12rem 2rem 2rem 2rem;
+  width: 47.5%;
+  height: 50vh;
+}
+
+#title-grad-bottom {
   background: linear-gradient(0deg, rgb(239, 248, 255), rgba(239, 248, 255, 0));
-  height: 20vh;
+  height: 30vh;
   width: 100vw;
 }
 
@@ -396,7 +404,9 @@ div.tooltip {
   pointer-events: none;
   color: var(--main-body-type);
   filter: drop-shadow(0px 2px 8px rgba(59, 59, 61, 0.4));
+  z-index: 1;
 }
+
 #tip-band {
   position: absolute;
   top: 0;

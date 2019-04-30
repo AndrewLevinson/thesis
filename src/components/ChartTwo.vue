@@ -240,9 +240,6 @@ export default {
 </script>
 
 <style scoped>
-#chart-two {
-  /* background-color: var(--map-bg-color); */
-}
 /* text */
 .text-section {
   padding-bottom: 20rem;
@@ -271,20 +268,22 @@ export default {
 
 .text-box:first-of-type,
 .text-box:nth-of-type(2) {
-  /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 40%;
-  max-width: 600px;
+  max-width: 800px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;
-  /* z-index: 999; */
+  z-index: 999;
   border-radius: 4px;
   opacity: 0.925;
-  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
   /* unique to chart one */
   background-color: var(--main-bg-color);
   color: var(--main-body-type);
   border: 1px solid rgba(112, 112, 112, 0.33);
+}
+
+.text-box:first-of-type {
+  box-shadow: none;
 }
 
 .text-box:nth-of-type(2) {

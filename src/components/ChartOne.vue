@@ -144,7 +144,7 @@ export default {
       graphOneTitle: "Renewable Water Resources Per Capita (USA)",
       yLabel: "m3/year/person",
       svgWidth: window.innerWidth * 0.95,
-      svgHeight: window.innerHeight * 0.85,
+      svgHeight: window.innerHeight * 0.83,
       margin: { top: 50, left: 65, bottom: 20, right: 25 },
       data: [{}],
       stackedData: null,
@@ -424,7 +424,7 @@ export default {
           this.tooltip.show(`
         <div id="tip-band"></div>
         <h5 class="datum">${d.year}</h5>
-        <h6 class="sub-head-tip">Renewable Water Per Capita</h6>
+        <h6 class="sub-head-tip">Renewable Water Per Capita<br>(m3/year/person)</h6>
 
           <div class="data-pair">
             <div class="area-three tip-tag">
