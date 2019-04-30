@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div id="container">
-      <section id="first-section">
+      <section id="hero-section">
         <div id="title-grad-top"></div>
-        <div id="title" v-cloak>
-          <h2 class="main-header">{{ title }}</h2>
-          <h5 class="subtitle">{{ subTitle }}</h5>
+        <div id="title">
+          <h2 class="main-header">The United States <span class="blue">Water Crisis</span></h2>
+          <h5 class="subtitle">How changes to the natural water cycle and transitioning population centers are causing water stress</h5>
           <p id="byline">
             <a href="https://andrewlevinson.me" target="_blank">Andrew Levinson</a> | May 2019
           </p>
@@ -175,10 +175,8 @@ export default {
   },
   data() {
     return {
-      title: "The United States Water Crisis",
-      subTitle:
-        "How changes to the natural water cycle and transitioning population centers are causing water stress"
-    };
+  
+          };
   }
 };
 </script>
@@ -278,7 +276,7 @@ a:hover {
   margin: 0 auto;
 }
 
-#first-section {
+#hero-section {
   display: flex;
   flex-direction: column;
   flex: 1 1 0%;
@@ -286,10 +284,11 @@ a:hover {
   overflow: hidden;
   background-image: url(./assets/images/hero2.png);
   background-size: contain;
-  background-size: 70%;
+  background-size: 65%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 155% 50%;
+  /* background-position: 155% 50%; */
+  background-position: 95% 35%;
 }
 
 #title-grad-top {
@@ -300,11 +299,14 @@ a:hover {
 
 #title {
   margin-left: 4rem;
-  padding: 12rem 2rem 2rem 2rem;
-  width: 47.5%;
+  padding: 32rem 2rem 2rem 2rem;
+  /* width: 47.5%; */
   height: 50vh;
 }
 
+#title h5 {
+  width: 55%;
+}
 #title-grad-bottom {
   background: linear-gradient(0deg, rgb(239, 248, 255), rgba(239, 248, 255, 0));
   height: 30vh;
@@ -412,7 +414,7 @@ div.tooltip {
   top: 0;
   left: 0;
   width: 100%;
-  height: 10px;
+  height: 4px;
   border-radius: 4px 4px 0px 0px;
   /* background-color: var(--active-tip); */
   background-color: var(--main-body-type);
@@ -467,6 +469,10 @@ div.tooltip {
 .total {
   /* border-bottom: 2px solid rgba(0, 0, 0, 0.8); */
   font-weight: 600;
+}
+
+.blue {
+  color: #0B519B
 }
 
 .special {

@@ -130,11 +130,12 @@
       <div class="text-box">
         <h5 class="box-title">What is it used for?</h5>
         <p>
-          Every five years, the U.S. Geological Survey collects water usage data in the United States. As of
+          Every five years, the U.S. Geological Survey collects water usage data for the country. As of
           <span
             class="datum"
           >2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
-          <br><br>
+          <br>
+          <br>
           <span class="area-two-100 tag tag-intext">
             Thermoelectric:
             <span class="datum">41%</span>
@@ -147,7 +148,8 @@
             Municipal:
             <span class="datum">13%</span>
           </span>
-          <br><br>But these numbers are just averages, the breakdown in each state is much different...
+          <br>
+          <br>But these numbers are just averages, the breakdown in each state is much different...
         </p>
       </div>
     </section>
