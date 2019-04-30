@@ -91,42 +91,63 @@
           In 2012, the global demand for water exceeded supply
           <sup>[1]</sup> and unless
           drastic action is taken the gap is expected to increase
-          dramatically—reaching 90% by the year 2090. Population growth is reducing the static amount of renewable
-          freshwater available per capita.
+          dramatically—reaching 90% by the year 2090. Population growth is reducing the annual renewable
+          freshwater per capita.
         </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Trending Down</h5>
         <p>
-          According to Aquastat, 2014 has the official number at
+          According to Aquastat, 2014 yielded the lowest available freshwater per capita on record at
           <span
             class="datum"
-          >10,000 cubic meters/year/person</span> and the 2019 projection is estimated to be at
-          <span class="datum">fill in</span>
+          >
+            <span class="special">9,538</span> cubic meters/year/person
+          </span> and the 2019 projection is estimated to be at
+          <span class="fix-me">calculate me</span>
         </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Where does our freshwater come from?</h5>
         <p>
           Renewable freshwater is mostly extracted from
-          <span class="datum">surface water</span> (about 70%),
-          <span class="datum">ground water</span> (about 25%), with some water coming from beyond the countries borders like from Canada marked as
+          <span class="area-two tag tag-intext">
+            Surface Water:
+            <span class="datum">61%</span>
+          </span>,
+          <span class="area-one tag tag-intext">
+            Groundwater:
+            <span class="datum">31%</span>
+          </span>, with some water coming from beyond the countries borders like from Canada marked as
           <span
-            class="datum"
-          >dependencies</span> (about 5%).
+            class="area-three tag tag-intext"
+          >
+            Dependencies:
+            <span class="datum">8%</span>
+          </span>.
         </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">What is it used for?</h5>
         <p>
-          On average, United States freshwater is used on
+          Every five years, the U.S. Geological Survey collects water usage data in the United States. As of
           <span
             class="datum"
-          >agriculture & irrigation</span> (x%),
-          <span class="datum">industrial usage *</span> (about 30%), and finally the water that comes from the tap classified as
-          <span
-            class="datum"
-          >municiapl or public usage</span> (about 12%). But these numbers are just averages, the breakdown in each state is much different...
+          >2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
+          <br><br>
+          <span class="area-two-100 tag tag-intext">
+            Thermoelectric:
+            <span class="datum">41%</span>
+          </span>,
+          <span class="area-one-100 tag tag-intext">
+            Irrigation:
+            <span class="datum">37%</span>
+          </span> and
+          <span class="area-four-100 tag tag-intext">
+            Municipal:
+            <span class="datum">13%</span>
+          </span>
+          <br><br>But these numbers are just averages, the breakdown in each state is much different...
         </p>
       </div>
     </section>
@@ -717,6 +738,10 @@ section {
   font-family: "IBM Plex Mono", monospace;
   border: 1px solid var(--main-bg-color);
   transition: all 0.2s ease-in-out;
+}
+
+.tag-intext {
+  margin: 0;
 }
 
 .tag:hover {

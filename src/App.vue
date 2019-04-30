@@ -177,7 +177,7 @@ export default {
     return {
       title: "The United States Water Crisis",
       subTitle:
-        "Mitigating increasing demand and changes in the natural water cycle"
+        "How changes to the natural water cycle and transitioning population centers are causing water stress"
     };
   }
 };
@@ -430,13 +430,6 @@ div.tooltip {
   opacity: 0.7;
   margin-bottom: 0.75rem;
 }
-.datum {
-  font-weight: bold;
-}
-.total {
-  /* border-bottom: 2px solid rgba(0, 0, 0, 0.8); */
-  font-weight: 600;
-}
 
 .data-pair {
   display: flex;
@@ -460,6 +453,28 @@ div.tooltip {
   border: 1px solid #fff;
   margin-right: 3rem;
   transition: all 0.2s ease-in-out;
+}
+
+/* global utilities */
+.fix-me {
+  /* used in development */
+  color: red;
+  border: 1px solid red;
+}
+.datum {
+  font-weight: bold;
+}
+.total {
+  /* border-bottom: 2px solid rgba(0, 0, 0, 0.8); */
+  font-weight: 600;
+}
+
+.special {
+  color: var(--special);
+}
+
+.special-background {
+  background-color: var(--special);
 }
 
 /* hide mapbox controls/ */
