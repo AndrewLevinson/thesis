@@ -29,7 +29,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Groundwater Overabstraction: Chicago</h5>
+        <h5 class="box-title">Chicago & Milwaukee</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -39,7 +39,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Groundwater Overabstraction: Florida Everglades</h5>
+        <h5 class="box-title">Florida Everglades</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -49,7 +49,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Groundwater Overabstraction: The High Plains (Ogallala Aquifer)</h5>
+        <h5 class="box-title">The High Plains (Ogallala Aquifer)</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -69,7 +69,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Contamination: the Northeast</h5>
+        <h5 class="box-title">Northeast Combined Sewers</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -79,7 +79,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Contamination: Flint, Michigan</h5>
+        <h5 class="box-title">Flint, Michigan</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
