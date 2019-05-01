@@ -1,6 +1,6 @@
 # us-water-crisis
 
-### [Temporary URL to LIVE site](https://ecstatic-franklin-11a0ee.netlify.com/)
+### [URL to LIVE site](https://thewatercrisis.us/)
 
 ## Project setup
 

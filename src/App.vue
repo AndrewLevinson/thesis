@@ -4,8 +4,14 @@
       <section id="hero-section">
         <div id="title-grad-top"></div>
         <div id="title">
-          <h2 class="main-header">The United States <span class="blue">Water Crisis</span></h2>
-          <h5 class="subtitle">How changes to the natural water cycle and transitioning population centers are causing water stress</h5>
+          <div class="tip-band-hero"></div>
+          <h2 class="main-header">
+            The United States
+            <span class="blue">Water Crisis</span>
+          </h2>
+          <h5
+            class="subtitle"
+          >How changes to the natural water cycle and transitioning population centers are causing water stress</h5>
           <p id="byline">
             <a href="https://andrewlevinson.me" target="_blank">Andrew Levinson</a> | May 2019
           </p>
@@ -174,9 +180,7 @@ export default {
     ChartThree
   },
   data() {
-    return {
-  
-          };
+    return {};
   }
 };
 </script>
@@ -289,6 +293,17 @@ a:hover {
   background-attachment: fixed;
   /* background-position: 155% 50%; */
   background-position: 95% 35%;
+}
+
+.tip-band-hero {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  width: 10%;
+  height: 4px;
+  border-radius: 4px 4px 0px 0px;
+  /* background-color: var(--active-tip); */
+  background-color: var(--main-body-type);
 }
 
 #title-grad-top {
@@ -409,7 +424,7 @@ div.tooltip {
   z-index: 1;
 }
 
-#tip-band {
+.tip-band {
   position: absolute;
   top: 0;
   left: 0;
@@ -472,7 +487,56 @@ div.tooltip {
 }
 
 .blue {
-  color: #0B519B
+  -webkit-animation: blue-cycle 4s infinite ease-in-out;
+  -moz-animation: blue-cycle 4s infinite ease-in-out;
+  animation: blue-cycle 4s infinite ease-in-out;
+}
+
+/* pulsing circle on active */
+@-webkit-keyframes blue-cycle {
+  0%,
+  100% {
+    color: #0b519b;
+  }
+  25% {
+    color: #3184bf;
+  }
+  50% {
+    color: #6aacd3;
+  }
+  75% {
+    color: #9dc9e1;
+  }
+}
+@-moz-keyframes blue-cycle {
+  0%,
+  100% {
+    color: #0b519b;
+  }
+  25% {
+    color: #3184bf;
+  }
+  50% {
+    color: #6aacd3;
+  }
+  75% {
+    color: #9dc9e1;
+  }
+}
+@keyframes blue-cycle {
+  0%,
+  100% {
+    color: #0b519b;
+  }
+  25% {
+    color: #3184bf;
+  }
+  50% {
+    color: #6aacd3;
+  }
+  75% {
+    color: #9dc9e1;
+  }
 }
 
 .special {

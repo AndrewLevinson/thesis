@@ -445,7 +445,7 @@ export default {
       if (this.showLabel) {
         if (this.setShown === 1) {
           this.tooltip.show(`
-        <div id="tip-band"></div>
+        <div class="tip-band"></div>
         <h5 class="datum">${d.year}</h5>
         <h6 class="sub-head-tip">Renewable Water Per Capita<br>(m3/year/person)</h6>
 
@@ -492,7 +492,7 @@ export default {
         `);
         } else if (this.setShown === 2) {
           this.tooltip.show(`
-<div id="tip-band"></div>
+<div class="tip-band"></div>
           <h5 class="datum">${d.year}</h5>
     <h6 class="sub-head-tip">Percentage of Water Withdrawls</h6>
 
@@ -785,10 +785,31 @@ line {
   opacity: 1;
 
   transition: all 0.7s ease-in-out;
+
+  -webkit-animation: pulsing 1.5s infinite ease-in-out;
+  -moz-animation: pulsing 1.5s infinite ease-in-out;
   animation: pulsing 1.5s infinite ease-in-out;
 }
 
 /* pulsing circle on active */
+@-webkit-keyframes pulsing {
+  0%,
+  100% {
+    r: 5;
+  }
+  50% {
+    r: 9;
+  }
+}
+@-moz-keyframes pulsing {
+  0%,
+  100% {
+    r: 5;
+  }
+  50% {
+    r: 9;
+  }
+}
 @keyframes pulsing {
   0%,
   100% {
@@ -833,7 +854,7 @@ circle:hover {
 
 .link {
   stroke: black;
-  stroke-width: 2px;
+  stroke-width: 2.5px;
   /* stroke-opacity: 0.8; */
   fill: none;
   opacity: 1;
