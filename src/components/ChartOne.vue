@@ -764,26 +764,26 @@ export default {
   transition: all 0.7s ease-in-out;
 }
 
-#chart-one .circle-up {
+.circle-up {
   fill: #fff;
   stroke: #000;
   opacity: 1;
 
   transition: all 0.7s ease-in-out;
 }
-#chart-one .circle-inactive {
+.circle-inactive {
   fill: #fff;
   stroke: #000;
   opacity: 0.3;
   transition: all 0.7s ease-in-out;
 }
 
-#chart-one .circle-active {
+.circle-active {
   fill: var(--special);
   stroke: #000;
   opacity: 1;
 
-  /* transition: all 0.7s ease-in-out; */
+  transition: all 0.7s ease-in-out;
 
   -webkit-animation: pulsing 1.5s infinite ease-in-out;
   -moz-animation: pulsing 1.5s infinite ease-in-out;
@@ -819,15 +819,15 @@ export default {
   }
 }
 
-#chart-one circle:hover {
+circle:hover {
   cursor: pointer;
 }
 
-#chart-one .circle-group {
+.circle-group {
   opacity: 1;
   transition: all 0.7s ease-in-out;
 }
-#chart-one .circle-group-hide {
+.circle-group-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
