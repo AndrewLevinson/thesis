@@ -783,7 +783,7 @@ export default {
   stroke: #000;
   opacity: 1;
 
-  transition: all 0.7s ease-in-out;
+  /* transition: all 0.7s ease-in-out; */
 
   -webkit-animation: pulsing 1.5s infinite ease-in-out;
   -moz-animation: pulsing 1.5s infinite ease-in-out;
