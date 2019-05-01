@@ -650,15 +650,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* text */
-#chart-one .text-section {
+.text-section {
   padding-bottom: 20rem;
   /* z-index: 999; */
   font-size: 90%;
 }
 
-#chart-one .text-box {
+.text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 45%;
   max-width: 600px;
@@ -674,18 +674,18 @@ export default {
   border: 1px solid rgba(112, 112, 112, 0.33);
 }
 
-#chart-one .text-box p {
+.text-box p {
   margin-bottom: 0px;
 }
 
-#chart-one .box-title {
+.box-title {
   margin-bottom: 0.5rem;
   /* font-size: 120%; */
 
   /* border-bottom: 1px dashed var(--main-body-type); */
 }
 
-#chart-one section {
+section {
   z-index: 999;
 }
 /* text -- graph scroll */
@@ -720,18 +720,18 @@ export default {
 }
 
 /* legend */
-#chart-one .legend-hidden {
+.legend-hidden {
   opacity: 0;
 }
 
-#chart-one .legend {
+.legend {
   justify-content: space-between;
   padding-bottom: 0.5rem;
   margin-top: -0.5rem;
   font-size: 1.4rem;
 }
 
-#chart-one .tag {
+.tag {
   display: inline-block;
   padding: 0.4rem 0.75rem 0.5rem 0.75rem;
   margin-right: 1rem;
@@ -742,11 +742,11 @@ export default {
   transition: all 0.2s ease-in-out;
 }
 
-#chart-one .tag-intext {
+.tag-intext {
   margin: 0;
 }
 
-#chart-one .tag:hover {
+.tag:hover {
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -754,13 +754,13 @@ export default {
 }
 
 /* chart elements */
-#chart-one div,
-#chart-one rect,
-#chart-one path,
-#chart-one text,
-#chart-one g,
-#chart-one circle,
-#chart-one line {
+div,
+rect,
+path,
+text,
+g,
+circle,
+line {
   transition: all 0.7s ease-in-out;
 }
 
@@ -794,29 +794,42 @@ export default {
   0%,
   100% {
     r: 5;
+    stroke-width: 1;
+    stroke: #000;
+    fill: #fff;
   }
   50% {
     r: 9;
+    stroke-width: 2;
+    fill: var(--special);
   }
 }
 @-moz-keyframes pulsing {
   0%,
   100% {
     r: 5;
+    stroke-width: 1;
+    stroke: #000;
+    fill: #fff;
   }
   50% {
     r: 9;
+    stroke-width: 2;
+    fill: var(--special);
   }
 }
 @keyframes pulsing {
   0%,
   100% {
     r: 5;
-    fill: purple;
+    stroke-width: 1;
+    stroke: #000;
+    fill: #fff;
   }
   50% {
     r: 9;
-    fill: orange;
+    stroke-width: 2;
+    fill: var(--special);
   }
 }
 
@@ -834,7 +847,7 @@ circle:hover {
   transition: all 0.7s ease-in-out;
 }
 
-#chart-one .selector {
+.selector {
   stroke: var(--main-body-type);
   /* stroke: var(--special); */
   stroke-width: 3px;
@@ -844,7 +857,7 @@ circle:hover {
   transition: all 0.3s ease-in-out;
 }
 
-#chart-one .selector-inactive {
+.selector-inactive {
   stroke: var(--main-body-type);
   stroke-width: 1px;
   stroke-dasharray: 2;
@@ -853,7 +866,7 @@ circle:hover {
   transition: all 0.3s ease-in-out;
 }
 
-#chart-one .link {
+.link {
   stroke: black;
   stroke-width: 2.5px;
   /* stroke-opacity: 0.8; */
@@ -862,26 +875,26 @@ circle:hover {
   transition: all 0.7s ease-in-out;
 }
 
-#chart-one .link-inactive {
+.link-inactive {
   stroke: black;
   stroke-width: 2px;
   fill: none;
   opacity: 0.3;
   transition: all 0.7s ease-in-out;
 }
-#chart-one .link-hide {
+.link-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
 
-#chart-one .area-active {
+.area-active {
   opacity: 1;
   transition: all 0.7s ease-in-out;
 }
-#chart-one .area-active:hover {
+.area-active:hover {
   cursor: crosshair;
 }
-#chart-one .area-hide {
+.area-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
