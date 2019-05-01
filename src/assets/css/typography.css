@@ -9,12 +9,14 @@ are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
   font-size: 62.5%;
 }
+/* load google fonts */
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700|IBM+Plex+Sans:400,400i,600,700");
 
 body {
   font-size: 1.7em;
   /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 400;
   font-family: "IBM Plex Sans", sans-serif;
   color: #0f242c;
   -webkit-font-smoothing: antialiased;

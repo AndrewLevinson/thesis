@@ -654,7 +654,7 @@ export default {
 /* text */
 .text-section {
   padding-bottom: 20rem;
-  z-index: 999;
+  /* z-index: 999; */
   font-size: 90%;
 }
 
@@ -665,7 +665,7 @@ export default {
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;
-  z-index: 999;
+  /* z-index: 999; */
   border-radius: 4px;
   opacity: 0.925;
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
@@ -706,7 +706,7 @@ section {
 }
 
 .graph-one-title {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 2.5rem;
   /* fill: #485465; */
   font-family: "IBM Plex Sans", sans-serif;
@@ -786,13 +786,15 @@ line {
 
   transition: all 0.7s ease-in-out;
 
-  -webkit-animation: pulsing 1.5s infinite ease-in-out;
+  /* moved animation to global scope due to webpack bug */
+  /* -webkit-animation: pulsing 1.5s infinite ease-in-out;
   -moz-animation: pulsing 1.5s infinite ease-in-out;
-  animation: pulsing 1.5s infinite ease-in-out;
+  animation: pulsing 1.5s infinite ease-in-out; */
 }
 
+/* animation moved to global App since issues with webpack keyframes scoped css */
 /* pulsing circle on active */
-@-webkit-keyframes pulsing {
+/* @-webkit-keyframes pulsing {
   0%,
   100% {
     r: 5;
@@ -818,7 +820,7 @@ line {
   50% {
     r: 9;
   }
-}
+} */
 
 circle:hover {
   cursor: pointer;

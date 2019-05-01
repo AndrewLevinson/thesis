@@ -155,7 +155,7 @@ nav {
 .dots p {
   padding: 0.5rem 0 0.5rem 0;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
   opacity: 0.6;
 }
 

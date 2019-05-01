@@ -387,7 +387,7 @@ svg {
 }
 
 #graph-three-title {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 2.5rem;
   fill: #485465;
   /* opacity: 0.8; */
@@ -414,12 +414,12 @@ svg {
 }
 
 .slider {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 #slider-total-label {
   border-top: 3px solid black;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: -0.75rem;
 }
 #unit-label {

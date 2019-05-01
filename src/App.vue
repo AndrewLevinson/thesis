@@ -250,6 +250,41 @@ export default {
   background-color: var(--other);
 }
 
+/* keyframes animation here in global bc issues with webpack scoped css */
+.circle-active {
+  -webkit-animation: pulsing 1.5s infinite ease-in-out;
+  -moz-animation: pulsing 1.5s infinite ease-in-out;
+  animation: pulsing 1.5s infinite ease-in-out;
+}
+/* pulsing circle on active */
+@-webkit-keyframes pulsing {
+  0%,
+  100% {
+    r: 5;
+  }
+  50% {
+    r: 9;
+  }
+}
+@-moz-keyframes pulsing {
+  0%,
+  100% {
+    r: 5;
+  }
+  50% {
+    r: 9;
+  }
+}
+@keyframes pulsing {
+  0%,
+  100% {
+    r: 5;
+  }
+  50% {
+    r: 9;
+  }
+}
+
 html,
 input,
 select {
@@ -259,10 +294,15 @@ select {
 [v-cloak] {
   visibility: hidden;
 }
+
 body {
   width: 100%;
-  overflow-x: hidden;
   margin: auto;
+  overflow-x: hidden;
+}
+#app {
+  /* overflow: initial !important; */
+  /* overflow-x: hidden; */
 }
 
 a {
@@ -270,6 +310,7 @@ a {
   text-decoration: none;
   transition: all 0.3s ease-in;
 }
+
 a:hover {
   color: var(--emphasis);
   transition: all 0.3s ease-in;
@@ -285,7 +326,7 @@ a:hover {
   flex-direction: column;
   flex: 1 1 0%;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   background-image: url(./assets/images/hero2.png);
   background-size: contain;
   background-size: 65%;
@@ -326,6 +367,59 @@ a:hover {
   background: linear-gradient(0deg, rgb(239, 248, 255), rgba(239, 248, 255, 0));
   height: 30vh;
   width: 100vw;
+}
+
+.blue {
+  -webkit-animation: blue-cycle 4s infinite ease-in-out;
+  -moz-animation: blue-cycle 4s infinite ease-in-out;
+  animation: blue-cycle 4s infinite ease-in-out;
+}
+
+/* blue text color change animation */
+@-webkit-keyframes blue-cycle {
+  0%,
+  100% {
+    color: #0b519b;
+  }
+  25% {
+    color: #3184bf;
+  }
+  50% {
+    color: #6aacd3;
+  }
+  75% {
+    color: #9dc9e1;
+  }
+}
+@-moz-keyframes blue-cycle {
+  0%,
+  100% {
+    color: #0b519b;
+  }
+  25% {
+    color: #3184bf;
+  }
+  50% {
+    color: #6aacd3;
+  }
+  75% {
+    color: #9dc9e1;
+  }
+}
+@keyframes blue-cycle {
+  0%,
+  100% {
+    color: #0b519b;
+  }
+  25% {
+    color: #3184bf;
+  }
+  50% {
+    color: #6aacd3;
+  }
+  75% {
+    color: #9dc9e1;
+  }
 }
 
 .main-header {
@@ -479,64 +573,11 @@ div.tooltip {
   border: 1px solid red;
 }
 .datum {
-  font-weight: bold;
+  font-weight: 700;
 }
 .total {
   /* border-bottom: 2px solid rgba(0, 0, 0, 0.8); */
   font-weight: 600;
-}
-
-.blue {
-  -webkit-animation: blue-cycle 4s infinite ease-in-out;
-  -moz-animation: blue-cycle 4s infinite ease-in-out;
-  animation: blue-cycle 4s infinite ease-in-out;
-}
-
-/* pulsing circle on active */
-@-webkit-keyframes blue-cycle {
-  0%,
-  100% {
-    color: #0b519b;
-  }
-  25% {
-    color: #3184bf;
-  }
-  50% {
-    color: #6aacd3;
-  }
-  75% {
-    color: #9dc9e1;
-  }
-}
-@-moz-keyframes blue-cycle {
-  0%,
-  100% {
-    color: #0b519b;
-  }
-  25% {
-    color: #3184bf;
-  }
-  50% {
-    color: #6aacd3;
-  }
-  75% {
-    color: #9dc9e1;
-  }
-}
-@keyframes blue-cycle {
-  0%,
-  100% {
-    color: #0b519b;
-  }
-  25% {
-    color: #3184bf;
-  }
-  50% {
-    color: #6aacd3;
-  }
-  75% {
-    color: #9dc9e1;
-  }
 }
 
 .special {
