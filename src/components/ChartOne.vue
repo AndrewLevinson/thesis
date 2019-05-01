@@ -782,7 +782,6 @@ export default {
   fill: var(--special);
   stroke: #000;
   opacity: 1;
-
   transition: all 0.7s ease-in-out;
 
   -webkit-animation: pulsing 1.5s infinite ease-in-out;
@@ -813,9 +812,11 @@ export default {
   0%,
   100% {
     r: 5;
+    fill: purple;
   }
   50% {
     r: 9;
+    fill: orange;
   }
 }
 
@@ -826,6 +827,7 @@ circle:hover {
 .circle-group {
   opacity: 1;
   transition: all 0.7s ease-in-out;
+  transform-origin: left top;
 }
 .circle-group-hide {
   opacity: 0;
