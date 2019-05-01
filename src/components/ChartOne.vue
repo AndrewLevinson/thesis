@@ -650,15 +650,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 /* text */
-.text-section {
+#chart-one .text-section {
   padding-bottom: 20rem;
   /* z-index: 999; */
   font-size: 90%;
 }
 
-.text-box {
+#chart-one .text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
   width: 45%;
   max-width: 600px;
@@ -674,18 +674,18 @@ export default {
   border: 1px solid rgba(112, 112, 112, 0.33);
 }
 
-.text-box p {
+#chart-one .text-box p {
   margin-bottom: 0px;
 }
 
-.box-title {
+#chart-one .box-title {
   margin-bottom: 0.5rem;
   /* font-size: 120%; */
 
   /* border-bottom: 1px dashed var(--main-body-type); */
 }
 
-section {
+#chart-one section {
   z-index: 999;
 }
 /* text -- graph scroll */
@@ -720,18 +720,18 @@ section {
 }
 
 /* legend */
-.legend-hidden {
+#chart-one .legend-hidden {
   opacity: 0;
 }
 
-.legend {
+#chart-one .legend {
   justify-content: space-between;
   padding-bottom: 0.5rem;
   margin-top: -0.5rem;
   font-size: 1.4rem;
 }
 
-.tag {
+#chart-one .tag {
   display: inline-block;
   padding: 0.4rem 0.75rem 0.5rem 0.75rem;
   margin-right: 1rem;
@@ -742,11 +742,11 @@ section {
   transition: all 0.2s ease-in-out;
 }
 
-.tag-intext {
+#chart-one .tag-intext {
   margin: 0;
 }
 
-.tag:hover {
+#chart-one .tag:hover {
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -754,47 +754,44 @@ section {
 }
 
 /* chart elements */
-div,
-rect,
-path,
-text,
-g,
-circle,
-line {
+#chart-one div,
+#chart-one rect,
+#chart-one path,
+#chart-one text,
+#chart-one g,
+#chart-one circle,
+#chart-one line {
   transition: all 0.7s ease-in-out;
 }
 
-.circle-up {
+#chart-one .circle-up {
   fill: #fff;
   stroke: #000;
   opacity: 1;
 
   transition: all 0.7s ease-in-out;
 }
-.circle-inactive {
+#chart-one .circle-inactive {
   fill: #fff;
   stroke: #000;
   opacity: 0.3;
   transition: all 0.7s ease-in-out;
 }
 
-/* moved circle-active to global scope bc of webpack scoped css keyframes issues */
-/* .circle-active { */
-/* fill: var(--special);
+#chart-one .circle-active {
+  fill: var(--special);
   stroke: #000;
   opacity: 1;
 
-  transition: all 0.7s ease-in-out; */
+  transition: all 0.7s ease-in-out;
 
-/* moved animation to global scope due to webpack bug */
-/* -webkit-animation: pulsing 1.5s infinite ease-in-out;
+  -webkit-animation: pulsing 1.5s infinite ease-in-out;
   -moz-animation: pulsing 1.5s infinite ease-in-out;
-  animation: pulsing 1.5s infinite ease-in-out; */
-/* } */
+  animation: pulsing 1.5s infinite ease-in-out;
+}
 
-/* animation moved to global App since issues with webpack keyframes scoped css */
 /* pulsing circle on active */
-/* @-webkit-keyframes pulsing {
+@-webkit-keyframes pulsing {
   0%,
   100% {
     r: 5;
@@ -820,22 +817,22 @@ line {
   50% {
     r: 9;
   }
-} */
+}
 
-circle:hover {
+#chart-one circle:hover {
   cursor: pointer;
 }
 
-.circle-group {
+#chart-one .circle-group {
   opacity: 1;
   transition: all 0.7s ease-in-out;
 }
-.circle-group-hide {
+#chart-one .circle-group-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
 
-.selector {
+#chart-one .selector {
   stroke: var(--main-body-type);
   /* stroke: var(--special); */
   stroke-width: 3px;
@@ -845,7 +842,7 @@ circle:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.selector-inactive {
+#chart-one .selector-inactive {
   stroke: var(--main-body-type);
   stroke-width: 1px;
   stroke-dasharray: 2;
@@ -854,7 +851,7 @@ circle:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.link {
+#chart-one .link {
   stroke: black;
   stroke-width: 2.5px;
   /* stroke-opacity: 0.8; */
@@ -863,31 +860,30 @@ circle:hover {
   transition: all 0.7s ease-in-out;
 }
 
-.link-inactive {
+#chart-one .link-inactive {
   stroke: black;
   stroke-width: 2px;
   fill: none;
   opacity: 0.3;
   transition: all 0.7s ease-in-out;
 }
-.link-hide {
+#chart-one .link-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
 
-.area-active {
+#chart-one .area-active {
   opacity: 1;
   transition: all 0.7s ease-in-out;
 }
-.area-active:hover {
+#chart-one .area-active:hover {
   cursor: crosshair;
 }
-.area-hide {
+#chart-one .area-hide {
   opacity: 0;
   transition: all 0.7s ease-in-out;
 }
 
-/* currently all area fill handled globally in App.vue */
 /* all blues */
 /* .area-one {
   fill: var(--ground);

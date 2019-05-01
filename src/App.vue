@@ -250,47 +250,6 @@ export default {
   background-color: var(--other);
 }
 
-/* keyframes animation here in global bc issues with webpack scoped css */
-.circle-active {
-  fill: var(--special);
-  stroke: #000;
-  opacity: 1;
-
-  transition: all 0.7s ease-in-out;
-
-  -webkit-animation: pulsing 1.5s infinite ease-in-out;
-  -moz-animation: pulsing 1.5s infinite ease-in-out;
-  animation: pulsing 1.5s infinite ease-in-out;
-}
-/* pulsing circle on active */
-@-webkit-keyframes pulsing {
-  0%,
-  100% {
-    r: 5;
-  }
-  50% {
-    r: 9;
-  }
-}
-@-moz-keyframes pulsing {
-  0%,
-  100% {
-    r: 5;
-  }
-  50% {
-    r: 9;
-  }
-}
-@keyframes pulsing {
-  0%,
-  100% {
-    r: 5;
-  }
-  50% {
-    r: 9;
-  }
-}
-
 html,
 input,
 select {
@@ -594,7 +553,7 @@ div.tooltip {
   background-color: var(--special);
 }
 
-/* hide mapbox controls/ */
+/* global: hide mapbox controls/ */
 .mapboxgl-control-container {
   visibility: hidden;
 }
