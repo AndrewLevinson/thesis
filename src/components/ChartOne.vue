@@ -778,19 +778,19 @@ line {
   transition: all 0.7s ease-in-out;
 }
 
-.circle-active {
-  /* fill: #3c5a99; */
-  fill: var(--special);
+/* moved circle-active to global scope bc of webpack scoped css keyframes issues */
+/* .circle-active { */
+/* fill: var(--special);
   stroke: #000;
   opacity: 1;
 
-  transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out; */
 
-  /* moved animation to global scope due to webpack bug */
-  /* -webkit-animation: pulsing 1.5s infinite ease-in-out;
+/* moved animation to global scope due to webpack bug */
+/* -webkit-animation: pulsing 1.5s infinite ease-in-out;
   -moz-animation: pulsing 1.5s infinite ease-in-out;
   animation: pulsing 1.5s infinite ease-in-out; */
-}
+/* } */
 
 /* animation moved to global App since issues with webpack keyframes scoped css */
 /* pulsing circle on active */

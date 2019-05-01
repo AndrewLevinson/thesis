@@ -252,6 +252,12 @@ export default {
 
 /* keyframes animation here in global bc issues with webpack scoped css */
 .circle-active {
+  fill: var(--special);
+  stroke: #000;
+  opacity: 1;
+
+  transition: all 0.7s ease-in-out;
+
   -webkit-animation: pulsing 1.5s infinite ease-in-out;
   -moz-animation: pulsing 1.5s infinite ease-in-out;
   animation: pulsing 1.5s infinite ease-in-out;
