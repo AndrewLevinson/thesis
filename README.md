@@ -1,6 +1,14 @@
-# us-water-crisis
+# The United States Water Crisis
 
-### [URL to LIVE site](https://thewatercrisis.us/)
+### How changes to the natural water cycle and transitioning population centers are causing water stress
+
+### [thewatercrisis.us](https://thewatercrisis.us/)
+
+![preview.png](src/assets/images/preview.png)
+
+---
+
+#### For development (vue cli3)
 
 ## Project setup
 
