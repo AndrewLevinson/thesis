@@ -227,28 +227,33 @@ export default {
 
 /* ordinal */
 .area-one-100 {
-  fill: var(--irrigation);
-  background-color: var(--irrigation);
-}
-
-.area-two-100 {
   fill: var(--thermo);
   background-color: var(--thermo);
 }
 
-.area-three-100 {
-  fill: var(--industrial);
-  background-color: var(--industrial);
+.area-two-100 {
+  fill: var(--irrigation);
+  background-color: var(--irrigation);
 }
 
-.area-four-100 {
+.area-three-100 {
   fill: var(--municipal);
   background-color: var(--municipal);
+}
+.area-four-100 {
+  fill: var(--industrial);
+  background-color: var(--industrial);
 }
 
 .area-five-100 {
   fill: var(--other);
   background-color: var(--other);
+}
+
+.area-disabled {
+  fill: #b1b1b1;
+  background-color: #b1b1b1;
+  display: none;
 }
 
 html,
@@ -512,10 +517,11 @@ div.tooltip {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  margin-bottom: 0.5rem;
 }
 
 .data-pair p {
-  /* font-weight: bold; */
+  font-weight: 700;
   font-family: "IBM Plex Mono", monospace;
 }
 
@@ -530,6 +536,11 @@ div.tooltip {
   border: 1px solid #fff;
   margin-right: 3rem;
   transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+
+.tag-intext {
+  margin: 0;
 }
 
 /* global utilities */

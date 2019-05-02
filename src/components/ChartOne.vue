@@ -19,17 +19,20 @@
         </div>
       </div>
       <div v-else :class="[showArea ? 'legend-active' : 'legend-hidden']" class="legend">
-        <div class="area-one-100 tag">
-          <span>Irrigation</span>
-        </div>
-        <div class="area-two-100 tag">
+        <!-- <div :class="[setShown === 2 ? 'area-one-100 tag' : 'area-disabled tag']">
+          <span>Thremoelectric</span>
+        </div>-->
+        <div v-show="setShown === 2" class="area-one-100 tag">
           <span>Thremoelectric</span>
         </div>
+        <div class="area-two-100 tag">
+          <span>Irrigation</span>
+        </div>
         <div class="area-three-100 tag">
-          <span>Industrial</span>
+          <span>Municipal</span>
         </div>
         <div class="area-four-100 tag">
-          <span>Municipal</span>
+          <span>Industrial</span>
         </div>
         <div class="area-five-100 tag">
           <span>Other</span>
@@ -49,7 +52,7 @@
             @mousemove="mouseoverArea"
             @mouseleave="showLabel = false, myTooltip()"
           >
-            <path v-show="setShown === 2" class="selector" :d="paths.selector"></path>
+            <path v-show="setShown != 1" class="selector" :d="paths.selector"></path>
             <path :class="[setShown === 1 ? 'area-one' : 'area-one-100']" :d="paths.areaOne"></path>
             <path :class="[setShown === 1 ? 'area-two' : 'area-two-100']" :d="paths.areaTwo"></path>
             <path :class="[setShown === 1 ? 'area-three' : 'area-three-100']" :d="paths.areaThree"></path>
@@ -136,17 +139,43 @@
           >2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
           <br>
           <br>
-          <span class="area-two-100 tag tag-intext">
+          <span class="area-one-100 tag tag-intext">
             Thermoelectric:
             <span class="datum">41%</span>
           </span>,
-          <span class="area-one-100 tag tag-intext">
+          <span class="area-two-100 tag tag-intext">
             Irrigation:
             <span class="datum">37%</span>
           </span> and
-          <span class="area-four-100 tag tag-intext">
+          <span class="area-three-100 tag tag-intext">
             Municipal:
             <span class="datum">13%</span>
+          </span>
+          <br>
+          <br>But these numbers are just averages, the breakdown in each state is much different...
+        </p>
+      </div>
+
+      <div class="text-box">
+        <h5 class="box-title">Excluding Thermoelectric Withdrawls</h5>
+        <p>
+          Every five years, the U.S. Geological Survey collects water usage data for the country. As of
+          <span
+            class="datum"
+          >2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
+          <br>
+          <br>
+          <span class="area-two-100 tag tag-intext">
+            Irrigation:
+            <span class="datum">63%</span>
+          </span>,
+          <span class="area-three-100 tag tag-intext">
+            Municipal:
+            <span class="datum">22%</span>
+          </span> and
+          <span class="area-four-100 tag tag-intext">
+            Industrial:
+            <span class="datum">14%</span>
           </span>
           <br>
           <br>But these numbers are just averages, the breakdown in each state is much different...
@@ -360,7 +389,7 @@ export default {
     },
     mouseoverArea({ offsetX }) {
       this.showLabel = true;
-      if (this.setShown === 2 && this.pointsArea[1].length > 0) {
+      if (this.setShown != 1 && this.pointsArea[1].length > 0) {
         const x = offsetX - this.margin.left;
         const closestPoint = this.getClosestPoint(x);
         if (this.lastHoverPoint.index !== closestPoint.index) {
@@ -406,8 +435,6 @@ export default {
             .style("opacity", 0);
         },
         show: function(t) {
-          console.log(window.innerWidth);
-          console.log(event.clientX);
           this.element
             .html(t)
             .transition()
@@ -448,96 +475,108 @@ export default {
         <div class="tip-band"></div>
         <h5 class="datum">${d.year}</h5>
         <h6 class="sub-head-tip">Renewable Water Per Capita<br>(m3/year/person)</h6>
-
-          <div class="data-pair">
-            <div class="area-three tip-tag">
-              <span>Dependencies</span>
-            </div>
-            <p>
+          <div class="data-pair area-three tip-tag">
+            <span class="tag-intext">Dependencies</span>
+            <p class="tag-intext">
               ${this.numFormater("num", d.dpc)}
             </p>
           </div>
-
-          <div class="data-pair">
-            <div class="area-two tip-tag">
-              <span>Surface Water</span>
-            </div>
-            <p>
+      
+          <div class="data-pair area-two tip-tag">
+            <span class="tag-intext">Surface Water</span>
+            <p class="tag-intext">
               ${this.numFormater("num", d.spc)}
             </p>
           </div>
 
-          <div class="data-pair">
-            <div class="area-one tip-tag">
-              <span>Groundwater</span>
-            </div>
-            <p>
+          <div class="data-pair area-one tip-tag">
+            <span class="tag-intext">Groundwater</span>
+            <p class="tag-intext">
               ${this.numFormater("num", d.gpc)}
             </p>
           </div>
 
-        
-
-
-          <div class="data-pair">
-            <div>
-              <span class="datum">Total</span>
-            </div>
+       
+          <div class="data-pair tip-tag">
+            <span class="datum total">Total</span>
             <p class="total">
               ${this.numFormater("num", d.rwpc)}
             </p>
           </div>
-        
-        
         `);
         } else if (this.setShown === 2) {
           this.tooltip.show(`
-<div class="tip-band"></div>
-          <h5 class="datum">${d.year}</h5>
-    <h6 class="sub-head-tip">Percentage of Water Withdrawls</h6>
+        <div class="tip-band"></div>
+        <h5 class="datum">${d.year}</h5>
+        <h6 class="sub-head-tip">Percentage of Water Withdrawls</h6>
 
-          <div class="data-pair">
-            <div class="area-five-100 tip-tag">
-              <span>Other</span>
-            </div>
-            <p>
-              ${this.numFormater("per", d.otherPer)}
+          <div class="data-pair area-five-100 tip-tag">
+            <span class="tag-intext">Other</span>
+            <p class="tag-intext">
+            ${this.numFormater("per", d.otherPer)}
             </p>
           </div>
 
-          <div class="data-pair">
-            <div class="area-four-100 tip-tag">
-              <span>Municipal</span>
-            </div>
-            <p>
-              ${this.numFormater("per", d.publicPer)}
-            </p>
-          </div>
 
-          <div class="data-pair">
-            <div class="area-three-100 tip-tag">
-              <span>Industrial</span>
-            </div>
-            <p>
+          <div class="data-pair area-four-100 tip-tag">
+            <span class="tag-intext">Industrial</span>
+            <p class="tag-intext">
               ${this.numFormater("per", d.industrialPer)}
             </p>
           </div>
 
-          <div class="data-pair">
-            <div class="area-two-100 tip-tag">
-              <span>Thermoelectric</span>
-            </div>
-            <p>
+          <div class="data-pair area-three-100 tip-tag">
+            <span class="tag-intext">Municipal</span>
+            <p class="tag-intext">
+              ${this.numFormater("per", d.publicPer)}
+            </p>
+          </div>
+
+          <div class="data-pair area-two-100 tip-tag">
+            <span class="tag-intext">Irrigation</span>
+            <p class="tag-intext">
+              ${this.numFormater("per", d.irrigationPer)}
+            </p>
+          </div>
+
+       <div class="data-pair area-one-100 tip-tag">
+            <span class="tag-intext">Thermoelectric</span>
+            <p class="tag-intext">
               ${this.numFormater("per", d.thermoPer)}
+            </p>
+          </div>
+         `);
+        } else if (this.setShown === 3) {
+          this.tooltip.show(`
+        <div class="tip-band"></div>
+        <h5 class="datum">${d.year}</h5>
+        <h6 class="sub-head-tip">Percentage of Water Withdrawls</h6>
+
+          <div class="data-pair area-five-100 tip-tag">
+            <span class="tag-intext">Other</span>
+            <p class="tag-intext">
+            ${this.numFormater("per", d.otherPer)}
             </p>
           </div>
 
 
-          <div class="data-pair">
-            <div class="area-one-100 tip-tag">
-              <span>Irrigation</span>
-            </div>
-            <p>
+          <div class="data-pair area-four-100 tip-tag">
+            <span class="tag-intext">Industrial</span>
+            <p class="tag-intext">
+              ${this.numFormater("per", d.industrialPer)}
+            </p>
+          </div>
+
+          <div class="data-pair area-three-100 tip-tag">
+            <span class="tag-intext">Municipal</span>
+            <p class="tag-intext">
+              ${this.numFormater("per", d.publicPer)}
+            </p>
+          </div>
+
+          <div class="data-pair area-two-100 tip-tag">
+            <span class="tag-intext">Irrigation</span>
+            <p class="tag-intext">
               ${this.numFormater("per", d.irrigationPer)}
             </p>
           </div>
@@ -605,10 +644,29 @@ export default {
               this.domain.y.min = 0;
               this.domain.y.max = 100;
               this.stackKeys = [
-                "irrigationPer",
                 "thermoPer",
-                "industrialPer",
+                "irrigationPer",
                 "publicPer",
+                "industrialPer",
+                "otherPer"
+              ];
+
+              break;
+            case 4:
+              this.graphOneTitle =
+                "Percentage Share of Water Withdrawls Excluding Thermoelectric";
+              this.yLabel = "% of Total Water Withdrawn";
+
+              // change dataset to 100% area
+              this.setShown = 3;
+              this.showArea = true;
+              this.domain.y.min = 0;
+              this.domain.y.max = 100;
+              this.stackKeys = [
+                "thermoPer",
+                "irrigationPer",
+                "publicPer",
+                "industrialPer",
                 "otherPer"
               ];
 
