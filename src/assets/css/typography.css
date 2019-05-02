@@ -10,7 +10,7 @@ html {
   font-size: 62.5%;
 }
 /* load google fonts */
-@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700|IBM+Plex+Sans:400,400i,600,700");
+/* @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700|IBM+Plex+Sans:400,400i,600,700"); */
 
 body {
   font-size: 1.7em;

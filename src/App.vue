@@ -597,4 +597,6 @@ caption {
 #chart-three .x-axis .tick line {
   opacity: 1;
 }
+
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700|IBM+Plex+Sans:400,400i,600,700");
 </style>
