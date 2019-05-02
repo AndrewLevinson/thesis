@@ -152,17 +152,14 @@
             <span class="datum">13%</span>
           </span>
           <br>
-          <br>But these numbers are just averages, the breakdown in each state is much different...
+          <br>However, this number is a bit misleading as not all water withdrawn is consumed—specifically in thermoelectric usage where virtually all water is returned back to the earth after it's used for a one-through cooling process.
         </p>
       </div>
 
       <div class="text-box">
         <h5 class="box-title">Excluding Thermoelectric Withdrawls</h5>
         <p>
-          Every five years, the U.S. Geological Survey collects water usage data for the country. As of
-          <span
-            class="datum"
-          >2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
+          If we remove thermoelectric withdrawals from the chart, it paints a more accurate picture of consumptive water use, now showing top three uses of water as
           <br>
           <br>
           <span class="area-two-100 tag tag-intext">
@@ -178,7 +175,7 @@
             <span class="datum">14%</span>
           </span>
           <br>
-          <br>But these numbers are just averages, the breakdown in each state is much different...
+          <br>But these numbers are just averages, the local breakdown is much different...
         </p>
       </div>
     </section>

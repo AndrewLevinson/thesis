@@ -141,6 +141,7 @@ export default {
       for (const i of allLayers) {
         if (x === 0) {
           if (i.id != "revisedcounties-2") {
+            // && i.id != "settlement-label"
             // hide everything that isn't county water heatmap
             this.map.setLayoutProperty(i.id, "visibility", "none");
           }
@@ -183,7 +184,7 @@ export default {
           this.map.setLayoutProperty("markers-dakqe6", "visibility", "none");
         } else if (x === 7) {
           // v low opacity for county map - should maybe just hide?
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.0);
 
           // low opacity when looking at entire country and markers shown
           this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
