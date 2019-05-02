@@ -1,6 +1,12 @@
 Overall
-- Responsive charts, text, and fix x-overflow issue with map
+- Responsive charts / text in all sections
 - Write, write, write! 
+- Image compression
+- SEO stuff/prerender
+- Sources, footnotes, and methodology
+
+Hero
+- Daniel's idea for water texture in map
 
 Section One
 - Tooltip fades out when scrolling action
@@ -8,6 +14,25 @@ Section One
 - Add final view for consumptive water use (not just withdrawals)
 
 Seciton Two
-- Add legend and/or detailed title to water usage / capita map
-- Potentially add another view for callout/tooltip? (maybe not necessary)
-- 
+- Add legend and/or detailed title to first water usage / capita map
+-— Potentially add another view for callout/tooltip? (maybe not necessary)
+- Data tables or minicharts for case study sections
+- Data for infrastructure repairs: text flashes on states for time-lapse animation? with total counter++
+---
+    Special chart 2 Responsive: 
+    - Overflow issue with panel
+    - Side mini panel fixed horizonal
+    - Add hamburger for main panel 
+    - Fit map in viewport mapbox
+
+Section Three
+- Animate in from 0 current levels
+- Research and add current spending levels
+- Figure out orders of magnitude calculations for each metric
+- Model explaination / graphic / legend
+- Model results (tabbed dialogue box with explaination on right panel?)
+- Category tags and modal (like tooltip hover?) options for info on metrics
+---
+    Special chart 3 Responsive: 
+    - Where does model explaination/results go on smaller screens?
+        -- Potentially small counter with total saved fixed on screen that can be clicked and expanded as panel or modal.
