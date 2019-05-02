@@ -138,31 +138,31 @@ export default {
           projected: 0
         },
         {
-          name: "Pricing: Drinking Water",
+          name: "Pricing: Drinking Water %",
           cat: "demand",
           current: 0,
           projected: 0
         },
         {
-          name: "Pricing: Industry & Irrigation",
+          name: "Pricing: Industry & Irrigation %",
           cat: "demand",
           current: 0,
           projected: 0
         },
         {
-          name: "Infrastructure: Drinking Water",
+          name: "Infrastructure: Drinking Water %",
           cat: "investment",
           current: 1500,
           projected: 1500
         },
         {
-          name: "Infrastructure: Collection & Storage",
+          name: "Infrastructure: Collection & Storage $",
           cat: "investment",
           current: 2000,
           projected: 2000
         },
         {
-          name: "Infrastructure: Wastewater",
+          name: "Infrastructure: Wastewater $",
           cat: "investment",
           current: 500,
           projected: 500

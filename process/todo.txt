@@ -1,0 +1,13 @@
+Overall
+- Responsive charts, text, and fix x-overflow issue with map
+- Write, write, write! 
+
+Section One
+- Tooltip fades out when scrolling action
+- Add another view for 2019 projection on line/water source
+- Add final view for consumptive water use (not just withdrawals)
+
+Seciton Two
+- Add legend and/or detailed title to water usage / capita map
+- Potentially add another view for callout/tooltip? (maybe not necessary)
+- 

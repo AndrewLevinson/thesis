@@ -1,0 +1,78 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-109.21447, 37.03572]
+      },
+      "properties": {
+        "title": "Colorado River Basin",
+        "description": "Colorado River Water Stress",
+        "category": "Drought"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.2437, 34.0522]
+      },
+      "properties": {
+        "title": "Southern California",
+        "description": "Pricing Tiers",
+        "category": "Drought"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-101.431, 41.744]
+      },
+      "properties": {
+        "title": "The High Plains",
+        "description": "Ogallala Aquifer Depletion",
+        "category": "Groundwater Overabstraction"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-81.385071, 25.858244]
+      },
+      "properties": {
+        "title": "Florida Everglades",
+        "description": "Saltwater Contamination",
+        "category": "Groundwater Overabstraction"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.935242, 40.7128]
+      },
+      "properties": {
+        "title": "The Northeast",
+        "description": "Sewer System Contamination",
+        "category": "Drinking Water Infrastructure"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-83.705521, 43.0125]
+      },
+      "properties": {
+        "title": "Flint, Michigan",
+        "description": "Lead Contamination",
+        "category": "Drinking Water Infrastructure"
+      }
+    }
+  ]
+}

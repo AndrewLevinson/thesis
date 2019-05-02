@@ -29,17 +29,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Chicago & Milwaukee</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus
-        </p>
-      </div>
-      <div class="text-box">
-        <h5 class="box-title">Florida Everglades</h5>
+        <h5 class="box-title">Southern California Pricing Tiers</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -58,6 +48,17 @@
           possimus
         </p>
       </div>
+      <div class="text-box">
+        <h5 class="box-title">Florida Everglades</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+          doloremque laudantium corrupti sapiente quae suscipit id
+          cupiditate eius sint necessitatibus debitis nam voluptatibus
+          animi, error fugiat distinctio provident nesciunt. Necessitatibus
+          possimus
+        </p>
+      </div>
+
       <div class="text-box">
         <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
         <p>
@@ -129,24 +130,69 @@ export default {
           }
         }
       }).on("load", () => {
-        this.resetMapLayers(0);
+        this.setMapLayers(0);
         this.scrollTrigger();
 
         // this.map.removeLayer("revisedcounties-2");
       });
     },
-    resetMapLayers(x) {
+    setMapLayers(x) {
       const allLayers = this.map.getStyle().layers;
       for (const i of allLayers) {
         if (x === 0) {
           if (i.id != "revisedcounties-2") {
+            // hide everything that isn't county water heatmap
             this.map.setLayoutProperty(i.id, "visibility", "none");
           }
-          // reset opacity to full 1
+          // county water heatmap full opacity
           this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
-        } else {
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+        } else if (x === 1) {
+          // make everything visible
           this.map.setLayoutProperty(i.id, "visibility", "visible");
+
+          // v low opacity for county map - should maybe just hide?
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+
+          // low opacity when looking at entire country and markers shown
+          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.4);
+          this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0.4);
+          this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
+          this.map.setPaintProperty("custom-rivers", "line-opacity", 0.4);
+        } else if (x === 2) {
+          // this.map.setLayoutProperty(i.id, "visibility", "visible");
+          // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+          this.map.setPaintProperty("crbasin", "fill-opacity", 1);
+          this.map.setPaintProperty("custom-rivers", "line-opacity", 0.75);
+          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
+        } else if (x === 3) {
+          // this.map.setLayoutProperty(i.id, "visibility", "visible");
+          // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+          this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
+          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 1);
+        } else if (x === 6) {
+          // v low opacity for county map - should maybe just hide?
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.3);
+
+          // no opacity when looking at entire country and markers or drinking water repairs shown
+          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0);
+          this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
+          this.map.setPaintProperty("crbasin", "fill-opacity", 0);
+          this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+
+          // hide markers on zoom out
+          this.map.setLayoutProperty("markers-dakqe6", "visibility", "none");
+        } else if (x === 7) {
+          // v low opacity for county map - should maybe just hide?
+          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+
+          // low opacity when looking at entire country and markers shown
+          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
+          this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
+          this.map.setPaintProperty("crbasin", "fill-opacity", 0);
+          this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+
+          // reset markers to show on normal zoom out
+          this.map.setLayoutProperty("markers-dakqe6", "visibility", "visible");
         }
       }
     },
@@ -170,7 +216,7 @@ export default {
                 center: [-98.461045, 38], // whole US zoomed in
                 zoom: 3.8
               });
-              this.resetMapLayers(i);
+              this.setMapLayers(i);
               break;
 
             case 1:
@@ -179,34 +225,42 @@ export default {
                 center: [-98.461045, 38], // whole US zoomed in
                 zoom: 3.8
               });
-              this.resetMapLayers(i);
+              this.setMapLayers(i);
               break;
             case 2:
               this.map.flyTo({
                 center: [-109, 36.5], // colorado basin
                 zoom: 5
               });
+              this.setMapLayers(i);
+
               break;
             case 3:
               // position
               this.map.flyTo({
-                center: [-87.623177, 41.881832], // chicago
+                center: [-118.2437, 34.0522], // LA
                 zoom: 5.5
               });
+              this.setMapLayers(i);
+
               break;
             case 4:
-              // position
-              this.map.flyTo({
-                center: [-81.385071, 25.858244], // everglades
-                zoom: 5.5
-              });
-              break;
-            case 5:
               // position
               this.map.flyTo({
                 center: [-97, 38.591559], // ogallala acquifer
                 zoom: 4.75
               });
+              this.setMapLayers(i);
+
+              break;
+            case 5:
+              // position
+              this.map.flyTo({
+                center: [-81.385071, 25.858244], // everglades
+                zoom: 5.5
+              });
+              this.setMapLayers(i);
+
               break;
             case 6:
               // position
@@ -214,6 +268,8 @@ export default {
                 center: [-98.461045, 36.805969], // whole US zoomed in, infrastructure
                 zoom: 3.5
               });
+              this.setMapLayers(i);
+
               break;
             case 7:
               // position
@@ -221,6 +277,8 @@ export default {
                 center: [-73.935242, 40.7128], // northeast (NYC)
                 zoom: 5.5
               });
+              this.setMapLayers(i);
+
               break;
             case 8:
               // position
@@ -228,6 +286,8 @@ export default {
                 center: [-83.705521, 43.0125], // flint
                 zoom: 7.5
               });
+              this.setMapLayers(i);
+
               break;
             default:
               console.log("none");
@@ -267,7 +327,8 @@ export default {
 }
 
 .text-box:first-of-type,
-.text-box:nth-of-type(2) {
+.text-box:nth-of-type(2),
+.text-box:nth-of-type(7) {
   width: 40%;
   max-width: 800px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
@@ -286,7 +347,8 @@ export default {
   box-shadow: none;
 }
 
-.text-box:nth-of-type(2) {
+.text-box:nth-of-type(2),
+.text-box:nth-of-type(7) {
   background-color: var(--map-bg-color);
   color: #fff;
 }

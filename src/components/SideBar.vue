@@ -1,31 +1,33 @@
 <template>
   <nav :class="[showPanel ? 'show-panel' : 'hide-panel']">
     <div class="icon-holder">
+      <div class="panel-tip-band"></div>
       <!-- <h6>Case Studies</h6> -->
       <div class="dots">
-        <div :class="[scrollPosition == 2 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition >= 2 && scrollPosition <= 3 ? 'active-dot': 'dot']">
           <div></div>
           <p>Drought</p>
         </div>
-        <div :class="[scrollPosition >= 3 && scrollPosition <= 5 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition >= 4 && scrollPosition <= 5 ? 'active-dot': 'dot']">
           <div></div>
           <p>Groundwater</p>
         </div>
-        <div :class="[scrollPosition == 6 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition >= 6 ? 'active-dot': 'dot']">
           <div></div>
           <p>Infrastructure</p>
         </div>
-        <div :class="[scrollPosition >= 7 ? 'active-dot': 'dot']">
+        <!-- <div :class="[scrollPosition >= 7 ? 'active-dot': 'dot']">
           <div></div>
           <p>Contamination</p>
-        </div>
+        </div>-->
       </div>
     </div>
     <section :class="[showPanelContent ? 'show-panel-content' : 'hide-panel-content']">
+      <div class="panel-tip-band"></div>
       <div class="panel-content">
-        <article v-if=" scrollPosition <= 2">
-          <h3>American Southwest</h3>
-          <h5>Drought</h5>
+        <article v-if="scrollPosition === 2">
+          <h2>Drought</h2>
+          <h5>Colorado River</h5>
           <div class="image-holder">
             <!-- Photo by Pedro Lastra on Unsplash -->
             <img src="../assets/images/pedro-lastra-165298-unsplash.jpg" alt="colorado river">
@@ -33,14 +35,33 @@
           </div>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
-        <article v-else-if="scrollPosition >= 3 && scrollPosition <= 5">
+        <article v-else-if="scrollPosition === 3">
+          <h2>Drought</h2>
+          <h5>Southern California Pricing Tiers</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
+        </article>
+        <article v-else-if="scrollPosition === 4">
           <h2>Groundwater Overabstraction</h2>
+          <h5>Ogallala Depletion</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
+        </article>
+        <article v-else-if="scrollPosition === 5">
+          <h2>Groundwater Overabstraction</h2>
+          <h5>Saltwater Contamination</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
         <article v-else-if="scrollPosition == 6">
-          <h2>Drinking Water Infrastructure</h2>
+          <!-- <h2>Drinking Water Infrastructure</h2> -->
         </article>
-        <article v-else-if="scrollPosition >= 7">
-          <h2>Contamination</h2>
+        <article v-else-if="scrollPosition == 7">
+          <h2>Drinking Water Infrastructure</h2>
+          <h5>Sewer System Contamination</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
+        </article>
+        <article v-else-if="scrollPosition == 8">
+          <h2>Drinking Water Infrastructure</h2>
+          <h5>Lead Contamination</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
       </div>
     </section>
@@ -52,7 +73,7 @@ export default {
   name: "side-bar",
   props: ["scrollPosition"],
   data() {
-    return { classyName: "", showPanel: false, showPanelContent: false };
+    return { showPanel: false, showPanelContent: false };
   },
   watch: {
     scrollPosition: "scrollPanel"
@@ -61,19 +82,23 @@ export default {
     scrollPanel(i) {
       switch (i) {
         case 0:
-          console.log("im zero prop");
           this.showPanel = false;
           break;
         case 1:
           this.showPanel = true;
           this.showPanelContent = false;
-          console.log("im 1 prop");
-
           break;
         case 2:
           this.showPanelContent = true;
-
-          console.log("im 2 prop");
+          break;
+        case 5:
+          this.showPanelContent = true;
+          break;
+        case 6:
+          this.showPanelContent = false;
+          break;
+        case 7:
+          this.showPanelContent = true;
           break;
       }
     }
@@ -114,6 +139,15 @@ nav {
   transform: translateX(calc(100% + 90px));
 }
 
+.panel-tip-band {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 6px;
+  width: 100%;
+  background-color: var(--special);
+}
+
 .icon-holder {
   position: absolute;
   height: 100vh;
@@ -133,7 +167,7 @@ nav {
 .dots {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 40%;
   justify-content: space-evenly;
   text-align: center;
   padding-top: 3rem;
@@ -188,19 +222,20 @@ section {
   overflow-y: auto;
 }
 
-.panel-content h3 {
+article h2 {
   /* padding-top: 2rem; */
-  /* margin-bottom: 0; */
+  margin-bottom: 0;
+  line-height: 1;
 }
-.panel-content h5 {
+article h5 {
   /* font-weight: 300; */
   /* font-family: monospace; */
-  opacity: 0.7;
-  margin-top: -2.5rem;
+  opacity: 0.75;
+  /* margin-top: -1.5rem; */
   /* margin-bottom: 0; */
 }
 
-.panel-content p {
+article p {
   margin-top: 1.75rem;
   font-size: 95%;
 }
