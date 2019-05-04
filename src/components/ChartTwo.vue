@@ -2,6 +2,10 @@
   <div id="chart-two">
     <div id="map">
       <SideBar :scrollPosition="scrollPosition"/>
+      <!-- <div v-show="setAnimate" id="repair-box">
+        <h5 class="total">{{ currentState }}</h5>
+        <p class="datum">{{ currentRepair }}</p>
+      </div>-->
       <div id="my-map" :class="[scrollPosition == 0 ? 'visible-background' : 'hidden-background']">
         <!-- map goes here -->
       </div>
@@ -61,13 +65,13 @@
 
       <div class="text-box">
         <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus
-        </p>
+        <p>Infrastructure repair needs in the US have skyrocketed in the last 50 years. Play the animation below to see the total investment required to improve our drinking water infrastructure for each state:</p>
+        <div class="player">
+          <button v-if="!playing" @click="playing = !playing, infraAnimate()">Play Animation</button>
+          <button v-else @click="playing = !playing, infraAnimate()">Pause Animation</button>
+        </div>
+        <h5 class="total">{{ currentState }}</h5>
+        <p class="datum">{{ numFormater(currentRepair) }}</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Northeast Combined Sewers</h5>
@@ -106,12 +110,17 @@ export default {
   data() {
     return {
       map: null,
-      scrollPosition: null
+      scrollPosition: null,
+      currentState: null,
+      currentRepair: null,
+      playing: false,
+      places: [{}]
     };
   },
   mounted() {
     this.loadMap();
-    this.scrollTrigger();
+    this.loadData();
+    // this.scrollTrigger();
   },
   methods: {
     loadMap() {
@@ -130,72 +139,167 @@ export default {
           }
         }
       }).on("load", () => {
+        this.map.addSource("states", {
+          type: "geojson",
+          data: "https://docs.mapbox.com/mapbox-gl-js/assets/us_states.geojson"
+        });
+
+        this.map.addLayer({
+          id: "state-fills",
+          type: "fill",
+          source: "states",
+          layout: {},
+          paint: {
+            "fill-color": "#627BC1",
+            "fill-opacity": [
+              "case",
+              ["boolean", ["feature-state", "hover"], false],
+              0.7,
+              0
+            ]
+          }
+        });
         this.setMapLayers(0);
         this.scrollTrigger();
-
-        // this.map.removeLayer("revisedcounties-2");
       });
+    },
+    loadData() {
+      d3.csv("data/clean/drinking.csv", d => {
+        return {
+          state: d["State"],
+          id: +d["Id"],
+          lng: +d["lng"],
+          lat: +d["lat"],
+          repair: +d["Total"],
+          partial: ["Partial"]
+        };
+      }).then(d => {
+        return (this.places = d);
+        // console.log(d);
+      });
+    },
+    numFormater(el) {
+      const numFormatT = d3.format(",.2f");
+      return `$ ${numFormatT(el / 1000)} Billion`;
     },
     setMapLayers(x) {
       const allLayers = this.map.getStyle().layers;
-      for (const i of allLayers) {
-        if (x === 0) {
-          if (i.id != "revisedcounties-2") {
+
+      if (x === 0) {
+        for (const i of allLayers) {
+          if (i.id != "revisedcounties-2" && i.id != "us-states") {
             // && i.id != "settlement-label"
             // hide everything that isn't county water heatmap
             this.map.setLayoutProperty(i.id, "visibility", "none");
           }
-          // county water heatmap full opacity
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
-        } else if (x === 1) {
+        }
+        // county water heatmap and states outlines full opacity
+        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
+        this.map.setPaintProperty("us-states", "fill-opacity", 1);
+      } else if (x === 1) {
+        for (const i of allLayers) {
           // make everything visible
           this.map.setLayoutProperty(i.id, "visibility", "visible");
-
-          // v low opacity for county map - should maybe just hide?
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
-
-          // low opacity when looking at entire country and markers shown
-          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.4);
-          this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0.4);
-          this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
-          this.map.setPaintProperty("custom-rivers", "line-opacity", 0.4);
-        } else if (x === 2) {
-          // this.map.setLayoutProperty(i.id, "visibility", "visible");
-          // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
-          this.map.setPaintProperty("crbasin", "fill-opacity", 1);
-          this.map.setPaintProperty("custom-rivers", "line-opacity", 0.75);
-          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
-        } else if (x === 3) {
-          // this.map.setLayoutProperty(i.id, "visibility", "visible");
-          // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
-          this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
-          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 1);
-        } else if (x === 6) {
-          // v low opacity for county map - should maybe just hide?
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.3);
-
-          // no opacity when looking at entire country and markers or drinking water repairs shown
-          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0);
-          this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
-          this.map.setPaintProperty("crbasin", "fill-opacity", 0);
-          this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
-
-          // hide markers on zoom out
-          this.map.setLayoutProperty("markers-dakqe6", "visibility", "none");
-        } else if (x === 7) {
-          // v low opacity for county map - should maybe just hide?
-          this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.0);
-
-          // low opacity when looking at entire country and markers shown
-          this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
-          this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
-          this.map.setPaintProperty("crbasin", "fill-opacity", 0);
-          this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
-
-          // reset markers to show on normal zoom out
-          this.map.setLayoutProperty("markers-dakqe6", "visibility", "visible");
         }
+        // v low opacity for county map - should maybe just hide?
+        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+        this.map.setPaintProperty("us-states", "fill-opacity", 0.15);
+
+        // low opacity when looking at entire country and markers shown
+        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.4);
+        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0.4);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 0.4);
+      } else if (x === 2) {
+        // this.map.setLayoutProperty(i.id, "visibility", "visible");
+        // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 1);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 0.75);
+        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
+      } else if (x === 3) {
+        // this.map.setLayoutProperty(i.id, "visibility", "visible");
+        // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
+        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 1);
+      } else if (x === 6) {
+        // v low opacity for county map - should maybe just hide?
+        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0);
+        this.map.setPaintProperty("us-states", "fill-opacity", 0.3);
+
+        // no opacity when looking at entire country and markers or drinking water repairs shown
+        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0);
+        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+
+        // hide markers on zoom out
+        this.map.setLayoutProperty("markers-dakqe6", "visibility", "none");
+      } else if (x === 7) {
+        // v low opacity for county map - should maybe just hide?
+        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.0);
+
+        // low opacity when looking at entire country and markers shown
+        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
+        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+
+        // reset markers to show on normal zoom out
+        this.map.setLayoutProperty("markers-dakqe6", "visibility", "visible");
       }
+    },
+    infraAnimate() {
+      var hoveredStateId = null;
+      // highlight drinking water repair needs $
+      var initial = 0;
+      const howManyTimes = this.places.length;
+      const f = () => {
+        if (this.playing) {
+          this.currentState = this.places[initial].state;
+          this.currentRepair = this.places[initial].repair;
+
+          if (hoveredStateId) {
+            this.map.setFeatureState(
+              {
+                source: "states",
+                id: hoveredStateId
+              },
+              { hover: false }
+            );
+          }
+          hoveredStateId = this.places[initial].id;
+          this.map.setFeatureState(
+            {
+              source: "states",
+              id: hoveredStateId
+            },
+            { hover: true }
+          );
+
+          // this.map.flyTo({
+          //   center: [this.places[initial].lng, this.places[initial].lat],
+          //   zoom: 5
+          // });
+
+          initial++;
+          if (initial < howManyTimes) {
+            setTimeout(f, 1000);
+          }
+        } else {
+          this.map.setFeatureState(
+            {
+              source: "states",
+              id: hoveredStateId
+            },
+            { hover: false }
+          );
+          // this.map.flyTo({
+          //   center: [-98.461045, 38], // whole US zoomed out
+          //   zoom: 3.8
+          // });
+        }
+      };
+      f();
     },
 
     scrollTrigger() {
@@ -255,6 +359,8 @@ export default {
 
               break;
             case 5:
+              this.playing = false;
+
               // position
               this.map.flyTo({
                 center: [-81.385071, 25.858244], // everglades
@@ -266,13 +372,16 @@ export default {
             case 6:
               // position
               this.map.flyTo({
-                center: [-98.461045, 36.805969], // whole US zoomed in, infrastructure
+                center: [-98.461045, 36.805969], // whole US zoomed out, infrastructure
                 zoom: 3.5
               });
+              // will also fire animation
+              // this.setAnimate = true;
+              this.infraAnimate();
               this.setMapLayers(i);
-
               break;
             case 7:
+              this.playing = false;
               // position
               this.map.flyTo({
                 center: [-73.935242, 40.7128], // northeast (NYC)
@@ -392,6 +501,18 @@ section {
   width: 100vw;
   height: 100vh;
   background-color: none;
+}
+
+#repair-box {
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  /* width: 200px; */
+  /* height: 50px; */
+  color: #fff;
+  background-color: var(--map-bg-color);
+  z-index: 999;
+  padding: 1rem;
 }
 
 .visible-background {

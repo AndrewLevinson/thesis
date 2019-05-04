@@ -4,9 +4,11 @@ const fs = require("fs");
 const csv = require("csvtojson");
 
 const geoData = fs.readFileSync("counties.geo.json");
+// const geoData = fs.readFileSync("../public/data/working-untracked/us_states.geojson");
 const geoDataParse = JSON.parse(geoData);
 
 const csvFilePath = "countyusage.csv";
+// const csvFilePath = "./public/data/working-untracked/";
 
 function parser() {
   csv()

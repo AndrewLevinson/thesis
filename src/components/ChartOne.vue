@@ -603,6 +603,8 @@ export default {
               this.showArea = false;
               this.selected = null;
               this.showCallOut = false;
+              // this.showLabel = false;
+
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
@@ -614,6 +616,8 @@ export default {
               this.setShown = 1;
               this.selected = 6;
               this.showCallOut = true;
+              // this.showLabel = true;
+              // this.myTooltip(this.filteredData[6]);
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
@@ -627,6 +631,8 @@ export default {
               this.domain.y.max = 14000;
               this.selected = null;
               this.showCallOut = false;
+              // this.showLabel = false;
+
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
