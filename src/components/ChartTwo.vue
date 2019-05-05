@@ -8,10 +8,11 @@
         :currentRepair="currentRepair"
         v-on:playingSideBar="playingSideBar"
       />
-      <!-- <div v-show="setAnimate" id="repair-box">
+      <div v-show="$store.getters.playing" id="repair-box">
         <h5 class="total">{{ currentState }}</h5>
-        <p class="datum">{{ currentRepair }}</p>
-      </div>-->
+        <p class="datum special">{{ numFormater(currentRepair) }}</p>
+        <button @click="skipToEnd">Skip to End</button>
+      </div>
       <div id="my-map" :class="[scrollPosition == 0 ? 'visible-background' : 'hidden-background']">
         <!-- map goes here -->
       </div>
@@ -69,7 +70,10 @@
         </p>
       </div>
 
-      <div :id="[$store.getters.playing ? 'playing' : 'not-playing']" class="text-box">
+      <div
+        :id="[$store.getters.playing || $store.getters.finished ? 'playing' : 'not-playing']"
+        class="text-box"
+      >
         <div>
           <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
           <p>Infrastructure repair needs in the US have skyrocketed in the last 50 years. Play the animation below to see the total investment required to improve our drinking water infrastructure for each state:</p>
@@ -123,7 +127,7 @@ export default {
       scrollPosition: null,
       currentState: null,
       currentRepair: null,
-      adjust: 5,
+      adjust: 0,
       places: [{}]
     };
   },
@@ -197,6 +201,14 @@ export default {
     },
     playingSideBar(is) {
       this.play(is);
+    },
+    skipToEnd() {
+      this.$store.commit("updatePlaying", false);
+      this.$store.commit("finishedPlaying", true);
+      this.map.flyTo({
+        center: [-98.461045 + 16, 38],
+        zoom: 3.45
+      });
     },
     setMapLayers(x) {
       const allLayers = this.map.getStyle().layers;
@@ -302,6 +314,8 @@ export default {
           initial++;
           if (initial < howManyTimes) {
             setTimeout(f, 750);
+          } else {
+            this.skipToEnd();
           }
         }
       };
@@ -379,7 +393,7 @@ export default {
             case 6:
               // position
               this.map.flyTo({
-                center: [-98.461045 + this.adjust + 5, 36.805969], // whole US zoomed out, infrastructure
+                center: [-98.461045 + this.adjust, 36.805969], // whole US zoomed out, infrastructure
                 zoom: 3.5
               });
               // will also fire animation
@@ -446,9 +460,8 @@ export default {
 }
 
 .text-box:first-of-type,
-.text-box:nth-of-type(2)
-/* .text-box:nth-of-type(7) { */
- {
+.text-box:nth-of-type(2),
+.text-box:nth-of-type(7) {
   width: 40%;
   max-width: 800px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
@@ -515,14 +528,28 @@ section {
 
 #repair-box {
   position: fixed;
-  bottom: 50px;
-  left: 50px;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 1rem;
   /* width: 200px; */
+
   /* height: 50px; */
   color: #fff;
   background-color: var(--map-bg-color);
-  z-index: 999;
+  z-index: 998;
   padding: 1rem;
+  text-align: center;
+  border: 1px solid var(--special);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+#repair-box h5 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#repair-box p {
+  font-size: 200%;
 }
 
 #playing {

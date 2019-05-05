@@ -56,13 +56,13 @@
             v-if="!$store.getters.playing"
             @click="playingSideBar(true)"
             class="play-button"
-          >Play Animation</button>
+          >Replay Animation</button>
           <button v-else @click="playingSideBar(false)" class="play-button">Stop Animation</button>
-          <div v-if="$store.getters.playing">
+          <!-- <div v-if="$store.getters.playing">
             <h5 class="total">{{ currentState }}</h5>
             <p class="datum">{{ numFormater(currentRepair) }}</p>
-          </div>
-          <table v-else id="water-table">
+          </div>-->
+          <table v-show="$store.getters.finished && !$store.getters.playing" id="water-table">
             <thead>
               <tr>
                 <th>State</th>
@@ -71,7 +71,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="place in places" :class="place.state" :key="place.state">
+              <tr v-for="place in places.slice().reverse()" :class="place.state" :key="place.state">
                 <td class="pull-left">{{place.state}}</td>
                 <td class="pull-right">{{numFormater(place.repair)}}</td>
                 <!-- <td>{{place.partial}}</td> -->
@@ -106,10 +106,38 @@ export default {
       showPanelContent: false
     };
   },
-  watch: {
-    scrollPosition: "scrollPanel"
+  computed: {
+    animationComplete() {
+      return this.$store.getters.finished;
+    },
+    stillPlaying() {
+      return this.$store.getters.playing;
+    }
   },
-
+  // watch: {
+  //   scrollPosition: "scrollPanel"
+  // },
+  watch: {
+    scrollPosition: "scrollPanel",
+    animationComplete(newValue, oldValue) {
+      console.log(`Updating from ${oldValue} to ${newValue}`);
+      // Do whatever makes sense now
+      if (newValue) {
+        this.showPanelContent = true;
+      } else {
+        this.showPanelContent = false;
+      }
+    },
+    stillPlaying(newValue, oldValue) {
+      console.log(`Updating from ${oldValue} to ${newValue}`);
+      // Do whatever makes sense now
+      if (newValue) {
+        this.showPanelContent = false;
+      } else {
+        this.showPanelContent = true;
+      }
+    }
+  },
   methods: {
     playingSideBar(is) {
       this.$emit("playingSideBar", is);
@@ -134,8 +162,9 @@ export default {
           this.showPanelContent = true;
           break;
         case 6:
-          // this.showPanelContent = false;
-          this.showPanelContent = true;
+          this.$store.getters.finished && !this.$store.getters.playing
+            ? (this.showPanelContent = true)
+            : (this.showPanelContent = false);
           break;
         case 7:
           this.showPanelContent = true;
