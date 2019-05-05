@@ -52,6 +52,8 @@
         </article>
         <article v-else-if="scrollPosition === 6">
           <h2>Drinking Water Infrastructure</h2>
+          <h5>Repairs Needed</h5>
+
           <button
             v-if="!$store.getters.playing"
             @click="playingSideBar(true)"
@@ -358,11 +360,19 @@ button {
   border-right: 2px solid #7d82a8;
 }
 
-table td:last-child {
+/* #water-table td:last-child {
   border-right: none;
-}
-table tbody tr:nth-child(2n) td {
+} */
+#water-table tbody tr:nth-child(2n) td {
   background: var(--map-bg-color);
+}
+
+#water-table tbody tr:first-of-type {
+  font-weight: 700;
+  color: var(--special);
+  border-bottom: 2px solid #fff;
+  position: sticky;
+  top: 50px;
 }
 
 @media (max-width: 600px) {

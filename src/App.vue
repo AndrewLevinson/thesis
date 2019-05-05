@@ -271,10 +271,6 @@ body {
   margin: auto;
   overflow-x: hidden;
 }
-#app {
-  /* overflow: initial !important; */
-  /* overflow-x: hidden; */
-}
 
 a {
   color: var(--link-color);
@@ -285,6 +281,10 @@ a {
 a:hover {
   color: var(--emphasis);
   transition: all 0.3s ease-in;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 #container {
@@ -583,21 +583,20 @@ table {
   background: transparent;
   margin-top: 2rem;
   padding: 1rem;
-  /* width: 300px; */
+  padding-bottom: 0.75rem;
 }
 
 .play-button::after {
-  content: "\362";
+  content: url("./assets/icons/play_button.svg");
   text-align: right;
-  width: 24px;
+  width: 18px;
   float: right;
-  margin-top: -0.3rem;
-  margin-right: 0.5rem;
+  margin-top: 0.175rem;
+  margin-left: 0.75rem;
   white-space: nowrap;
 }
 
 .play-button:hover {
-  cursor: pointer;
   background-color: var(--special);
 }
 
@@ -645,6 +644,4 @@ caption {
 #chart-three .x-axis .tick line {
   opacity: 1;
 }
-
-/* @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700|IBM+Plex+Sans:400,400i,600,700"); */
 </style>

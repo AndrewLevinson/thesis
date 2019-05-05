@@ -11,8 +11,8 @@
       <div v-show="$store.getters.playing" id="repair-box">
         <h5 class="total">{{ currentState }}</h5>
         <p class="datum special">{{ numFormater(currentRepair) }}</p>
-        <button @click="skipToEnd">Skip to End</button>
       </div>
+      <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">Skip to End</button>
       <div id="my-map" :class="[scrollPosition == 0 ? 'visible-background' : 'hidden-background']">
         <!-- map goes here -->
       </div>
@@ -20,34 +20,27 @@
     <section class="text-section" id="sectionsTwo">
       <div class="text-box">
         <h5 class="box-title">Freshwater Withdrawals Per Capita</h5>
-        <p>The west withdraws much more water than most of the country mostly for irrigation and agriculture.</p>
+        <p>As alluded to in the previous charts, most of our freshwater withdrawls are not for drinking water, but for irrigation—which occurs prodominently in the High Plaines and Western regions.</p>
+        <br>
+        <p>That's why this crisis is much bigger than just personal consumption.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>
         <p>
           Throughout the country we have already seen increasing water
-          stress due to a number of different factors. These issues are
-          isolated a local, but are a sign of things to come with inaction.
+          stress due to a number of different factors. While some of these issues are isolated and some are symptoms of overarching problems like climate change, they are all signs of things to come if inaction continues.
         </p>
+        <br>
+        <p>Let's take a look at local water stress at a local level.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Colorado River Basin</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt.
-        </p>
+        <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, severe climate change has affected the natural water cycle. With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Southern California Pricing Tiers</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus
-        </p>
+        <p>A reaction to increased drought intensity and frequency over the last decade has led to drastic water conservation efforts in Los Angeles in the form of pricing tiers.</p>
+        <p>While controversial, it has proven in its short lifetime to provide some conservation success, while still provide a standard rate for the baseline amount of drinking water needs ones home. In other words, we all pay the same price for drinking, cooking, bathing, and wastewater but if you have a swimming pool or a water feature in your yard, you're going to pay a premium.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">The High Plains (Ogallala Aquifer)</h5>
@@ -71,10 +64,10 @@
       </div>
 
       <div
-        :id="[$store.getters.playing || $store.getters.finished ? 'playing' : 'not-playing']"
-        class="text-box"
+        :id="[$store.getters.playing  ? 'playing' : 'not-playing']"
+        :class="[$store.getters.finished ? 'text-box finished-text-box' : 'text-box']"
       >
-        <div>
+        <div v-if="!$store.getters.finished">
           <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
           <p>Infrastructure repair needs in the US have skyrocketed in the last 50 years. Play the animation below to see the total investment required to improve our drinking water infrastructure for each state:</p>
           <div class="player">
@@ -85,6 +78,10 @@
             >Play Animation</button>
             <button v-else @click="play(false)" class="play-button">Stop Animation</button>
           </div>
+        </div>
+        <div v-else id="special-total">
+          <h5 class="total">Total Repairs Needed</h5>
+          <p class="datum special">$ 464.56 Billion</p>
         </div>
       </div>
       <div class="text-box">
@@ -206,7 +203,7 @@ export default {
       this.$store.commit("updatePlaying", false);
       this.$store.commit("finishedPlaying", true);
       this.map.flyTo({
-        center: [-98.461045 + 16, 38],
+        center: [-98.461045 + this.adjust, 38],
         zoom: 3.45
       });
     },
@@ -234,10 +231,10 @@ export default {
         this.map.setPaintProperty("us-states", "fill-opacity", 0.15);
 
         // low opacity when looking at entire country and markers shown
-        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.4);
-        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0.4);
-        this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 0.4);
+        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.2);
+        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0.2);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 0.2);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 0.2);
       } else if (x === 2) {
         // this.map.setLayoutProperty(i.id, "visibility", "visible");
         // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
@@ -315,8 +312,49 @@ export default {
           if (initial < howManyTimes) {
             setTimeout(f, 750);
           } else {
+            this.adjust = 16;
             this.skipToEnd();
           }
+        } else if (this.$store.getters.finished) {
+          this.adjust = 16;
+          this.skipToEnd();
+
+          // this.map.flyTo({
+          //   center: [-98.461045 + 16, 38],
+          //   zoom: 3.45
+          // });
+          // this.map.addLayer({
+          //   id: "repair-fills",
+          //   type: "fill",
+          //   source: "states",
+          //   layout: {},
+          //   paint: {
+          //     "fill-opacity": 0.75,
+          //     "fill-color": [
+          //       "interpolate",
+          //       ["linear"],
+          //       ["get", "id"],
+          //       0,
+          //       "#F2F12D",
+          //       5,
+          //       "#EED322",
+          //       10,
+          //       "#E6B71E",
+          //       15,
+          //       "#DA9C20",
+          //       20,
+          //       "#CA8323",
+          //       25,
+          //       "#B86B25",
+          //       30,
+          //       "#A25626",
+          //       35,
+          //       "#8B4225",
+          //       40,
+          //       "#723122"
+          //     ]
+          //   }
+          // });
         }
       };
       f();
@@ -486,6 +524,15 @@ export default {
   color: #fff;
 }
 
+.finished-text-box {
+  width: 25% !important;
+  /* margin-left: 18rem !important; */
+  transform: translateX(calc(-490px / 2));
+  padding: 1rem !important;
+  text-align: center !important;
+  border: 1px solid var(--special) !important;
+}
+
 .text-box p {
   margin-bottom: 0px;
 }
@@ -527,7 +574,7 @@ section {
 }
 
 #repair-box {
-  position: fixed;
+  position: absolute;
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -544,12 +591,18 @@ section {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
-#repair-box h5 {
+#repair-box h5,
+#special-total h5 {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-#repair-box p {
+#repair-box p,
+#special-total p {
   font-size: 200%;
+}
+
+#special-total {
+  /* width: 30%; */
 }
 
 #playing {
@@ -560,6 +613,35 @@ section {
 #not-playing {
   opacity: 1 !important;
   transition: all 0.7s ease-in-out;
+  width: 40%;
+}
+
+.in-box-button {
+  position: fixed;
+  right: 90px;
+  bottom: 0;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  margin-top: 2rem;
+  color: #fff;
+  text-align: right;
+  z-index: 999;
+  /* padding: 1rem; */
+}
+
+.in-box-button:hover {
+  color: var(--special);
+}
+
+.in-box-button::after {
+  content: "\362";
+  text-align: right;
+  width: 24px;
+  float: right;
+  margin-top: -0.3rem;
+  margin-right: 0.5rem;
+  white-space: nowrap;
 }
 
 .visible-background {
