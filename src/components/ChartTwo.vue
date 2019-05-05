@@ -1,7 +1,13 @@
 <template>
   <div id="chart-two">
     <div id="map">
-      <SideBar :scrollPosition="scrollPosition"/>
+      <SideBar
+        :scrollPosition="scrollPosition"
+        :places="places"
+        :currentState="currentState"
+        :currentRepair="currentRepair"
+        v-on:playingSideBar="playingSideBar"
+      />
       <!-- <div v-show="setAnimate" id="repair-box">
         <h5 class="total">{{ currentState }}</h5>
         <p class="datum">{{ currentRepair }}</p>
@@ -63,15 +69,19 @@
         </p>
       </div>
 
-      <div class="text-box">
-        <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
-        <p>Infrastructure repair needs in the US have skyrocketed in the last 50 years. Play the animation below to see the total investment required to improve our drinking water infrastructure for each state:</p>
-        <div class="player">
-          <button v-if="!playing" @click="playing = !playing, infraAnimate()">Play Animation</button>
-          <button v-else @click="playing = !playing, infraAnimate()">Pause Animation</button>
+      <div :id="[$store.getters.playing ? 'playing' : 'not-playing']" class="text-box">
+        <div>
+          <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
+          <p>Infrastructure repair needs in the US have skyrocketed in the last 50 years. Play the animation below to see the total investment required to improve our drinking water infrastructure for each state:</p>
+          <div class="player">
+            <button
+              v-if="!$store.getters.playing"
+              @click="play(true)"
+              class="play-button"
+            >Play Animation</button>
+            <button v-else @click="play(false)" class="play-button">Stop Animation</button>
+          </div>
         </div>
-        <h5 class="total">{{ currentState }}</h5>
-        <p class="datum">{{ numFormater(currentRepair) }}</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Northeast Combined Sewers</h5>
@@ -113,7 +123,7 @@ export default {
       scrollPosition: null,
       currentState: null,
       currentRepair: null,
-      playing: false,
+      adjust: 5,
       places: [{}]
     };
   },
@@ -135,7 +145,7 @@ export default {
         paint: {
           "fill-opacity": 1,
           "fill-opacity-transition": {
-            duration: 200
+            duration: 300
           }
         }
       }).on("load", () => {
@@ -150,11 +160,11 @@ export default {
           source: "states",
           layout: {},
           paint: {
-            "fill-color": "#627BC1",
+            "fill-color": "#45b8cd",
             "fill-opacity": [
               "case",
               ["boolean", ["feature-state", "hover"], false],
-              0.7,
+              0.5,
               0
             ]
           }
@@ -171,16 +181,22 @@ export default {
           lng: +d["lng"],
           lat: +d["lat"],
           repair: +d["Total"],
-          partial: ["Partial"]
+          partial: d["Partial"]
         };
       }).then(d => {
         return (this.places = d);
-        // console.log(d);
       });
     },
     numFormater(el) {
       const numFormatT = d3.format(",.2f");
       return `$ ${numFormatT(el / 1000)} Billion`;
+    },
+    play(is) {
+      this.$store.commit("updatePlaying", is);
+      this.infraAnimate();
+    },
+    playingSideBar(is) {
+      this.play(is);
     },
     setMapLayers(x) {
       const allLayers = this.map.getStyle().layers;
@@ -254,19 +270,18 @@ export default {
       var initial = 0;
       const howManyTimes = this.places.length;
       const f = () => {
-        if (this.playing) {
+        if (hoveredStateId) {
+          this.map.setFeatureState(
+            {
+              source: "states",
+              id: hoveredStateId
+            },
+            { hover: false }
+          );
+        }
+        if (this.$store.getters.playing) {
           this.currentState = this.places[initial].state;
           this.currentRepair = this.places[initial].repair;
-
-          if (hoveredStateId) {
-            this.map.setFeatureState(
-              {
-                source: "states",
-                id: hoveredStateId
-              },
-              { hover: false }
-            );
-          }
           hoveredStateId = this.places[initial].id;
           this.map.setFeatureState(
             {
@@ -276,27 +291,18 @@ export default {
             { hover: true }
           );
 
-          // this.map.flyTo({
-          //   center: [this.places[initial].lng, this.places[initial].lat],
-          //   zoom: 5
-          // });
+          this.map.flyTo({
+            center: [
+              this.places[initial].lng + this.adjust,
+              this.places[initial].lat
+            ],
+            zoom: 5
+          });
 
           initial++;
           if (initial < howManyTimes) {
-            setTimeout(f, 1000);
+            setTimeout(f, 750);
           }
-        } else {
-          this.map.setFeatureState(
-            {
-              source: "states",
-              id: hoveredStateId
-            },
-            { hover: false }
-          );
-          // this.map.flyTo({
-          //   center: [-98.461045, 38], // whole US zoomed out
-          //   zoom: 3.8
-          // });
         }
       };
       f();
@@ -359,7 +365,8 @@ export default {
 
               break;
             case 5:
-              this.playing = false;
+              // this.$store.getters.playing = false;
+              this.$store.commit("updatePlaying", false);
 
               // position
               this.map.flyTo({
@@ -372,16 +379,18 @@ export default {
             case 6:
               // position
               this.map.flyTo({
-                center: [-98.461045, 36.805969], // whole US zoomed out, infrastructure
+                center: [-98.461045 + this.adjust + 5, 36.805969], // whole US zoomed out, infrastructure
                 zoom: 3.5
               });
               // will also fire animation
               // this.setAnimate = true;
-              this.infraAnimate();
+              // this.infraAnimate();
               this.setMapLayers(i);
               break;
             case 7:
-              this.playing = false;
+              // this.$store.getters.playing = false;
+              this.$store.commit("updatePlaying", false);
+
               // position
               this.map.flyTo({
                 center: [-73.935242, 40.7128], // northeast (NYC)
@@ -437,8 +446,9 @@ export default {
 }
 
 .text-box:first-of-type,
-.text-box:nth-of-type(2),
-.text-box:nth-of-type(7) {
+.text-box:nth-of-type(2)
+/* .text-box:nth-of-type(7) { */
+ {
   width: 40%;
   max-width: 800px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
@@ -513,6 +523,16 @@ section {
   background-color: var(--map-bg-color);
   z-index: 999;
   padding: 1rem;
+}
+
+#playing {
+  opacity: 0 !important;
+  transition: all 0.7s ease-in-out;
+}
+
+#not-playing {
+  opacity: 1 !important;
+  transition: all 0.7s ease-in-out;
 }
 
 .visible-background {

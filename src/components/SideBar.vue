@@ -50,8 +50,34 @@
           <h5>Saltwater Contamination</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
-        <article v-else-if="scrollPosition == 6">
-          <!-- <h2>Drinking Water Infrastructure</h2> -->
+        <article v-else-if="scrollPosition === 6">
+          <h2>Drinking Water Infrastructure</h2>
+          <button
+            v-if="!$store.getters.playing"
+            @click="playingSideBar(true)"
+            class="play-button"
+          >Play Animation</button>
+          <button v-else @click="playingSideBar(false)" class="play-button">Stop Animation</button>
+          <div v-if="$store.getters.playing">
+            <h5 class="total">{{ currentState }}</h5>
+            <p class="datum">{{ numFormater(currentRepair) }}</p>
+          </div>
+          <table v-else id="water-table">
+            <thead>
+              <tr>
+                <th>State</th>
+                <th class="pull-right">Repairs Needed</th>
+                <!-- <th>Partial Participation</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="place in places" :class="place.state" :key="place.state">
+                <td class="pull-left">{{place.state}}</td>
+                <td class="pull-right">{{numFormater(place.repair)}}</td>
+                <!-- <td>{{place.partial}}</td> -->
+              </tr>
+            </tbody>
+          </table>
         </article>
         <article v-else-if="scrollPosition == 7">
           <h2>Drinking Water Infrastructure</h2>
@@ -69,16 +95,29 @@
 </template>
 
 <script>
+import * as d3 from "d3";
+
 export default {
   name: "side-bar",
-  props: ["scrollPosition"],
+  props: ["scrollPosition", "places", "currentState", "currentRepair"],
   data() {
-    return { showPanel: false, showPanelContent: false };
+    return {
+      showPanel: false,
+      showPanelContent: false
+    };
   },
   watch: {
     scrollPosition: "scrollPanel"
   },
+
   methods: {
+    playingSideBar(is) {
+      this.$emit("playingSideBar", is);
+    },
+    numFormater(el) {
+      const numFormatT = d3.format(",.2f");
+      return `$ ${numFormatT(el / 1000)} B`;
+    },
     scrollPanel(i) {
       switch (i) {
         case 0:
@@ -95,7 +134,8 @@ export default {
           this.showPanelContent = true;
           break;
         case 6:
-          this.showPanelContent = false;
+          // this.showPanelContent = false;
+          this.showPanelContent = true;
           break;
         case 7:
           this.showPanelContent = true;
@@ -249,6 +289,51 @@ img {
   /* width: 90%; */
   margin: 0 auto;
   border-radius: 4px;
+}
+
+button {
+  margin-bottom: 3rem;
+}
+
+/* table */
+#water-table {
+  border-collapse: collapse;
+  /* margin-top: 3rem; */
+  border: 3px solid #44475c;
+}
+
+#water-table th {
+  position: sticky;
+  top: -3.6rem;
+  background-image: linear-gradient(
+    89.8deg,
+    rgba(25, 26, 26, 0.23) -18.6%,
+    rgba(25, 26, 26, 0.49) -6.2%,
+    rgba(25, 26, 26, 0.73) 14.9%,
+    rgba(25, 26, 26, 0.91) 46.7%,
+    rgba(25, 26, 26, 1) 76.1%
+  );
+
+  text-transform: uppercase;
+  font-size: 90%;
+  /* text-align: left; */
+  background: #44475c;
+  color: #fff;
+  padding: 8px;
+  min-width: 30px;
+}
+
+#water-table td {
+  /* text-align: left; */
+  padding: 8px;
+  border-right: 2px solid #7d82a8;
+}
+
+table td:last-child {
+  border-right: none;
+}
+table tbody tr:nth-child(2n) td {
+  background: var(--map-bg-color);
 }
 
 @media (max-width: 600px) {

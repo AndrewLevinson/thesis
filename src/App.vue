@@ -565,6 +565,42 @@ div.tooltip {
   background-color: var(--special);
 }
 
+.pull-right {
+  text-align: right;
+}
+
+.pull-left {
+  text-align: left;
+}
+
+table {
+  width: 100%;
+}
+
+.play-button {
+  border-radius: 4px;
+  border-color: #fff;
+  background: transparent;
+  margin-top: 2rem;
+  padding: 1rem;
+  /* width: 300px; */
+}
+
+.play-button::after {
+  content: "\362";
+  text-align: right;
+  width: 24px;
+  float: right;
+  margin-top: -0.3rem;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+}
+
+.play-button:hover {
+  cursor: pointer;
+  background-color: var(--special);
+}
+
 /* global: hide mapbox controls/ */
 .mapboxgl-control-container {
   visibility: hidden;
