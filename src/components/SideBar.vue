@@ -33,7 +33,12 @@
             <img src="../assets/images/pedro-lastra-165298-unsplash.jpg" alt="colorado river">
             <!-- <caption>By: Pedro Lastra on Unsplash</caption> -->
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
+          <div class="tag-holder">
+            <span class="area-upper-basin tag">Upper Basin</span>
+            <span class="area-lower-basin tag">Lower Basin</span>
+            <span class="area-river tag">Colorado River</span>
+          </div>
+          <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, severe climate change has affected the natural water cycle. With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
         </article>
         <article v-else-if="scrollPosition === 3">
           <h2>Drought</h2>
@@ -71,7 +76,7 @@
             >$472.6 Billion</span> in capital improvements to our water systems to "provide safe
             drinking water to the public."
           </p>
-          <p>See the complete by-state breakdown below, ordered by need:</p>
+          <p>By state breakdown below, sorted by need:</p>
 
           <!-- <button
             @click="playingSideBar(true)"
@@ -339,6 +344,7 @@ img {
   /* width: 90%; */
   margin: 0 auto;
   border-radius: 4px;
+  margin-bottom: 3rem;
 }
 
 button {
@@ -393,6 +399,45 @@ button {
   position: sticky;
   top: 50px;
 } */
+
+/* tags - careful, this is repeat from chart one */
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.75rem 0.5rem 0.75rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  border: 1px solid var(--main-bg-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.tag-intext {
+  margin: 0;
+}
+
+.tag:hover {
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+/* tag colors */
+.area-upper-basin {
+  /* #fd9935 */
+  fill: rgba(253, 153, 53, 0.5);
+  background-color: rgba(253, 153, 53, 0.5);
+}
+.area-lower-basin {
+  /* #9e4f00 */
+  fill: rgba(158, 79, 0, 0.5);
+  background-color: rgba(158, 79, 0, 0.5);
+}
+.area-river {
+  fill: #0ec7d8;
+  background-color: #0ec7d8;
+}
 
 @media (max-width: 600px) {
   nav {

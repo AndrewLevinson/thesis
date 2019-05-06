@@ -190,8 +190,7 @@ export default {
           repair: +d["Total"],
           partial: d["Partial"]
         };
-      })
-      .then(d => {
+      }).then(d => {
         return (this.places = d);
       });
     },
@@ -218,6 +217,7 @@ export default {
       const allLayers = this.map.getStyle().layers;
 
       if (x === 0) {
+        // display county usage - light
         for (const i of allLayers) {
           if (i.id != "revisedcounties-2" && i.id != "us-states") {
             // && i.id != "settlement-label"
@@ -229,55 +229,53 @@ export default {
         this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
         this.map.setPaintProperty("us-states", "fill-opacity", 1);
       } else if (x === 1) {
+        // display water stress across USA
         for (const i of allLayers) {
           // make everything visible
           this.map.setLayoutProperty(i.id, "visibility", "visible");
         }
         // v low opacity for county map - should maybe just hide?
         this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
-        this.map.setPaintProperty("us-states", "fill-opacity", 0.15);
+        this.map.setPaintProperty("us-states", "fill-opacity", 0.3);
 
         // low opacity when looking at entire country and markers shown
-        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.2);
-        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0.2);
+        this.map.setPaintProperty("aquifers", "fill-opacity", 0.2);
         this.map.setPaintProperty("crbasin", "fill-opacity", 0.2);
         this.map.setPaintProperty("custom-rivers", "line-opacity", 0.2);
       } else if (x === 2) {
-        // this.map.setLayoutProperty(i.id, "visibility", "visible");
-        // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
-        this.map.setPaintProperty("crbasin", "fill-opacity", 1);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 0.75);
-        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
-      } else if (x === 3) {
-        // this.map.setLayoutProperty(i.id, "visibility", "visible");
-        // this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
-        this.map.setPaintProperty("crbasin", "fill-opacity", 0.4);
-        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 1);
-      } else if (x === 6) {
-        // v low opacity for county map - should maybe just hide?
+        // drought  - first
         this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0);
-        this.map.setPaintProperty("us-states", "fill-opacity", 0.3);
+        this.map.setPaintProperty("aquifers", "fill-opacity", 0.0);
 
-        // no opacity when looking at entire country and markers or drinking water repairs shown
-        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0);
-        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
-        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 1);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 1);
 
-        // hide markers on zoom out
+        // hide markers for future zoom outs
         this.map.setLayoutProperty("markers-dakqe6", "visibility", "none");
-      } else if (x === 7) {
-        // v low opacity for county map - should maybe just hide?
-        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.0);
+      } else if (x === 3) {
+        // drought  - second (same as first)
+        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0);
+        this.map.setPaintProperty("aquifers", "fill-opacity", 0.0);
 
-        // low opacity when looking at entire country and markers shown
-        this.map.setPaintProperty("base-org-dxzfkf", "fill-opacity", 0.5);
-        this.map.setPaintProperty("highplains-5hedlf", "fill-opacity", 0);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 1);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 1);
+      } else if (x === 4) {
+        // aquifers - first
         this.map.setPaintProperty("crbasin", "fill-opacity", 0);
         this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
-
-        // reset markers to show on normal zoom out
-        this.map.setLayoutProperty("markers-dakqe6", "visibility", "visible");
+        this.map.setPaintProperty("aquifers", "fill-opacity", 1);
+      } else if (x === 5) {
+        // aquifers - second / zoom in (everglades)
+        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+        this.map.setPaintProperty("aquifers", "fill-opacity", 1);
+      } else if (x === 6) {
+        // drinking water - first
+        this.map.setPaintProperty("aquifers", "fill-opacity", 0);
+      } else if (x === 7) {
+        // drinking water zoom in (northeast)
+      } else if (x === 8) {
+        // drinking water zoom in (flint)
       }
     },
     infraAnimate() {
@@ -404,18 +402,26 @@ export default {
               break;
             case 3:
               // position
+              // this.map.flyTo({
+              //   center: [-118.2437, 34.0522], // LA
+              //   zoom: 5.5
+              // });
               this.map.flyTo({
-                center: [-118.2437, 34.0522], // LA
-                zoom: 5.5
+                center: [-109, 36.5], // colorado basin
+                zoom: 5
               });
               this.setMapLayers(i);
 
               break;
             case 4:
               // position
+              // this.map.flyTo({
+              //   center: [-97, 38.591559], // ogallala acquifer
+              //   zoom: 4.75
+              // });
               this.map.flyTo({
-                center: [-97, 38.591559], // ogallala acquifer
-                zoom: 4.75
+                center: [-98.461045 + 16, 38],
+                zoom: 3.45
               });
               this.setMapLayers(i);
 
