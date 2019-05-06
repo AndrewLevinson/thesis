@@ -50,21 +50,35 @@
           <h5>Saltwater Contamination</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
-        <article v-else-if="scrollPosition === 6">
+        <article
+          v-else-if="scrollPosition === 6"
+          v-show="$store.getters.finished && !$store.getters.playing"
+        >
           <h2>Drinking Water Infrastructure</h2>
           <h5>Repairs Needed</h5>
+          <p>
+            In 2015, the EPA completed their
+            <a
+              href="https://www.epa.gov/sites/production/files/2018-10/documents/corrected_sixth_drinking_water_infrastructure_needs_survey_and_assessment.pdf"
+              target="_blank"
+            >
+              sixth national
+              assessment
+            </a> of public water system infrastructure needs
+            which shows a 20-year need of
+            <span
+              class="total special"
+            >$472.6 Billion</span> in capital improvements to our water systems to "provide safe
+            drinking water to the public."
+          </p>
+          <p>See the complete by-state breakdown below, ordered by need:</p>
 
-          <button
-            v-if="!$store.getters.playing"
+          <!-- <button
             @click="playingSideBar(true)"
             class="play-button"
-          >Replay Animation</button>
-          <button v-else @click="playingSideBar(false)" class="play-button">Stop Animation</button>
-          <!-- <div v-if="$store.getters.playing">
-            <h5 class="total">{{ currentState }}</h5>
-            <p class="datum">{{ numFormater(currentRepair) }}</p>
-          </div>-->
-          <table v-show="$store.getters.finished && !$store.getters.playing" id="water-table">
+          >Replay Animation</button>-->
+
+          <table id="water-table">
             <thead>
               <tr>
                 <th>State</th>
@@ -73,7 +87,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="place in places.slice().reverse()" :class="place.state" :key="place.state">
+              <tr
+                v-for="place in places.filter(place => { return place.state !== 'Total' }).slice().reverse()"
+                :class="place.state"
+                :key="place.state"
+              >
                 <td class="pull-left">{{place.state}}</td>
                 <td class="pull-right">{{numFormater(place.repair)}}</td>
                 <!-- <td>{{place.partial}}</td> -->
@@ -316,6 +334,7 @@ article p {
   width: 100%;
   border-radius: 4px;
 }
+
 img {
   /* width: 90%; */
   margin: 0 auto;
@@ -367,13 +386,13 @@ button {
   background: var(--map-bg-color);
 }
 
-#water-table tbody tr:first-of-type {
+/* #water-table tbody tr:first-of-type {
   font-weight: 700;
   color: var(--special);
   border-bottom: 2px solid #fff;
   position: sticky;
   top: 50px;
-}
+} */
 
 @media (max-width: 600px) {
   nav {

@@ -13,6 +13,11 @@
         <p class="datum special">{{ numFormater(currentRepair) }}</p>
       </div>
       <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">Skip to End</button>
+      <!-- <button
+        v-show="$store.getters.finished && !$store.getters.playing && scrollPosition === 6"
+        @click="play(true)"
+        class="play-button pin-bottom"
+      >Replay Animation</button>-->
       <div id="my-map" :class="[scrollPosition == 0 ? 'visible-background' : 'hidden-background']">
         <!-- map goes here -->
       </div>
@@ -81,7 +86,8 @@
         </div>
         <div v-else id="special-total">
           <h5 class="total">Total Repairs Needed</h5>
-          <p class="datum special">$ 464.56 Billion</p>
+          <p class="datum special">$ 472.6 Billion</p>
+          <button @click="play(true)" class="play-button pin-box">Replay</button>
         </div>
       </div>
       <div class="text-box">
@@ -184,7 +190,8 @@ export default {
           repair: +d["Total"],
           partial: d["Partial"]
         };
-      }).then(d => {
+      })
+      .then(d => {
         return (this.places = d);
       });
     },
@@ -301,10 +308,7 @@ export default {
           );
 
           this.map.flyTo({
-            center: [
-              this.places[initial].lng + this.adjust,
-              this.places[initial].lat
-            ],
+            center: [this.places[initial].lng, this.places[initial].lat],
             zoom: 5
           });
 
@@ -642,6 +646,22 @@ section {
   margin-top: -0.3rem;
   margin-right: 0.5rem;
   white-space: nowrap;
+}
+
+.pin-box {
+  position: absolute;
+  right: 0;
+  top: -55px;
+  /* z-index: 999; */
+  /* color: #fff; */
+  margin: 1.25rem 0 1.25rem 0;
+  border: none;
+  background: transparent;
+}
+
+.pin-box:hover {
+  background: none !important;
+  color: var(--special);
 }
 
 .visible-background {
