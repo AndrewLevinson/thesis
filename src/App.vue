@@ -528,7 +528,7 @@ div.tooltip {
 .data-pair:last-of-type p {
   margin-bottom: 0;
 }
-
+/* tooltiptag */
 .tip-tag {
   padding: 0.4rem 0.75rem 0.5rem 0.75rem;
   border-radius: 4px;
@@ -539,6 +539,26 @@ div.tooltip {
   width: 100%;
 }
 
+/* normal tags */
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.75rem 0.5rem 0.75rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  border: 1px solid var(--main-bg-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.tag:hover {
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+/* tags in paragraph */
 .tag-intext {
   margin: 0;
 }
@@ -630,12 +650,6 @@ table {
   opacity: 0.3;
 }
 
-caption {
-  width: 200px;
-  font-size: 80%;
-  opacity: 0.8;
-}
-
 /* chart three grid */
 #chart-three .grid-three g.tick line {
   opacity: 0.3;
@@ -643,5 +657,18 @@ caption {
 
 #chart-three .x-axis .tick line {
   opacity: 1;
+}
+
+/* chart one grid */
+/* #chart-one .grid-three g.tick line {
+  opacity: 0.3;
+}
+
+#chart-one .x-axis .tick line {
+  opacity: 1;
+} */
+
+#mini-chart .grid .domain {
+  opacity: 0;
 }
 </style>

@@ -792,7 +792,8 @@ section {
   font-size: 1.4rem;
 }
 
-.tag {
+/* tag styles moved to global scope */
+/* .tag {
   display: inline-block;
   padding: 0.4rem 0.75rem 0.5rem 0.75rem;
   margin-right: 1rem;
@@ -812,7 +813,7 @@ section {
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease-in-out;
-}
+} */
 
 /* chart elements */
 div,

@@ -26,20 +26,28 @@
       <div class="panel-tip-band"></div>
       <div class="panel-content">
         <article v-if="scrollPosition === 2">
-          <h2>Drought</h2>
+          <h2>Extended Drought</h2>
           <h5>Colorado River</h5>
-          <div class="image-holder">
-            <!-- Photo by Pedro Lastra on Unsplash -->
-            <img src="../assets/images/pedro-lastra-165298-unsplash.jpg" alt="colorado river">
-            <!-- <caption>By: Pedro Lastra on Unsplash</caption> -->
-          </div>
-          <div class="tag-holder">
+          <!-- <div class="image-holder"> -->
+          <!-- Photo by Pedro Lastra on Unsplash -->
+          <!-- <img src="../assets/images/pedro-lastra-165298-unsplash.jpg" alt="colorado river">
+            <caption>By: Pedro Lastra on Unsplash</caption>
+          </div>-->
+          <!-- <div class="tag-holder">
             <span class="area-upper-basin tag">Upper Basin</span>
             <span class="area-lower-basin tag">Lower Basin</span>
-            <!-- <span class="area-river tag">Colorado River</span> -->
-          </div>
-          <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, severe climate change has affected the natural water cycle. With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
+            <span class="area-river tag">Colorado River</span>
+          </div>-->
+          <p>
+            Climate change has caused frequent extended doughts the Southwest, putting intense pressure on
+            <span class="special datum">major cities</span> that depend on Lake Mead for their drinking water.
+          </p>
           <MiniChart/>
+          <div class="additional-content">
+            <div class="tip-band-mini"></div>
+            <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, climate change has affected the natural water cycle, putting intense pressure on cities that depend on Lake Mead for their dirnking water.</p>
+            <p>With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
+          </div>
         </article>
         <article v-else-if="scrollPosition === 3">
           <h2>Flooding</h2>
@@ -73,6 +81,13 @@
             >$472.6 Billion</span> in capital improvements to our water systems to "provide safe
             drinking water to the public."
           </p>
+
+          <p>By letting our drinking water infrastructure crumble, we are already seeing adverse effects in the forms of:</p>
+          <ul>
+            <li>Water Main Breaks</li>
+            <li>Drinking Water Contamination</li>
+            <li>Wastewater Overflow</li>
+          </ul>
           <p>By state breakdown below, sorted by need:</p>
 
           <!-- <button
@@ -355,6 +370,22 @@ img {
   margin-bottom: 3rem;
 }
 
+.additional-content {
+  margin-top: 3.5rem;
+}
+
+.additional-content > p {
+  margin-top: 0.5rem;
+}
+
+.tip-band-mini {
+  width: 10%;
+  height: 4px;
+  border-radius: 4px 4px 0px 0px;
+  /* background-color: var(--active-tip); */
+  background-color: #fff;
+}
+
 button {
   margin-bottom: 3rem;
 }
@@ -407,29 +438,6 @@ button {
   position: sticky;
   top: 50px;
 } */
-
-/* tags - careful, this is repeat from chart one */
-.tag {
-  display: inline-block;
-  padding: 0.4rem 0.75rem 0.5rem 0.75rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  font-family: "IBM Plex Mono", monospace;
-  border: 1px solid var(--main-bg-color);
-  transition: all 0.2s ease-in-out;
-}
-
-.tag-intext {
-  margin: 0;
-}
-
-.tag:hover {
-  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
-  cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease-in-out;
-}
 
 /* tag colors */
 .area-upper-basin {

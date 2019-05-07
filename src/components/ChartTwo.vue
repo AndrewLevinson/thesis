@@ -39,23 +39,35 @@
         <p>Let's take a look at local water stress at a local level.</p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Colorado River Basin</h5>
-        <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, severe climate change has affected the natural water cycle. With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
+        <h5 class="box-title">Colorado River</h5>
+        <p>
+          Described as the "most controlled, controversial and litigated rivers in the world,"
+          <sup>[]</sup> the
+          <span class="tag tag-intext area-river">Colorado River</span> provides drinking water and agricultural needs to
+          <span
+            class="special total"
+          >· 40 million people</span>, including major cities highlighted on the map.
+        </p>
+        <br>
+        <p>Extended droughts have caused extreme stress on drinking water supply, irrigation, hydroelectricity, and water rights overall.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Drought Levels Exceeding 99% Percentile</h5>
-        <p>According to data pulled from the USGS on May 6, 2019 (the time of this writing), there are over 50 extreme flooding scenarios across the country. Not only is flooding dangerous and expensive, but it can severly affect agriculture and drinking water due to contamination.</p>
+        <p>
+          According to data pulled from the USGS on May 6, 2019 (the time of this writing), there are over
+          <span
+            class="tag tag-intext area-warning datum"
+          >50 extreme flooding scenarios</span>.
+          <br>Not only is flooding dangerous and expensive, but it can severly affect agriculture and drinking water due to contamination.
+        </p>
         <p></p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">The High Plains (Ogallala Aquifer)</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus
-        </p>
+        <h5 class="box-title">Groundwater Depletion & Overabstraction</h5>
+        <!-- <p>The map displays an increase in groundwater depletion intensity in the last 10 years compared to the 20th century.</p> -->
+        <p>The High Plains' Ogallala Aquifer, as well as aquifers in that supply water to Maryland, Denver, the Florida Everglades, and Chicago are all dealing with adverse effects from the overabstraction of groundwater from below-ground aquifers—which you can think of as the "savings account" of our water supply.</p>
+        <br>
+        <p>The overabstraction of groundwater can lead to wells drying up, contamination and saltwater intrusion, and the ground literally sinking.</p>
       </div>
 
       <div
@@ -83,7 +95,7 @@
           <button @click="play(true)" class="play-button pin-box">Replay</button>
         </div>
       </div>
-      <div class="text-box">
+      <!-- <div class="text-box">
         <h5 class="box-title">Northeast Combined Sewers</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
@@ -92,8 +104,8 @@
           animi, error fugiat distinctio provident nesciunt. Necessitatibus
           possimus
         </p>
-      </div>
-      <div class="text-box">
+      </div>-->
+      <!-- <div class="text-box">
         <h5 class="box-title">Flint, Michigan</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
@@ -102,7 +114,7 @@
           animi, error fugiat distinctio provident nesciunt. Necessitatibus
           possimus
         </p>
-      </div>
+      </div>-->
     </section>
   </div>
 </template>
@@ -250,6 +262,7 @@ export default {
 
         this.map.setPaintProperty("crbasin", "fill-opacity", 1);
         this.map.setPaintProperty("custom-rivers", "line-opacity", 1);
+        this.map.setPaintProperty("all-rivers", "line-opacity", 0.2);
 
         // swap standard city labels for green
         this.map.setLayoutProperty("cr-cities-labels", "visibility", "visible");
@@ -533,6 +546,11 @@ export default {
   color: #fff;
 }
 
+.text-box:nth-of-type(3) {
+  /* a little extra margin to see basin*/
+  margin-top: 10rem;
+}
+
 .finished-text-box {
   width: 25% !important;
   /* margin-left: 18rem !important; */
@@ -582,6 +600,38 @@ section {
   background-color: none;
 }
 
+/* tag colors */
+.area-river {
+  /* fill: #0ec7d8; */
+  /* background-color: #0ec7d8; */
+  background-color: transparent;
+  color: #0ec7d8;
+}
+
+.area-river::after {
+  content: "\3030";
+  float: right;
+  margin-left: 6px;
+  margin-top: 2px;
+  font-weight: 900;
+}
+
+.area-warning {
+  /* fill: #0ec7d8; */
+  /* background-color: #0ec7d8; */
+  background-color: #ffc700;
+  /* color: #fff; */
+  color: var(--main-body-type);
+}
+
+.area-warning::after {
+  content: "\26A0";
+  float: right;
+  margin-left: 6px;
+  font-size: 107%;
+  font-weight: 900;
+}
+
 #repair-box {
   position: absolute;
   top: 80%;
@@ -608,10 +658,6 @@ section {
 #repair-box p,
 #special-total p {
   font-size: 200%;
-}
-
-#special-total {
-  /* width: 30%; */
 }
 
 #playing {
