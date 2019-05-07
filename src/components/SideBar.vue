@@ -6,13 +6,13 @@
       <div class="dots">
         <div :class="[scrollPosition >= 2 && scrollPosition <= 3 ? 'active-dot': 'dot']">
           <div></div>
-          <p>Drought</p>
+          <p>Climate</p>
         </div>
-        <div :class="[scrollPosition >= 4 && scrollPosition <= 5 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition === 4 ? 'active-dot': 'dot']">
           <div></div>
           <p>Groundwater</p>
         </div>
-        <div :class="[scrollPosition >= 6 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition >= 5 ? 'active-dot': 'dot']">
           <div></div>
           <p>Infrastructure</p>
         </div>
@@ -36,13 +36,14 @@
           <div class="tag-holder">
             <span class="area-upper-basin tag">Upper Basin</span>
             <span class="area-lower-basin tag">Lower Basin</span>
-            <span class="area-river tag">Colorado River</span>
+            <!-- <span class="area-river tag">Colorado River</span> -->
           </div>
           <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, severe climate change has affected the natural water cycle. With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
+          <MiniChart/>
         </article>
         <article v-else-if="scrollPosition === 3">
-          <h2>Drought</h2>
-          <h5>Southern California Pricing Tiers</h5>
+          <h2>Flooding</h2>
+          <h5>Midwest</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
         <article v-else-if="scrollPosition === 4">
@@ -50,13 +51,9 @@
           <h5>Ogallala Depletion</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
-        <article v-else-if="scrollPosition === 5">
-          <h2>Groundwater Overabstraction</h2>
-          <h5>Saltwater Contamination</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
-        </article>
+
         <article
-          v-else-if="scrollPosition === 6"
+          v-else-if="scrollPosition === 5"
           v-show="$store.getters.finished && !$store.getters.playing"
         >
           <h2>Drinking Water Infrastructure</h2>
@@ -104,12 +101,12 @@
             </tbody>
           </table>
         </article>
-        <article v-else-if="scrollPosition == 7">
+        <article v-else-if="scrollPosition == 6">
           <h2>Drinking Water Infrastructure</h2>
           <h5>Sewer System Contamination</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
         </article>
-        <article v-else-if="scrollPosition == 8">
+        <article v-else-if="scrollPosition == 7">
           <h2>Drinking Water Infrastructure</h2>
           <h5>Lead Contamination</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
@@ -120,10 +117,12 @@
 </template>
 
 <script>
+import MiniChart from "./MiniChart.vue";
 import * as d3 from "d3";
 
 export default {
   name: "side-bar",
+  components: { MiniChart },
   props: ["scrollPosition", "places", "currentState", "currentRepair"],
   data() {
     return {
@@ -183,15 +182,24 @@ export default {
         case 2:
           this.showPanelContent = true;
           break;
-        case 5:
-          this.showPanelContent = true;
+        case 3:
+          this.showPanelContent = false;
           break;
-        case 6:
+        case 4:
+          this.showPanelContent = false;
+          break;
+        case 5:
           this.$store.getters.finished && !this.$store.getters.playing
             ? (this.showPanelContent = true)
             : (this.showPanelContent = false);
           break;
+        case 6:
+          this.showPanelContent = true;
+          break;
         case 7:
+          this.showPanelContent = true;
+          break;
+        default:
           this.showPanelContent = true;
           break;
       }

@@ -43,22 +43,12 @@
         <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, severe climate change has affected the natural water cycle. With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Southern California Pricing Tiers</h5>
-        <p>A reaction to increased drought intensity and frequency over the last decade has led to drastic water conservation efforts in Los Angeles in the form of pricing tiers.</p>
-        <p>While controversial, it has proven in its short lifetime to provide some conservation success, while still provide a standard rate for the baseline amount of drinking water needs ones home. In other words, we all pay the same price for drinking, cooking, bathing, and wastewater but if you have a swimming pool or a water feature in your yard, you're going to pay a premium.</p>
+        <h5 class="box-title">Drought Levels Exceeding 99% Percentile</h5>
+        <p>According to data pulled from the USGS on May 6, 2019 (the time of this writing), there are over 50 extreme flooding scenarios across the country. Not only is flooding dangerous and expensive, but it can severly affect agriculture and drinking water due to contamination.</p>
+        <p></p>
       </div>
       <div class="text-box">
         <h5 class="box-title">The High Plains (Ogallala Aquifer)</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus
-        </p>
-      </div>
-      <div class="text-box">
-        <h5 class="box-title">Florida Everglades</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
           doloremque laudantium corrupti sapiente quae suscipit id
@@ -73,8 +63,11 @@
         :class="[$store.getters.finished ? 'text-box finished-text-box' : 'text-box']"
       >
         <div v-if="!$store.getters.finished">
-          <h5 class="box-title">Drinking Water Infrastructure: the entire US</h5>
-          <p>Infrastructure repair needs in the US have skyrocketed in the last 50 years. Play the animation below to see the total investment required to improve our drinking water infrastructure for each state:</p>
+          <h5 class="box-title">Drinking Water Infrastructure Across the Entire US</h5>
+          <p>
+            Infrastructure repair needs in the US have skyrocketed in the last 50 years. Click the play button below to see the
+            total investment required to improve our drinking water infrastructure for each state:
+          </p>
           <div class="player">
             <button
               v-if="!$store.getters.playing"
@@ -242,39 +235,56 @@ export default {
         this.map.setPaintProperty("aquifers", "fill-opacity", 0.2);
         this.map.setPaintProperty("crbasin", "fill-opacity", 0.2);
         this.map.setPaintProperty("custom-rivers", "line-opacity", 0.2);
+        this.map.setPaintProperty("all-rivers", "line-opacity", 0.2);
+        this.map.setPaintProperty("flooding", "icon-opacity", 0);
+
+        // this.map.setLayoutProperty("flooding", "visibility", "none");
+        // reset green city labels for standard
+        this.map.setLayoutProperty("cr-cities-labels", "visibility", "none");
+        this.map.setPaintProperty("settlement-label", "text-opacity", 1);
+        // this.map.getStyle("settlement-label");
       } else if (x === 2) {
-        // drought  - first
+        // drought
         this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0);
         this.map.setPaintProperty("aquifers", "fill-opacity", 0.0);
 
         this.map.setPaintProperty("crbasin", "fill-opacity", 1);
         this.map.setPaintProperty("custom-rivers", "line-opacity", 1);
+
+        // swap standard city labels for green
+        this.map.setLayoutProperty("cr-cities-labels", "visibility", "visible");
+        this.map.setPaintProperty("settlement-label", "text-opacity", 0.45);
 
         // hide markers for future zoom outs
         this.map.setLayoutProperty("markers-dakqe6", "visibility", "none");
+        // this.map.setLayoutProperty("flooding", "visibility", "none");
+        this.map.setPaintProperty("flooding", "icon-opacity", 0);
       } else if (x === 3) {
-        // drought  - second (same as first)
+        // flood
         this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0);
         this.map.setPaintProperty("aquifers", "fill-opacity", 0.0);
+        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
+        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+        // reset green city labels for standard
+        this.map.setLayoutProperty("cr-cities-labels", "visibility", "none");
+        this.map.setPaintProperty("settlement-label", "text-opacity", 1);
 
-        this.map.setPaintProperty("crbasin", "fill-opacity", 1);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 1);
+        this.map.setPaintProperty("all-rivers", "line-opacity", 0.5);
+        this.map.setPaintProperty("flooding", "icon-opacity", 1);
       } else if (x === 4) {
         // aquifers - first
         this.map.setPaintProperty("crbasin", "fill-opacity", 0);
         this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+        this.map.setPaintProperty("all-rivers", "line-opacity", 0);
         this.map.setPaintProperty("aquifers", "fill-opacity", 1);
+
+        this.map.setPaintProperty("flooding", "icon-opacity", 0);
       } else if (x === 5) {
-        // aquifers - second / zoom in (everglades)
-        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
-        this.map.setPaintProperty("aquifers", "fill-opacity", 1);
-      } else if (x === 6) {
         // drinking water - first
         this.map.setPaintProperty("aquifers", "fill-opacity", 0);
-      } else if (x === 7) {
+      } else if (x === 6) {
         // drinking water zoom in (northeast)
-      } else if (x === 8) {
+      } else if (x === 7) {
         // drinking water zoom in (flint)
       }
     },
@@ -402,13 +412,9 @@ export default {
               break;
             case 3:
               // position
-              // this.map.flyTo({
-              //   center: [-118.2437, 34.0522], // LA
-              //   zoom: 5.5
-              // });
               this.map.flyTo({
-                center: [-109, 36.5], // colorado basin
-                zoom: 5
+                center: [-98.461045, 38], // whole US zoomed in
+                zoom: 3.8
               });
               this.setMapLayers(i);
 
@@ -420,37 +426,26 @@ export default {
               //   zoom: 4.75
               // });
               this.map.flyTo({
-                center: [-98.461045 + 16, 38],
-                zoom: 3.45
+                center: [-98.461045, 38],
+                zoom: 3.8
               });
               this.setMapLayers(i);
+              // this.$store.commit("updatePlaying", false);
 
               break;
+
             case 5:
-              // this.$store.getters.playing = false;
-              this.$store.commit("updatePlaying", false);
-
               // position
               this.map.flyTo({
-                center: [-81.385071, 25.858244], // everglades
-                zoom: 5.5
-              });
-              this.setMapLayers(i);
-
-              break;
-            case 6:
-              // position
-              this.map.flyTo({
-                center: [-98.461045 + this.adjust, 36.805969], // whole US zoomed out, infrastructure
-                zoom: 3.5
+                center: [-98.461045 + this.adjust, 38], // whole US zoomed out, infrastructure
+                zoom: 3.8
               });
               // will also fire animation
               // this.setAnimate = true;
               // this.infraAnimate();
               this.setMapLayers(i);
               break;
-            case 7:
-              // this.$store.getters.playing = false;
+            case 6:
               this.$store.commit("updatePlaying", false);
 
               // position
@@ -461,7 +456,7 @@ export default {
               this.setMapLayers(i);
 
               break;
-            case 8:
+            case 7:
               // position
               this.map.flyTo({
                 center: [-83.705521, 43.0125], // flint
@@ -509,7 +504,9 @@ export default {
 
 .text-box:first-of-type,
 .text-box:nth-of-type(2),
-.text-box:nth-of-type(7) {
+.text-box:nth-of-type(4),
+.text-box:nth-of-type(5),
+.text-box:nth-of-type(6) {
   width: 40%;
   max-width: 800px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
@@ -529,7 +526,9 @@ export default {
 }
 
 .text-box:nth-of-type(2),
-.text-box:nth-of-type(7) {
+.text-box:nth-of-type(4),
+.text-box:nth-of-type(5),
+.text-box:nth-of-type(6) {
   background-color: var(--map-bg-color);
   color: #fff;
 }
