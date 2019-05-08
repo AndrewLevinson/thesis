@@ -275,10 +275,6 @@ export default {
         // .domain([this.domainMin, Math.max(...this.data.map(y => y.rwpc)) + 500])
         .rangeRound([this.height, 0]);
 
-      const colorScale = d3
-        .scaleOrdinal()
-        .range(["#4C82C3", "#F37B6D", "#6CC071"]);
-
       const gridLine = d3
         .scaleLinear()
         .domain([this.domain.y.min, this.domain.y.max])
@@ -286,8 +282,8 @@ export default {
 
       this.scaled.x = x;
       this.scaled.y = y;
-      this.scaled.color = colorScale;
-      return { x, y, colorScale, gridLine };
+
+      return { x, y, gridLine };
     }
   },
   created() {
