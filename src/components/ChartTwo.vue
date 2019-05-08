@@ -14,7 +14,7 @@
       </div>
       <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">Skip to End</button>
       <div v-show="scrollPosition === 0" class="legend" id="withdraw">
-        <h6>Annual Freshwater Withdrawals per Capita</h6>
+        <h6>Freshwater Withdrawals per Capita</h6>
         <p>
           m
           <sup>3</sup>/year/person
@@ -51,7 +51,10 @@
         </div>
       </div>
       <div v-show="scrollPosition === 4" class="legend" id="diverge">
-        <h6>Depletion Intensity +/-</h6>
+        <h6>
+          Change in
+          <br>Depletion Intensity %
+        </h6>
         <p>20th Century vs. Last 10 Years</p>
         <div class="data-pair">
           <div class="blocks">
