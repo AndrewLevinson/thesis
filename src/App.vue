@@ -671,4 +671,12 @@ table {
 #mini-chart .grid .domain {
   opacity: 0;
 }
+
+#mini-chart .y-axis > path {
+  opacity: 0;
+}
+
+#mini-chart .x-axis > path {
+  opacity: 0.5;
+}
 </style>

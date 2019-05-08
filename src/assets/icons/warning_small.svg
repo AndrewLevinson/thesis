@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="14px" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>warning_small</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="warning_small" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="warning" fill="#FFC700" fill-rule="nonzero">
+            <path d="M0,14 L16,14 L8,0 L0,14 Z M8.72727271,11.7894737 L7.27272729,11.7894737 L7.27272729,10.3157895 L8.72727271,10.3157895 L8.72727271,11.7894737 Z M8.72727271,8.84210528 L7.27272729,8.84210528 L7.27272729,5.89473685 L8.72727271,5.89473685 L8.72727271,8.84210528 Z" id="path-1"></path>
+        </g>
+    </g>
+</svg>

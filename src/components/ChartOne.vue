@@ -774,6 +774,7 @@ section {
   opacity: 0.75;
   visibility: hidden;
 }
+
 #graph-one {
   position: sticky;
   position: -webkit-sticky;

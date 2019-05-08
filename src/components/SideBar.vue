@@ -27,7 +27,7 @@
       <div class="panel-content">
         <article v-if="scrollPosition === 2">
           <h2>Extended Drought</h2>
-          <h5>Colorado River</h5>
+          <h5>Colorado River Basin</h5>
           <!-- <div class="image-holder"> -->
           <!-- Photo by Pedro Lastra on Unsplash -->
           <!-- <img src="../assets/images/pedro-lastra-165298-unsplash.jpg" alt="colorado river">
@@ -39,8 +39,11 @@
             <span class="area-river tag">Colorado River</span>
           </div>-->
           <p>
-            Climate change has caused frequent extended doughts the Southwest, putting intense pressure on
-            <span class="special datum">major cities</span> that depend on Lake Mead for their drinking water.
+            Climate change has caused frequent extended doughts throughout the Southwest, putting intense pressure on
+            <span
+              class="special datum"
+            >major cities</span>
+            that depend on Lake Mead for their drinking water from the lower basin.
           </p>
           <MiniChart/>
           <div class="additional-content">
@@ -49,16 +52,16 @@
             <p>With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
           </div>
         </article>
-        <article v-else-if="scrollPosition === 3">
+        <!-- <article v-else-if="scrollPosition === 3">
           <h2>Flooding</h2>
           <h5>Midwest</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
-        </article>
-        <article v-else-if="scrollPosition === 4">
+        </article>-->
+        <!-- <article v-else-if="scrollPosition === 4">
           <h2>Groundwater Overabstraction</h2>
           <h5>Ogallala Depletion</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
-        </article>
+        </article>-->
 
         <article
           v-else-if="scrollPosition === 5"
@@ -260,9 +263,11 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  height: 6px;
+  height: 7px;
   width: 100%;
-  background-color: var(--special);
+  border-radius: 4px 4px 0 0;
+  /* background-color: var(--special); */
+  background-color: #fff;
 }
 
 .icon-holder {
@@ -287,20 +292,21 @@ nav {
   height: 40%;
   justify-content: space-evenly;
   text-align: center;
-  padding-top: 3rem;
+  padding-top: 4rem;
 }
 .dots .dot div,
 .dots .active-dot div {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.5);
   margin: 0 auto;
 }
 
 .dots .active-dot div {
-  /* background-color: #fff; */
-  background-color: var(--special);
+  background-color: #fff;
+  opacity: 0.9;
+  /* background-color: var(--special); */
 }
 
 .dots p {
@@ -318,14 +324,15 @@ section {
   height: 100vh;
   display: flex;
   text-align: left;
-  background-image: linear-gradient(
+  background-color: rgba(25, 26, 26, 0.85);
+  /* background-image: linear-gradient(
     89.8deg,
     rgba(25, 26, 26, 0.23) -18.6%,
     rgba(25, 26, 26, 0.49) -6.2%,
     rgba(25, 26, 26, 0.73) 14.9%,
     rgba(25, 26, 26, 0.91) 46.7%,
     rgba(25, 26, 26, 1) 76.1%
-  );
+  ); */
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.35);
   position: sticky;
@@ -334,7 +341,7 @@ section {
 
 .panel-content {
   padding: 3rem;
-  padding-top: 4rem;
+  padding-top: 6rem;
   width: 100%;
   overflow-y: auto;
 }
@@ -354,7 +361,8 @@ article h5 {
 
 article p {
   margin-top: 1.75rem;
-  font-size: 95%;
+  font-size: 92.5%;
+  /* opacity: 0.9; */
 }
 
 .image-holder {
@@ -453,6 +461,20 @@ button {
 .area-river {
   fill: #0ec7d8;
   background-color: #0ec7d8;
+}
+
+/* .tag-mini {
+  font-size: 90%;
+  margin-top: 0.25rem;
+} */
+
+li:before {
+  content: url("../assets/icons/x-bullet.svg");
+  margin-right: 12px;
+}
+
+ul {
+  margin-left: 0;
 }
 
 @media (max-width: 600px) {

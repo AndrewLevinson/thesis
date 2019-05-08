@@ -13,12 +13,81 @@
         <p class="datum special">{{ numFormater(currentRepair) }}</p>
       </div>
       <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">Skip to End</button>
-      <!-- <button
-        v-show="$store.getters.finished && !$store.getters.playing && scrollPosition === 6"
-        @click="play(true)"
-        class="play-button pin-bottom"
-      >Replay Animation</button>-->
-      <div id="my-map" :class="[scrollPosition == 0 ? 'visible-background' : 'hidden-background']">
+      <div v-show="scrollPosition === 0" class="legend" id="withdraw">
+        <h6>Annual Freshwater Withdrawals per Capita</h6>
+        <p>
+          m
+          <sup>3</sup>/year/person
+        </p>
+        <div class="data-pair">
+          <div class="blocks">
+            <div style="background-color: #c6dbef"></div>
+          </div>
+          <p>0</p>
+        </div>
+        <div class="data-pair">
+          <div class="blocks">
+            <div style="background-color: #9dc9e1"></div>
+          </div>
+          <p>1</p>
+        </div>
+        <div class="data-pair">
+          <div class="blocks">
+            <div style="background-color: #6baed6"></div>
+          </div>
+          <p>5</p>
+        </div>
+        <div class="data-pair">
+          <div class="blocks">
+            <div style="background-color: #3184bf"></div>
+          </div>
+          <p>50</p>
+        </div>
+        <div class="data-pair">
+          <div class="blocks">
+            <div style="background-color: #08529b"></div>
+          </div>
+          <p>300</p>
+        </div>
+      </div>
+      <div v-show="scrollPosition === 4" class="legend" id="diverge">
+        <h6>Depletion Intensity +/-</h6>
+        <p>20th Century vs. Last 10 Years</p>
+        <div class="data-pair">
+          <div class="blocks">
+            <div style="background-color: #3b83ba"></div>
+            <div style="background-color: #7ab5d6"></div>
+            <div style="background-color: #c5ddec"></div>
+          </div>
+          <p>
+            Decreased
+            <br>[-660% — 0%]
+          </p>
+        </div>
+        <div class="data-pair">
+          <div class="blocks">
+            <!-- <div style="background-color: #f1efe9"></div> -->
+            <!-- <div style="background-color: #f1efe9"></div> -->
+            <div style="background-color: #f1efe9"></div>
+          </div>
+          <p>
+            No Change
+            <br>[0%]
+          </p>
+        </div>
+        <div class="data-pair">
+          <div class="blocks">
+            <div style="background-color: #fcd9ab"></div>
+            <div style="background-color: #f2a854"></div>
+            <div style="background-color: #d07316"></div>
+          </div>
+          <p>
+            Increased
+            <br>[0% — 660%]
+          </p>
+        </div>
+      </div>
+      <div id="my-map" :class="[scrollPosition === 0 ? 'visible-background' : 'hidden-background']">
         <!-- map goes here -->
       </div>
     </div>
@@ -35,8 +104,8 @@
           Throughout the country we have already seen increasing water
           stress due to a number of different factors. While some of these issues are isolated and some are symptoms of overarching problems like climate change, they are all signs of things to come if inaction continues.
         </p>
-        <br>
-        <p>Let's take a look at local water stress at a local level.</p>
+        <!-- <br> -->
+        <!-- <p>Let's take a look at local water stress at a local level.</p> -->
       </div>
       <div class="text-box">
         <h5 class="box-title">Colorado River</h5>
@@ -52,12 +121,13 @@
         <p>Extended droughts have caused extreme stress on drinking water supply, irrigation, hydroelectricity, and water rights overall.</p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Drought Levels Exceeding 99% Percentile</h5>
+        <h5 class="box-title">Flood Levels Exceeding 99% Percentile</h5>
         <p>
-          According to data pulled from the USGS on May 6, 2019 (the time of this writing), there are over
+          According to data pulled from the USGS on
+          <span class="datum">May 6, 2019</span> (the time of this writing), there are over
           <span
             class="tag tag-intext area-warning datum"
-          >50 extreme flooding scenarios</span>.
+          >50 extreme flooding scenarios</span>
           <br>Not only is flooding dangerous and expensive, but it can severly affect agriculture and drinking water due to contamination.
         </p>
         <p></p>
@@ -343,43 +413,6 @@ export default {
         } else if (this.$store.getters.finished) {
           this.adjust = 16;
           this.skipToEnd();
-
-          // this.map.flyTo({
-          //   center: [-98.461045 + 16, 38],
-          //   zoom: 3.45
-          // });
-          // this.map.addLayer({
-          //   id: "repair-fills",
-          //   type: "fill",
-          //   source: "states",
-          //   layout: {},
-          //   paint: {
-          //     "fill-opacity": 0.75,
-          //     "fill-color": [
-          //       "interpolate",
-          //       ["linear"],
-          //       ["get", "id"],
-          //       0,
-          //       "#F2F12D",
-          //       5,
-          //       "#EED322",
-          //       10,
-          //       "#E6B71E",
-          //       15,
-          //       "#DA9C20",
-          //       20,
-          //       "#CA8323",
-          //       25,
-          //       "#B86B25",
-          //       30,
-          //       "#A25626",
-          //       35,
-          //       "#8B4225",
-          //       40,
-          //       "#723122"
-          //     ]
-          //   }
-          // });
         }
       };
       f();
@@ -548,7 +581,7 @@ export default {
 
 .text-box:nth-of-type(3) {
   /* a little extra margin to see basin*/
-  margin-top: 10rem;
+  margin-top: 15rem;
 }
 
 .finished-text-box {
@@ -619,16 +652,18 @@ section {
 .area-warning {
   /* fill: #0ec7d8; */
   /* background-color: #0ec7d8; */
-  background-color: #ffc700;
+  background-color: transparent;
+  border: 1px solid #ffc700;
   /* color: #fff; */
-  color: var(--main-body-type);
+  /* color: var(--main-body-type); */
 }
 
 .area-warning::after {
-  content: "\26A0";
+  content: url("../assets/icons/warning-round-small.svg");
   float: right;
   margin-left: 6px;
-  font-size: 107%;
+  margin-top: -1.25px;
+  font-size: 120%;
   font-weight: 900;
 }
 
@@ -638,9 +673,6 @@ section {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 1rem;
-  /* width: 200px; */
-
-  /* height: 50px; */
   color: #fff;
   background-color: var(--map-bg-color);
   z-index: 998;
@@ -648,6 +680,78 @@ section {
   text-align: center;
   border: 1px solid var(--special);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.legend {
+  position: absolute;
+  top: 75px;
+  left: 8px;
+  width: 210px;
+  margin: 0;
+  color: #fff;
+  z-index: 998;
+  padding: 1rem;
+}
+
+.legend .data-pair {
+  display: block;
+  /* justify-content: space-between; */
+  padding: 0.75rem;
+  padding-left: 0;
+  margin: 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  /* opacity: 0.8; */
+  /* font-size: 90%; */
+
+  /* border: 1px solid var(--main-bg-color); */
+  transition: all 0.2s ease-in-out;
+}
+
+.legend .data-pair:last-of-type {
+  padding-bottom: 0.25rem;
+}
+
+#diverge .blocks {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.legend .blocks div {
+  width: 40px;
+  height: 16px;
+  /* border-radius: 4px; */
+  margin: 0;
+  padding: 0;
+}
+
+.legend h6 {
+  margin-bottom: 0;
+}
+
+.legend p {
+  margin-bottom: 0.5rem;
+  font-size: 75%;
+}
+
+#withdraw {
+  position: absolute;
+  top: 40px;
+  left: 1025px;
+  width: 350px;
+  margin: 0;
+  color: #fff;
+  z-index: 998;
+  padding: 1rem;
+}
+
+#withdraw {
+  color: var(--main-body-type);
+}
+
+#withdraw .data-pair {
+  display: inline-block;
 }
 
 #repair-box h5,

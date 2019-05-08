@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>x-bullet</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8,0 C3.576,0 0,3.576 0,8 C0,12.424 3.576,16 8,16 C12.424,16 16,12.424 16,8 C16,3.576 12.424,0 8,0 Z M12,10.872 L10.872,12 L8,9.128 L5.128,12 L4,10.872 L6.872,8 L4,5.128 L5.128,4 L8,6.872 L10.872,4 L12,5.128 L9.128,8 L12,10.872 Z" id="path-1"></path>
+    </defs>
+    <g id="x-bullet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_cancel_24px" transform="translate(1.000000, 1.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Shape" stroke="#FFC700" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

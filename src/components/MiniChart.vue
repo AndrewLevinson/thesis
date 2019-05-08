@@ -1,7 +1,7 @@
 <template>
   <div id="mini-chart">
-    <h6 class="mini-subtitle">Odds of Shortage Condition at Lake Mead</h6>
-    <!-- <span class="area-lower-basin tag tag-mini">Lower Basin</span> -->
+    <h6 class="mini-subtitle">Likelihood of Shortage Condition</h6>
+    <span class="area-lower-basin tag tag-mini">Lower Basin</span>
     <svg :width="svgWidth" :height="svgHeight">
       <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
         <g v-grid:gridLine="scale" class="grid"></g>
@@ -9,10 +9,11 @@
         <g v-axis:y="scale" class="y-axis"></g>
         <path class="link" :d="paths.line"></path>
 
-        <g>
-          <!-- <rect x="-5" y="-15" width="100" height="30" fill="#191A1A"></rect> -->
-          <text y="5" x="7" fill="#fff" class="axis-title">{{ yLabel }}</text>
+        <g v-for="(d, i) in data" :key="i">
+          <circle class="circle-mini" :cx="scale.x(d.year)" :cy="scale.y(d.percent)" r="5.5"></circle>
         </g>
+
+        <text y="5" x="0" fill="#fff" class="axis-title">{{ yLabel }}</text>
       </g>
     </svg>
     <caption class="chart-caption">
@@ -32,10 +33,11 @@ export default {
 
   data() {
     return {
-      graphTitle: "Odds of Shortage Condition in the Lower Basin (Lake Mead)",
+      graphTitle:
+        "Likelihood of Shortage Condition in the Lower Basin (Lake Mead)",
       yLabel: "% Odds",
       svgWidth: 340,
-      svgHeight: 350,
+      svgHeight: 340,
       margin: { top: 20, left: 35, bottom: 15, right: 25 },
       scaled: {
         x: null,
@@ -124,9 +126,9 @@ export default {
     createLine: d3
       .line()
       .x(d => d.x)
-      .curve(d3.curveBundle.beta(1))
       .y(d => d.y)
-      .curve(d3.curveBundle.beta(1)),
+      .curve(d3.curveMonotoneX),
+    // .curve(d3.curveBundle.beta(1)),
     updatePath() {
       // total rwpc for line
       for (const d of this.data) {
@@ -172,12 +174,20 @@ export default {
 <style scoped>
 .link {
   /* stroke: var(--special); */
-  stroke: rgba(158, 79, 0, 0.75);
-  stroke-width: 2.5px;
+  /* stroke: rgba(158, 79, 0, 0.75); */
+  stroke: #fff;
+  stroke-width: 2px;
   /* stroke-opacity: 0.8; */
   fill: none;
-  opacity: 1;
+  opacity: 0.8;
   transition: all 0.7s ease-in-out;
+}
+
+.circle-mini {
+  stroke: #fff;
+  fill: rgba(158, 79, 0, 0.8);
+  stroke-width: 1px;
+  opacity: 1;
 }
 
 .area-lower-basin {
@@ -187,6 +197,13 @@ export default {
   font-size: 90%;
 }
 
+.tag-mini {
+  font-size: 75%;
+  position: absolute;
+  top: 32%;
+  left: 51%;
+}
+
 .mini-subtitle {
   opacity: 0.75;
   font-size: 90%;
@@ -194,13 +211,10 @@ export default {
   /* line-height: 1; */
 }
 
-.tag-mini {
-  font-size: 90%;
-}
-
 #mini-chart {
   margin-top: 3rem;
   width: 100%;
+  position: relative;
 }
 
 .chart-caption {

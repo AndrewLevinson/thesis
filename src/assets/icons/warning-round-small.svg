@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>warning-round-small</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="warning-round-small" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_error_outline_48px" fill="#FFC700" fill-rule="nonzero">
+            <path d="M7.2,10.4 L8.8,10.4 L8.8,12 L7.2,12 L7.2,10.4 Z M7.2,4 L8.8,4 L8.8,8.8 L7.2,8.8 L7.2,4 Z M7.996,0 C3.576,0 0,3.58 0,8 C0,12.42 3.576,16 7.996,16 C12.416,16 16,12.42 16,8 C16,3.58 12.416,0 7.996,0 Z M8,14.4 C4.464,14.4 1.6,11.536 1.6,8 C1.6,4.464 4.464,1.6 8,1.6 C11.536,1.6 14.4,4.464 14.4,8 C14.4,11.536 11.536,14.4 8,14.4 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
