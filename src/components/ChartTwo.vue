@@ -10,7 +10,10 @@
       />
       <div v-show="$store.getters.playing" id="repair-box">
         <h5 class="total">{{ currentState }}</h5>
-        <p class="datum special"><sup>+</sup>{{ numFormater(currentRepair) }}</p>
+        <p class="datum special">
+          <sup>+</sup>
+          {{ numFormater(currentRepair) }}
+        </p>
       </div>
       <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">Skip to End</button>
       <div v-show="scrollPosition === 0" class="legend" id="withdraw">
@@ -97,9 +100,7 @@
     <section class="text-section" id="sectionsTwo">
       <div class="text-box">
         <h5 class="box-title">Freshwater Withdrawals Per Capita</h5>
-        <p>As alluded to in the previous charts, most of our freshwater withdrawls are not for drinking water, but for irrigation—which occurs prodominently in the High Plaines and Western regions.</p>
-        <br>
-        <p>That's why this crisis is much bigger than just direct personal consumption.</p>
+        <p>As alluded to in the previous charts, most of our freshwater withdrawls are not for drinking water, but for irrigation—which occurs prodominently in the High Plaines and Western regions. That's why this crisis is much bigger than just direct personal consumption.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>
@@ -118,10 +119,8 @@
           <span class="tag tag-intext area-river">Colorado River</span> provides drinking water and agricultural needs to
           <span
             class="special total"
-          >· 40 million people</span>, including major cities highlighted on the map.
+          >· 40 million people</span>, including major cities highlighted on the map. Extended droughts have caused extreme stress on drinking water supply, irrigation, hydroelectricity, and water rights overall.
         </p>
-        <br>
-        <p>Extended droughts have caused extreme stress on drinking water supply, irrigation, hydroelectricity, and water rights overall.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Flood Levels Exceeding 99% Percentile</h5>
@@ -133,14 +132,15 @@
           >50 extreme flooding scenarios</span>
           <br>Not only is flooding dangerous and expensive, but it can severly affect agriculture and drinking water due to contamination.
         </p>
-        <p></p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Groundwater Depletion & Overabstraction</h5>
+        <h5 class="box-title">Groundwater Depletion & Over-Abstraction</h5>
         <!-- <p>The map displays an increase in groundwater depletion intensity in the last 10 years compared to the 20th century.</p> -->
-        <p>The High Plains' Ogallala Aquifer, as well as aquifers in that supply water to Maryland, Denver, the Florida Everglades, and Chicago are all dealing with adverse effects from the overabstraction of groundwater from below-ground aquifers—which you can think of as the "savings account" of our water supply.</p>
-        <br>
-        <p>The overabstraction of groundwater can lead to wells drying up, contamination and saltwater intrusion, and the ground literally sinking.</p>
+        <!-- <p>The High Plains' Ogallala Aquifer, as well as aquifers in that supply water to Maryland, Denver, the Florida Everglades, and Chicago are all dealing with adverse effects from the overabstraction of groundwater from below-ground aquifers—which you can think of as the "savings account" of our water supply. The overabstraction of groundwater can lead to wells drying up, contamination and saltwater intrusion, and the ground literally sinking.</p> -->
+        <p>
+          Most aquifers across the country are dealing with adverse effects from increasing depletion intensity of below-ground aquifers—which you can think of as the
+          <i>savings account</i> of our water supply. If increasing depletion intensity isn't tamed, the over-abstraction of groundwater can lead to wells drying up, contamination and saltwater intrusion, and the ground literally sinking.
+        </p>
       </div>
 
       <div

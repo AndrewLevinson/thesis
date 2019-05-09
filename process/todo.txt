@@ -8,6 +8,7 @@ Overall
 
 Hero
 - Daniel's idea for water texture in map
+- Fix blacked out county on heatmap
 - Fix subtitle/tagline? 
 
 Section One
@@ -16,6 +17,7 @@ Section One
 
 Seciton Two
 - Add legend and/or detailed title to first water usage / capita map
+- Fix black block county in west; no data?
 - USE BGAL OF WATER
 -— Potentially add another view for callout/tooltip? (maybe not necessary)
 - Add ogallala zoom in?
