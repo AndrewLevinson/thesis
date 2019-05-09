@@ -90,13 +90,14 @@
     <section class="text-section" id="sectionsOne">
       <div class="text-box">
         <h5 class="box-title">Why are we running out of water?</h5>
-        <p>
+        <!-- <p>
           In 2012, the global demand for water exceeded supply
           <sup>[1]</sup> and unless
           drastic action is taken the gap is expected to increase
           dramatically—reaching 90% by the year 2090. Population growth is reducing the annual renewable
           freshwater per capita.
-        </p>
+        </p>-->
+        <p>Each country has a static amount of renewable freshwater provided by the natural water cycle. As long as populations continue to grow, the renewable water per person decreases. Combined with climate change factors and increasing demand for water intensive goods and services, the United States faces increased risk of water stress every year we don't take action.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Trending Down</h5>
@@ -105,9 +106,10 @@
           <span
             class="datum"
           >
-            <span class="special">9,538</span> cubic meters/year/person
-          </span> and the 2019 projection is estimated to be at
-          <span class="fix-me">calculate me</span>
+            <span class="special">9,538</span> m
+            <sup>3</sup>/year/person
+          </span>, down about
+          <span class="datum">25%</span> over the last 30 years.
         </p>
       </div>
       <div class="text-box">

@@ -99,7 +99,7 @@
         <h5 class="box-title">Freshwater Withdrawals Per Capita</h5>
         <p>As alluded to in the previous charts, most of our freshwater withdrawls are not for drinking water, but for irrigation—which occurs prodominently in the High Plaines and Western regions.</p>
         <br>
-        <p>That's why this crisis is much bigger than just personal consumption.</p>
+        <p>That's why this crisis is much bigger than just direct personal consumption.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>

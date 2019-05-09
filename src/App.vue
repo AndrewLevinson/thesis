@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="body-text">
-          <p>While the widthdrawals show a broad picture of the US, since water issues are laregly local, it's critical to take a look at water usage at a micro level.</p>
+          <p>While the average withdrawals show a broad picture of water usage across the United States, it's important to look at where in the country the most water is being withdrawn and consumed. This helps understand how water stress from surface water elusiveness, groundwater over abstraction, infrastructure play a role at local, regional, and national levels.</p>
         </div>
       </section>
       <!-- topo d3 map for water usage -->
@@ -98,7 +98,7 @@
             significantly to a decline in supply.
           </p>-->
 
-          <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change effecting the natural water cycle of our surface water, it's hard to image how any individual efforts can make a difference.</p>
+          <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change affecting the natural water cycle of our surface water, it's hard to image how any individual efforts can make a difference.</p>
 
           <p>While it's necessary for the local, state, and federal government to get involved to supply funding for massive infrastructure investments, smarter irrigation systems, and climate change fighting policies, we often underestimate the impact our daily choices make on water withdrawals. You and I can't spend half a trillion dollars on infrastructure, but we can change our behaviors to force conservation efforts.</p>
         </div>

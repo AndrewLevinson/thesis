@@ -1,23 +1,25 @@
 Overall
 - Responsive charts / text in all sections
 - Write, write, write! 
+- CONVERT ALL UNITS TO BGAL/TIME
 - Image compression
 - SEO stuff/prerender
 - Sources, footnotes, and methodology
 
 Hero
 - Daniel's idea for water texture in map
+- Fix subtitle/tagline? 
 
 Section One
 - Tooltip fades out when scrolling action
 - Add another view for 2019 projection on line/water source
-- Add final view for consumptive water use (not just withdrawals)
 
 Seciton Two
 - Add legend and/or detailed title to first water usage / capita map
+- USE BGAL OF WATER
 -— Potentially add another view for callout/tooltip? (maybe not necessary)
-- Data tables or minicharts for case study sections
-- Data for infrastructure repairs: text flashes on states for time-lapse animation? with total counter++
+- Add ogallala zoom in?
+- Map infrastructure animation to amounts needed
 ---
     Special chart 2 Responsive: 
     - Overflow issue with panel
@@ -28,10 +30,12 @@ Seciton Two
 Section Three
 - Animate in from 0 current levels
 - Research and add current spending levels
-- Figure out orders of magnitude calculations for each metric
+- Figure out orders of magnitude calculations for each metric / conversions
 - Model explaination / graphic / legend
 - Model results (tabbed dialogue box with explaination on right panel?)
 - Category tags and modal (like tooltip hover?) options for info on metrics
+- Move from arrows to circle packings
+- Fill up background with water, paper.js
 ---
     Special chart 3 Responsive: 
     - Where does model explaination/results go on smaller screens?
