@@ -91,12 +91,16 @@
           </div>
         </div>
         <div class="body-text">
-          <p>
+          <!-- <p>
             While climate change is the biggest threat to available freshwater
             that requires the largest long-term investment, crumbling
             infrastructure, over-abstraction, and pollution all contribute
             significantly to a decline in supply.
-          </p>
+          </p>-->
+
+          <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change effecting the natural water cycle of our surface water, it's hard to image how any individual efforts can make a difference.</p>
+
+          <p>While it's necessary for the local, state, and federal government to get involved to supply funding for massive infrastructure investments, smarter irrigation systems, and climate change fighting policies, we often underestimate the impact our daily choices make on water withdrawals. You and I can't spend half a trillion dollars on infrastructure, but we can change our behaviors to force conservation efforts.</p>
         </div>
       </section>
 

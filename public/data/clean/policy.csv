@@ -1,9 +1,5 @@
-﻿name,cat,current,projected
-conserve,demand,0,0
-ingredient,demand,0,0
-consumer pricing,demand,0,0
-industry pricing,demand,0,0
-irrigation,demand,0,0
-drinking water infrastructure,investment,500,0
-collection and storage infrastructure,investment,200,0
-wastewater improvements,investment,250,0
+﻿cat,name,examples,avg daily,avg annual per cap,total annual,unit,min,max,default,input
+personal,Direct Water Usage,"drinking, kitchen sink, shower, cooking, dishwashing, laundry",123,44895,1.46896E+13,gallons,61.5,184.5,123,123
+personal,Virtual Water Usage,"food, energy, products",861,314265,1.02828E+14,gallons,430.5,1291.5,861,861
+agriculture,Irrigation Investments,"drip irrigation, other efficient alternatives to flooding",,,,percentage,0,100,50,50
+infrastructure,Drinking Water Infrastructure,"storage, treatmet, transportation",0,,,dollars,0,500,50,250

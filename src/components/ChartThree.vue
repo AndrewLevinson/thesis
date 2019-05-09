@@ -3,6 +3,10 @@
     <div id="graph-three">
       <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
       <h5 class="subtitle">Policies and Investments to Conserve Water</h5>
+      <div id="chart-three-explainer">
+        <!-- <h5>Model Explaination</h5> -->
+        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p>
+      </div>
       <div class="chart-three-columns">
         <div id="category-names">
           <div v-for="(d,i) in policyData" :key="i" class="slider">
@@ -12,14 +16,15 @@
             <vue-slider
               :key="d.name"
               v-bind="sliderOptions"
-              :max="(d.current * 5) + 100"
-              v-model="d.projected"
-              :value="null"
-              :marks="[0, (d.current * 5) + 100]"
+              :min="d.min"
+              :max="d.max"
+              v-model="d.input"
+              :value="d.default"
+              :marks="[d.min, d.max]"
             ></vue-slider>
           </div>
           <div id="slider-total-label">
-            <p>Total Water Conserved (Mgal)</p>
+            <p>Total Water Conserved (Bgal/year)</p>
             <!-- <p id="unit-label">MegaGallons</p> -->
           </div>
         </div>
@@ -61,7 +66,7 @@
               <line
                 x1="0"
                 :y1="scale.y(d.name) + 2.5"
-                :x2="scale.x(d.projected)"
+                :x2="scale.x(conversions(d.input, 1))"
                 :y2="scale.y(d.name) + 2.5"
                 marker-end="url(#arrow)"
                 class="output-lines"
@@ -91,21 +96,21 @@
             </g>
           </g>
         </svg>
-        <div id="chart-three-explainer">
+        <!-- <div id="chart-three-explainer">
           <h5>Model Explaination</h5>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut placeat, quo, cupiditate minus, est animi voluptatum nisi quas minima ea voluptatem optio omnis autem. Ipsa iure consequuntur officia maxime obcaecati. Exercitationem, error nulla amet quaerat pariatur accusamus vel esse debitis blanditiis et minus adipisci doloribus quidem delectus earum qui architecto.</p>
-        </div>
+        </div>-->
       </div>
     </div>
     <section class="text-section" id="sectionsThree">
-      <div class="text-box">
+      <!-- <div class="text-box">
         <h5 class="box-title">Current Scenario</h5>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit facilis dicta recusandae sunt ullam, optio saepe perspiciatis officia quisquam nulla, ab quibusdam, molestias officiis maxime voluptatem id hic molestiae aliquid corrupti odio et illum? Inventore earum magnam distinctio qui praesentium! Quas id necessitatibus atque reprehenderit dicta expedita, ex nihil autem.</p>
-      </div>
-      <div class="text-box">
+      </div>-->
+      <!-- <div class="text-box">
         <h5 class="box-title">Try Your Own Projection</h5>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus perferendis corrupti debitis provident non nulla voluptates consequuntur consectetur, accusantium maxime possimus voluptas eveniet earum laborum, ducimus quod. Voluptatum earum eum voluptates magni ipsa ut molestiae eligendi quidem a asperiores necessitatibus alias unde illum sapiente ex corporis placeat, adipisci atque veritatis.</p>
-      </div>
+      </div>-->
     </section>
   </div>
 </template>
@@ -121,10 +126,10 @@ export default {
   components: { VueSlider },
   data() {
     return {
-      svgWidth: window.innerWidth * 0.5,
-      svgHeight: window.innerHeight * 0.8,
+      svgWidth: window.innerWidth * 0.75,
+      svgHeight: window.innerHeight * 0.675,
       margin: { top: 20, left: 10, bottom: 20, right: 10 },
-      policyData: [
+      policyDataOld: [
         {
           name: "Personal Conservation %",
           cat: "demand",
@@ -168,16 +173,16 @@ export default {
           projected: 500
         }
       ],
+      policyData: [{}],
       totalSaved: {
         name: "Total Water Conserved",
         cat: "",
-        current: 0,
-        projected: 0
+        default: 1084,
+        input: 1084
       },
       totalSum: 0,
       sliderOptions: {
         tooltipPlacement: "bottom",
-        min: 0,
         contained: true
       }
     };
@@ -228,7 +233,7 @@ export default {
     }
   },
   created() {
-    // this.loadData();
+    this.loadData();
   },
   mounted() {
     this.scrollTrigger();
@@ -238,23 +243,34 @@ export default {
     this.total();
   },
   methods: {
-    // loadData() {
-    //   d3.csv("data/clean/policy.csv", d => {
-    //     return {
-    //       name: d["name"],
-    //       cat: d["cat"],
-    //       current: +d["current"],
-    //       projected: +d["projected"]
-    //     };
-    //   }).then(d => {
-    //     return (this.policyData = d);
-    //     // console.log(d);
-    //   });
-    // },
+    loadData() {
+      d3.csv("data/clean/policy.csv", d => {
+        return {
+          name: d["name"],
+          cat: d["cat"],
+          input: +d["input"],
+          default: +d["default"],
+          min: +d["min"],
+          max: +d["max"]
+        };
+      }).then(d => {
+        return (this.policyData = d);
+        // console.log(d);
+      });
+    },
     total() {
       this.totalSum = d3.sum(this.policyData, d => {
-        return d.projected;
+        return this.conversions(d.input, 1);
       });
+    },
+    conversions(d, name) {
+      if (name === 1) {
+        console.log("yup");
+        return d * 4.46;
+      } else {
+        console.log("nope");
+        return d;
+      }
     },
     scrollTrigger() {
       graphScroll()
@@ -376,14 +392,15 @@ section {
 }
 
 svg {
-  width: 55%;
+  width: 75%;
 }
 
 #chart-three-explainer {
-  width: 22.5%;
-  margin: 5rem 0 auto 2.5%;
-  padding: 1.5rem;
-  border: 1px dashed var(--emphasis);
+  /* width: 22.5%; */
+  /* margin: 5rem 0 auto 2.5%; */
+
+  /* padding: 1.5rem; */
+  /* border: 1px dashed var(--emphasis); */
 }
 
 #graph-three-title {
