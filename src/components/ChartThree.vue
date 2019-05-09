@@ -47,9 +47,18 @@
             <g v-grid:gridLines="scale" class="gridlines grid-three"></g>
             <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g>
             <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
-            <g v-axis:y="scale" class="y-axis"></g>
+            <!-- <g v-axis:y="scale" class="y-axis"></g> -->
 
-            <!-- <line x1="0" :y1="(height * 0.075)" :x2="width" :y2="(height * 0.075)" id="underline"></line> -->
+            <g
+              class="metric"
+              v-for="metric in circleData.children"
+              :key="metric.data.name"
+              :transform="`translate(${metric.x}, ${metric.y})`"
+            >
+              <circle class="metric__circle" :r="metric.r" :fill="metric.data.color"></circle>
+              <text class="metric__label">{{ metric.data.name }}</text>
+            </g>
+
             <g v-for="(d, i) in totalSaved" :key="i">
               <circle :cx="scale.x(totalSum) + 15" :cy="height - 14.5" r="6" class="total-conserve"></circle>
               <line
@@ -61,38 +70,6 @@
                 id="conservation-line"
               ></line>
               <text :x="scale.x(totalSum) + 28" :y="height - 10">{{numFormat(totalSum)}}</text>
-            </g>
-            <g v-for="(d, i) in policyData" :key="i">
-              <line
-                x1="0"
-                :y1="scale.y(d.name) + 2.5"
-                :x2="scale.x(conversions(d.input, 1))"
-                :y2="scale.y(d.name) + 2.5"
-                marker-end="url(#arrow)"
-                class="output-lines"
-              ></line>
-              <line
-                x1="0"
-                :y1="scale.y(d.name) + 2.5"
-                :x2="width"
-                :y2="scale.y(d.name) + 2.5"
-                id="underline"
-              ></line>
-              <!-- 
-              <circle
-                :cx="scale.x(d.projected) + 10"
-                :cy="scale.y(d.name) + 2.5"
-                r="5"
-                :class="[d.cat == 'demand' ? 'demand-circle' : 'supply-circle']"
-              ></circle>-->
-            </g>
-            <g>
-              <!-- <text
-                :x="svgWidth / 2"
-                :y="svgHeight - 10"
-                text-anchor="end"
-                class="axis-title"
-              >Mega gallons/Year Saved</text>-->
             </g>
           </g>
         </svg>
@@ -117,6 +94,7 @@
 
 <script>
 import * as d3 from "d3";
+import { hierarchy, pack } from "d3-hierarchy";
 import { graphScroll } from "graph-scroll";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/material.css";
@@ -126,7 +104,7 @@ export default {
   components: { VueSlider },
   data() {
     return {
-      svgWidth: window.innerWidth * 0.75,
+      svgWidth: window.innerWidth * 0.7,
       svgHeight: window.innerHeight * 0.675,
       margin: { top: 20, left: 10, bottom: 20, right: 10 },
       policyDataOld: [
@@ -230,8 +208,32 @@ export default {
         .rangeRound([0, this.height]);
 
       return { x, y, gridLines, gridLinesY };
+    },
+    transformedData() {
+      return {
+        name: "Top Level",
+        children: this.policyData.map(metric => ({
+          ...metric,
+          size: metric.input,
+          parent: "Top Level"
+        }))
+      };
+    },
+    circleData() {
+      // Generate a D3 hierarchy
+      const rootHierarchy = hierarchy(this.transformedData)
+        .sum(d => d.size)
+        .sort((a, b) => {
+          return b.value - a.value;
+        });
+
+      // Pack the circles inside the viewbox
+      return pack()
+        .size([this.width, this.height])
+        .padding(10)(rootHierarchy);
     }
   },
+
   created() {
     this.loadData();
   },
@@ -251,7 +253,8 @@ export default {
           input: +d["input"],
           default: +d["default"],
           min: +d["min"],
-          max: +d["max"]
+          max: +d["max"],
+          color: d["color"]
         };
       }).then(d => {
         return (this.policyData = d);
@@ -413,7 +416,23 @@ svg {
 #graph-three {
   position: sticky;
   position: -webkit-sticky;
-  top: 40px;
+  top: 30px;
+}
+
+/* metric circle packing */
+.metric {
+  transition: all 0.3s ease-in-out;
+  text-anchor: middle;
+}
+
+.metric__circle {
+  transition: r 0.3s ease-in-out;
+}
+
+.metric__label {
+  /* fill: #fff; */
+  font-weight: 900;
+  /* text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); */
 }
 
 /* sliders */

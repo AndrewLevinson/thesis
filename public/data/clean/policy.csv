@@ -1,5 +1,5 @@
-﻿cat,name,examples,avg daily,avg annual per cap,total annual,unit,min,max,default,input
-personal,Direct Water Usage,"drinking, kitchen sink, shower, cooking, dishwashing, laundry",123,44895,1.46896E+13,gallons,61.5,184.5,123,123
-personal,Virtual Water Usage,"food, energy, products",861,314265,1.02828E+14,gallons,430.5,1291.5,861,861
-agriculture,Irrigation Investments,"drip irrigation, other efficient alternatives to flooding",,,,percentage,0,100,50,50
-infrastructure,Drinking Water Infrastructure,"storage, treatmet, transportation",0,,,dollars,0,500,50,250
+﻿cat,name,examples,avg daily,avg annual per cap,total annual,unit,min,max,default,input,output,color
+personal,Direct Water Usage,"drinking, kitchen sink, shower, cooking, dishwashing, laundry",123,44895,1.46896E+13,gallons,61.5,184.5,123,123,0,#45b8cd
+personal,Virtual Water Usage,"food, energy, products",861,314265,1.02828E+14,gallons,430.5,1291.5,861,861,0,#45b8cd
+investment,Irrigation Investments,"drip irrigation, other efficient alternatives to flooding",,,,percentage,0,100,50,50,0,#6baed6
+investment,Drinking Water Infrastructure,"storage, treatmet, transportation",0,,,dollars,0,500,50,50,0,#6baed6
