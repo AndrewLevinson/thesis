@@ -10,7 +10,7 @@
       />
       <div v-show="$store.getters.playing" id="repair-box">
         <h5 class="total">{{ currentState }}</h5>
-        <p class="datum special">{{ numFormater(currentRepair) }}</p>
+        <p class="datum special"><sup>+</sup>{{ numFormater(currentRepair) }}</p>
       </div>
       <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">Skip to End</button>
       <div v-show="scrollPosition === 0" class="legend" id="withdraw">
