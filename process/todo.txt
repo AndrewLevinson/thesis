@@ -1,6 +1,7 @@
 Overall
 - Responsive charts / text in all sections
 - Write, write, write! 
+- Add links to references throughout piece
 - CONVERT ALL UNITS TO BGAL/TIME
 - Image compression
 - SEO stuff/prerender

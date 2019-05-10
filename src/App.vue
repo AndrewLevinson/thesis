@@ -99,8 +99,8 @@
           </p>-->
 
           <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change affecting the natural water cycle of our surface water, it's hard to image how any individual efforts can make a difference.</p>
-
-          <p>While it's necessary for the local, state, and federal government to get involved to supply funding for massive infrastructure investments, smarter irrigation systems, and climate change fighting policies, we often underestimate the impact our daily choices make on water withdrawals. You and I can't spend half a trillion dollars on infrastructure, but we can change our behaviors to force conservation efforts.</p>
+          <p>While it's necessary for government at the local, state, and federal level to provide funding for massive infrastructure investments, smarter irrigation systems, and climate change fighting policies, we often underestimate the impact our daily choices make on water withdrawals.</p>
+          <p>You and I can't spend half a trillion dollars on infrastructure, but we can change our behaviors to force conservation efforts.</p>
         </div>
       </section>
 
@@ -415,6 +415,10 @@ button:hover {
   margin: 0 auto;
   padding-top: 16rem;
   padding-bottom: 10rem;
+}
+
+.section-break:last-of-type {
+  padding-top: 22rem;
 }
 
 .section-tag-line {
