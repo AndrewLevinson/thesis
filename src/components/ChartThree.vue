@@ -2,30 +2,53 @@
   <div id="chart-three">
     <div id="graph-three">
       <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
-      <h5 class="subtitle">Policies and Investments to Conserve Water</h5>
+      <h5 class="subtitle">Investments and Behavioral Changes to Conserve Water</h5>
       <div id="chart-three-explainer">
         <!-- <h5>Model Explaination</h5> -->
-        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p>
+        <!-- <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p> -->
       </div>
       <div class="chart-three-columns">
-        <div id="category-names">
-          <div v-for="(d,i) in policyData" :key="i" class="slider">
-            <label :for="i">{{ d.name }}</label>
-            <!-- <br> -->
-            <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
-            <vue-slider
-              :key="d.name"
-              v-bind="sliderOptions"
-              :min="d.min"
-              :max="d.max"
-              v-model="d.input"
-              :value="d.default"
-              :marks="[d.min, d.max]"
-            ></vue-slider>
-          </div>
-          <div id="slider-total-label">
+        <div id="column-1">
+          <h5 id="category-title">Control Your Behavioral and Investment Strategy</h5>
+          <div id="category-names">
+            <div>
+              <div v-for="(d,i) in behaviorFilter" :key="i" class="slider">
+                <label :for="i">{{ d.name }}</label>
+                <!-- <br> -->
+                <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
+                <vue-slider
+                  :key="d.name"
+                  v-bind="sliderOptions"
+                  :min="d.min"
+                  :max="d.max"
+                  v-model="d.input"
+                  :value="d.default"
+                  :marks="[d.min, d.max]"
+                  :class="d.cat"
+                ></vue-slider>
+              </div>
+            </div>
+            <div>
+              <div v-for="(d,i) in investmentFilter" :key="i" class="slider">
+                <label :for="i">{{ d.name }}</label>
+                <!-- <br> -->
+                <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
+                <vue-slider
+                  :key="d.name"
+                  v-bind="sliderOptions"
+                  :min="d.min"
+                  :max="d.max"
+                  v-model="d.input"
+                  :value="d.default"
+                  :marks="[d.min, d.max]"
+                  :class="d.cat"
+                ></vue-slider>
+              </div>
+            </div>
+            <!-- <div id="slider-total-label">
             <p>Total Water Conserved (Bgal/year)</p>
-            <!-- <p id="unit-label">MegaGallons</p> -->
+            <p id="unit-label">B/Gal</p>
+            </div>-->
           </div>
         </div>
         <svg :width="svgWidth" :height="svgHeight">
@@ -44,50 +67,53 @@
             </marker>
           </defs>
           <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
-            <g v-grid:gridLines="scale" class="gridlines grid-three"></g>
-            <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g>
-            <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
-            <!-- <g v-axis:y="scale" class="y-axis"></g> -->
+            <!-- <g v-grid:gridLines="scale" class="gridlines grid-three"></g> -->
+            <!-- <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g> -->
+            <!-- <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g> -->
+            <g v-axis:y="scale" :transform="`translate(${width}, ${0})`" class="y-axis"></g>
 
             <g
               class="metric"
               v-for="metric in circleData.children"
               :key="metric.data.name"
-              :transform="`translate(${metric.x}, ${metric.y})`"
+              :transform="`translate(${metric.x - 100}, ${metric.y})`"
             >
-              <circle class="metric__circle" :r="metric.r" :fill="metric.data.color"></circle>
-              <text class="metric__label">{{ metric.data.name }}</text>
+              <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
+              <text class="metric-label">{{ metric.data.name }}</text>
+              <text y="22" class="metric-label-projection">{{ metric.data.input }}</text>
             </g>
 
             <g v-for="(d, i) in totalSaved" :key="i">
-              <circle :cx="scale.x(totalSum) + 15" :cy="height - 14.5" r="6" class="total-conserve"></circle>
+              <circle :cy="scale.y(totalSum) - 15" :cx="width" r="6" class="total-conserve"></circle>
+              <text
+                :y="scale.y(totalSum) - 12"
+                :x="width - 20"
+                text-anchor="end"
+              >{{numFormat(totalSum)}} Bgal/Year</text>
+              <text :y="0" :x="width - 20" text-anchor="end">Billions of Gallons Saved</text>
               <line
-                x1="0"
-                :y1="height - 15"
-                :x2="scale.x(totalSum)"
-                :y2="height - 15"
+                :x1="width"
+                :y1="height"
+                :x2="width"
+                :y2="scale.y(totalSum)"
                 marker-end="url(#arrow)"
                 id="conservation-line"
               ></line>
-              <text :x="scale.x(totalSum) + 28" :y="height - 10">{{numFormat(totalSum)}}</text>
             </g>
           </g>
         </svg>
-        <!-- <div id="chart-three-explainer">
-          <h5>Model Explaination</h5>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut placeat, quo, cupiditate minus, est animi voluptatum nisi quas minima ea voluptatem optio omnis autem. Ipsa iure consequuntur officia maxime obcaecati. Exercitationem, error nulla amet quaerat pariatur accusamus vel esse debitis blanditiis et minus adipisci doloribus quidem delectus earum qui architecto.</p>
-        </div>-->
       </div>
+      <!-- <Water/> -->
     </div>
     <section class="text-section" id="sectionsThree">
-      <!-- <div class="text-box">
-        <h5 class="box-title">Current Scenario</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit facilis dicta recusandae sunt ullam, optio saepe perspiciatis officia quisquam nulla, ab quibusdam, molestias officiis maxime voluptatem id hic molestiae aliquid corrupti odio et illum? Inventore earum magnam distinctio qui praesentium! Quas id necessitatibus atque reprehenderit dicta expedita, ex nihil autem.</p>
-      </div>-->
-      <!-- <div class="text-box">
+      <div class="text-box">
+        <h5 class="box-title">Conserve vs. Invest?</h5>
+        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p>
+      </div>
+      <div class="text-box">
         <h5 class="box-title">Try Your Own Projection</h5>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus perferendis corrupti debitis provident non nulla voluptates consequuntur consectetur, accusantium maxime possimus voluptas eveniet earum laborum, ducimus quod. Voluptatum earum eum voluptates magni ipsa ut molestiae eligendi quidem a asperiores necessitatibus alias unde illum sapiente ex corporis placeat, adipisci atque veritatis.</p>
-      </div>-->
+      </div>
     </section>
   </div>
 </template>
@@ -98,15 +124,16 @@ import { hierarchy, pack } from "d3-hierarchy";
 import { graphScroll } from "graph-scroll";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/material.css";
+import Water from "./Water.vue";
 
 export default {
   name: "chart-three",
-  components: { VueSlider },
+  components: { VueSlider, Water },
   data() {
     return {
-      svgWidth: window.innerWidth * 0.7,
-      svgHeight: window.innerHeight * 0.675,
-      margin: { top: 20, left: 10, bottom: 20, right: 10 },
+      svgWidth: window.innerWidth * 0.75,
+      svgHeight: window.innerHeight * 0.825,
+      margin: { top: 10, left: 0, bottom: 20, right: 100 },
       policyDataOld: [
         {
           name: "Personal Conservation %",
@@ -178,6 +205,12 @@ export default {
     numFormat() {
       return d3.format(",d");
     },
+    behaviorFilter() {
+      return this.policyData.filter(d => d.cat === "behavior");
+    },
+    investmentFilter() {
+      return this.policyData.filter(d => d.cat === "investment");
+    },
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
       // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
@@ -191,11 +224,17 @@ export default {
         // https://github.com/d3/d3-scale/blob/master/README.md#band_rangeRound
         .rangeRound([0, this.width]);
       // .paddingInner(1);
+
       const y = d3
-        .scaleBand()
-        .domain(this.policyData.map(y => y.name))
-        .rangeRound([0, this.height])
-        .padding(0.25);
+        .scaleLinear()
+        .domain([0, Math.max(20000, this.totalSum)])
+        .rangeRound([this.height, 0]);
+
+      // const y = d3
+      //   .scaleBand()
+      //   .domain(this.policyData.map(y => y.name))
+      //   .rangeRound([0, this.height])
+      //   .padding(0.25);
 
       const gridLines = d3
         .scaleLinear()
@@ -303,7 +342,7 @@ export default {
     axis(el, binding) {
       const axis = binding.arg; // x or y
 
-      const axisMethod = { x: "axisBottom", y: "axisLeft" }[axis];
+      const axisMethod = { x: "axisBottom", y: "axisRight" }[axis];
       // The line below assigns the x or y function of the scale object
       const methodArg = binding.value[axis];
 
@@ -395,24 +434,9 @@ section {
 }
 
 svg {
-  width: 75%;
+  /* width: 80%; */
 }
 
-#chart-three-explainer {
-  /* width: 22.5%; */
-  /* margin: 5rem 0 auto 2.5%; */
-
-  /* padding: 1.5rem; */
-  /* border: 1px dashed var(--emphasis); */
-}
-
-#graph-three-title {
-  font-weight: 700;
-  font-size: 2.5rem;
-  fill: #485465;
-  /* opacity: 0.8; */
-  visibility: hidden;
-}
 #graph-three {
   position: sticky;
   position: -webkit-sticky;
@@ -425,32 +449,54 @@ svg {
   text-anchor: middle;
 }
 
-.metric__circle {
+.metric-circle {
   transition: r 0.3s ease-in-out;
 }
 
-.metric__label {
+.metric-label {
   /* fill: #fff; */
   font-weight: 900;
   /* text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); */
 }
+.metric-label-projection {
+  /* fill: #fff; */
+  font-weight: 400;
+  /* text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); */
+}
 
 /* sliders */
-#category-names {
+#column-1 {
+  /* text-align: right; */
   width: 20%;
+  padding-top: 1rem;
+}
+
+#category-names {
   display: flex;
   flex-direction: column;
-  /* width: 80%; */
-  /* height: 100%; */
-  text-align: right;
   justify-content: space-between;
-  margin: 1rem 2rem 1.75rem 0rem;
+  /* align-items: flex-end; */
+  margin: 2.5rem 0rem 2.5rem 0rem;
   font-size: 90%;
-  font-weight: 400;
+  height: 50%;
+
+  /* padding-left: 1rem; */
+}
+
+#category-title {
+  /* border-right: 3px solid rgba(0, 0, 0, 0.5); */
+  /* padding-right: 2rem; */
+  margin: 0;
+  font-size: 95%;
 }
 
 .slider {
   font-weight: 600;
+}
+.slider div {
+  width: 100%;
+  max-width: 180px;
+  /* padding-left: 2rem; */
 }
 
 #slider-total-label {

@@ -667,6 +667,10 @@ table {
   opacity: 1;
 }
 
+#chart-three .y-axis .tick text {
+  /* opacity: 0; */
+}
+
 /* chart one grid */
 /* #chart-one .grid-three g.tick line {
   opacity: 0.3;
@@ -686,5 +690,13 @@ table {
 
 #mini-chart .x-axis > path {
   opacity: 0.5;
+}
+
+.investment .vue-slider-dot-handle {
+  background-color: #6baed6;
+}
+
+.investment .vue-slider-dot-handle::after {
+  background-color: rgba(107, 174, 214, 0.4);
 }
 </style>
