@@ -785,6 +785,6 @@ table {
 }
 
 .vue-slider-marks div:nth-of-type(2) .vue-slider-mark-step {
-  background-color: var(--reset);
+  background-color: #83888c;
 }
 </style>

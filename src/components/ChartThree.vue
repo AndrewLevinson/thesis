@@ -106,7 +106,7 @@
               >
                 <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
                 <text class="metric-label">{{ metric.data.shorthand }}</text>
-                <text y="22" class="metric-label-projection">{{ metric.data.input }}</text>
+                <text y="22" class="metric-label-projection">{{ numFormat(metric.data.input) }}</text>
               </g>
 
               <g v-for="(d, i) in totalSaved" :key="i">

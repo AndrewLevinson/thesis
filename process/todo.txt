@@ -2,22 +2,23 @@ Overall
 - Responsive charts / text in all sections
 - Write, write, write! 
 - Add links to references throughout piece
+- tooltip images for links?
 - CONVERT ALL UNITS TO BGAL/TIME
 - Image compression
+- Make my own favicon
 - SEO stuff/prerender
 - Sources, footnotes, and methodology
 
 Hero
 - Daniel's idea for water texture in map
 - Fix blacked out county on heatmap
-- Fix subtitle/tagline? 
+- Update subtitle/tagline? 
 
 Section One
-- Tooltip fades out when scrolling action
+- Tooltip should fade out when scrolling action
 - Add another view for 2019 projection on line/water source
 
 Seciton Two
-- Add legend and/or detailed title to first water usage / capita map
 - Fix black block county in west; no data?
 - USE BGAL OF WATER
 -— Potentially add another view for callout/tooltip? (maybe not necessary)
@@ -36,8 +37,8 @@ Section Three
 - Figure out orders of magnitude calculations for each metric / conversions
 - Model explaination / graphic / legend
 - Model results (tabbed dialogue box with explaination on right panel?)
-- Category tags and modal (like tooltip hover?) options for info on metrics
-- Move from arrows to circle packings
+- Info on hover on tags - both about results, methodology, and history with links
+- output result as "data paragraph" somewhere
 - Fill up background with water, paper.js
 ---
     Special chart 3 Responsive: 

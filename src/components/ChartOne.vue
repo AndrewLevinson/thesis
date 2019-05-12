@@ -97,18 +97,14 @@
           dramatically—reaching 90% by the year 2090. Population growth is reducing the annual renewable
           freshwater per capita.
         </p>-->
-        <p>Each country has a static amount of renewable freshwater provided by the natural water cycle. As long as populations continue to grow, the renewable water per person decreases. Combined with climate change factors and increasing demand for water intensive goods and services, the United States faces increased risk of water stress every year we don't take action.</p>
+        <p>Each country has a static amount of renewable water provided by the natural water cycle. As long as populations continue to grow, the renewable water per person decreases. Combined with climate change factors and increasing demand for water intensive goods and services, the United States faces increased risk of water stress every year we don't take action.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Trending Down</h5>
         <p>
-          According to Aquastat, 2014 yielded the lowest available freshwater per capita on record at
-          <span
-            class="datum"
-          >
-            <span class="special">9,538</span> m
-            <sup>3</sup>/year/person
-          </span>, down about
+          According to Aquastat, 2014 yielded the lowest available water per capita on record at
+          9,538 m
+          <sup>3</sup>/year/person, down about
           <span class="datum">25%</span> over the last 30 years.
         </p>
       </div>
