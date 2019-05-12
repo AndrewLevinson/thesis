@@ -5,7 +5,7 @@
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="refresh" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g fill="rgba(0, 0, 0, 0.45)" fill-rule="nonzero" id="Shape-Copy">
+        <g fill="#5f90de" fill-rule="nonzero" id="Shape-Copy">
             <path d="M10.23,1.7625 C9.1425,0.675 7.65,0 5.9925,0 C2.6775,0 0,2.685 0,6 C0,9.315 2.6775,12 5.9925,12 C8.79,12 11.1225,10.0875 11.79,7.5 L10.23,7.5 C9.615,9.2475 7.95,10.5 5.9925,10.5 C3.51,10.5 1.4925,8.4825 1.4925,6 C1.4925,3.5175 3.51,1.5 5.9925,1.5 C7.2375,1.5 8.3475,2.0175 9.1575,2.835 L6.7425,5.25 L11.9925,5.25 L11.9925,0 L10.23,1.7625 Z"></path>
         </g>
     </g>

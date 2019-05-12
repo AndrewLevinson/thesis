@@ -2,18 +2,29 @@
   <div id="chart-three">
     <div id="graph-three">
       <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
-      <h5 class="subtitle">Investments and Behavioral Changes to Conserve Water</h5>
-      <div id="chart-three-explainer">
-        <!-- <h5>Model Explaination</h5> -->
-        <!-- <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p> -->
-      </div>
+      <h5 class="subtitle">
+        Investments and Behavioral Changes to
+        <span class>Conserve Water</span>
+      </h5>
+      <!-- <p style="margin-top: -1rem; font-weight: 500; opacity: 0.7;">
+        Discover the best way to approach
+        <span class="blue datum">Water Conservation</span>
+      </p>-->
+      <!-- <div id="chart-three-explainer">
+        <h5>Model Explaination</h5>
+        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p>
+      </div>-->
       <div class="chart-three-columns">
         <div id="column-1">
-          <h5 id="category-title">Control Your Behavioral and Investment Strategy</h5>
+          <div class="tip-band-hero third"></div>
+          <h5 id="category-title">1. Pick Your Conservation Strategy ↓</h5>
+          <button @click="resetSliders" class="reset">Reset Model</button>
           <div id="category-names">
             <div>
+              <h6>Behavioral Changes</h6>
+              <p class="units">Gallons / Person / Day</p>
               <div v-for="(d,i) in behaviorFilter" :key="i" class="slider">
-                <label :for="i">{{ d.name }}</label>
+                <label :for="i" :class="d.tag">{{ d.name }}</label>
                 <!-- <br> -->
                 <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
                 <vue-slider
@@ -23,14 +34,16 @@
                   :max="d.max"
                   v-model="d.input"
                   :value="d.default"
-                  :marks="[d.min, d.max]"
-                  :class="d.cat"
+                  :marks="[d.min, d.default, d.max]"
+                  :class="d.sliderTag"
                 ></vue-slider>
               </div>
             </div>
             <div>
+              <h6>Investments</h6>
+              <p class="units">Dollars Invested</p>
               <div v-for="(d,i) in investmentFilter" :key="i" class="slider">
-                <label :for="i">{{ d.name }}</label>
+                <label :for="i" :class="d.tag">{{ d.name }}</label>
                 <!-- <br> -->
                 <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
                 <vue-slider
@@ -40,8 +53,8 @@
                   :max="d.max"
                   v-model="d.input"
                   :value="d.default"
-                  :marks="[d.min, d.max]"
-                  :class="d.cat"
+                  :marks="[d.min, d.default, d.max]"
+                  :class="d.sliderTag"
                 ></vue-slider>
               </div>
             </div>
@@ -51,57 +64,76 @@
             </div>-->
           </div>
         </div>
-        <svg :width="svgWidth" :height="svgHeight">
-          <defs>
-            <!-- arrowhead marker definition -->
-            <marker
-              id="arrow"
-              viewBox="0 0 10 10"
-              refX="5"
-              refY="5"
-              markerWidth="6"
-              markerHeight="6"
-              orient="auto-start-reverse"
-            >
-              <path d="M 0 0 L 10 5 L 0 10 z"></path>
-            </marker>
-          </defs>
-          <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
-            <!-- <g v-grid:gridLines="scale" class="gridlines grid-three"></g> -->
-            <!-- <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g> -->
-            <!-- <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g> -->
-            <g v-axis:y="scale" :transform="`translate(${width}, ${0})`" class="y-axis"></g>
+        <div id="column-2">
+          <div class="flex">
+            <div>
+              <div class="tip-band-hero third"></div>
+              <h5 id="category-title">2. Compare which inputs produce the best results ↓</h5>
+              <!-- <p>You saved 861 Billions of Gallons per Year by reducing our virtual water footprint by just 2%</p> -->
+            </div>
+            <div>
+              <div class="tip-band-hero third"></div>
+              <h5 id="category-title">3. See Total Water Saved ↓</h5>
+              <!-- <p>You saved 4,500 Billions of Gallons per Year by reducing reducing overall consumption by 18% and spending $204 billion in efficiency investments</p> -->
+            </div>
+          </div>
+          <svg :width="svgWidth" :height="svgHeight">
+            <defs>
+              <!-- arrowhead marker definition -->
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="5"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M 0 0 L 10 5 L 0 10 z"></path>
+              </marker>
+            </defs>
+            <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
+              <!-- <g v-grid:gridLines="scale" class="gridlines grid-three"></g> -->
+              <!-- <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g> -->
+              <!-- <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g> -->
+              <g v-axis:y="scale" :transform="`translate(${width}, ${0})`" class="y-axis"></g>
 
-            <g
-              class="metric"
-              v-for="metric in circleData.children"
-              :key="metric.data.name"
-              :transform="`translate(${metric.x - 100}, ${metric.y})`"
-            >
-              <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
-              <text class="metric-label">{{ metric.data.name }}</text>
-              <text y="22" class="metric-label-projection">{{ metric.data.input }}</text>
-            </g>
+              <g
+                class="metric"
+                v-for="metric in circleData.children"
+                :key="metric.data.name"
+                :transform="`translate(${metric.x - 150}, ${metric.y})`"
+              >
+                <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
+                <text class="metric-label">{{ metric.data.shorthand }}</text>
+                <text y="22" class="metric-label-projection">{{ metric.data.input }}</text>
+              </g>
 
-            <g v-for="(d, i) in totalSaved" :key="i">
-              <circle :cy="scale.y(totalSum) - 15" :cx="width" r="6" class="total-conserve"></circle>
-              <text
-                :y="scale.y(totalSum) - 12"
-                :x="width - 20"
-                text-anchor="end"
-              >{{numFormat(totalSum)}} Bgal/Year</text>
-              <text :y="0" :x="width - 20" text-anchor="end">Billions of Gallons Saved</text>
-              <line
-                :x1="width"
-                :y1="height"
-                :x2="width"
-                :y2="scale.y(totalSum)"
-                marker-end="url(#arrow)"
-                id="conservation-line"
-              ></line>
+              <g v-for="(d, i) in totalSaved" :key="i">
+                <circle
+                  :cy="75/2 + scale.y(totalSum) - 15"
+                  :cx="width - 15"
+                  r="6"
+                  class="total-conserve"
+                ></circle>
+                <text
+                  :y="75/2 + scale.y(totalSum) - 12"
+                  :x="width - 35"
+                  text-anchor="end"
+                >{{numFormat(totalSum)}}</text>
+                <text :y="0" :x="width - 20" text-anchor="end">Billions of Gallons / Year</text>
+                <line
+                  :x1="width- 15"
+                  :y1="height - 75"
+                  :x2="width - 15"
+                  :y2="75/2 + scale.y(totalSum)"
+                  marker-end="url(#arrow)"
+                  id="conservation-line"
+                ></line>
+              </g>
             </g>
-          </g>
-        </svg>
+          </svg>
+        </div>
       </div>
       <!-- <Water/> -->
     </div>
@@ -111,7 +143,7 @@
         <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Try Your Own Projection</h5>
+        <h5 class="box-title">Try Your Own Strategy</h5>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus perferendis corrupti debitis provident non nulla voluptates consequuntur consectetur, accusantium maxime possimus voluptas eveniet earum laborum, ducimus quod. Voluptatum earum eum voluptates magni ipsa ut molestiae eligendi quidem a asperiores necessitatibus alias unde illum sapiente ex corporis placeat, adipisci atque veritatis.</p>
       </div>
     </section>
@@ -131,9 +163,9 @@ export default {
   components: { VueSlider, Water },
   data() {
     return {
-      svgWidth: window.innerWidth * 0.75,
-      svgHeight: window.innerHeight * 0.825,
-      margin: { top: 10, left: 0, bottom: 20, right: 100 },
+      svgWidth: window.innerWidth * 0.725,
+      svgHeight: window.innerHeight * 0.85,
+      margin: { top: 10, left: 0, bottom: 20, right: 70 },
       policyDataOld: [
         {
           name: "Personal Conservation %",
@@ -228,7 +260,7 @@ export default {
       const y = d3
         .scaleLinear()
         .domain([0, Math.max(20000, this.totalSum)])
-        .rangeRound([this.height, 0]);
+        .rangeRound([this.height - 75, 0]);
 
       // const y = d3
       //   .scaleBand()
@@ -288,6 +320,9 @@ export default {
       d3.csv("data/clean/policy.csv", d => {
         return {
           name: d["name"],
+          shorthand: d["shorthand"],
+          tag: d["tag"],
+          sliderTag: d["slider-tag"],
           cat: d["cat"],
           input: +d["input"],
           default: +d["default"],
@@ -313,6 +348,9 @@ export default {
         console.log("nope");
         return d;
       }
+    },
+    resetSliders() {
+      return this.policyData.map(x => (x.input = x.default));
     },
     scrollTrigger() {
       graphScroll()
@@ -430,8 +468,13 @@ section {
 .chart-three-columns {
   display: flex;
   justify-content: space-between;
-  margin-top: 3.5rem;
+  margin-top: 5rem;
+  /* margin-top: 2rem; */
 }
+
+/* .chart-three-columns > div {
+  border-bottom: 1px solid black;
+} */
 
 svg {
   /* width: 80%; */
@@ -450,7 +493,16 @@ svg {
 }
 
 .metric-circle {
-  transition: r 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.75;
+  stroke: #000;
+  stroke-opacity: 0.1;
+}
+
+.metric-circle:hover {
+  opacity: 1;
+  cursor: pointer;
+  stroke-opacity: 0.5;
 }
 
 .metric-label {
@@ -467,8 +519,12 @@ svg {
 /* sliders */
 #column-1 {
   /* text-align: right; */
-  width: 20%;
-  padding-top: 1rem;
+  width: 22.5%;
+  /* padding-top: 1rem; */
+}
+
+#column-1 span {
+  font-size: 90%;
 }
 
 #category-names {
@@ -476,26 +532,61 @@ svg {
   flex-direction: column;
   justify-content: space-between;
   /* align-items: flex-end; */
-  margin: 2.5rem 0rem 2.5rem 0rem;
+  margin: 2rem 0rem 2.5rem 0rem;
   font-size: 90%;
-  height: 50%;
-
+  height: 70%;
   /* padding-left: 1rem; */
+}
+
+#category-names div h6 {
+  text-transform: uppercase;
+  /* border-bottom: 1px dashed black; */
+  margin-bottom: 0.75rem;
+}
+
+#category-names div:last-of-type h6 {
+  margin-top: 3rem;
+}
+
+.units {
+  margin-top: -1rem;
+  font-size: 95%;
+  opacity: 0.75;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex > div {
+  /* width: 70%; */
+  margin-left: 5rem;
+}
+.flex div:last-of-type {
+  width: 20%;
+  margin-right: 7rem;
 }
 
 #category-title {
   /* border-right: 3px solid rgba(0, 0, 0, 0.5); */
   /* padding-right: 2rem; */
   margin: 0;
-  font-size: 95%;
+  font-size: 99%;
+}
+
+.third {
+  width: 50px !important;
 }
 
 .slider {
   font-weight: 600;
+  margin-bottom: 4rem;
 }
 .slider div {
   width: 100%;
   max-width: 180px;
+  margin-top: 0.5rem;
   /* padding-left: 2rem; */
 }
 
@@ -509,6 +600,47 @@ svg {
   margin-top: -1.25rem;
   font-family: inherit;
   /* opacity: 0.1; */
+}
+
+.reset {
+  /* fill: lightcoral; */
+  /* background-color: rgba(240, 128, 128, 0.75); */
+  /* border: 1px solid white; */
+  /* border-bottom: 1px dashed #f08080;
+  width: 100px; */
+  font-size: 92.5%;
+  color: var(--reset);
+  border: none;
+  background: transparent;
+  margin-top: 1rem;
+  padding: 0rem;
+  transition: all 0.3s ease-in;
+  font-weight: 400;
+  /* border-bottom: 1px dashed var(--reset); */
+  border-bottom: 1px dashed transparent;
+}
+
+.reset:hover {
+  color: var(--emphasis);
+  cursor: pointer;
+  border-bottom: 1px dashed var(--emphasis);
+
+  transition: all 0.3s ease-in;
+}
+
+.reset::after {
+  content: url(".././assets/icons/refresh.svg");
+  text-align: right;
+  width: 12px;
+  float: right;
+  margin-top: 0.0175rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.reset:hover::after {
+  content: url(".././assets/icons/refresh-hover.svg");
+  transition: all 0.3s ease-in;
 }
 
 /* plots */

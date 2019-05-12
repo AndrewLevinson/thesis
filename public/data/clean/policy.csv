@@ -1,5 +1,5 @@
-﻿cat,name,examples,avg daily,avg annual per cap,total annual,unit,min,max,default,input,output,color
-behavior,Direct Water Usage,"drinking, kitchen sink, shower, cooking, dishwashing, laundry",123,44895,1.47E+13,gallons,61.5,184.5,123,123,0,#45b8cd
-behavior,Virtual Water Usage,"food, energy, products",861,314265,1.03E+14,gallons,430.5,1291.5,861,861,0,#45b8cd
-investment,Irrigation Investments,"drip irrigation, other efficient alternatives to flooding",0,,,percentage,0,100,50,50,0,#6baed6
-investment,Drinking Water Infrastructure,"storage, treatmet, transportation",0,,,dollars,0,500,50,50,0,#6baed6
+﻿cat,name,shorthand,tag,slider-tag,examples,avg daily,avg annual per cap,total annual,unit,min,max,default,input,output,color
+behavior,Direct Water Usage,Direct Usage,tag tag-intext area-direct,direct,"drinking, kitchen sink, shower, cooking, dishwashing, laundry",123,44895,1.47E+13,gallons,62,185,123,123,0,#FAB099
+behavior,Virtual Water Usage,Virtual Usage,tag tag-intext area-virtual,virtual,"food, energy, products",861,314265,1.03E+14,gallons,431,1292,861,861,0,#8FA4C8
+investment,Irrigation Investments,Irrigation,tag tag-intext area-smart,smart,"drip irrigation, other efficient alternatives to flooding",0,,,percentage,0,100,50,50,0,#96C78F
+investment,Drinking Water Infrastructure,Infrastructure,tag tag-intext area-infra,infra,"storage, treatmet, transportation",0,,,dollars,0,500,50,50,0,#F9C07F

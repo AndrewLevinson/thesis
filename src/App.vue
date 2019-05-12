@@ -46,7 +46,14 @@
             If we do not take action to conserve water at a much more extreme
             rate, a Day Zero scenario in the US becomes more plausible.
           </p>-->
-          <p>Freshwater has been described as the "oil of the 21st century." In the wake of extreme water stress events across the globe in places like Cape Town, Mexico City, and Australia, I wanted to take a look at water issues here at home in the United States. Major factors like population growth and climate change are causing localized regional pockets of water stress that will soon affect other areas of the country without action. In order to change our relationship with water, action must come in the form of both infrastructure investments and behavioral changes.</p>
+          <p>
+            Freshwater has been described as the "oil of the 21st century." In the wake of extreme water stress events across the globe in places like
+            <a
+              href="#"
+            >Cape Town</a>,
+            <a href="#">Mexico City</a>, and
+            <a href="#">Australia</a>, I wanted to take a look at water issues here at home in the United States. Major factors like population growth and climate change are causing localized regional pockets of water stress that will soon affect other areas of the country without action. In order to change our relationship with water, action must come in the form of both infrastructure investments and behavioral changes.
+          </p>
         </div>
       </section>
       <!-- add chart one -- line and area -- component -->
@@ -199,6 +206,7 @@ export default {
   --link-color: #e4480f;
   --emphasis: #5f90de;
   --special: #45b8cd;
+  --reset: rgba(0, 0, 0, 0.45);
 
   /* chart-one */
   --opacity-one: 0.8;
@@ -258,6 +266,52 @@ export default {
   fill: #b1b1b1;
   background-color: #b1b1b1;
   display: none;
+}
+
+/* areas in chart three */
+.area-virtual {
+  font-size: 87.5%;
+  background-color: rgba(143, 164, 200, 0.75);
+  transition: all 0.3s ease-in;
+}
+
+.area-virtual:hover {
+  background-color: rgba(143, 164, 200, 1);
+  transition: all 0.3s ease-in;
+}
+
+.area-infra {
+  font-size: 87.5%;
+  background-color: rgba(249, 192, 127, 0.75);
+  transition: all 0.3s ease-in;
+}
+
+.area-infra:hover {
+  background-color: rgba(249, 192, 127, 1);
+  transition: all 0.3s ease-in;
+}
+
+.area-direct {
+  font-size: 87.5%;
+  background-color: rgba(250, 176, 153, 0.75);
+  transition: all 0.3s ease-in;
+}
+
+.area-direct:hover {
+  background-color: rgba(250, 176, 153, 1);
+  transition: all 0.3s ease-in;
+}
+
+.area-smart {
+  font-size: 87.5%;
+  /* background-color: #96C78F; */
+  background-color: rgba(150, 199, 143, 0.75);
+  transition: all 0.3s ease-in;
+}
+
+.area-smart:hover {
+  background-color: rgba(150, 199, 143, 1);
+  transition: all 0.3s ease-in;
 }
 
 html,
@@ -692,11 +746,45 @@ table {
   opacity: 0.5;
 }
 
-.investment .vue-slider-dot-handle {
-  background-color: #6baed6;
+/* slider overrides based on category */
+.infra .vue-slider-dot-handle {
+  background-color: #f9c07f;
 }
 
-.investment .vue-slider-dot-handle::after {
-  background-color: rgba(107, 174, 214, 0.4);
+.infra .vue-slider-dot-handle::after {
+  background-color: rgba(249, 192, 127, 0.4);
+}
+
+.virtual .vue-slider-dot-handle {
+  background-color: #8fa4c8;
+}
+
+.virtual .vue-slider-dot-handle::after {
+  background-color: rgba(143, 164, 200, 0.4);
+}
+
+.smart .vue-slider-dot-handle {
+  background-color: #96c78f;
+}
+
+.smart .vue-slider-dot-handle::after {
+  background-color: rgba(150, 199, 143, 0.4);
+}
+
+.direct .vue-slider-dot-handle {
+  background-color: #fab099;
+}
+
+.direct .vue-slider-dot-handle::after {
+  background-color: rgba(250, 176, 153, 0.4);
+}
+
+/* slider middle marks reset default color */
+.vue-slider-marks div:nth-of-type(2) .vue-slider-mark-label {
+  color: var(--reset);
+}
+
+.vue-slider-marks div:nth-of-type(2) .vue-slider-mark-step {
+  background-color: var(--reset);
 }
 </style>
