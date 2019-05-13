@@ -105,7 +105,7 @@
             significantly to a decline in supply.
           </p>-->
 
-          <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change affecting the natural water cycle of our surface water, it's hard to image how any individual efforts can make a difference.</p>
+          <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change affecting the natural water cycle of our surface water, it's hard to imagine how any individual efforts can make a difference.</p>
           <p>While it's necessary for government at the local, state, and federal level to provide funding for massive infrastructure investments, smarter irrigation systems, and climate change fighting policies, we often underestimate the impact our daily choices make on water withdrawals.</p>
           <p>You and I can't spend half a trillion dollars on infrastructure, but we can change our behaviors to force conservation efforts.</p>
         </div>
@@ -122,13 +122,18 @@
           </div>
         </div>
         <div class="body-text">
-          <p id="final">
+          <!-- <p id="final">
             This is not an all or nothing approach. While destination efforts and water rationing is occurring throughout the world, it’s important that we take the time to make changes now so we can make time for the larger conversations.
             <br>
             <br>Growing populations, climate change, and diet patterns are all massive issues that we will need to deal with over the coming generations. Certain cities will be unlivable, our diets will become unsustainable, and we’ll need to deal with tough realities ahead.
             <br>
             <br>By making the investment in repairing infrastructure, setting up baseline climate policies, and smarter farming, we can delay extreme water stress scenarios long enough to deal with the long term global redistribution of water.
-          </p>
+          </p>-->
+
+          <div id="final">
+            <p>By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below-ground aquifers by ultimately allowing us to do more with less water.</p>
+            <p>Understanding the magnitude of these specific courses of action will enable us to drastically change our relationship with the most valuable natural resource on earth.</p>
+          </div>
         </div>
       </section>
       <div class="footnotes">
@@ -145,7 +150,7 @@
         </p>
         <p>Data was collected using the</p>
         <p>
-          The scroll events were made possible by use of the
+          The scroll events were made possible by the use of the
           <a
             href="https://github.com/1wheel/graph-scroll"
             target="_blank"
@@ -206,6 +211,8 @@ export default {
   --link-color: #e4480f;
   --emphasis: #5f90de;
   --special: #45b8cd;
+  --active-tip: green;
+
   --reset: rgba(0, 0, 0, 0.45);
 
   /* chart-one */
@@ -561,6 +568,16 @@ div.tooltip {
   /* background-color: var(--active-tip); */
   background-color: var(--main-body-type);
 }
+.active-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  border-radius: 4px 4px 0px 0px;
+  background-color: var(--active-tip);
+}
+
 .tooltip h5 {
   padding: 0;
   margin-top: 0.2rem;

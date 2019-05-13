@@ -1,3 +1,17 @@
+MUST BE DONE FOR KEYNOTE VIDEO
+- Title + Headline
+- Update hero to newest map w/ fixed county
+- Prose Writing revisions throughout
+- SPELLING
+- Convert us map to gallons
+- Update water stress markers/labels on first dark map to include more spots
+- CHART Three
+    - Animate from low to high opactiy on first text box
+    - fix writing in text box
+    - Slider label tag on hover highlights circle on plot and makes others inactive
+
+
+
 Overall
 - Responsive charts / text in all sections
 - Write, write, write! 
@@ -19,7 +33,6 @@ Section One
 - Add another view for 2019 projection on line/water source
 
 Seciton Two
-- Fix black block county in west; no data?
 - USE BGAL OF WATER
 -— Potentially add another view for callout/tooltip? (maybe not necessary)
 - Add ogallala zoom in?
@@ -33,12 +46,7 @@ Seciton Two
 
 Section Three
 - Animate in from 0 current levels
-- Research and add current spending levels
-- Figure out orders of magnitude calculations for each metric / conversions
-- Model explaination / graphic / legend
-- Model results (tabbed dialogue box with explaination on right panel?)
 - Info on hover on tags - both about results, methodology, and history with links
-- output result as "data paragraph" somewhere
 - Fill up background with water, paper.js
 ---
     Special chart 3 Responsive: 

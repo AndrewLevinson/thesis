@@ -89,7 +89,7 @@
     </div>
     <section class="text-section" id="sectionsOne">
       <div class="text-box">
-        <h5 class="box-title">Why are we running out of water?</h5>
+        <h5 class="box-title">Why Are We Running Out of Water?</h5>
         <!-- <p>
           In 2012, the global demand for water exceeded supply
           <sup>[1]</sup> and unless
@@ -97,7 +97,7 @@
           dramatically—reaching 90% by the year 2090. Population growth is reducing the annual renewable
           freshwater per capita.
         </p>-->
-        <p>Each country has a static amount of renewable water provided by the natural water cycle. As long as populations continue to grow, the renewable water per person decreases. Combined with climate change factors and increasing demand for water intensive goods and services, the United States faces increased risk of water stress every year we don't take action.</p>
+        <p>Each country has a static amount of renewable water provided by the natural water cycle. As long as populations continue to grow, the renewable water per person decreases. Combined with climate change factors and increasing demand for water-intensive goods and services, the United States faces an increased risk of water stress every year we don't take action.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Trending Down</h5>
@@ -109,7 +109,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">Where does our freshwater come from?</h5>
+        <h5 class="box-title">Where Does Our Freshwater Come From?</h5>
         <p>
           Renewable freshwater is mostly extracted from
           <span class="area-two tag tag-intext">
@@ -129,7 +129,7 @@
         </p>
       </div>
       <div class="text-box">
-        <h5 class="box-title">What is it used for?</h5>
+        <h5 class="box-title">How is it Used?</h5>
         <p>
           Every five years, the U.S. Geological Survey collects water usage data for the country. As of
           <span
@@ -150,14 +150,14 @@
             <span class="datum">13%</span>
           </span>
           <br>
-          <br>However, this number is a bit misleading as not all water withdrawn is consumed—specifically in thermoelectric usage where virtually all water is returned back to the earth after it's used for a one-through cooling process.
+          <br>However, this number is a bit misleading as not all water withdrawn is consumed—specifically in thermoelectric usage where virtually all water is returned back to the earth after it's used for a once-through cooling process.
         </p>
       </div>
 
       <div class="text-box">
-        <h5 class="box-title">Excluding Thermoelectric Withdrawls</h5>
+        <h5 class="box-title">Excluding Thermoelectric Withdrawals</h5>
         <p>
-          If we remove thermoelectric withdrawals from the chart, it paints a more accurate picture of consumptive water use, now showing top three uses of water as
+          If we remove thermoelectric withdrawals from the chart, it paints a more accurate picture of consumptive water use, now showing the top three uses of water as
           <br>
           <br>
           <span class="area-two-100 tag tag-intext">

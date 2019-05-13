@@ -100,7 +100,7 @@
     <section class="text-section" id="sectionsTwo">
       <div class="text-box">
         <h5 class="box-title">Freshwater Withdrawals Per Capita</h5>
-        <p>As alluded to in the previous charts, most of our freshwater withdrawls are not for drinking water, but for irrigation—which occurs prodominently in the High Plaines and Western regions. That's why this crisis is much bigger than just direct personal consumption.</p>
+        <p>As alluded to in the previous section, most of our freshwater withdrawals are not for drinking water, but for irrigation—which occurs predominantly in the High Plaines and Western regions. That's why this crisis is much bigger than just direct personal consumption.</p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>
@@ -130,7 +130,7 @@
           <span
             class="tag tag-intext area-warning datum"
           >50 extreme flooding scenarios</span>
-          <br>Not only is flooding dangerous and expensive, but it can severly affect agriculture and drinking water due to contamination.
+          <br>Not only is flooding dangerous and expensive, but it can severely affect agriculture and drinking water due to contamination.
         </p>
       </div>
       <div class="text-box">

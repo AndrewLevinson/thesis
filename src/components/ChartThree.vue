@@ -17,14 +17,20 @@
       <div class="chart-three-columns">
         <div id="column-1">
           <div class="tip-band-hero third"></div>
-          <h5 id="category-title">1. Pick Your Conservation Strategy ↓</h5>
+          <h5 id="category-title">1. Pick your conservation strategy ↓</h5>
           <button @click="resetSliders" class="reset">Reset Model</button>
           <div id="category-names">
             <div>
               <h6>Behavioral Changes</h6>
               <p class="units">Gallons / Person / Day</p>
               <div v-for="(d,i) in behaviorFilter" :key="i" class="slider">
-                <label :for="i" :class="d.tag">{{ d.name }}</label>
+                <div @mouseover="modelTip(d)" @mouseleave="modelTip(null)" :class="d.tag">
+                  <label :for="i">{{ d.name }}</label>
+                  <span>
+                    <!-- <span class="datum">{{ d.input }}</span> -->
+                    <span class="datum">&nbsp;{{ perFormat((d.input - d.average) / d.average) }}</span>
+                  </span>
+                </div>
                 <!-- <br> -->
                 <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
                 <vue-slider
@@ -34,16 +40,19 @@
                   :max="d.max"
                   v-model="d.input"
                   :value="d.default"
-                  :marks="[d.min, d.default, d.max]"
+                  :marks="[d.min, d.average, d.max]"
                   :class="d.sliderTag"
                 ></vue-slider>
               </div>
             </div>
             <div>
-              <h6>Investments</h6>
-              <p class="units">Dollars Invested</p>
+              <h6>Infrastructure Investments</h6>
+              <p class="units">$ Billions Invested / Year</p>
               <div v-for="(d,i) in investmentFilter" :key="i" class="slider">
-                <label :for="i" :class="d.tag">{{ d.name }}</label>
+                <div @mouseover="modelTip(d)" @mouseleave="modelTip(null)" :class="d.tag">
+                  <label :for="i">{{ d.name }}</label>
+                  <span class="datum">+${{ d.input }}B</span>
+                </div>
                 <!-- <br> -->
                 <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
                 <vue-slider
@@ -53,7 +62,7 @@
                   :max="d.max"
                   v-model="d.input"
                   :value="d.default"
-                  :marks="[d.min, d.default, d.max]"
+                  :marks="[d.min, d.average, d.max]"
                   :class="d.sliderTag"
                 ></vue-slider>
               </div>
@@ -68,12 +77,12 @@
           <div class="flex">
             <div>
               <div class="tip-band-hero third"></div>
-              <h5 id="category-title">2. Compare which inputs produce the best results ↓</h5>
+              <h5 id="category-title">2. Compare categories by annual water savings ↓</h5>
               <!-- <p>You saved 861 Billions of Gallons per Year by reducing our virtual water footprint by just 2%</p> -->
             </div>
             <div>
               <div class="tip-band-hero third"></div>
-              <h5 id="category-title">3. See Total Water Saved ↓</h5>
+              <h5 id="category-title">3. See total water saved ↓</h5>
               <!-- <p>You saved 4,500 Billions of Gallons per Year by reducing reducing overall consumption by 18% and spending $204 billion in efficiency investments</p> -->
             </div>
           </div>
@@ -87,7 +96,7 @@
                 refY="5"
                 markerWidth="6"
                 markerHeight="6"
-                orient="auto-start-reverse"
+                orient="auto"
               >
                 <path d="M 0 0 L 10 5 L 0 10 z"></path>
               </marker>
@@ -106,30 +115,40 @@
               >
                 <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
                 <text class="metric-label">{{ metric.data.shorthand }}</text>
-                <text y="22" class="metric-label-projection">{{ numFormat(metric.data.input) }}</text>
+                <!-- <text y="22" class="metric-label-projection">{{ numFormat(metric.data.input) }}</text> -->
+                <text y="22" class="metric-label-projection">{{ numFormat(metric.data.size) }}</text>
               </g>
 
-              <g v-for="(d, i) in totalSaved" :key="i">
-                <circle
+              <g>
+                <text :y="height" :x="width - 50" text-anchor="end">Billions of Gallons / Year</text>
+                <!-- <circle
                   :cy="75/2 + scale.y(totalSum) - 15"
                   :cx="width - 15"
                   r="6"
                   class="total-conserve"
-                ></circle>
+                ></circle>-->
                 <text
-                  :y="75/2 + scale.y(totalSum) - 12"
-                  :x="width - 35"
+                  id="total-label"
+                  :y="scale.y(totalSum) - 6"
+                  :x="width - 50"
                   text-anchor="end"
                 >{{numFormat(totalSum)}}</text>
-                <text :y="0" :x="width - 20" text-anchor="end">Billions of Gallons / Year</text>
                 <line
-                  :x1="width- 15"
-                  :y1="height - 75"
-                  :x2="width - 15"
-                  :y2="75/2 + scale.y(totalSum)"
-                  marker-end="url(#arrow)"
-                  id="conservation-line"
+                  :x1="width - 5"
+                  :y1="scale.y(totalSum)"
+                  :x2="width - 110"
+                  :y2="scale.y(totalSum)"
+                  id="total-bar"
                 ></line>
+                <rect
+                  @mouseover="totalTip(totalSum)"
+                  @mouseleave="totalTip(null)"
+                  :x="width - 40"
+                  :y="scale.y(totalSum)"
+                  width="35"
+                  :height="height -scale.y(totalSum)"
+                  class="total-bar"
+                ></rect>
               </g>
             </g>
           </svg>
@@ -139,20 +158,22 @@
     </div>
     <section class="text-section" id="sectionsThree">
       <div class="text-box">
-        <h5 class="box-title">Conserve vs. Invest?</h5>
-        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p>
+        <h5 class="box-title">Behavioral Changes vs. Direct Investments</h5>
+        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts.</p>
+        <br>
+        <p>Try adjusting the sliders to the left to set your own water conservation strategy.</p>
       </div>
-      <div class="text-box">
+      <!-- <div class="text-box">
         <h5 class="box-title">Try Your Own Strategy</h5>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus perferendis corrupti debitis provident non nulla voluptates consequuntur consectetur, accusantium maxime possimus voluptas eveniet earum laborum, ducimus quod. Voluptatum earum eum voluptates magni ipsa ut molestiae eligendi quidem a asperiores necessitatibus alias unde illum sapiente ex corporis placeat, adipisci atque veritatis.</p>
-      </div>
+      </div>-->
     </section>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
-import { hierarchy, pack } from "d3-hierarchy";
+// import { hierarchy, pack } from "d3-hierarchy";
 import { graphScroll } from "graph-scroll";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/material.css";
@@ -164,52 +185,8 @@ export default {
   data() {
     return {
       svgWidth: window.innerWidth * 0.725,
-      svgHeight: window.innerHeight * 0.85,
-      margin: { top: 10, left: 0, bottom: 20, right: 70 },
-      policyDataOld: [
-        {
-          name: "Personal Conservation %",
-          cat: "demand",
-          current: 0,
-          projected: 0
-        },
-        {
-          name: "Water as Ingredient Reduction %",
-          cat: "demand",
-          current: 0,
-          projected: 0
-        },
-        {
-          name: "Pricing: Drinking Water %",
-          cat: "demand",
-          current: 0,
-          projected: 0
-        },
-        {
-          name: "Pricing: Industry & Irrigation %",
-          cat: "demand",
-          current: 0,
-          projected: 0
-        },
-        {
-          name: "Infrastructure: Drinking Water %",
-          cat: "investment",
-          current: 1500,
-          projected: 1500
-        },
-        {
-          name: "Infrastructure: Collection & Storage $",
-          cat: "investment",
-          current: 2000,
-          projected: 2000
-        },
-        {
-          name: "Infrastructure: Wastewater $",
-          cat: "investment",
-          current: 500,
-          projected: 500
-        }
-      ],
+      svgHeight: window.innerHeight * 0.825,
+      margin: { top: 40, left: 0, bottom: 20, right: 70 },
       policyData: [{}],
       totalSaved: {
         name: "Total Water Conserved",
@@ -237,12 +214,16 @@ export default {
     numFormat() {
       return d3.format(",d");
     },
+    perFormat() {
+      return d3.format(".0%");
+    },
     behaviorFilter() {
       return this.policyData.filter(d => d.cat === "behavior");
     },
     investmentFilter() {
       return this.policyData.filter(d => d.cat === "investment");
     },
+
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
       // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
@@ -260,7 +241,7 @@ export default {
       const y = d3
         .scaleLinear()
         .domain([0, Math.max(20000, this.totalSum)])
-        .rangeRound([this.height - 75, 0]);
+        .rangeRound([this.height, 0]);
 
       // const y = d3
       //   .scaleBand()
@@ -280,37 +261,38 @@ export default {
 
       return { x, y, gridLines, gridLinesY };
     },
+
     transformedData() {
       return {
         name: "Top Level",
         children: this.policyData.map(metric => ({
           ...metric,
-          size: metric.input,
+          size: this.conversions(metric.input, metric.sliderTag),
           parent: "Top Level"
         }))
       };
     },
     circleData() {
-      // Generate a D3 hierarchy
-      const rootHierarchy = hierarchy(this.transformedData)
+      const rootHierarchy = d3
+        .hierarchy(this.transformedData)
         .sum(d => d.size)
         .sort((a, b) => {
           return b.value - a.value;
         });
 
-      // Pack the circles inside the viewbox
-      return pack()
+      return d3
+        .pack()
         .size([this.width, this.height])
         .padding(10)(rootHierarchy);
     }
   },
-
   created() {
     this.loadData();
   },
   mounted() {
     this.scrollTrigger();
     this.total();
+    this.initTooltip();
   },
   updated() {
     this.total();
@@ -321,11 +303,14 @@ export default {
         return {
           name: d["name"],
           shorthand: d["shorthand"],
+          description: d["description"],
+          calc: d["calc"],
           tag: d["tag"],
           sliderTag: d["slider-tag"],
           cat: d["cat"],
-          input: +d["input"],
           default: +d["default"],
+          input: +d["input"],
+          average: +d["average"],
           min: +d["min"],
           max: +d["max"],
           color: d["color"]
@@ -336,21 +321,140 @@ export default {
       });
     },
     total() {
-      this.totalSum = d3.sum(this.policyData, d => {
-        return this.conversions(d.input, 1);
+      this.totalSum = d3.sum(this.circleData.children, d => {
+        // return this.conversions(d.input, 1);
+        return d.value;
       });
     },
-    conversions(d, name) {
-      if (name === 1) {
-        console.log("yup");
-        return d * 4.46;
+    conversions(d, i) {
+      if (i === "direct") {
+        let directAvg = 123;
+        let percentChage = (d - this.policyData[0].average) / directAvg;
+        // 14,689,644,000,000;
+        let annualWaterPerCap = directAvg * 365 * 327200000;
+        return ((percentChage * annualWaterPerCap) / 1000000000) * -1;
+      } else if (i === "virtual") {
+        let virtualAvg = 861;
+        let percentChage = (d - this.policyData[1].average) / virtualAvg;
+        // 14,689,644,000,000;
+        let annualWaterPerCap = virtualAvg * 365 * 327200000;
+        return ((percentChage * annualWaterPerCap) / 1000000000) * -1;
+      } else if (i === "smart") {
+        // for every dollar spend on irrigation we save 135 gallons
+        return d * 135;
+      } else if (i === "infra") {
+        // 1 billion spent = 4.64 saved per year over 20 years
+        return d * 92.6788;
       } else {
-        console.log("nope");
         return d;
       }
     },
     resetSliders() {
       return this.policyData.map(x => (x.input = x.default));
+    },
+    initTooltip() {
+      this.tooltip = {
+        element: null,
+        init: function() {
+          this.element = d3
+            .select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+        },
+        show: function(t) {
+          this.element
+            .html(t)
+            .transition()
+            .duration(200)
+            .style(
+              "left",
+              `${
+                event.clientX > window.innerWidth * 0.5
+                  ? event.clientX - 340
+                  : event.clientX + 10
+              }px`
+            )
+            .style(
+              "top",
+              `${
+                event.clientY > window.innerHeight * 0.8
+                  ? event.clientY - 160
+                  : event.clientY + 10
+              }px`
+            )
+
+            .style("opacity", 0.925);
+        },
+        move: function() {
+          this.element
+            .transition()
+            .duration(30)
+            .style(
+              "left",
+              `${
+                event.clientX > window.innerWidth * 0.5
+                  ? event.clientX - 340
+                  : event.clientX + 10
+              }px`
+            )
+            .style(
+              "top",
+              `${
+                event.clientY > window.innerHeight * 0.8
+                  ? event.clientY - 160
+                  : event.clientY + 10
+              }px`
+            )
+            .style("opacity", 0.9);
+        },
+        hide: function() {
+          this.element
+            .transition()
+            .duration(500)
+            .style("opacity", 0)
+            .delay(100);
+        }
+      };
+      this.tooltip.init();
+    },
+    modelTip(d) {
+      console.log(d);
+      if (d != null) {
+        this.tooltip.show(`
+        <div class="active-tip"></div>
+        <h5 class="datum" style="margin-bottom: 0.5rem">${d.name}</h5>
+        <p>${d.description}</p>
+        <h6 class="sub-head-tip" style="margin-top: 0.5rem">Calculation</h6>
+           <p style="margin-bottom: 0.25rem">${d.calc}</p>
+        `);
+
+        document.documentElement.style.setProperty("--active-tip", d.color);
+      } else {
+        this.tooltip.hide();
+      }
+    },
+    totalTip(d) {
+      if (d != null) {
+        this.tooltip.show(`
+        <div class="active-tip"></div>
+        <h5 class="datum" style="margin-bottom: 0.5rem">Total Water Saved</h5>
+        <p class="datum special">${this.numFormat(
+          this.totalSum
+        )} Billion of Gallons / Year</p>
+        <h6 class="sub-head-tip" style="margin-top: 0.5rem">Perspective</h6>
+           <p style="margin-bottom: 0.25rem">That's enough water for <span class="datum">${this.numFormat(
+             (this.totalSum / 44895) * 1000000000
+           )}</span> Americans' direct water needs every year.</p>
+        `);
+
+        document.documentElement.style.setProperty(
+          "--active-tip",
+          "var(--special)"
+        );
+      } else {
+        this.tooltip.hide();
+      }
     },
     scrollTrigger() {
       graphScroll()
@@ -457,8 +561,6 @@ section {
   opacity: 1;
 }
 
-/* header */
-
 /* chart */
 #chart-three {
   width: 95%;
@@ -468,7 +570,7 @@ section {
 .chart-three-columns {
   display: flex;
   justify-content: space-between;
-  margin-top: 5rem;
+  margin-top: 4rem;
   /* margin-top: 2rem; */
 }
 
@@ -502,7 +604,7 @@ svg {
 .metric-circle:hover {
   opacity: 1;
   cursor: pointer;
-  stroke-opacity: 0.5;
+  stroke-opacity: 0.3;
 }
 
 .metric-label {
@@ -524,7 +626,7 @@ svg {
 }
 
 #column-1 span {
-  font-size: 90%;
+  font-size: 97.5%;
 }
 
 #category-names {
@@ -585,7 +687,7 @@ svg {
 }
 .slider div {
   width: 100%;
-  max-width: 180px;
+  max-width: 225px;
   margin-top: 0.5rem;
   /* padding-left: 2rem; */
 }
@@ -600,6 +702,17 @@ svg {
   margin-top: -1.25rem;
   font-family: inherit;
   /* opacity: 0.1; */
+}
+
+.model:hover {
+  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+label:hover {
+  cursor: pointer;
 }
 
 .reset {
@@ -691,9 +804,28 @@ line {
   fill: #fff;
 }
 
-.total-conserve {
-  stroke-width: 2;
+.total-bar {
+  stroke-width: 1;
   stroke: #000;
   fill: var(--special);
+  opacity: 0.75;
+
+  rx: 3;
+  ry: 3;
+}
+
+.total-bar:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+#total-label {
+  font-weight: bold;
+}
+
+#total-bar {
+  /* stroke: var(--emphasis); */
+  stroke: #000;
+  stroke-width: 1;
 }
 </style>
