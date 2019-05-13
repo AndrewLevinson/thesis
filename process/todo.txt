@@ -9,17 +9,12 @@ Overall
 - Responsive charts / text in all sections
 - Write, write, write! 
 - Add links to references throughout piece
-- tooltip images for links?
 - CONVERT ALL UNITS TO BGAL/TIME
-- Image compression
 - Make my own favicon
 - SEO stuff/prerender
-- Sources, footnotes, and methodology
 
 Hero
 - Daniel's idea for water texture in map
-- Fix blacked out county on heatmap
-- Update subtitle/tagline? 
 
 Section One
 - Tooltip should fade out when scrolling action
@@ -39,7 +34,7 @@ Seciton Two
 
 Section Three
 - Animate in from 0 current levels
-- Info on hover on tags - both about results, methodology, and history with links
+- hovering makes others inactive for better focus
 - Fill up background with water, paper.js
 ---
     Special chart 3 Responsive: 
