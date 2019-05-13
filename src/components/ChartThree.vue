@@ -806,6 +806,7 @@ line {
 
 .total-bar {
   stroke-width: 1;
+  stroke-opacity: 0.5;
   stroke: #000;
   fill: var(--special);
   opacity: 0.75;
@@ -817,6 +818,7 @@ line {
 .total-bar:hover {
   cursor: pointer;
   opacity: 1;
+  stroke-opacity: 1;
 }
 
 #total-label {
