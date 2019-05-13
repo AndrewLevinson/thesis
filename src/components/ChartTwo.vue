@@ -361,7 +361,7 @@ export default {
     infraAnimate() {
       var hoveredStateId = null;
       // highlight drinking water repair needs $
-      var initial = 0;
+      var initial = 30;
       const howManyTimes = this.places.length;
       const f = () => {
         if (hoveredStateId) {
