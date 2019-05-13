@@ -1,16 +1,9 @@
 MUST BE DONE FOR KEYNOTE VIDEO
-- Title + Headline
-- Update hero to newest map w/ fixed county
-- Prose Writing revisions throughout
-- SPELLING
 - Convert us map to gallons
 - Update water stress markers/labels on first dark map to include more spots
 - CHART Three
     - Animate from low to high opactiy on first text box
-    - fix writing in text box
     - Slider label tag on hover highlights circle on plot and makes others inactive
-
-
 
 Overall
 - Responsive charts / text in all sections

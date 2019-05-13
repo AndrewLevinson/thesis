@@ -162,7 +162,7 @@ export default {
   watch: {
     scrollPosition: "scrollPanel",
     animationComplete(newValue, oldValue) {
-      console.log(`Updating from ${oldValue} to ${newValue}`);
+      // console.log(`Updating from ${oldValue} to ${newValue}`);
       // Do whatever makes sense now
       if (newValue) {
         this.showPanelContent = true;
@@ -171,7 +171,7 @@ export default {
       }
     },
     stillPlaying(newValue, oldValue) {
-      console.log(`Updating from ${oldValue} to ${newValue}`);
+      // console.log(`Updating from ${oldValue} to ${newValue}`);
       // Do whatever makes sense now
       if (newValue) {
         this.showPanelContent = false;

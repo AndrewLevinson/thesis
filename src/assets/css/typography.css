@@ -21,6 +21,7 @@ body {
   color: #0f242c;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  letter-spacing: -0.025rem;
 }
 g,
 text {

@@ -11,7 +11,7 @@
           </h2>
           <h5
             class="subtitle"
-          >How changes to the natural water cycle and transitioning population centers are causing water stress</h5>
+          >How changes to the natural water cycle and increasing demand are causing water stress</h5>
           <p id="byline">
             <a href="https://andrewlevinson.me" target="_blank">Andrew Levinson</a> | May 2019
           </p>
@@ -27,27 +27,10 @@
           </div>
         </div>
         <div class="body-text">
-          <!-- <p>
-            Day Zero is often referred to as the day the water taps turn off. Once
-            seen as a remote scenario, water conservation is taken more seriously
-            now—especially after the crisis in
-            <a
-              href="#"
-            >Cape Town</a> and other extreme water
-            stress events across the globe.
-          </p>
           <p>
-            While an actual Day Zero is unlikely in the United States, we are
-            seeing high water stress events across the country due to crumbling
-            infrastructure, over-abstraction in of aquifers in agriculture, and
-            climate change that are cause for alarm.
-          </p>
-          <p>
-            If we do not take action to conserve water at a much more extreme
-            rate, a Day Zero scenario in the US becomes more plausible.
-          </p>-->
-          <p>
-            Freshwater has been described as the "oil of the 21st century." In the wake of extreme water stress events across the globe in places like
+            Freshwater has been described as the
+            <i>oil of the 21st century</i>
+            <sup class="footnote">&nbsp;[1]</sup>. In the wake of extreme water stress events across the globe in places like
             <a
               href="#"
             >Cape Town</a>,
@@ -74,19 +57,6 @@
       <!-- topo d3 map for water usage -->
       <!-- <CountyMap/> -->
 
-      <!-- <section class="section-break">
-        <div>
-          <h5>It’s happening closer than you think</h5>
-          <p>
-            This is not just a global issue. A closer look at water stressed
-            areas in the United States are indications of more extreme events to
-            come if we do not consider rapid change through conservation efforts
-            as well as investments in infrastructure, agriculture technology,
-            and climate policies.
-          </p>
-        </div>
-      </section>-->
-
       <!-- add chart two -- map -- components -->
       <ChartTwo/>
       <section class="section-break">
@@ -98,13 +68,6 @@
           </div>
         </div>
         <div class="body-text">
-          <!-- <p>
-            While climate change is the biggest threat to available freshwater
-            that requires the largest long-term investment, crumbling
-            infrastructure, over-abstraction, and pollution all contribute
-            significantly to a decline in supply.
-          </p>-->
-
           <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change affecting the natural water cycle of our surface water, it's hard to imagine how any individual efforts can make a difference.</p>
           <p>While it's necessary for government at the local, state, and federal level to provide funding for massive infrastructure investments, smarter irrigation systems, and climate change fighting policies, we often underestimate the impact our daily choices make on water withdrawals.</p>
           <p>You and I can't spend half a trillion dollars on infrastructure, but we can change our behaviors to force conservation efforts.</p>
@@ -122,16 +85,8 @@
           </div>
         </div>
         <div class="body-text">
-          <!-- <p id="final">
-            This is not an all or nothing approach. While destination efforts and water rationing is occurring throughout the world, it’s important that we take the time to make changes now so we can make time for the larger conversations.
-            <br>
-            <br>Growing populations, climate change, and diet patterns are all massive issues that we will need to deal with over the coming generations. Certain cities will be unlivable, our diets will become unsustainable, and we’ll need to deal with tough realities ahead.
-            <br>
-            <br>By making the investment in repairing infrastructure, setting up baseline climate policies, and smarter farming, we can delay extreme water stress scenarios long enough to deal with the long term global redistribution of water.
-          </p>-->
-
           <div id="final">
-            <p>By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below-ground aquifers by ultimately allowing us to do more with less water.</p>
+            <p>This is not an all or nothing approach. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below-ground aquifers by ultimately allowing us to do more with less water.</p>
             <p>Understanding the magnitude of these specific courses of action will enable us to drastically change our relationship with the most valuable natural resource on earth.</p>
           </div>
         </div>
@@ -148,27 +103,93 @@
           in support of a graduate school thesis for the Masters of Science in Data Visualization at Parsons School
           of Design // The New School.
         </p>
-        <p>Data was collected using the</p>
         <p>
-          The scroll events were made possible by the use of the
+          Data was mostly collected from US governmental organizations, including: the United States Geological Survey
+          <a
+            href="https://www.usgs.gov/"
+          >(USGS)</a>, the Environmental Protection Agency (EPA) [both the
+          <a
+            href="https://www.epa.gov/"
+          >current website</a> and the
+          <a href="https://19january2017snapshot.epa.gov/">archived version</a> which included climate change data until January 19th, 2017], the United States Department of Agriculture
+          <a
+            href="https://www.usda.gov/"
+          >(USDA)</a>, and the United States Bureau of Reclamation
+          <a href="https://www.usbr.gov/">(USBR)</a> for which you can find the direct links to the data in the sources section below.
+        </p>
+        <p>
+          This visual essay was built with
+          <a href="https://cli.vuejs.org/">Vue CLI 3</a>,
+          <a href="https://d3js.org/">D3</a>,
+          <a href="https://studio.mapbox.com/">Mapbox Studio</a>, and
+          <a href="https://www.qgis.org/en/site/">QGIS</a>. I also used the help of the
           <a
             href="https://github.com/1wheel/graph-scroll"
             target="_blank"
           >graph-scroll.js</a>
-          JavaScript library.
+          library for scroll events and
+          <a
+            href="https://nightcatsama.github.io/vue-slider-component/#/"
+          >vue-slider-component</a> for the slider components.
         </p>
         <p>Footnotes:</p>
         <ol>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>"Water is the oil of the 21st century" has appeared in many articles. It isn't clear who originally phrased the commodity in this way.</li>
+          <li>
+            <a href="https://www.snwa.com/ws/river_law.html">Southern Nevada Water Authority</a>
+          </li>
+          <li>
+            <a
+              href="https://web.archive.org/web/20120429024450/http://wwa.colorado.edu/treeflow/lees/compact.html"
+            >Colorado River Streamflow: A Paleo Perspective</a>
+          </li>
         </ol>
         <p>Sources:</p>
         <ol>
-          <li></li>
-
-          <li></li>
-          <li></li>
+          <li>
+            <a
+              href="http://www.fao.org/nr/water/aquastat/data/query/index.html"
+            >Aquastat Renewable Water Per Capita</a>
+          </li>
+          <li>
+            <a href="https://water.usgs.gov/watuse/data/">USGS Water Usage Data</a>
+          </li>
+          <li>
+            <a
+              href="https://www.usbr.gov/lc/region/g4000/riverops/crss-5year-projections.html"
+            >Shortage Odds in Lower Basin</a>
+          </li>
+          <li>
+            <a href="https://waterwatch.usgs.gov/index.php?id=flood&sid=w__map">USGS Flooding Data</a>
+          </li>
+          <li>
+            <a href="https://pubs.usgs.gov/sir/2013/5079/">USGS Groundwater Depletion Study</a>
+          </li>
+          <li>
+            <a
+              href="https://www.epa.gov/sites/production/files/2018-10/documents/corrected_sixth_drinking_water_infrastructure_needs_survey_and_assessment.pdf"
+            >EPA 6th Drinking Water Infrastructure Needs Survey and Assessment</a>
+          </li>
+          <li>
+            <a
+              href="https://www.infrastructurereportcard.org/wp-content/uploads/2016/10/ASCE-Failure-to-Act-2016-FINAL.pdf"
+            >American Society of Civil Engineers Failure to Act Infrastructure Report (2016)</a>
+          </li>
+          <li>
+            <a
+              href="https://www.ers.usda.gov/topics/farm-practices-management/irrigation-water-use/#private"
+            >USDA Farming and Irrigation Data</a>
+          </li>
+          <li>
+            <a
+              href="http://eric.clst.org/tech/usgeojson/"
+            >Geojson files for US counties and state lines from Eric Celeste</a>
+          </li>
+          <li>
+            <a
+              href="https://www.usgs.gov/products/data-and-tools/gis-data"
+            >Shapefiles from USGS for aquifers, basins, and rivers</a>
+          </li>
         </ol>
         <p>
           Feel free to
@@ -337,7 +358,8 @@ body {
   overflow-x: hidden;
 }
 
-a {
+a,
+.footnote {
   color: var(--link-color);
   text-decoration: none;
   transition: all 0.3s ease-in;
@@ -363,7 +385,7 @@ button:hover {
   flex: 1 1 0%;
   height: 100vh;
   /* overflow: hidden; */
-  background-image: url(./assets/images/hero2.png);
+  background-image: url(./assets/images/hero.png);
   background-size: contain;
   background-size: 65%;
   background-repeat: no-repeat;
@@ -391,7 +413,7 @@ button:hover {
 
 #title {
   margin-left: 4rem;
-  padding: 32rem 2rem 2rem 2rem;
+  padding: 33rem 2rem 2rem 2rem;
   /* width: 47.5%; */
   height: 50vh;
 }
@@ -737,19 +759,6 @@ table {
 #chart-three .x-axis .tick line {
   opacity: 1;
 }
-
-#chart-three .y-axis .tick text {
-  /* opacity: 0; */
-}
-
-/* chart one grid */
-/* #chart-one .grid-three g.tick line {
-  opacity: 0.3;
-}
-
-#chart-one .x-axis .tick line {
-  opacity: 1;
-} */
 
 #mini-chart .grid .domain {
   opacity: 0;

@@ -1,7 +1,6 @@
 <template>
   <div id="chart-one">
     <div id="graph-one">
-      <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
       <h5 class="subtitle">{{ graphOneTitle }}</h5>
       <div
         v-if="setShown === 1"
@@ -90,13 +89,6 @@
     <section class="text-section" id="sectionsOne">
       <div class="text-box">
         <h5 class="box-title">Why Are We Running Out of Water?</h5>
-        <!-- <p>
-          In 2012, the global demand for water exceeded supply
-          <sup>[1]</sup> and unless
-          drastic action is taken the gap is expected to increase
-          dramatically—reaching 90% by the year 2090. Population growth is reducing the annual renewable
-          freshwater per capita.
-        </p>-->
         <p>Each country has a static amount of renewable water provided by the natural water cycle. As long as populations continue to grow, the renewable water per person decreases. Combined with climate change factors and increasing demand for water-intensive goods and services, the United States faces an increased risk of water stress every year we don't take action.</p>
       </div>
       <div class="text-box">
@@ -131,10 +123,12 @@
       <div class="text-box">
         <h5 class="box-title">How is it Used?</h5>
         <p>
-          Every five years, the U.S. Geological Survey collects water usage data for the country. As of
-          <span
-            class="datum"
-          >2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
+          Every five years, the U.S. Geological Survey collects
+          <a
+            href="https://water.usgs.gov/watuse/data/"
+            target="_blank"
+          >water usage data</a> for the country. As of
+          <span class="datum">2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
           <br>
           <br>
           <span class="area-one-100 tag tag-intext">
@@ -238,9 +232,6 @@ export default {
   },
   computed: {
     filteredData() {
-      // let filteredData = this.data.filter(d => d.set === this.setShown);
-      // return filteredData;
-      // return (this.filteredData = this.data);
       return this.data.filter(d => d.set === this.setShown);
     },
     width() {
@@ -255,10 +246,8 @@ export default {
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
       // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
-      // console.log(this.filteredData);
+
       const x = d3
-        // .scaleBand()
-        // .domain(this.data.map(x => x.year))
         .scaleLinear()
         .domain([
           Math.min(...this.filteredData.map(x => x.year)),
@@ -288,12 +277,11 @@ export default {
     this.loadData();
   },
   mounted() {
-    // this.loadData();
     this.initTooltip();
     this.scrollTrigger();
   },
   updated() {
-    console.log("im updated");
+    // console.log("im updated");
     this.updatePath();
   },
   methods: {
@@ -587,7 +575,7 @@ export default {
         .sections(d3.selectAll("#sectionsOne > div"))
         .eventId("uniqueId1")
         .on("active", i => {
-          console.log("case", i);
+          // console.log("case", i);
           switch (i) {
             case 0:
               // offscreen so do nothing / reset with just line
@@ -610,8 +598,6 @@ export default {
               this.setShown = 1;
               this.selected = 6;
               this.showCallOut = true;
-              // this.showLabel = true;
-              // this.myTooltip(this.filteredData[6]);
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
@@ -625,8 +611,6 @@ export default {
               this.domain.y.max = 14000;
               this.selected = null;
               this.showCallOut = false;
-              // this.showLabel = false;
-
               this.stackKeys = ["gpc", "spc", "dpc"];
 
               break;
@@ -669,7 +653,7 @@ export default {
 
               break;
             default:
-              console.log("none");
+              // console.log("none");
               break;
           }
         });
@@ -735,8 +719,6 @@ export default {
 
 .box-title {
   margin-bottom: 0.5rem;
-  /* font-size: 120%; */
-
   /* border-bottom: 1px dashed var(--main-body-type); */
 }
 
@@ -786,29 +768,6 @@ section {
   margin-top: -0.5rem;
   font-size: 1.4rem;
 }
-
-/* tag styles moved to global scope */
-/* .tag {
-  display: inline-block;
-  padding: 0.4rem 0.75rem 0.5rem 0.75rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  font-family: "IBM Plex Mono", monospace;
-  border: 1px solid var(--main-bg-color);
-  transition: all 0.2s ease-in-out;
-}
-
-.tag-intext {
-  margin: 0;
-}
-
-.tag:hover {
-  filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.15));
-  cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease-in-out;
-} */
 
 /* chart elements */
 div,

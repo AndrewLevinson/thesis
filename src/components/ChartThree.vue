@@ -1,19 +1,10 @@
 <template>
   <div id="chart-three">
     <div id="graph-three">
-      <!-- <h3 class="main-header">Delaying Day Zero</h3> -->
       <h5 class="subtitle">
         Investments and Behavioral Changes to
         <span class>Conserve Water</span>
       </h5>
-      <!-- <p style="margin-top: -1rem; font-weight: 500; opacity: 0.7;">
-        Discover the best way to approach
-        <span class="blue datum">Water Conservation</span>
-      </p>-->
-      <!-- <div id="chart-three-explainer">
-        <h5>Model Explaination</h5>
-        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below ground aquifers by ultimately allowing us to do more with less water.</p>
-      </div>-->
       <div class="chart-three-columns">
         <div id="column-1">
           <div class="tip-band-hero third"></div>
@@ -31,8 +22,7 @@
                     <span class="datum">&nbsp;{{ perFormat((d.input - d.average) / d.average) }}</span>
                   </span>
                 </div>
-                <!-- <br> -->
-                <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
+
                 <vue-slider
                   :key="d.name"
                   v-bind="sliderOptions"
@@ -53,8 +43,7 @@
                   <label :for="i">{{ d.name }}</label>
                   <span class="datum">+${{ d.input }}B</span>
                 </div>
-                <!-- <br> -->
-                <!-- <p id="slider-value">Value: {{ policyData[7].current }}</p> -->
+
                 <vue-slider
                   :key="d.name"
                   v-bind="sliderOptions"
@@ -67,10 +56,6 @@
                 ></vue-slider>
               </div>
             </div>
-            <!-- <div id="slider-total-label">
-            <p>Total Water Conserved (Bgal/year)</p>
-            <p id="unit-label">B/Gal</p>
-            </div>-->
           </div>
         </div>
         <div id="column-2">
@@ -78,29 +63,13 @@
             <div>
               <div class="tip-band-hero third"></div>
               <h5 id="category-title">2. Compare categories by annual water savings ↓</h5>
-              <!-- <p>You saved 861 Billions of Gallons per Year by reducing our virtual water footprint by just 2%</p> -->
             </div>
             <div>
               <div class="tip-band-hero third"></div>
               <h5 id="category-title">3. See total water saved ↓</h5>
-              <!-- <p>You saved 4,500 Billions of Gallons per Year by reducing reducing overall consumption by 18% and spending $204 billion in efficiency investments</p> -->
             </div>
           </div>
           <svg :width="svgWidth" :height="svgHeight">
-            <defs>
-              <!-- arrowhead marker definition -->
-              <marker
-                id="arrow"
-                viewBox="0 0 10 10"
-                refX="5"
-                refY="5"
-                markerWidth="6"
-                markerHeight="6"
-                orient="auto"
-              >
-                <path d="M 0 0 L 10 5 L 0 10 z"></path>
-              </marker>
-            </defs>
             <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
               <!-- <g v-grid:gridLines="scale" class="gridlines grid-three"></g> -->
               <!-- <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g> -->
@@ -115,18 +84,12 @@
               >
                 <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
                 <text class="metric-label">{{ metric.data.shorthand }}</text>
-                <!-- <text y="22" class="metric-label-projection">{{ numFormat(metric.data.input) }}</text> -->
                 <text y="22" class="metric-label-projection">{{ numFormat(metric.data.size) }}</text>
               </g>
 
               <g>
                 <text :y="height" :x="width - 50" text-anchor="end">Billions of Gallons / Year</text>
-                <!-- <circle
-                  :cy="75/2 + scale.y(totalSum) - 15"
-                  :cx="width - 15"
-                  r="6"
-                  class="total-conserve"
-                ></circle>-->
+
                 <text
                   id="total-label"
                   :y="scale.y(totalSum) - 6"
@@ -147,6 +110,8 @@
                   :y="scale.y(totalSum)"
                   width="35"
                   :height="height -scale.y(totalSum)"
+                  rx="3"
+                  ry="3"
                   class="total-bar"
                 ></rect>
               </g>
@@ -154,7 +119,6 @@
           </svg>
         </div>
       </div>
-      <!-- <Water/> -->
     </div>
     <section class="text-section" id="sectionsThree">
       <div class="text-box">
@@ -163,25 +127,19 @@
         <br>
         <p>Try adjusting the sliders to the left to set your own water conservation strategy.</p>
       </div>
-      <!-- <div class="text-box">
-        <h5 class="box-title">Try Your Own Strategy</h5>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus perferendis corrupti debitis provident non nulla voluptates consequuntur consectetur, accusantium maxime possimus voluptas eveniet earum laborum, ducimus quod. Voluptatum earum eum voluptates magni ipsa ut molestiae eligendi quidem a asperiores necessitatibus alias unde illum sapiente ex corporis placeat, adipisci atque veritatis.</p>
-      </div>-->
     </section>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
-// import { hierarchy, pack } from "d3-hierarchy";
 import { graphScroll } from "graph-scroll";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/material.css";
-import Water from "./Water.vue";
 
 export default {
   name: "chart-three",
-  components: { VueSlider, Water },
+  components: { VueSlider },
   data() {
     return {
       svgWidth: window.innerWidth * 0.725,
@@ -574,14 +532,6 @@ section {
   /* margin-top: 2rem; */
 }
 
-/* .chart-three-columns > div {
-  border-bottom: 1px solid black;
-} */
-
-svg {
-  /* width: 80%; */
-}
-
 #graph-three {
   position: sticky;
   position: -webkit-sticky;
@@ -642,6 +592,7 @@ svg {
 
 #category-names div h6 {
   text-transform: uppercase;
+  font-variant: small-caps;
   /* border-bottom: 1px dashed black; */
   margin-bottom: 0.75rem;
 }
@@ -810,9 +761,6 @@ line {
   stroke: #000;
   fill: var(--special);
   opacity: 0.75;
-
-  rx: 3;
-  ry: 3;
 }
 
 .total-bar:hover {

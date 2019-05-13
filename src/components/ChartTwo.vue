@@ -72,8 +72,6 @@
         </div>
         <div class="data-pair">
           <div class="blocks">
-            <!-- <div style="background-color: #f1efe9"></div> -->
-            <!-- <div style="background-color: #f1efe9"></div> -->
             <div style="background-color: #f1efe9"></div>
           </div>
           <p>
@@ -105,7 +103,7 @@
       <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>
         <p>
-          Throughout the country we have already seen increasing water
+          Throughout the country, we have already seen increasing water
           stress due to a number of different factors. While some of these issues are isolated and some are symptoms of overarching problems like climate change, they are all signs of things to come if inaction continues.
         </p>
         <!-- <br> -->
@@ -115,17 +113,23 @@
         <h5 class="box-title">Colorado River</h5>
         <p>
           Described as the "most controlled, controversial and litigated rivers in the world,"
-          <sup>[]</sup> the
+          <sup
+            class="footnote"
+          >[2]</sup> the
           <span class="tag tag-intext area-river">Colorado River</span> provides drinking water and agricultural needs to
           <span
             class="special total"
-          >· 40 million people</span>, including major cities highlighted on the map. Extended droughts have caused extreme stress on drinking water supply, irrigation, hydroelectricity, and water rights overall.
+          >· 40 million people</span>
+          <sup class="footnote">&nbsp;[3]</sup>, including major cities highlighted on the map. Extended droughts have caused extreme stress on drinking water supply, irrigation, hydroelectricity, and water rights overall.
         </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Flood Levels Exceeding 99% Percentile</h5>
         <p>
-          According to data pulled from the USGS on
+          According to data pulled from the
+          <a
+            href="https://waterwatch.usgs.gov/index.php?id=flood&sid=w__map"
+          >USGS</a> on
           <span class="datum">May 6, 2019</span> (the time of this writing), there are over
           <span
             class="tag tag-intext area-warning datum"
@@ -135,10 +139,11 @@
       </div>
       <div class="text-box">
         <h5 class="box-title">Groundwater Depletion & Over-Abstraction</h5>
-        <!-- <p>The map displays an increase in groundwater depletion intensity in the last 10 years compared to the 20th century.</p> -->
-        <!-- <p>The High Plains' Ogallala Aquifer, as well as aquifers in that supply water to Maryland, Denver, the Florida Everglades, and Chicago are all dealing with adverse effects from the overabstraction of groundwater from below-ground aquifers—which you can think of as the "savings account" of our water supply. The overabstraction of groundwater can lead to wells drying up, contamination and saltwater intrusion, and the ground literally sinking.</p> -->
         <p>
-          Most aquifers across the country are dealing with adverse effects from increasing depletion intensity of below-ground aquifers—which you can think of as the
+          Most aquifers across the country are dealing with adverse effects from
+          <a
+            href="https://pubs.usgs.gov/sir/2013/5079/"
+          >increasing depletion intensity</a> of below-ground aquifers—which you can think of as the
           <i>savings account</i> of our water supply. If increasing depletion intensity isn't tamed, the over-abstraction of groundwater can lead to wells drying up, contamination and saltwater intrusion, and the ground literally sinking.
         </p>
       </div>
@@ -168,26 +173,6 @@
           <button @click="play(true)" class="play-button pin-box">Replay</button>
         </div>
       </div>
-      <!-- <div class="text-box">
-        <h5 class="box-title">Northeast Combined Sewers</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus
-        </p>
-      </div>-->
-      <!-- <div class="text-box">
-        <h5 class="box-title">Flint, Michigan</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          doloremque laudantium corrupti sapiente quae suscipit id
-          cupiditate eius sint necessitatibus debitis nam voluptatibus
-          animi, error fugiat distinctio provident nesciunt. Necessitatibus
-          possimus
-        </p>
-      </div>-->
     </section>
   </div>
 </template>
@@ -215,7 +200,6 @@ export default {
   mounted() {
     this.loadMap();
     this.loadData();
-    // this.scrollTrigger();
   },
   methods: {
     loadMap() {
@@ -431,7 +415,7 @@ export default {
         .on("active", i => {
           // console.log(this);
           this.scrollPosition = i;
-          console.log("active!", i);
+          // console.log("active!", i);
           switch (i) {
             case 0:
               // offscreen so do nothing
@@ -515,7 +499,7 @@ export default {
 
               break;
             default:
-              console.log("none");
+              // console.log("none");
               break;
           }
         });
