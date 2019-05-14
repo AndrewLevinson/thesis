@@ -401,7 +401,7 @@ export default {
           initial++;
 
           if (initial < howManyTimes) {
-            setTimeout(f, 325);
+            setTimeout(f, 500);
 
             // this.opacityValue = initial * 0.02;
           } else {
