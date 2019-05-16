@@ -21,7 +21,7 @@ yarn-error.log*
 *.sw*
 
 # file types
-*pdf
+
 *Sketch
 
 # examples
