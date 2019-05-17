@@ -480,7 +480,7 @@ export default {
 
 .text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
-  width: 45%;
+  width: 92.5%;
   max-width: 600px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;

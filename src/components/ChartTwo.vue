@@ -518,8 +518,8 @@ export default {
 
 .text-box {
   /* transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); */
-  width: 40%;
-  max-width: 800px;
+  width: 92.5%;
+  max-width: 600px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   /* margin: 0 auto; */
   margin-left: 5rem;
@@ -540,8 +540,8 @@ export default {
 .text-box:nth-of-type(4),
 .text-box:nth-of-type(5),
 .text-box:nth-of-type(6) {
-  width: 40%;
-  max-width: 800px;
+  width: 92.5%;
+  max-width: 600px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
   margin-bottom: 60rem;

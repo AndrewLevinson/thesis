@@ -501,7 +501,8 @@ button:hover {
 }
 
 .section-break {
-  width: 50%;
+  width: 87.5%;
+  max-width: 750px;
   margin: 0 auto;
   padding-top: 16rem;
   padding-bottom: 10rem;
@@ -563,7 +564,8 @@ hr.footer {
 .footnotes {
   opacity: 0.75;
   font-size: 75%;
-  width: 50%;
+  width: 87.5%;
+  max-width: 750px;
   margin: 0 auto;
   padding-bottom: 5rem;
 }
