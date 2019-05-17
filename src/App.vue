@@ -32,10 +32,10 @@
             <i>oil of the 21st century</i>
             <sup class="footnote">&nbsp;[1]</sup>. In the wake of extreme water stress events across the globe in places like
             <a
-              href="#"
+              href="https://en.wikipedia.org/wiki/Cape_Town_water_crisis"
             >Cape Town</a>,
-            <a href="#">Mexico City</a>, and
-            <a href="#">Australia</a>, I wanted to take a look at water issues here at home in the United States. Major factors like population growth and climate change are causing localized regional pockets of water stress that will soon affect other areas of the country without action. In order to change our relationship with water, action must come in the form of both infrastructure investments and behavioral changes.
+            <a href="https://en.wikipedia.org/wiki/Water_scarcity_in_Mexico">Mexico City</a>, and
+            <a href="https://en.wikipedia.org/wiki/Water_restrictions_in_Australia">Australia</a>, I wanted to take a look at water issues here at home in the United States. Major factors like population growth and climate change are causing localized regional pockets of water stress that will soon affect other areas of the country without action. In order to change our relationship with water, action must come in the form of both infrastructure investments and behavioral changes.
           </p>
         </div>
       </section>
@@ -175,10 +175,17 @@
               href="https://www.infrastructurereportcard.org/wp-content/uploads/2016/10/ASCE-Failure-to-Act-2016-FINAL.pdf"
             >American Society of Civil Engineers Failure to Act Infrastructure Report (2016)</a>
           </li>
+
           <li>
             <a
               href="https://www.ers.usda.gov/topics/farm-practices-management/irrigation-water-use/#private"
             >USDA Farming and Irrigation Data</a>
+          </li>
+          <li>
+            <a href="https://www.circleofblue.org/wp-content/uploads/2016/04/WRF_REU2016.pdf">
+              Water Research Foundation Residential End Uses of Water,
+              Version 2: Executive Report
+            </a>
           </li>
           <li>
             <a
@@ -558,7 +565,7 @@ hr.footer {
   font-size: 75%;
   width: 50%;
   margin: 0 auto;
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
 }
 
 /* tooltip */
