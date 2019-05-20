@@ -407,7 +407,7 @@ button {
 
 #water-table th {
   position: sticky;
-  top: -3.6rem;
+  top: -5.4rem;
   background-image: linear-gradient(
     89.8deg,
     rgba(25, 26, 26, 0.23) -18.6%,

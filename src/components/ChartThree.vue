@@ -80,7 +80,7 @@
                 class="metric"
                 v-for="metric in circleData.children"
                 :key="metric.data.name"
-                :transform="`translate(${metric.x - 150}, ${metric.y})`"
+                :transform="`translate(${metric.x - 125}, ${metric.y})`"
               >
                 <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
                 <text class="metric-label">{{ metric.data.shorthand }}</text>

@@ -1,5 +1,16 @@
 <template>
   <div id="app">
+    <dialog id="responsive" v-if="!responsiveOverride">
+      <article>
+        <div class="modal-band"></div>
+        <h4>This story is not available on small screens yet</h4>
+        <p>Sorry, I haven't had time to make this story work on small screens and touch devices yet. You should view this story on a desktop computer, laptop, or any device at least the size of a horizontal iPad.</p>
+        <button
+          @click="responsiveOverride = true"
+          id="modal-button"
+        >I don't care, show me the broken story anyway...</button>
+      </article>
+    </dialog>
     <div id="container">
       <section id="hero-section">
         <div id="title-grad-top"></div>
@@ -225,7 +236,9 @@ export default {
     ChartThree
   },
   data() {
-    return {};
+    return {
+      responsiveOverride: false
+    };
   }
 };
 </script>
@@ -379,6 +392,30 @@ a:hover {
 
 button:hover {
   cursor: pointer;
+}
+
+#modal-button {
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid var(--main-body-type);
+  margin-top: 4rem;
+}
+
+#modal-button:hover {
+  background-color: var(--special);
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.modal-band {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px 4px 0px 0px;
+  /* background-color: var(--active-tip); */
+  background-color: var(--special);
 }
 
 #container {
@@ -821,5 +858,32 @@ table {
 
 .vue-slider-marks div:nth-of-type(2) .vue-slider-mark-step {
   background-color: #83888c;
+}
+
+#responsive {
+  display: none;
+}
+
+@media (max-width: 1025px) {
+  #responsive {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 999;
+  }
+  #responsive article {
+    position: relative;
+    background-color: #fff;
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 10rem;
+    padding: 3rem;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  }
 }
 </style>
