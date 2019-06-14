@@ -551,11 +551,11 @@ section {
   stroke-opacity: 0.1;
 }
 
-.metric-circle:hover {
+/* .metric-circle:hover {
   opacity: 1;
   cursor: pointer;
   stroke-opacity: 0.3;
-}
+} */
 
 .metric-label {
   /* fill: #fff; */
