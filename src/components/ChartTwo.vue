@@ -194,6 +194,7 @@ export default {
       currentState: null,
       currentRepair: null,
       adjust: 0,
+      opacityValue: 0.5,
       places: [{}]
     };
   },
@@ -233,7 +234,7 @@ export default {
             "fill-opacity": [
               "case",
               ["boolean", ["feature-state", "hover"], false],
-              0.5,
+              this.opacityValue,
               0
             ]
           }
@@ -385,17 +386,52 @@ export default {
             { hover: true }
           );
 
-          this.map.flyTo({
-            center: [this.places[initial].lng, this.places[initial].lat],
-            zoom: 5
-          });
-
+          // this.map.flyTo({
+          //   center: [this.places[initial].lng, this.places[initial].lat],
+          //   zoom: 5
+          // });
+          this.map.setPaintProperty("state-fills", "fill-opacity", [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
+            this.opacityValue,
+            0
+          ]);
+          // this.opacityValue = this.stateScale(this.currentRepair);
+          this.opacityValue = 0.3 + (this.currentRepair / 51033) * 0.5;
           initial++;
+
           if (initial < howManyTimes) {
-            setTimeout(f, 750);
+            setTimeout(f, 500);
+
+            // this.opacityValue = initial * 0.02;
           } else {
             this.adjust = 16;
             this.skipToEnd();
+            // this.map.setPaintProperty(
+            //   "state-fills",
+            //   "fill-opacity",
+            //   "interpolate",
+            //   ["linear"],
+            //   ["get", 50],
+            //   1006,
+            //   0.16,
+            //   2209,
+            //   0.32,
+            //   7331,
+            //   0.48,
+            //   10189,
+            //   0.64,
+            //   51033,
+            //   0.8
+            // ),
+            // this.map.setFeatureState(
+            //   {
+            //     source: "states",
+            //     id: "state-fills"
+            //   },
+            //   { hover: true }
+            // );
+            // this.map.setPaintProperty("state-fills", "fill-opacity", 0.5);
           }
         } else if (this.$store.getters.finished) {
           this.adjust = 16;
@@ -404,7 +440,15 @@ export default {
       };
       f();
     },
-
+    stateScale() {
+      return d3
+        .scaleLinear()
+        .domain([
+          Math.min(...this.places.map(x => x.repair)),
+          Math.max(...this.places.map(x => x.repair))
+        ])
+        .range([0.2, 0.8]);
+    },
     scrollTrigger() {
       graphScroll()
         .offset(225)
