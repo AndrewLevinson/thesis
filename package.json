@@ -37,7 +37,8 @@
     ],
     "rules": {
       "no-console": 0,
-      "no-unused-vars": 1
+      "no-unused-vars": 1,
+      "vue/no-side-effects-in-computed-properties": 0
     },
     "parserOptions": {
       "parser": "babel-eslint"
@@ -51,6 +52,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 11"
   ]
 }

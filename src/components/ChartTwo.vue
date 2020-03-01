@@ -15,7 +15,9 @@
           {{ numFormater(currentRepair) }}
         </p>
       </div>
-      <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">Skip to End</button>
+      <button v-show="$store.getters.playing" @click="skipToEnd" class="in-box-button">
+        Skip to End
+      </button>
       <div v-show="scrollPosition === 0" class="legend" id="withdraw">
         <h6>Freshwater Withdrawals per Capita</h6>
         <p>
@@ -56,7 +58,7 @@
       <div v-show="scrollPosition === 4" class="legend" id="diverge">
         <h6>
           Change in
-          <br>Depletion Intensity %
+          <br />Depletion Intensity %
         </h6>
         <p>20th Century vs. Last 10 Years</p>
         <div class="data-pair">
@@ -67,7 +69,7 @@
           </div>
           <p>
             Decreased
-            <br>[-660% — 0%]
+            <br />[-660% — 0%]
           </p>
         </div>
         <div class="data-pair">
@@ -76,7 +78,7 @@
           </div>
           <p>
             No Change
-            <br>[0%]
+            <br />[0%]
           </p>
         </div>
         <div class="data-pair">
@@ -87,7 +89,7 @@
           </div>
           <p>
             Increased
-            <br>[0% — 660%]
+            <br />[0% — 660%]
           </p>
         </div>
       </div>
@@ -98,13 +100,20 @@
     <section class="text-section" id="sectionsTwo">
       <div class="text-box">
         <h5 class="box-title">Freshwater Withdrawals Per Capita</h5>
-        <p>As alluded to in the previous section, most of our freshwater withdrawals are not for drinking water, but for irrigation—which occurs predominantly in the High Plaines and Western regions. That's why this crisis is much bigger than just direct personal consumption.</p>
+        <p>
+          As alluded to in the previous section, most of our freshwater withdrawals are not for
+          drinking water, but for irrigation—which occurs predominantly in the High Plaines and
+          Western regions. That's why this crisis is much bigger than just direct personal
+          consumption.
+        </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Current Water Stress in the United States</h5>
         <p>
-          Throughout the country, we have already seen increasing water
-          stress due to a number of different factors. While some of these issues are isolated and some are symptoms of overarching problems like climate change, they are all signs of things to come if inaction continues.
+          Throughout the country, we have already seen increasing water stress due to a number of
+          different factors. While some of these issues are isolated and some are symptoms of
+          overarching problems like climate change, they are all signs of things to come if inaction
+          continues.
         </p>
         <!-- <br> -->
         <!-- <p>Let's take a look at local water stress at a local level.</p> -->
@@ -113,57 +122,53 @@
         <h5 class="box-title">Colorado River</h5>
         <p>
           Described as the "most controlled, controversial and litigated rivers in the world,"
-          <sup
-            class="footnote"
-          >[2]</sup> the
-          <span class="tag tag-intext area-river">Colorado River</span> provides drinking water and agricultural needs to
-          <span
-            class="special total"
-          >· 40 million people</span>
-          <sup class="footnote">&nbsp;[3]</sup>, including major cities highlighted on the map. Extended droughts have caused extreme stress on drinking water supply, irrigation, hydroelectricity, and water rights overall.
+          <sup class="footnote">[2]</sup> the
+          <span class="tag tag-intext area-river">Colorado River</span> provides drinking water and
+          agricultural needs to
+          <span class="special total">· 40 million people</span>
+          <sup class="footnote">&nbsp;[3]</sup>, including major cities highlighted on the map.
+          Extended droughts have caused extreme stress on drinking water supply, irrigation,
+          hydroelectricity, and water rights overall.
         </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Flood Levels Exceeding 99% Percentile</h5>
         <p>
           According to data pulled from the
-          <a
-            href="https://waterwatch.usgs.gov/index.php?id=flood&sid=w__map"
-          >USGS</a> on
+          <a href="https://waterwatch.usgs.gov/index.php?id=flood&sid=w__map">USGS</a> on
           <span class="datum">May 6, 2019</span> (the time of this writing), there are over
-          <span
-            class="tag tag-intext area-warning datum"
-          >50 extreme flooding scenarios</span>
-          <br>Not only is flooding dangerous and expensive, but it can severely affect agriculture and drinking water due to contamination.
+          <span class="tag tag-intext area-warning datum">50 extreme flooding scenarios</span>
+          <br />Not only is flooding dangerous and expensive, but it can severely affect agriculture
+          and drinking water due to contamination.
         </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Groundwater Depletion & Over-Abstraction</h5>
         <p>
           Most aquifers across the country are dealing with adverse effects from
-          <a
-            href="https://pubs.usgs.gov/sir/2013/5079/"
-          >increasing depletion intensity</a> of below-ground aquifers—which you can think of as the
-          <i>savings account</i> of our water supply. If increasing depletion intensity isn't tamed, the over-abstraction of groundwater can lead to wells drying up, contamination and saltwater intrusion, and the ground literally sinking.
+          <a href="https://pubs.usgs.gov/sir/2013/5079/">increasing depletion intensity</a> of
+          below-ground aquifers—which you can think of as the <i>savings account</i> of our water
+          supply. If increasing depletion intensity isn't tamed, the over-abstraction of groundwater
+          can lead to wells drying up, contamination and saltwater intrusion, and the ground
+          literally sinking.
         </p>
       </div>
 
       <div
-        :id="[$store.getters.playing  ? 'playing' : 'not-playing']"
+        :id="[$store.getters.playing ? 'playing' : 'not-playing']"
         :class="[$store.getters.finished ? 'text-box finished-text-box' : 'text-box']"
       >
         <div v-if="!$store.getters.finished">
           <h5 class="box-title">Drinking Water Infrastructure Across the Entire US</h5>
           <p>
-            Infrastructure repair needs in the US have skyrocketed in the last 50 years. Click the play button below to see the
-            total investment required to improve our drinking water infrastructure for each state:
+            Infrastructure repair needs in the US have skyrocketed in the last 50 years. Click the
+            play button below to see the total investment required to improve our drinking water
+            infrastructure for each state:
           </p>
           <div class="player">
-            <button
-              v-if="!$store.getters.playing"
-              @click="play(true)"
-              class="play-button"
-            >Play Animation</button>
+            <button v-if="!$store.getters.playing" @click="play(true)" class="play-button">
+              Play Animation
+            </button>
             <button v-else @click="play(false)" class="play-button">Stop Animation</button>
           </div>
         </div>
@@ -178,14 +183,21 @@
 </template>
 
 <script>
-import SideBar from "./SideBar.vue";
+import SideBar from './SideBar.vue';
 
-import * as d3 from "d3";
-import { graphScroll } from "graph-scroll";
-import mapboxgl from "mapbox-gl";
+import { select, selectAll, csv, format } from 'd3';
+import { graphScroll } from 'graph-scroll';
+import mapboxgl from 'mapbox-gl';
+
+const d3 = {
+  select,
+  selectAll,
+  csv,
+  format
+};
 
 export default {
-  name: "chart-two",
+  name: 'chart-two',
   components: { SideBar },
   data() {
     return {
@@ -205,35 +217,35 @@ export default {
   methods: {
     loadMap() {
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiYW5kcmV3bGV2aW5zb24iLCJhIjoiY2pub3RxNXB2MDA5cTNxb2M5MjNoaHl5diJ9.Zq4eS5UJd_60fgNBAFiUsw";
+        'pk.eyJ1IjoiYW5kcmV3bGV2aW5zb24iLCJhIjoiY2pub3RxNXB2MDA5cTNxb2M5MjNoaHl5diJ9.Zq4eS5UJd_60fgNBAFiUsw';
       this.map = new mapboxgl.Map({
-        container: "my-map",
-        style: "mapbox://styles/andrewlevinson/cjulygwif39c51fqua8xj3u4m",
+        container: 'my-map',
+        style: 'mapbox://styles/andrewlevinson/cjulygwif39c51fqua8xj3u4m',
         center: [-98.461045, 36.805969],
         zoom: 2.5,
         interactive: false,
         paint: {
-          "fill-opacity": 1,
-          "fill-opacity-transition": {
+          'fill-opacity': 1,
+          'fill-opacity-transition': {
             duration: 300
           }
         }
-      }).on("load", () => {
-        this.map.addSource("states", {
-          type: "geojson",
-          data: "https://docs.mapbox.com/mapbox-gl-js/assets/us_states.geojson"
+      }).on('load', () => {
+        this.map.addSource('states', {
+          type: 'geojson',
+          data: 'https://docs.mapbox.com/mapbox-gl-js/assets/us_states.geojson'
         });
 
         this.map.addLayer({
-          id: "state-fills",
-          type: "fill",
-          source: "states",
+          id: 'state-fills',
+          type: 'fill',
+          source: 'states',
           layout: {},
           paint: {
-            "fill-color": "#45b8cd",
-            "fill-opacity": [
-              "case",
-              ["boolean", ["feature-state", "hover"], false],
+            'fill-color': '#45b8cd',
+            'fill-opacity': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
               this.opacityValue,
               0
             ]
@@ -244,33 +256,33 @@ export default {
       });
     },
     loadData() {
-      d3.csv("data/clean/drinking.csv", d => {
+      d3.csv('data/clean/drinking.csv', d => {
         return {
-          state: d["State"],
-          id: +d["Id"],
-          lng: +d["lng"],
-          lat: +d["lat"],
-          repair: +d["Total"],
-          partial: d["Partial"]
+          state: d['State'],
+          id: +d['Id'],
+          lng: +d['lng'],
+          lat: +d['lat'],
+          repair: +d['Total'],
+          partial: d['Partial']
         };
       }).then(d => {
         return (this.places = d);
       });
     },
     numFormater(el) {
-      const numFormatT = d3.format(",.2f");
+      const numFormatT = d3.format(',.2f');
       return `$ ${numFormatT(el / 1000)} Billion`;
     },
     play(is) {
-      this.$store.commit("updatePlaying", is);
+      this.$store.commit('updatePlaying', is);
       this.infraAnimate();
     },
     playingSideBar(is) {
       this.play(is);
     },
     skipToEnd() {
-      this.$store.commit("updatePlaying", false);
-      this.$store.commit("finishedPlaying", true);
+      this.$store.commit('updatePlaying', false);
+      this.$store.commit('finishedPlaying', true);
       this.map.flyTo({
         center: [-98.461045 + this.adjust, 38],
         zoom: 3.45
@@ -282,77 +294,77 @@ export default {
       if (x === 0) {
         // display county usage - light
         for (const i of allLayers) {
-          if (i.id != "revisedcounties-2" && i.id != "us-states") {
+          if (i.id != 'revisedcounties-2' && i.id != 'us-states') {
             // && i.id != "settlement-label"
             // hide everything that isn't county water heatmap
-            this.map.setLayoutProperty(i.id, "visibility", "none");
+            this.map.setLayoutProperty(i.id, 'visibility', 'none');
           }
         }
         // county water heatmap and states outlines full opacity
-        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 1);
-        this.map.setPaintProperty("us-states", "fill-opacity", 1);
+        this.map.setPaintProperty('revisedcounties-2', 'fill-opacity', 1);
+        this.map.setPaintProperty('us-states', 'fill-opacity', 1);
       } else if (x === 1) {
         // display water stress across USA
         for (const i of allLayers) {
           // make everything visible
-          this.map.setLayoutProperty(i.id, "visibility", "visible");
+          this.map.setLayoutProperty(i.id, 'visibility', 'visible');
         }
         // v low opacity for county map - should maybe just hide?
-        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0.15);
-        this.map.setPaintProperty("us-states", "fill-opacity", 0.3);
+        this.map.setPaintProperty('revisedcounties-2', 'fill-opacity', 0.15);
+        this.map.setPaintProperty('us-states', 'fill-opacity', 0.3);
 
         // low opacity when looking at entire country and markers shown
-        this.map.setPaintProperty("aquifers", "fill-opacity", 0.2);
-        this.map.setPaintProperty("crbasin", "fill-opacity", 0.2);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 0.2);
-        this.map.setPaintProperty("all-rivers", "line-opacity", 0.2);
-        this.map.setPaintProperty("flooding", "icon-opacity", 0);
+        this.map.setPaintProperty('aquifers', 'fill-opacity', 0.2);
+        this.map.setPaintProperty('crbasin', 'fill-opacity', 0.2);
+        this.map.setPaintProperty('custom-rivers', 'line-opacity', 0.2);
+        this.map.setPaintProperty('all-rivers', 'line-opacity', 0.2);
+        this.map.setPaintProperty('flooding', 'icon-opacity', 0);
 
         // this.map.setLayoutProperty("flooding", "visibility", "none");
         // reset green city labels for standard
-        this.map.setLayoutProperty("cr-cities-labels", "visibility", "none");
-        this.map.setPaintProperty("settlement-label", "text-opacity", 1);
+        this.map.setLayoutProperty('cr-cities-labels', 'visibility', 'none');
+        this.map.setPaintProperty('settlement-label', 'text-opacity', 1);
         // this.map.getStyle("settlement-label");
       } else if (x === 2) {
         // drought
-        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0);
-        this.map.setPaintProperty("aquifers", "fill-opacity", 0.0);
+        this.map.setPaintProperty('revisedcounties-2', 'fill-opacity', 0);
+        this.map.setPaintProperty('aquifers', 'fill-opacity', 0.0);
 
-        this.map.setPaintProperty("crbasin", "fill-opacity", 1);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 1);
-        this.map.setPaintProperty("all-rivers", "line-opacity", 0.2);
+        this.map.setPaintProperty('crbasin', 'fill-opacity', 1);
+        this.map.setPaintProperty('custom-rivers', 'line-opacity', 1);
+        this.map.setPaintProperty('all-rivers', 'line-opacity', 0.2);
 
         // swap standard city labels for green
-        this.map.setLayoutProperty("cr-cities-labels", "visibility", "visible");
-        this.map.setPaintProperty("settlement-label", "text-opacity", 0.45);
+        this.map.setLayoutProperty('cr-cities-labels', 'visibility', 'visible');
+        this.map.setPaintProperty('settlement-label', 'text-opacity', 0.45);
 
         // hide markers for future zoom outs
-        this.map.setLayoutProperty("markers-dakqe6", "visibility", "none");
+        this.map.setLayoutProperty('markers-dakqe6', 'visibility', 'none');
         // this.map.setLayoutProperty("flooding", "visibility", "none");
-        this.map.setPaintProperty("flooding", "icon-opacity", 0);
+        this.map.setPaintProperty('flooding', 'icon-opacity', 0);
       } else if (x === 3) {
         // flood
-        this.map.setPaintProperty("revisedcounties-2", "fill-opacity", 0);
-        this.map.setPaintProperty("aquifers", "fill-opacity", 0.0);
-        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
+        this.map.setPaintProperty('revisedcounties-2', 'fill-opacity', 0);
+        this.map.setPaintProperty('aquifers', 'fill-opacity', 0.0);
+        this.map.setPaintProperty('crbasin', 'fill-opacity', 0);
+        this.map.setPaintProperty('custom-rivers', 'line-opacity', 0);
         // reset green city labels for standard
-        this.map.setLayoutProperty("cr-cities-labels", "visibility", "none");
-        this.map.setPaintProperty("settlement-label", "text-opacity", 1);
+        this.map.setLayoutProperty('cr-cities-labels', 'visibility', 'none');
+        this.map.setPaintProperty('settlement-label', 'text-opacity', 1);
 
-        this.map.setPaintProperty("all-rivers", "line-opacity", 0.5);
-        this.map.setPaintProperty("flooding", "icon-opacity", 1);
+        this.map.setPaintProperty('all-rivers', 'line-opacity', 0.5);
+        this.map.setPaintProperty('flooding', 'icon-opacity', 1);
       } else if (x === 4) {
         // aquifers - first
-        this.map.setPaintProperty("crbasin", "fill-opacity", 0);
-        this.map.setPaintProperty("custom-rivers", "line-opacity", 0);
-        this.map.setPaintProperty("all-rivers", "line-opacity", 0);
-        this.map.setPaintProperty("aquifers", "fill-opacity", 1);
+        this.map.setPaintProperty('crbasin', 'fill-opacity', 0);
+        this.map.setPaintProperty('custom-rivers', 'line-opacity', 0);
+        this.map.setPaintProperty('all-rivers', 'line-opacity', 0);
+        this.map.setPaintProperty('aquifers', 'fill-opacity', 1);
 
-        this.map.setPaintProperty("flooding", "icon-opacity", 0);
+        this.map.setPaintProperty('flooding', 'icon-opacity', 0);
       } else if (x === 5) {
         // drinking water - first
-        this.map.setPaintProperty("aquifers", "fill-opacity", 0);
+        this.map.setPaintProperty('aquifers', 'fill-opacity', 0);
       } else if (x === 6) {
         // drinking water zoom in (northeast)
       } else if (x === 7) {
@@ -368,7 +380,7 @@ export default {
         if (hoveredStateId) {
           this.map.setFeatureState(
             {
-              source: "states",
+              source: 'states',
               id: hoveredStateId
             },
             { hover: false }
@@ -380,7 +392,7 @@ export default {
           hoveredStateId = this.places[initial].id;
           this.map.setFeatureState(
             {
-              source: "states",
+              source: 'states',
               id: hoveredStateId
             },
             { hover: true }
@@ -390,9 +402,9 @@ export default {
           //   center: [this.places[initial].lng, this.places[initial].lat],
           //   zoom: 5
           // });
-          this.map.setPaintProperty("state-fills", "fill-opacity", [
-            "case",
-            ["boolean", ["feature-state", "hover"], false],
+          this.map.setPaintProperty('state-fills', 'fill-opacity', [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
             this.opacityValue,
             0
           ]);
@@ -452,14 +464,12 @@ export default {
     scrollTrigger() {
       graphScroll()
         .offset(225)
-        .graph(d3.selectAll("#map"))
-        .container(d3.select("#chart-two"))
-        .sections(d3.selectAll("#sectionsTwo > div"))
-        .eventId("uniqueId2")
-        .on("active", i => {
-          // console.log(this);
+        .graph(d3.selectAll('#map'))
+        .container(d3.select('#chart-two'))
+        .sections(d3.selectAll('#sectionsTwo > div'))
+        .eventId('uniqueId2')
+        .on('active', i => {
           this.scrollPosition = i;
-          // console.log("active!", i);
           switch (i) {
             case 0:
               // offscreen so do nothing
@@ -523,7 +533,7 @@ export default {
               this.setMapLayers(i);
               break;
             case 6:
-              this.$store.commit("updatePlaying", false);
+              this.$store.commit('updatePlaying', false);
 
               // position
               this.map.flyTo({
@@ -543,7 +553,6 @@ export default {
 
               break;
             default:
-              // console.log("none");
               break;
           }
         });
@@ -673,7 +682,7 @@ section {
 }
 
 .area-river::after {
-  content: "\3030";
+  content: '\3030';
   float: right;
   margin-left: 6px;
   margin-top: 2px;
@@ -690,7 +699,7 @@ section {
 }
 
 .area-warning::after {
-  content: url("../assets/icons/warning-round-small.svg");
+  content: url('../assets/icons/warning-round-small.svg');
   float: right;
   margin-left: 6px;
   margin-top: -1.25px;
@@ -730,7 +739,7 @@ section {
   padding: 0.75rem;
   padding-left: 0;
   margin: 0;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 300;
   /* opacity: 0.8; */
   /* font-size: 90%; */
@@ -825,7 +834,7 @@ section {
 }
 
 .in-box-button::after {
-  content: "\362";
+  content: '\362';
   text-align: right;
   width: 24px;
   float: right;

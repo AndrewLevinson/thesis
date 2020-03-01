@@ -4,15 +4,15 @@
       <div class="panel-tip-band"></div>
       <!-- <h6>Case Studies</h6> -->
       <div class="dots">
-        <div :class="[scrollPosition >= 2 && scrollPosition <= 3 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition >= 2 && scrollPosition <= 3 ? 'active-dot' : 'dot']">
           <div></div>
           <p>Climate</p>
         </div>
-        <div :class="[scrollPosition === 4 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition === 4 ? 'active-dot' : 'dot']">
           <div></div>
           <p>Groundwater</p>
         </div>
-        <div :class="[scrollPosition >= 5 ? 'active-dot': 'dot']">
+        <div :class="[scrollPosition >= 5 ? 'active-dot' : 'dot']">
           <div></div>
           <p>Infrastructure</p>
         </div>
@@ -39,17 +39,26 @@
             <span class="area-river tag">Colorado River</span>
           </div>-->
           <p>
-            Climate change has caused frequent extended doughts throughout the Southwest, putting intense pressure on
-            <span
-              class="special datum"
-            >major cities</span>
+            Climate change has caused frequent extended doughts throughout the Southwest, putting
+            intense pressure on
+            <span class="special datum">major cities</span>
             that depend on Lake Mead for their drinking water from the lower basin.
           </p>
           <MiniChart />
           <div class="additional-content">
             <div class="tip-band-mini"></div>
-            <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, climate change has affected the natural water cycle, putting intense pressure on cities that depend on Lake Mead for their drinking water.</p>
-            <p>With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply—especially in cities like Los Angeles, Las Vegas, and Phoenix.</p>
+            <p>
+              The Colorado River provides most of the freshwater needs to the most water intensive
+              region in the country for both irrigation and municipal usage; however, climate change
+              has affected the natural water cycle, putting intense pressure on cities that depend
+              on Lake Mead for their drinking water.
+            </p>
+            <p>
+              With less snowpack in the mountains during the winter, the river becomes much more
+              stressed in the late, hot summer months. This not only effects farming activities, but
+              puts immense pressure on the public water supply—especially in cities like Los
+              Angeles, Las Vegas, and Phoenix.
+            </p>
           </div>
         </article>
         <!-- <article v-else-if="scrollPosition === 3">
@@ -75,17 +84,17 @@
               href="https://www.epa.gov/sites/production/files/2018-10/documents/corrected_sixth_drinking_water_infrastructure_needs_survey_and_assessment.pdf"
               target="_blank"
             >
-              sixth national
-              assessment
-            </a> of public water system infrastructure needs
-            which shows a 20-year need of
-            <span
-              class="total special"
-            >$472.6 Billion</span> in capital improvements to our water systems to "provide safe
-            drinking water to the public."
+              sixth national assessment
+            </a>
+            of public water system infrastructure needs which shows a 20-year need of
+            <span class="total special">$472.6 Billion</span> in capital improvements to our water
+            systems to "provide safe drinking water to the public."
           </p>
 
-          <p>By letting our drinking water infrastructure crumble, we are already seeing adverse effects in the forms of:</p>
+          <p>
+            By letting our drinking water infrastructure crumble, we are already seeing adverse
+            effects in the forms of:
+          </p>
           <ul>
             <li>Water Main Breaks</li>
             <li>Drinking Water Contamination</li>
@@ -108,12 +117,17 @@
             </thead>
             <tbody>
               <tr
-                v-for="place in places.filter(place => { return place.state !== 'Total' }).slice().reverse()"
+                v-for="place in places
+                  .filter(place => {
+                    return place.state !== 'Total';
+                  })
+                  .slice()
+                  .reverse()"
                 :class="place.state"
                 :key="place.state"
               >
-                <td class="pull-left">{{place.state}}</td>
-                <td class="pull-right">{{numFormater(place.repair)}}</td>
+                <td class="pull-left">{{ place.state }}</td>
+                <td class="pull-right">{{ numFormater(place.repair) }}</td>
                 <!-- <td>{{place.partial}}</td> -->
               </tr>
             </tbody>
@@ -122,12 +136,52 @@
         <article v-else-if="scrollPosition == 6">
           <h2>Drinking Water Infrastructure</h2>
           <h5>Sewer System Contamination</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad
+            maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere
+            aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia
+            facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur
+            voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta!
+            Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis,
+            recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur
+            tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit.
+            Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque
+            explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores
+            fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores!
+            Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim
+            non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro
+            voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos
+            harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem
+            delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos
+            illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora
+            amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus
+            nesciunt accusantium in necessitatibus?
+          </p>
         </article>
         <article v-else-if="scrollPosition == 7">
           <h2>Drinking Water Infrastructure</h2>
           <h5>Lead Contamination</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta! Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis, recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit. Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores! Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus nesciunt accusantium in necessitatibus?</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor expedita reiciendis, ad
+            maxime, cumque quasi dolorem similique vitae laudantium optio nulla blanditiis facere
+            aliquam. Suscipit aspernatur laboriosam consequatur nisi, quam qui modi mollitia
+            facilis, quidem sint odio. Alias quod sunt doloribus magni eligendi, aspernatur
+            voluptates atque accusamus quaerat eaque perferendis corrupti ipsa, quasi ducimus dicta!
+            Neque excepturi porro laboriosam ipsa natus. Est, architecto. Doloremque nobis,
+            recusandae vel quo inventore beatae placeat nihil accusantium dolores consequatur
+            tempora sunt a dicta facere voluptatem deleniti doloribus quasi, optio reprehenderit.
+            Voluptas quasi, necessitatibus modi quis accusantium blanditiis illum nisi vero. Atque
+            explicabo ipsam eos quia. Asperiores minima quia temporibus unde, eos voluptas dolores
+            fuga repellendus numquam, odio vero dolore ipsa, fugit quam dicta nam ex maiores!
+            Consequatur, atque, facere nobis dolore sint sequi rerum asperiores voluptate amet enim
+            non alias rem quaerat fugiat, obcaecati deserunt architecto ab incidunt porro
+            voluptatibus? Impedit deserunt dolore, itaque doloremque ratione assumenda atque eos
+            harum quidem consequuntur minima deleniti voluptatibus, commodi mollitia voluptatem
+            delectus blanditiis id reiciendis? Animi excepturi enim non repellendus quaerat eos
+            illum facere quae pariatur doloribus sapiente esse reprehenderit nulla, atque tempora
+            amet cum? Perferendis temporibus magnam ipsa possimus doloribus provident? Delectus
+            nesciunt accusantium in necessitatibus?
+          </p>
         </article>
       </div>
     </section>
@@ -135,13 +189,13 @@
 </template>
 
 <script>
-import MiniChart from "./MiniChart.vue";
-import * as d3 from "d3";
-
+import MiniChart from './MiniChart.vue';
+import { format } from 'd3';
+const d3 = { format };
 export default {
-  name: "side-bar",
+  name: 'side-bar',
   components: { MiniChart },
-  props: ["scrollPosition", "places", "currentState", "currentRepair"],
+  props: ['scrollPosition', 'places', 'currentState', 'currentRepair'],
   data() {
     return {
       showPanel: false,
@@ -160,10 +214,8 @@ export default {
   //   scrollPosition: "scrollPanel"
   // },
   watch: {
-    scrollPosition: "scrollPanel",
+    scrollPosition: 'scrollPanel',
     animationComplete(newValue, oldValue) {
-      // console.log(`Updating from ${oldValue} to ${newValue}`);
-      // Do whatever makes sense now
       if (newValue) {
         this.showPanelContent = true;
       } else {
@@ -171,8 +223,6 @@ export default {
       }
     },
     stillPlaying(newValue, oldValue) {
-      // console.log(`Updating from ${oldValue} to ${newValue}`);
-      // Do whatever makes sense now
       if (newValue) {
         this.showPanelContent = false;
       } else {
@@ -182,10 +232,10 @@ export default {
   },
   methods: {
     playingSideBar(is) {
-      this.$emit("playingSideBar", is);
+      this.$emit('playingSideBar', is);
     },
     numFormater(el) {
-      const numFormatT = d3.format(",.2f");
+      const numFormatT = d3.format(',.2f');
       return `$ ${numFormatT(el / 1000)} B`;
     },
     scrollPanel(i) {
@@ -469,7 +519,7 @@ button {
 } */
 
 li:before {
-  content: url("../assets/icons/x-bullet.svg");
+  content: url('../assets/icons/x-bullet.svg');
   margin-right: 12px;
 }
 

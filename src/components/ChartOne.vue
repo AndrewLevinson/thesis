@@ -39,24 +39,33 @@
       </div>
       <svg :width="svgWidth" :height="svgHeight">
         <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
-          <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
-          <g v-axis:y="scale" class="y-axis"></g>
-          <g v-grid:gridLine="scale" class="grid"></g>
+          <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis" />
+          <g v-axis:y="scale" class="y-axis" />
+          <g v-grid:gridLine="scale" class="grid" />
           <path
-            :class="[showCallOut && setShown === 1 ? 'link-inactive' : (setShown === 1 ? 'link' : 'link-hide')]"
+            :class="[
+              showCallOut && setShown === 1
+                ? 'link-inactive'
+                : setShown === 1
+                ? 'link'
+                : 'link-hide'
+            ]"
             :d="paths.line"
-          ></path>
+          />
           <g
             :class="[showArea ? 'area-active' : 'area-hide']"
             @mousemove="mouseoverArea"
-            @mouseleave="showLabel = false, myTooltip()"
+            @mouseleave="(showLabel = false), myTooltip()"
           >
-            <path v-show="setShown != 1" class="selector" :d="paths.selector"></path>
-            <path :class="[setShown === 1 ? 'area-one' : 'area-one-100']" :d="paths.areaOne"></path>
-            <path :class="[setShown === 1 ? 'area-two' : 'area-two-100']" :d="paths.areaTwo"></path>
-            <path :class="[setShown === 1 ? 'area-three' : 'area-three-100']" :d="paths.areaThree"></path>
-            <path :class="[setShown === 1 ? 'area-one' : 'area-four-100']" :d="paths.areaFour"></path>
-            <path :class="[setShown === 1 ? 'area-one' : 'area-five-100']" :d="paths.areaFive"></path>
+            <path v-show="setShown != 1" class="selector" :d="paths.selector" />
+            <path :class="[setShown === 1 ? 'area-one' : 'area-one-100']" :d="paths.areaOne" />
+            <path :class="[setShown === 1 ? 'area-two' : 'area-two-100']" :d="paths.areaTwo" />
+            <path
+              :class="[setShown === 1 ? 'area-three' : 'area-three-100']"
+              :d="paths.areaThree"
+            />
+            <path :class="[setShown === 1 ? 'area-one' : 'area-four-100']" :d="paths.areaFour" />
+            <path :class="[setShown === 1 ? 'area-one' : 'area-five-100']" :d="paths.areaFive" />
           </g>
           <g v-for="(d, i) in filteredData" :key="i">
             <line
@@ -66,20 +75,21 @@
               :x2="scale.x(d.year)"
               :y2="height"
               :class="[i == selected ? 'selector' : 'selector-inactive']"
-            ></line>
+            />
             <circle
               v-if="setShown === 1"
-              :class="[i == selected ? 'circle-active' : (showCallOut ? 'circle-inactive' : 'circle-up')]"
+              :class="[
+                i == selected ? 'circle-active' : showCallOut ? 'circle-inactive' : 'circle-up'
+              ]"
               :cx="scale.x(d.year)"
               :cy="[setShown === 1 ? scale.y(d.rwpc) : scale.y(1)]"
               r="5"
-              @mouseover="showLabel = !showLabel,
-            myTooltip(d),select(i)"
-              @mouseleave="showLabel = !showLabel, myTooltip(d), select(null)"
-            ></circle>
+              @mouseover="(showLabel = !showLabel), myTooltip(d), select(i)"
+              @mouseleave="(showLabel = !showLabel), myTooltip(d), select(null)"
+            />
           </g>
           <g>
-            <rect v-if="setShown === 1" x="-5" y="-15" width="145" height="30" fill="#eff8ff"></rect>
+            <rect v-if="setShown === 1" x="-5" y="-15" width="145" height="30" fill="#eff8ff" />
             <text v-if="setShown === 1" y="5.5" x="0" class="axis-title">{{ yLabel }}</text>
             <text v-if="setShown === 2" y="-5" x="0" class="axis-title">{{ yLabel }}</text>
           </g>
@@ -89,15 +99,21 @@
     <section class="text-section" id="sectionsOne">
       <div class="text-box">
         <h5 class="box-title">Why Are We Running Out of Water?</h5>
-        <p>Each country has a static amount of renewable water provided by the natural water cycle. As long as populations continue to grow, the renewable water per person decreases. Combined with climate change factors and increasing demand for water-intensive goods and services, the United States faces an increased risk of water stress every year we don't take action.</p>
+        <p>
+          Each country has a static amount of renewable water provided by the natural water cycle.
+          As long as populations continue to grow, the renewable water per person decreases.
+          Combined with climate change factors and increasing demand for water-intensive goods and
+          services, the United States faces an increased risk of water stress every year we don't
+          take action.
+        </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">Trending Down</h5>
         <p>
           According to Aquastat, 2014 yielded the lowest available water per capita on record at
           9,538 m
-          <sup>3</sup>/year/person, down about
-          <span class="datum">25%</span> over the last 30 years.
+          <sup>3</sup>/year/person, down about <span class="datum">25%</span> over the last 30
+          years.
         </p>
       </div>
       <div class="text-box">
@@ -106,68 +122,69 @@
           Renewable freshwater is mostly extracted from
           <span class="area-two tag tag-intext">
             Surface Water:
-            <span class="datum">61%</span>
-          </span>,
+            <span class="datum">61%</span> </span
+          >,
           <span class="area-one tag tag-intext">
             Groundwater:
-            <span class="datum">31%</span>
-          </span>, with some water coming from beyond the countries borders like from Canada marked as
-          <span
-            class="area-three tag tag-intext"
-          >
+            <span class="datum">31%</span> </span
+          >, with some water coming from beyond the countries borders like from Canada marked as
+          <span class="area-three tag tag-intext">
             Dependencies:
-            <span class="datum">8%</span>
-          </span>.
+            <span class="datum">8%</span> </span
+          >.
         </p>
       </div>
       <div class="text-box">
         <h5 class="box-title">How is it Used?</h5>
         <p>
           Every five years, the U.S. Geological Survey collects
-          <a
-            href="https://water.usgs.gov/watuse/data/"
-            target="_blank"
-          >water usage data</a> for the country. As of
-          <span class="datum">2015</span>, the allocation of withdrawn freshwater shows the top three uses of water as
-          <br>
-          <br>
+          <a href="https://water.usgs.gov/watuse/data/" target="_blank">water usage data</a> for the
+          country. As of <span class="datum">2015</span>, the allocation of withdrawn freshwater
+          shows the top three uses of water as
+          <br />
+          <br />
           <span class="area-one-100 tag tag-intext">
             Thermoelectric:
-            <span class="datum">41%</span>
-          </span>,
+            <span class="datum">41%</span> </span
+          >,
           <span class="area-two-100 tag tag-intext">
             Irrigation:
             <span class="datum">37%</span>
-          </span> and
+          </span>
+          and
           <span class="area-three-100 tag tag-intext">
             Municipal:
             <span class="datum">13%</span>
           </span>
-          <br>
-          <br>However, this number is a bit misleading as not all water withdrawn is consumed—specifically in thermoelectric usage where virtually all water is returned back to the earth after it's used for a once-through cooling process.
+          <br />
+          <br />However, this number is a bit misleading as not all water withdrawn is
+          consumed—specifically in thermoelectric usage where virtually all water is returned back
+          to the earth after it's used for a once-through cooling process.
         </p>
       </div>
 
       <div class="text-box">
         <h5 class="box-title">Excluding Thermoelectric Withdrawals</h5>
         <p>
-          If we remove thermoelectric withdrawals from the chart, it paints a more accurate picture of consumptive water use, now showing the top three uses of water as
-          <br>
-          <br>
+          If we remove thermoelectric withdrawals from the chart, it paints a more accurate picture
+          of consumptive water use, now showing the top three uses of water as
+          <br />
+          <br />
           <span class="area-two-100 tag tag-intext">
             Irrigation:
-            <span class="datum">63%</span>
-          </span>,
+            <span class="datum">63%</span> </span
+          >,
           <span class="area-three-100 tag tag-intext">
             Municipal:
             <span class="datum">22%</span>
-          </span> and
+          </span>
+          and
           <span class="area-four-100 tag tag-intext">
             Industrial:
             <span class="datum">14%</span>
           </span>
-          <br>
-          <br>But these numbers are just averages, the local breakdown is much different...
+          <br />
+          <br />But these numbers are just averages, the local breakdown is much different...
         </p>
       </div>
     </section>
@@ -175,15 +192,41 @@
 </template>
 
 <script>
-import * as d3 from "d3";
-import { graphScroll } from "graph-scroll";
+import {
+  select,
+  selectAll,
+  scaleLinear,
+  format,
+  csv,
+  line,
+  stack,
+  curveBundle,
+  area,
+  axisBottom,
+  axisLeft
+} from 'd3';
+import { graphScroll } from 'graph-scroll';
+
+const d3 = {
+  select,
+  selectAll,
+  scaleLinear,
+  format,
+  csv,
+  line,
+  stack,
+  curveBundle,
+  area,
+  axisBottom,
+  axisLeft
+};
 
 export default {
-  name: "chart-one",
+  name: 'chart-one',
   data() {
     return {
-      graphOneTitle: "Renewable Water Resources Per Capita (USA)",
-      yLabel: "m3/year/person",
+      graphOneTitle: 'Renewable Water Resources Per Capita (USA)',
+      yLabel: 'm3/year/person',
       svgWidth: window.innerWidth * 0.95,
       svgHeight: window.innerHeight * 0.83,
       margin: { top: 50, left: 65, bottom: 20, right: 25 },
@@ -195,13 +238,13 @@ export default {
         color: null
       },
       paths: {
-        line: "",
-        areaOne: "",
-        areaTwo: "",
-        areaThree: "",
-        areaFour: "",
-        areaFive: "",
-        selector: ""
+        line: '',
+        areaOne: '',
+        areaTwo: '',
+        areaThree: '',
+        areaFour: '',
+        areaFive: '',
+        selector: ''
       },
       pointsLine: [],
       pointsArea: [[], [], [], [], []],
@@ -226,7 +269,7 @@ export default {
           max: 14000
         }
       },
-      stackKeys: ["gpc", "spc", "dpc"],
+      stackKeys: ['gpc', 'spc', 'dpc'],
       setShown: 1
     };
   },
@@ -281,30 +324,28 @@ export default {
     this.scrollTrigger();
   },
   updated() {
-    // console.log("im updated");
     this.updatePath();
   },
   methods: {
     loadData() {
-      d3.csv("data/clean/renewable_water_capita.csv", d => {
+      d3.csv('data/clean/renewable_water_capita.csv', d => {
         return {
-          set: +d["set"],
-          year: +d["years"],
-          rwpc: +d["rwpc"],
-          spc: +d["spc"],
-          gpc: +d["gpc"],
-          dpc: +d["dpc"],
-          totalW: +d["Total in Bgal/d"],
-          publicPer: +d["Public and Domestic"],
-          irrigationPer: +d["Irrigation"],
-          thermoPer: +d["Thremoelectric"],
-          industrialPer: +d["Industrial"],
-          otherPer: +d["Other"]
+          set: +d['set'],
+          year: +d['years'],
+          rwpc: +d['rwpc'],
+          spc: +d['spc'],
+          gpc: +d['gpc'],
+          dpc: +d['dpc'],
+          totalW: +d['Total in Bgal/d'],
+          publicPer: +d['Public and Domestic'],
+          irrigationPer: +d['Irrigation'],
+          thermoPer: +d['Thremoelectric'],
+          industrialPer: +d['Industrial'],
+          otherPer: +d['Other']
         };
       })
         .then(d => {
           return (this.data = d);
-          // console.log(d);
         })
         .then(() => {
           this.updatePath();
@@ -374,10 +415,7 @@ export default {
         if (this.lastHoverPoint.index !== closestPoint.index) {
           const point = this.pointsArea[1][closestPoint.index];
           this.paths.selector = this.createValueSelector([point]);
-          this.$emit(
-            "mouseOver",
-            this.myTooltip(this.filteredData[closestPoint.index])
-          );
+          this.$emit('mouseOver', this.myTooltip(this.filteredData[closestPoint.index]));
 
           this.lastHoverPoint = closestPoint;
         }
@@ -400,18 +438,18 @@ export default {
       this.selectedArea = index;
     },
     numFormater(type, el) {
-      const numFormatT = d3.format(",d");
-      return numFormatT(el) + (type === "per" ? "%" : "");
+      const numFormatT = d3.format(',d');
+      return numFormatT(el) + (type === 'per' ? '%' : '');
     },
     initTooltip() {
       this.tooltip = {
         element: null,
         init: function() {
           this.element = d3
-            .select("body")
-            .append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
+            .select('body')
+            .append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
         },
         show: function(t) {
           this.element
@@ -419,29 +457,27 @@ export default {
             .transition()
             .duration(200)
             .style(
-              "left",
+              'left',
               `${
-                event.clientX > window.innerWidth * 0.5
-                  ? event.clientX - 250
-                  : event.clientX + 10
+                event.clientX > window.innerWidth * 0.5 ? event.clientX - 250 : event.clientX + 10
               }px`
             )
-            .style("top", `50vh`)
-            .style("opacity", 0.925);
+            .style('top', `50vh`)
+            .style('opacity', 0.925);
         },
         move: function() {
           this.element
             .transition()
             .duration(30)
-            .style("left", `${event.clientX + 10}px`)
-            .style("top", `50vh`)
-            .style("opacity", 0.9);
+            .style('left', `${event.clientX + 10}px`)
+            .style('top', `50vh`)
+            .style('opacity', 0.9);
         },
         hide: function() {
           this.element
             .transition()
             .duration(500)
-            .style("opacity", 0)
+            .style('opacity', 0)
             .delay(100);
         }
       };
@@ -457,21 +493,21 @@ export default {
           <div class="data-pair area-three tip-tag">
             <span class="tag-intext">Dependencies</span>
             <p class="tag-intext">
-              ${this.numFormater("num", d.dpc)}
+              ${this.numFormater('num', d.dpc)}
             </p>
           </div>
       
           <div class="data-pair area-two tip-tag">
             <span class="tag-intext">Surface Water</span>
             <p class="tag-intext">
-              ${this.numFormater("num", d.spc)}
+              ${this.numFormater('num', d.spc)}
             </p>
           </div>
 
           <div class="data-pair area-one tip-tag">
             <span class="tag-intext">Groundwater</span>
             <p class="tag-intext">
-              ${this.numFormater("num", d.gpc)}
+              ${this.numFormater('num', d.gpc)}
             </p>
           </div>
 
@@ -479,7 +515,7 @@ export default {
           <div class="data-pair tip-tag">
             <span class="datum total">Total</span>
             <p class="total">
-              ${this.numFormater("num", d.rwpc)}
+              ${this.numFormater('num', d.rwpc)}
             </p>
           </div>
         `);
@@ -492,7 +528,7 @@ export default {
           <div class="data-pair area-five-100 tip-tag">
             <span class="tag-intext">Other</span>
             <p class="tag-intext">
-            ${this.numFormater("per", d.otherPer)}
+            ${this.numFormater('per', d.otherPer)}
             </p>
           </div>
 
@@ -500,28 +536,28 @@ export default {
           <div class="data-pair area-four-100 tip-tag">
             <span class="tag-intext">Industrial</span>
             <p class="tag-intext">
-              ${this.numFormater("per", d.industrialPer)}
+              ${this.numFormater('per', d.industrialPer)}
             </p>
           </div>
 
           <div class="data-pair area-three-100 tip-tag">
             <span class="tag-intext">Municipal</span>
             <p class="tag-intext">
-              ${this.numFormater("per", d.publicPer)}
+              ${this.numFormater('per', d.publicPer)}
             </p>
           </div>
 
           <div class="data-pair area-two-100 tip-tag">
             <span class="tag-intext">Irrigation</span>
             <p class="tag-intext">
-              ${this.numFormater("per", d.irrigationPer)}
+              ${this.numFormater('per', d.irrigationPer)}
             </p>
           </div>
 
        <div class="data-pair area-one-100 tip-tag">
             <span class="tag-intext">Thermoelectric</span>
             <p class="tag-intext">
-              ${this.numFormater("per", d.thermoPer)}
+              ${this.numFormater('per', d.thermoPer)}
             </p>
           </div>
          `);
@@ -534,7 +570,7 @@ export default {
           <div class="data-pair area-five-100 tip-tag">
             <span class="tag-intext">Other</span>
             <p class="tag-intext">
-            ${this.numFormater("per", d.otherPer)}
+            ${this.numFormater('per', d.otherPer)}
             </p>
           </div>
 
@@ -542,21 +578,21 @@ export default {
           <div class="data-pair area-four-100 tip-tag">
             <span class="tag-intext">Industrial</span>
             <p class="tag-intext">
-              ${this.numFormater("per", d.industrialPer)}
+              ${this.numFormater('per', d.industrialPer)}
             </p>
           </div>
 
           <div class="data-pair area-three-100 tip-tag">
             <span class="tag-intext">Municipal</span>
             <p class="tag-intext">
-              ${this.numFormater("per", d.publicPer)}
+              ${this.numFormater('per', d.publicPer)}
             </p>
           </div>
 
           <div class="data-pair area-two-100 tip-tag">
             <span class="tag-intext">Irrigation</span>
             <p class="tag-intext">
-              ${this.numFormater("per", d.irrigationPer)}
+              ${this.numFormater('per', d.irrigationPer)}
             </p>
           </div>
 
@@ -570,12 +606,11 @@ export default {
     scrollTrigger() {
       graphScroll()
         .offset(100)
-        .graph(d3.selectAll("#graph-one"))
-        .container(d3.select("#chart-one"))
-        .sections(d3.selectAll("#sectionsOne > div"))
-        .eventId("uniqueId1")
-        .on("active", i => {
-          // console.log("case", i);
+        .graph(d3.selectAll('#graph-one'))
+        .container(d3.select('#chart-one'))
+        .sections(d3.selectAll('#sectionsOne > div'))
+        .eventId('uniqueId1')
+        .on('active', i => {
           switch (i) {
             case 0:
               // offscreen so do nothing / reset with just line
@@ -587,7 +622,7 @@ export default {
               this.showCallOut = false;
               // this.showLabel = false;
 
-              this.stackKeys = ["gpc", "spc", "dpc"];
+              this.stackKeys = ['gpc', 'spc', 'dpc'];
 
               break;
             case 1:
@@ -598,12 +633,12 @@ export default {
               this.setShown = 1;
               this.selected = 6;
               this.showCallOut = true;
-              this.stackKeys = ["gpc", "spc", "dpc"];
+              this.stackKeys = ['gpc', 'spc', 'dpc'];
 
               break;
             case 2:
-              this.graphOneTitle = "Renewable Water Resources Per Capita (USA)";
-              this.yLabel = "m3/year/person";
+              this.graphOneTitle = 'Renewable Water Resources Per Capita (USA)';
+              this.yLabel = 'm3/year/person';
               // update y axis to show first area per cap
               this.setShown = 1;
               this.showArea = true;
@@ -611,13 +646,12 @@ export default {
               this.domain.y.max = 14000;
               this.selected = null;
               this.showCallOut = false;
-              this.stackKeys = ["gpc", "spc", "dpc"];
+              this.stackKeys = ['gpc', 'spc', 'dpc'];
 
               break;
             case 3:
-              this.graphOneTitle =
-                "Percentage Share of Water Withdrawls by Category (USA)";
-              this.yLabel = "% of Total Water Withdrawn";
+              this.graphOneTitle = 'Percentage Share of Water Withdrawls by Category (USA)';
+              this.yLabel = '% of Total Water Withdrawn';
 
               // change dataset to 100% area
               this.setShown = 2;
@@ -625,18 +659,17 @@ export default {
               this.domain.y.min = 0;
               this.domain.y.max = 100;
               this.stackKeys = [
-                "thermoPer",
-                "irrigationPer",
-                "publicPer",
-                "industrialPer",
-                "otherPer"
+                'thermoPer',
+                'irrigationPer',
+                'publicPer',
+                'industrialPer',
+                'otherPer'
               ];
 
               break;
             case 4:
-              this.graphOneTitle =
-                "Percentage Share of Water Withdrawls Excluding Thermoelectric";
-              this.yLabel = "% of Total Water Withdrawn";
+              this.graphOneTitle = 'Percentage Share of Water Withdrawls Excluding Thermoelectric';
+              this.yLabel = '% of Total Water Withdrawn';
 
               // change dataset to 100% area
               this.setShown = 3;
@@ -644,11 +677,11 @@ export default {
               this.domain.y.min = 0;
               this.domain.y.max = 100;
               this.stackKeys = [
-                "thermoPer",
-                "irrigationPer",
-                "publicPer",
-                "industrialPer",
-                "otherPer"
+                'thermoPer',
+                'irrigationPer',
+                'publicPer',
+                'industrialPer',
+                'otherPer'
               ];
 
               break;
@@ -662,25 +695,25 @@ export default {
   directives: {
     axis(el, binding) {
       const axis = binding.arg; // x or y
-      const axisMethod = { x: "axisBottom", y: "axisLeft" }[axis];
+      const axisMethod = { x: 'axisBottom', y: 'axisLeft' }[axis];
       // The line below assigns the x or y function of the scale object
       const methodArg = binding.value[axis];
       // d3.axisBottom(scale.x)
       d3.select(el).call(
         d3[axisMethod](methodArg)
-          .tickFormat(d3.format(binding.arg === "x" ? "d" : ",d"))
-          .ticks(binding.arg === "x" ? 10 : 5)
+          .tickFormat(d3.format(binding.arg === 'x' ? 'd' : ',d'))
+          .ticks(binding.arg === 'x' ? 10 : 5)
       );
     },
     grid(el, binding) {
       const axis = binding.arg; // x or y
-      const axisMethod = { gridLine: "axisLeft" }[axis];
+      const axisMethod = { gridLine: 'axisLeft' }[axis];
       // The line below assigns the x or y function of the scale object
       const methodArg = binding.value[axis];
       // d3.axisBottom(scale.x)
       d3.select(el).call(
         d3[axisMethod](methodArg)
-          .tickFormat("")
+          .tickFormat('')
           .tickSize(-2000)
           .ticks(5)
       );
@@ -746,7 +779,7 @@ section {
   font-weight: 700;
   font-size: 2.5rem;
   /* fill: #485465; */
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   opacity: 0.75;
   visibility: hidden;
 }

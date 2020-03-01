@@ -4,7 +4,11 @@
       <article>
         <div class="modal-band"></div>
         <h4>This story is not available on small screens yet</h4>
-        <p>Sorry, I haven't had time to make this story work on small screens and touch devices yet. You should view this story on a desktop computer, laptop, or any device at least the size of a horizontal iPad.</p>
+        <p>
+          Sorry, I haven't had time to make this story work on small screens and touch devices yet.
+          You should view this story on a desktop computer, laptop, or any device at least the size
+          of a horizontal iPad.
+        </p>
         <button
           @click="responsiveOverride = true"
           id="modal-button"
@@ -41,17 +45,23 @@
           <p>
             Freshwater has been described as the
             <i>oil of the 21st century</i>
-            <sup class="footnote">&nbsp;[1]</sup>. In the wake of extreme water stress events across the globe in places like
+            <sup class="footnote">&nbsp;[1]</sup>. In the wake of extreme water stress events across
+            the globe in places like
             <a
               href="https://en.wikipedia.org/wiki/Cape_Town_water_crisis"
             >Cape Town</a>,
             <a href="https://en.wikipedia.org/wiki/Water_scarcity_in_Mexico">Mexico City</a>, and
-            <a href="https://en.wikipedia.org/wiki/Water_restrictions_in_Australia">Australia</a>, I wanted to take a look at water issues here at home in the United States. Major factors like population growth and climate change are causing localized regional pockets of water stress that will soon affect other areas of the country without action. In order to change our relationship with water, action must come in the form of both infrastructure investments and behavioral changes.
+            <a href="https://en.wikipedia.org/wiki/Water_restrictions_in_Australia">Australia</a>, I
+            wanted to take a look at water issues here at home in the United States. Major factors
+            like population growth and climate change are causing localized regional pockets of
+            water stress that will soon affect other areas of the country without action. In order
+            to change our relationship with water, action must come in the form of both
+            infrastructure investments and behavioral changes.
           </p>
         </div>
       </section>
       <!-- add chart one -- line and area -- component -->
-      <ChartOne/>
+      <ChartOne />
 
       <section class="section-break">
         <div class="section-tag-holder">
@@ -62,14 +72,18 @@
           </div>
         </div>
         <div class="body-text">
-          <p>While the average withdrawals show a broad picture of water usage across the United States, it's important to look at where in the country the most water is being withdrawn and consumed. This helps understand how water stress from surface water elusiveness, groundwater over abstraction, infrastructure play a role at local, regional, and national levels.</p>
+          <p>
+            While the average withdrawals show a broad picture of water usage across the United
+            States, it's important to look at where in the country the most water is being withdrawn
+            and consumed. This helps understand how water stress from surface water elusiveness,
+            groundwater over abstraction, infrastructure play a role at local, regional, and
+            national levels.
+          </p>
         </div>
       </section>
-      <!-- topo d3 map for water usage -->
-      <!-- <CountyMap/> -->
 
       <!-- add chart two -- map -- components -->
-      <ChartTwo/>
+      <ChartTwo />
       <section class="section-break">
         <div class="section-tag-holder">
           <div class="section-tag-line"></div>
@@ -79,14 +93,27 @@
           </div>
         </div>
         <div class="body-text">
-          <p>After reading about half a trillion dollars needed for infrastructure, increasing groundwater depletion intensity, and climate change affecting the natural water cycle of our surface water, it's hard to imagine how any individual efforts can make a difference.</p>
-          <p>While it's necessary for government at the local, state, and federal level to provide funding for massive infrastructure investments, smarter irrigation systems, and climate change fighting policies, we often underestimate the impact our daily choices make on water withdrawals.</p>
-          <p>You and I can't spend half a trillion dollars on infrastructure, but we can change our behaviors to force conservation efforts.</p>
+          <p>
+            After reading about half a trillion dollars needed for infrastructure, increasing
+            groundwater depletion intensity, and climate change affecting the natural water cycle of
+            our surface water, it's hard to imagine how any individual efforts can make a
+            difference.
+          </p>
+          <p>
+            While it's necessary for government at the local, state, and federal level to provide
+            funding for massive infrastructure investments, smarter irrigation systems, and climate
+            change fighting policies, we often underestimate the impact our daily choices make on
+            water withdrawals.
+          </p>
+          <p>
+            You and I can't spend half a trillion dollars on infrastructure, but we can change our
+            behaviors to force conservation efforts.
+          </p>
         </div>
       </section>
 
       <!-- add chart three -- scenario -- component -->
-      <ChartThree/>
+      <ChartThree />
       <section class="section-break">
         <div class="section-tag-holder">
           <div class="section-tag-line"></div>
@@ -97,13 +124,22 @@
         </div>
         <div class="body-text">
           <div id="final">
-            <p>This is not an all or nothing approach. By reducing our virtual water footprint, alongside major investments in infrastructure and irrigation technologies, we can help mitigate shortage conditions in the west, the drinking water impact of floods in the midwest, the depletion intensity of our below-ground aquifers by ultimately allowing us to do more with less water.</p>
-            <p>Understanding the magnitude of these specific courses of action will enable us to drastically change our relationship with the most valuable natural resource on earth.</p>
+            <p>
+              This is not an all or nothing approach. By reducing our virtual water footprint,
+              alongside major investments in infrastructure and irrigation technologies, we can help
+              mitigate shortage conditions in the west, the drinking water impact of floods in the
+              midwest, the depletion intensity of our below-ground aquifers by ultimately allowing
+              us to do more with less water.
+            </p>
+            <p>
+              Understanding the magnitude of these specific courses of action will enable us to
+              drastically change our relationship with the most valuable natural resource on earth.
+            </p>
           </div>
         </div>
       </section>
       <div class="footnotes">
-        <hr class="footer">
+        <hr class="footer" />
         <h6>Methodology, Sources, and Footnotes</h6>
         <p>
           This story was created by
@@ -111,22 +147,24 @@
             href="http://andrewlevinson.me/"
             target="_blank"
           >Andrew Levinson</a>
-          in support of a graduate school thesis for the Masters of Science in Data Visualization at Parsons School
-          of Design // The New School.
+          in support of a graduate school thesis for the Masters of Science in Data Visualization at
+          Parsons School of Design // The New School.
         </p>
         <p>
-          Data was mostly collected from US governmental organizations, including: the United States Geological Survey
+          Data was mostly collected from US governmental organizations, including: the United States
+          Geological Survey
           <a
             href="https://www.usgs.gov/"
-          >(USGS)</a>, the Environmental Protection Agency (EPA) [both the
-          <a
-            href="https://www.epa.gov/"
-          >current website</a> and the
-          <a href="https://19january2017snapshot.epa.gov/">archived version</a> which included climate change data until January 19th, 2017], the United States Department of Agriculture
+          >(USGS)</a>, the Environmental Protection Agency (EPA)
+          [both the
+          <a href="https://www.epa.gov/">current website</a> and the
+          <a href="https://19january2017snapshot.epa.gov/">archived version</a> which included
+          climate change data until January 19th, 2017], the United States Department of Agriculture
           <a
             href="https://www.usda.gov/"
           >(USDA)</a>, and the United States Bureau of Reclamation
-          <a href="https://www.usbr.gov/">(USBR)</a> for which you can find the direct links to the data in the sources section below.
+          <a href="https://www.usbr.gov/">(USBR)</a> for which you can find the direct links to the
+          data in the sources section below.
         </p>
         <p>
           This visual essay was built with
@@ -141,11 +179,15 @@
           library for scroll events and
           <a
             href="https://nightcatsama.github.io/vue-slider-component/#/"
-          >vue-slider-component</a> for the slider components.
+          >vue-slider-component</a>
+          for the slider components.
         </p>
         <p>Footnotes:</p>
         <ol>
-          <li>"Water is the oil of the 21st century" has appeared in many articles. It isn't clear who originally phrased the commodity in this way.</li>
+          <li>
+            "Water is the oil of the 21st century" has appeared in many articles. It isn't clear who
+            originally phrased the commodity in this way.
+          </li>
           <li>
             <a href="https://www.snwa.com/ws/river_law.html">Southern Nevada Water Authority</a>
           </li>
@@ -193,10 +235,9 @@
             >USDA Farming and Irrigation Data</a>
           </li>
           <li>
-            <a href="https://www.circleofblue.org/wp-content/uploads/2016/04/WRF_REU2016.pdf">
-              Water Research Foundation Residential End Uses of Water,
-              Version 2: Executive Report
-            </a>
+            <a
+              href="https://www.circleofblue.org/wp-content/uploads/2016/04/WRF_REU2016.pdf"
+            >Water Research Foundation Residential End Uses of Water, Version 2: Executive Report</a>
           </li>
           <li>
             <a
@@ -429,7 +470,7 @@ button:hover {
   flex: 1 1 0%;
   height: 100vh;
   /* overflow: hidden; */
-  background-image: url(./assets/images/hero.png);
+  background-image: url(./assets/images/hero.jpg);
   background-size: contain;
   background-size: 65%;
   background-repeat: no-repeat;

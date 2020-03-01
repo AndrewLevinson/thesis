@@ -21,21 +21,31 @@
       <a
         href="https://www.usbr.gov/lc/region/g4000/riverops/crss-5year-projections.html"
         target="_blank"
-      >Projections</a>
+        >Projections</a
+      >
     </caption>
   </div>
 </template>
 
 <script>
-import * as d3 from "d3";
+import {
+  select,
+  selectAll,
+  axisBottom,
+  axisLeft,
+  scaleLinear,
+  format,
+  line,
+  curveMonotoneX
+} from 'd3';
+const d3 = { select, selectAll, axisBottom, axisLeft, scaleLinear, format, line, curveMonotoneX };
 export default {
-  name: "mini-chart",
+  name: 'mini-chart',
 
   data() {
     return {
-      graphTitle:
-        "Likelihood of Shortage Condition in the Lower Basin (Lake Mead)",
-      yLabel: "% Odds",
+      graphTitle: 'Likelihood of Shortage Condition in the Lower Basin (Lake Mead)',
+      yLabel: '% Odds',
       svgWidth: 340,
       svgHeight: 340,
       margin: { top: 20, left: 35, bottom: 15, right: 25 },
@@ -44,7 +54,7 @@ export default {
         y: null
       },
       paths: {
-        line: ""
+        line: ''
       },
       pointsLine: [],
       domain: {
@@ -94,15 +104,11 @@ export default {
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
       // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
-      // console.log(this.filteredData);
       const x = d3
         // .scaleBand()
         // .domain(this.data.map(x => x.year))
         .scaleLinear()
-        .domain([
-          Math.min(...this.data.map(x => x.year)),
-          Math.max(...this.data.map(x => x.year))
-        ])
+        .domain([Math.min(...this.data.map(x => x.year)), Math.max(...this.data.map(x => x.year))])
         // https://github.com/d3/d3-scale/blob/master/README.md#band_rangeRound
         .rangeRound([0, this.width]);
       // .paddingInner(1);
@@ -144,25 +150,25 @@ export default {
   directives: {
     axis(el, binding) {
       const axis = binding.arg; // x or y
-      const axisMethod = { x: "axisBottom", y: "axisLeft" }[axis];
+      const axisMethod = { x: 'axisBottom', y: 'axisLeft' }[axis];
       // The line below assigns the x or y function of the scale object
       const methodArg = binding.value[axis];
       // d3.axisBottom(scale.x)
       d3.select(el).call(
         d3[axisMethod](methodArg)
-          .tickFormat(d3.format(binding.arg === "x" ? "d" : ",d"))
-          .ticks(binding.arg === "x" ? 5 : 5)
+          .tickFormat(d3.format(binding.arg === 'x' ? 'd' : ',d'))
+          .ticks(binding.arg === 'x' ? 5 : 5)
       );
     },
     grid(el, binding) {
       const axis = binding.arg; // x or y
-      const axisMethod = { gridLine: "axisLeft" }[axis];
+      const axisMethod = { gridLine: 'axisLeft' }[axis];
       // The line below assigns the x or y function of the scale object
       const methodArg = binding.value[axis];
       // d3.axisBottom(scale.x)
       d3.select(el).call(
         d3[axisMethod](methodArg)
-          .tickFormat("")
+          .tickFormat('')
           .tickSize(-279)
           .ticks(5)
       );

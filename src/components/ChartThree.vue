@@ -14,7 +14,7 @@
             <div>
               <h6>Behavioral Changes</h6>
               <p class="units">Gallons / Person / Day</p>
-              <div v-for="(d,i) in behaviorFilter" :key="i" class="slider">
+              <div v-for="(d, i) in behaviorFilter" :key="i" class="slider">
                 <div @mouseover="modelTip(d)" @mouseleave="modelTip(null)" :class="d.tag">
                   <label :for="i">{{ d.name }}</label>
                   <span>
@@ -38,7 +38,7 @@
             <div>
               <h6>Infrastructure Investments</h6>
               <p class="units">$ Billions Invested / Year</p>
-              <div v-for="(d,i) in investmentFilter" :key="i" class="slider">
+              <div v-for="(d, i) in investmentFilter" :key="i" class="slider">
                 <div @mouseover="modelTip(d)" @mouseleave="modelTip(null)" :class="d.tag">
                   <label :for="i">{{ d.name }}</label>
                   <span class="datum">+${{ d.input }}B</span>
@@ -74,7 +74,7 @@
               <!-- <g v-grid:gridLines="scale" class="gridlines grid-three"></g> -->
               <!-- <g v-grid:gridLinesY="scale" class="gridlines grid-three grid-three-y"></g> -->
               <!-- <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g> -->
-              <g v-axis:y="scale" :transform="`translate(${width}, ${0})`" class="y-axis"></g>
+              <g v-axis:y="scale" :transform="`translate(${width}, ${0})`" class="y-axis" />
 
               <g
                 class="metric"
@@ -82,7 +82,7 @@
                 :key="metric.data.name"
                 :transform="`translate(${metric.x - 125}, ${metric.y})`"
               >
-                <circle class="metric-circle" :r="metric.r" :fill="metric.data.color"></circle>
+                <circle class="metric-circle" :r="metric.r" :fill="metric.data.color" />
                 <text class="metric-label">{{ metric.data.shorthand }}</text>
                 <text y="22" class="metric-label-projection">{{ numFormat(metric.data.size) }}</text>
               </g>
@@ -95,25 +95,25 @@
                   :y="scale.y(totalSum) - 6"
                   :x="width - 50"
                   text-anchor="end"
-                >{{numFormat(totalSum)}}</text>
+                >{{ numFormat(totalSum) }}</text>
                 <line
                   :x1="width - 5"
                   :y1="scale.y(totalSum)"
                   :x2="width - 110"
                   :y2="scale.y(totalSum)"
                   id="total-bar"
-                ></line>
+                />
                 <rect
                   @mouseover="totalTip(totalSum)"
                   @mouseleave="totalTip(null)"
                   :x="width - 40"
                   :y="scale.y(totalSum)"
                   width="35"
-                  :height="height -scale.y(totalSum)"
+                  :height="height - scale.y(totalSum)"
                   rx="3"
                   ry="3"
                   class="total-bar"
-                ></rect>
+                />
               </g>
             </g>
           </svg>
@@ -123,8 +123,11 @@
     <section class="text-section" id="sectionsThree">
       <div class="text-box">
         <h5 class="box-title">Behavioral Changes vs. Direct Investments</h5>
-        <p>This scenario model helps visualize the massive impact that seemingly small behavioral changes have in aggregate when compared against massive spending efforts.</p>
-        <br>
+        <p>
+          This scenario model helps visualize the massive impact that seemingly small behavioral
+          changes have in aggregate when compared against massive spending efforts.
+        </p>
+        <br />
         <p>Try adjusting the sliders to the left to set your own water conservation strategy.</p>
       </div>
     </section>
@@ -132,11 +135,33 @@
 </template>
 
 <script>
-import * as d3 from "d3";
+import {
+  select,
+  selectAll,
+  format,
+  axisBottom,
+  axisRight,
+  csv,
+  scaleLinear,
+  hierarchy,
+  pack,
+  sum
+} from "d3";
 import { graphScroll } from "graph-scroll";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/material.css";
-
+const d3 = {
+  select,
+  selectAll,
+  format,
+  axisBottom,
+  axisRight,
+  csv,
+  scaleLinear,
+  hierarchy,
+  pack,
+  sum
+};
 export default {
   name: "chart-three",
   components: { VueSlider },
@@ -185,7 +210,6 @@ export default {
     scale() {
       // this.domain.x.min = Math.min(...this.filteredData.map(x => x.year));
       // this.domain.x.max = Math.max(...this.filteredData.map(x => x.year));
-      // console.log(this.filteredData);
       const x = d3
         // .scaleBand()
         // .domain(this.data.map(x => x.year))
@@ -248,7 +272,7 @@ export default {
     this.loadData();
   },
   mounted() {
-    this.scrollTrigger();
+    // this.scrollTrigger();
     this.total();
     this.initTooltip();
   },
@@ -275,7 +299,6 @@ export default {
         };
       }).then(d => {
         return (this.policyData = d);
-        // console.log(d);
       });
     },
     total() {
@@ -377,7 +400,6 @@ export default {
       this.tooltip.init();
     },
     modelTip(d) {
-      console.log(d);
       if (d != null) {
         this.tooltip.show(`
         <div class="active-tip"></div>
@@ -422,11 +444,9 @@ export default {
         .sections(d3.selectAll("#sectionsThree > div"))
         .eventId("uniqueId3")
         .on("active", i => {
-          console.log("case ", i);
           switch (i) {
             case 0:
               // offscreen so do nothing / reset
-
               break;
             case 1:
               break;
