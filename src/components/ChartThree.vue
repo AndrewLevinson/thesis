@@ -147,7 +147,6 @@ import {
   pack,
   sum
 } from "d3";
-import { graphScroll } from "graph-scroll";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/material.css";
 const d3 = {
@@ -435,27 +434,6 @@ export default {
       } else {
         this.tooltip.hide();
       }
-    },
-    scrollTrigger() {
-      graphScroll()
-        .offset(225)
-        .graph(d3.selectAll("#graph-three svg"))
-        .container(d3.select("#chart-three"))
-        .sections(d3.selectAll("#sectionsThree > div"))
-        .eventId("uniqueId3")
-        .on("active", i => {
-          switch (i) {
-            case 0:
-              // offscreen so do nothing / reset
-              break;
-            case 1:
-              break;
-            default:
-              // defult
-              console.log("im the default for chart 3");
-              break;
-          }
-        });
     }
   },
   directives: {
@@ -507,7 +485,8 @@ export default {
   margin-bottom: 60rem;
   /* z-index: 999; */
   border-radius: 4px;
-  opacity: 0.925;
+  /* opacity: 0.925; */
+  opacity: 1;
   filter: drop-shadow(0px 2px 4px rgba(59, 59, 61, 0.2));
   /* unique to chart one */
   background-color: var(--main-bg-color);
@@ -529,15 +508,15 @@ section {
   z-index: 999;
 }
 /* text -- graph scroll */
-#sectionsThree > div {
+/* #sectionsThree > div {
   z-index: 999;
   opacity: 0.3;
-}
+} */
 
-#sectionsThree div.graph-scroll-active {
+/* #sectionsThree div.graph-scroll-active {
   z-index: 999;
   opacity: 1;
-}
+} */
 
 /* chart */
 #chart-three {
