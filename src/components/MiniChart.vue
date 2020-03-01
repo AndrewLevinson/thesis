@@ -4,13 +4,13 @@
     <span class="area-lower-basin tag tag-mini">Lower Basin</span>
     <svg :width="svgWidth" :height="svgHeight">
       <g :transform="`translate(${margin.left}, ${margin.bottom})`" class="the-group">
-        <g v-grid:gridLine="scale" class="grid"></g>
-        <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis"></g>
-        <g v-axis:y="scale" class="y-axis"></g>
-        <path class="link" :d="paths.line"></path>
+        <g v-grid:gridLine="scale" class="grid" />
+        <g v-axis:x="scale" :transform="`translate(${0}, ${height})`" class="x-axis" />
+        <g v-axis:y="scale" class="y-axis" />
+        <path class="link" :d="paths.line" />
 
         <g v-for="(d, i) in data" :key="i">
-          <circle class="circle-mini" :cx="scale.x(d.year)" :cy="scale.y(d.percent)" r="5.5"></circle>
+          <circle class="circle-mini" :cx="scale.x(d.year)" :cy="scale.y(d.percent)" r="5.5" />
         </g>
 
         <text y="5" x="0" fill="#fff" class="axis-title">{{ yLabel }}</text>

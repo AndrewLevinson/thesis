@@ -45,11 +45,11 @@
             >major cities</span>
             that depend on Lake Mead for their drinking water from the lower basin.
           </p>
-          <MiniChart/>
+          <MiniChart />
           <div class="additional-content">
             <div class="tip-band-mini"></div>
-            <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, climate change has affected the natural water cycle, putting intense pressure on cities that depend on Lake Mead for their dirnking water.</p>
-            <p>With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply, especially in cities like Lost Angeles, Las Vegas, and Phoenix.</p>
+            <p>The Colorado River provides most of the freshwater needs to the most water intensive region in the country for both irrigation and municipal usage; however, climate change has affected the natural water cycle, putting intense pressure on cities that depend on Lake Mead for their drinking water.</p>
+            <p>With less snowpack in the mountains during the winter, the river becomes much more stressed in the late, hot summer months. This not only effects farming activities, but puts immense pressure on the public water supply—especially in cities like Los Angeles, Las Vegas, and Phoenix.</p>
           </div>
         </article>
         <!-- <article v-else-if="scrollPosition === 3">
