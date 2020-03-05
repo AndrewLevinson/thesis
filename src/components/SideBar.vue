@@ -39,16 +39,18 @@
             <span class="area-river tag">Colorado River</span>
           </div>-->
           <p>
-            Climate change has caused frequent extended doughts throughout the Southwest, putting
+            Climate change has frequently extended droughts throughout the Southwest, putting
             intense pressure on
-            <span class="special datum">major cities</span>
+            <span
+              class="special datum"
+            >major cities</span>
             that depend on Lake Mead for their drinking water from the lower basin.
           </p>
           <MiniChart />
           <div class="additional-content">
             <div class="tip-band-mini"></div>
             <p>
-              The Colorado River provides most of the freshwater needs to the most water intensive
+              The Colorado River provides most of the freshwater needs to the most water-intensive
               region in the country for both irrigation and municipal usage; however, climate change
               has affected the natural water cycle, putting intense pressure on cities that depend
               on Lake Mead for their drinking water.
@@ -79,15 +81,15 @@
           <h2>Drinking Water Infrastructure</h2>
           <h5>Repairs Needed</h5>
           <p>
-            In 2015, the EPA completed their
+            In 2015, the EPA completed its
             <a
               href="https://www.epa.gov/sites/production/files/2018-10/documents/corrected_sixth_drinking_water_infrastructure_needs_survey_and_assessment.pdf"
               target="_blank"
-            >
-              sixth national assessment
-            </a>
+            >sixth national assessment</a>
             of public water system infrastructure needs which shows a 20-year need of
-            <span class="total special">$472.6 Billion</span> in capital improvements to our water
+            <span
+              class="total special"
+            >$472.6 Billion</span> in capital improvements to our water
             systems to "provide safe drinking water to the public."
           </p>
 
@@ -189,13 +191,13 @@
 </template>
 
 <script>
-import MiniChart from './MiniChart.vue';
-import { format } from 'd3';
+import MiniChart from "./MiniChart.vue";
+import { format } from "d3";
 const d3 = { format };
 export default {
-  name: 'side-bar',
+  name: "side-bar",
   components: { MiniChart },
-  props: ['scrollPosition', 'places', 'currentState', 'currentRepair'],
+  props: ["scrollPosition", "places", "currentState", "currentRepair"],
   data() {
     return {
       showPanel: false,
@@ -214,7 +216,7 @@ export default {
   //   scrollPosition: "scrollPanel"
   // },
   watch: {
-    scrollPosition: 'scrollPanel',
+    scrollPosition: "scrollPanel",
     animationComplete(newValue, oldValue) {
       if (newValue) {
         this.showPanelContent = true;
@@ -232,10 +234,10 @@ export default {
   },
   methods: {
     playingSideBar(is) {
-      this.$emit('playingSideBar', is);
+      this.$emit("playingSideBar", is);
     },
     numFormater(el) {
-      const numFormatT = d3.format(',.2f');
+      const numFormatT = d3.format(",.2f");
       return `$ ${numFormatT(el / 1000)} B`;
     },
     scrollPanel(i) {
@@ -519,7 +521,7 @@ button {
 } */
 
 li:before {
-  content: url('../assets/icons/x-bullet.svg');
+  content: url("../assets/icons/x-bullet.svg");
   margin-right: 12px;
 }
 

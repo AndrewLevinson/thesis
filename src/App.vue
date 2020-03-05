@@ -54,8 +54,7 @@
             <a href="https://en.wikipedia.org/wiki/Water_restrictions_in_Australia">Australia</a>, I
             wanted to take a look at water issues here at home in the United States. Major factors
             like population growth and climate change are causing localized regional pockets of
-            water stress that will soon affect other areas of the country without action. In order
-            to change our relationship with water, action must come in the form of both
+            water stress that will soon affect other areas of the country without action. To change our relationship with water, action must come in the form of both
             infrastructure investments and behavioral changes.
           </p>
         </div>
@@ -76,7 +75,7 @@
             While the average withdrawals show a broad picture of water usage across the United
             States, it's important to look at where in the country the most water is being withdrawn
             and consumed. This helps understand how water stress from surface water elusiveness,
-            groundwater over abstraction, infrastructure play a role at local, regional, and
+            groundwater over-abstraction, infrastructure play a role at local, regional, and
             national levels.
           </p>
         </div>
@@ -157,7 +156,9 @@
             href="https://www.usgs.gov/"
           >(USGS)</a>, the Environmental Protection Agency (EPA)
           [both the
-          <a href="https://www.epa.gov/">current website</a> and the
+          <a
+            href="https://www.epa.gov/"
+          >current website</a> and the
           <a href="https://19january2017snapshot.epa.gov/">archived version</a> which included
           climate change data until January 19th, 2017], the United States Department of Agriculture
           <a
