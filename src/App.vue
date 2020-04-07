@@ -432,6 +432,10 @@ a:hover {
   transition: all 0.3s ease-in;
 }
 
+a {
+  pointer-events: none;
+}
+
 button:hover {
   cursor: pointer;
 }
