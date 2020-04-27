@@ -232,7 +232,7 @@ export default {
       graphOneTitle: "Renewable Water Resources Per Capita (USA)",
       yLabel: "m3/year/person",
       svgWidth: window.innerWidth * 0.95,
-      svgHeight: window.innerHeight * 0.83,
+      svgHeight: window.innerHeight * 0.85,
       margin: { top: 50, left: 65, bottom: 20, right: 25 },
       data: [{}],
       stackedData: null,
@@ -747,7 +747,7 @@ export default {
   max-width: 600px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
-  margin-bottom: 60rem;
+  margin-bottom: 100rem;
   /* z-index: 999; */
   border-radius: 4px;
   opacity: 0.925;

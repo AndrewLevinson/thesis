@@ -503,7 +503,7 @@ button:hover {
 
 #title {
   margin-left: 4rem;
-  padding: 33rem 2rem 2rem 2rem;
+  padding: 45rem 2rem 2rem 2rem;
   /* width: 47.5%; */
   height: 50vh;
 }

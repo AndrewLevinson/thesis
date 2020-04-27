@@ -217,7 +217,8 @@ export default {
       currentRepair: null,
       adjust: 0,
       opacityValue: 0.5,
-      places: [{}]
+      places: [{}],
+      baseZoom: window.innerWidth > 1750 ? 4.25 : 3.8
     };
   },
   mounted() {
@@ -232,7 +233,7 @@ export default {
         container: "my-map",
         style: "mapbox://styles/andrewlevinson/cjulygwif39c51fqua8xj3u4m",
         center: [-98.461045, 36.805969],
-        zoom: 2.5,
+        zoom: 4,
         interactive: false,
         paint: {
           "fill-opacity": 1,
@@ -486,7 +487,8 @@ export default {
               // reset original map point
               this.map.flyTo({
                 center: [-98.461045, 38], // whole US zoomed in
-                zoom: 3.8
+                // zoom: 3.8
+                zoom: this.baseZoom
               });
               this.setMapLayers(i);
               break;
@@ -495,7 +497,7 @@ export default {
               // reset original map point
               this.map.flyTo({
                 center: [-98.461045, 38], // whole US zoomed in
-                zoom: 3.8
+                zoom: this.baseZoom
               });
               this.setMapLayers(i);
               break;
@@ -511,7 +513,7 @@ export default {
               // position
               this.map.flyTo({
                 center: [-98.461045, 38], // whole US zoomed in
-                zoom: 3.8
+                zoom: this.baseZoom
               });
               this.setMapLayers(i);
 
@@ -524,7 +526,7 @@ export default {
               // });
               this.map.flyTo({
                 center: [-98.461045, 38],
-                zoom: 3.8
+                zoom: this.baseZoom
               });
               this.setMapLayers(i);
               // this.$store.commit("updatePlaying", false);
@@ -535,7 +537,7 @@ export default {
               // position
               this.map.flyTo({
                 center: [-98.461045 + this.adjust, 38], // whole US zoomed out, infrastructure
-                zoom: 3.8
+                zoom: this.baseZoom
               });
               // will also fire animation
               // this.setAnimate = true;
@@ -586,7 +588,7 @@ export default {
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   /* margin: 0 auto; */
   margin-left: 5rem;
-  margin-bottom: 60rem;
+  margin-bottom: 100rem;
   z-index: 999;
   border-radius: 4px;
   opacity: 0.925;
@@ -607,7 +609,7 @@ export default {
   max-width: 600px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
-  margin-bottom: 60rem;
+  margin-bottom: 100rem;
   z-index: 999;
   border-radius: 4px;
   opacity: 0.925;

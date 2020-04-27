@@ -482,7 +482,7 @@ export default {
   max-width: 600px;
   padding: 1.25rem 1.75rem 1.5rem 1.75rem;
   margin: 0 auto;
-  margin-bottom: 60rem;
+  margin-bottom: 100rem;
   /* z-index: 999; */
   border-radius: 4px;
   /* opacity: 0.925; */
