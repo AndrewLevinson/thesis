@@ -790,12 +790,20 @@ section {
 #withdraw {
   position: absolute;
   top: 40px;
-  left: 1025px;
+  right: 80px;
+  left: unset;
   width: 350px;
   margin: 0;
   color: #fff;
   z-index: 998;
   padding: 1rem;
+}
+
+@media (min-width: 1700px) {
+  #withdraw {
+    right: 120px;
+    top: 70px;
+  }
 }
 
 #withdraw {

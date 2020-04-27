@@ -135,6 +135,10 @@
               drastically change our relationship with the most valuable natural resource on earth.
             </p>
           </div>
+          <div class="reset">
+            <p>You've reached the end of the story</p>
+            <button onclick="window.location='#app'">Reset from Beginning</button>
+          </div>
         </div>
       </section>
       <div class="footnotes">
