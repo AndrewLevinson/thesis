@@ -135,9 +135,9 @@
               drastically change our relationship with the most valuable natural resource on earth.
             </p>
           </div>
-          <div class="reset">
+          <div class="reload">
             <p>You've reached the end of the story</p>
-            <button onclick="window.location='#app'">Reset from Beginning</button>
+            <button onclick="window.location='#app'; window.location.reload()">Reset from Beginning</button>
           </div>
         </div>
       </section>
@@ -642,6 +642,17 @@ button:hover {
   margin-bottom: 0;
 }
 
+.reload {
+  margin-top: 8rem;
+  text-align: center;
+}
+.reload button::after {
+  content: url(/img/refresh.b15500e5.svg);
+  width: 13px;
+  margin-top: 0.0175rem;
+  margin-left: 0.75rem;
+  white-space: nowrap;
+}
 /* footer */
 hr.footer {
   width: 100%;
